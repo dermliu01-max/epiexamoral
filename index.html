@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>猛健樂證據校準計畫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  --bg:#F4F6F7; --surface:#FFFFFF; --surface-2:#EAEEF0; --inset:#F0F3F4;
+  --ink:#10171C; --ink-2:#38454E; --muted:#6B7982; --rule:#D6DDE1; --rule-soft:#E6EBEE;
+  --rct:#0E6B68; --rct-soft:#DEEEED; --rct-line:#0E6B68;
+  --rwe:#96560F; --rwe-soft:#F6EADC; --rwe-line:#B06D1C;
+  --alert:#9E2B21; --alert-soft:#F8E7E5;
+  --shadow:0 1px 2px rgba(16,23,28,.05), 0 8px 24px -16px rgba(16,23,28,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1316; --surface:#151D21; --surface-2:#1C262B; --inset:#111A1E;
+    --ink:#E9EFF1; --ink-2:#B6C3C9; --muted:#8B989F; --rule:#293439; --rule-soft:#212B30;
+    --rct:#57C3BC; --rct-soft:#10312F; --rct-line:#57C3BC;
+    --rwe:#DDA163; --rwe-soft:#31240F; --rwe-line:#DDA163;
+    --alert:#E98D84; --alert-soft:#37201D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1316; --surface:#151D21; --surface-2:#1C262B; --inset:#111A1E;
+  --ink:#E9EFF1; --ink-2:#B6C3C9; --muted:#8B989F; --rule:#293439; --rule-soft:#212B30;
+  --rct:#57C3BC; --rct-soft:#10312F; --rct-line:#57C3BC;
+  --rwe:#DDA163; --rwe-soft:#31240F; --rwe-line:#DDA163;
+  --alert:#E98D84; --alert-soft:#37201D;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Source Serif 4","Noto Serif TC","Songti TC",serif; text-wrap:balance; margin:0; line-height:1.3;}
+p{margin:0}
+a{color:inherit}
+
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px 96px}
+.measure{max-width:760px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:1px solid var(--rule); background:var(--surface); }
+.mast-in{max-width:1080px; margin:0 auto; padding:56px 24px 40px; display:flex; flex-direction:column; gap:22px}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+}
+.eyebrow span:not(:last-child)::after{content:"／"; margin-left:14px; color:var(--rule)}
+h1{font-size:clamp(30px,5.2vw,46px); font-weight:700; letter-spacing:-.01em}
+.dek{font-size:17px; color:var(--ink-2); max-width:680px}
+.mast-meta{display:flex; flex-wrap:wrap; gap:8px}
+.chip{
+  font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.04em;
+  padding:5px 10px; border:1px solid var(--rule); border-radius:2px; color:var(--ink-2); background:var(--inset);
+}
+.chip.rct{color:var(--rct); border-color:var(--rct); background:var(--rct-soft)}
+.chip.rwe{color:var(--rwe); border-color:var(--rwe-line); background:var(--rwe-soft)}
+
+/* ---------- nav ---------- */
+nav{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--rule);}
+.nav-in{max-width:1080px; margin:0 auto; padding:0 24px; display:flex; gap:0; overflow-x:auto; scrollbar-width:thin}
+.nav-in a{
+  flex:0 0 auto; padding:12px 14px 11px; font-size:13px; color:var(--muted); text-decoration:none;
+  border-bottom:2px solid transparent; white-space:nowrap;
+}
+.nav-in a:hover{color:var(--ink); border-bottom-color:var(--rule)}
+.nav-in a:focus-visible{outline:2px solid var(--rct); outline-offset:-2px}
+
+/* ---------- sections ---------- */
+section{padding-top:64px}
+.sec-head{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:baseline; margin-bottom:24px; border-bottom:1px solid var(--rule); padding-bottom:12px}
+.num{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); letter-spacing:.08em}
+.sec-head h2{font-size:clamp(21px,3vw,27px); font-weight:700}
+.sec-head .sub{grid-column:2; font-size:13.5px; color:var(--muted); margin-top:2px}
+
+.stack{display:flex; flex-direction:column; gap:18px}
+.stack-lg{display:flex; flex-direction:column; gap:32px}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:22px 24px; box-shadow:var(--shadow)}
+.card h3{font-size:17px; font-weight:700; margin-bottom:8px}
+.card h4{font-size:14.5px; font-weight:600; color:var(--ink-2); margin-bottom:6px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px}
+
+.label{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); display:block; margin-bottom:6px;
+}
+.label.rct{color:var(--rct)} .label.rwe{color:var(--rwe)}
+
+.pull{
+  border-left:3px solid var(--rct); background:var(--rct-soft); padding:18px 22px; border-radius:0 3px 3px 0;
+  font-size:16.5px; color:var(--ink);
+}
+.pull.warn{border-left-color:var(--alert); background:var(--alert-soft)}
+.pull strong{font-weight:600}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; min-width:660px; font-size:13.5px; line-height:1.6}
+thead th{
+  text-align:left; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:10.5px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+  padding:12px 14px; border-bottom:1px solid var(--rule); background:var(--inset); vertical-align:bottom;
+}
+tbody td{padding:12px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--inset)}
+td.num-cell{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+.tag{
+  display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.08em;
+  padding:2px 6px; border-radius:2px; border:1px solid currentColor; white-space:nowrap;
+}
+.tag.rct{color:var(--rct); background:var(--rct-soft)}
+.tag.rwe{color:var(--rwe); background:var(--rwe-soft)}
+.tag.chk{color:var(--alert); background:var(--alert-soft)}
+.tag.plain{color:var(--muted); background:var(--inset)}
+
+/* ---------- forest plot ---------- */
+.forest{background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:24px; box-shadow:var(--shadow); overflow-x:auto}
+.forest-inner{min-width:640px}
+.f-row{display:grid; grid-template-columns:250px 1fr 118px; gap:14px; align-items:center; padding:9px 0}
+.f-lab{font-size:12.5px; line-height:1.45; color:var(--ink-2)}
+.f-lab b{display:block; font-weight:600; color:var(--ink); font-size:13px}
+.f-track{position:relative; height:22px}
+.f-track::before{
+  content:""; position:absolute; left:56.93%; top:-9px; bottom:-9px; width:1px; background:var(--rule);
+}
+.f-ci{position:absolute; top:50%; height:1.5px; transform:translateY(-50%);}
+.f-ci::before,.f-ci::after{content:""; position:absolute; top:-3.5px; width:1.5px; height:8.5px; background:inherit}
+.f-ci::before{left:0} .f-ci::after{right:0}
+.f-pt{position:absolute; top:50%; width:9px; height:9px; transform:translate(-50%,-50%) rotate(45deg)}
+.f-val{font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink-2)}
+.f-axis{position:relative; height:26px; margin-top:6px; border-top:1px solid var(--rule)}
+.f-axis span{position:absolute; top:6px; transform:translateX(-50%); font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--muted)}
+.f-head{display:grid; grid-template-columns:250px 1fr 118px; gap:14px; padding-bottom:8px; border-bottom:1px solid var(--rule); margin-bottom:6px}
+.f-head div{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.f-head div:last-child{text-align:right}
+.f-foot{margin-top:16px; padding-top:12px; border-top:1px solid var(--rule-soft); font-size:12px; color:var(--muted); display:flex; flex-wrap:wrap; gap:16px}
+.key{display:inline-flex; align-items:center; gap:6px}
+.key i{width:9px; height:9px; transform:rotate(45deg); display:inline-block}
+
+/* ---------- aim flow ---------- */
+.aims{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:0; border:1px solid var(--rule); border-radius:3px; overflow:hidden; background:var(--surface); box-shadow:var(--shadow)}
+.aim{padding:22px 22px 24px; border-right:1px solid var(--rule); display:flex; flex-direction:column; gap:10px}
+.aim:last-child{border-right:none}
+.aim-n{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase}
+.aim h3{font-size:16.5px}
+.aim p{font-size:13.5px; color:var(--ink-2); line-height:1.65}
+.aim .out{margin-top:auto; padding-top:12px; border-top:1px dashed var(--rule); font-size:12.5px; color:var(--muted)}
+.aim.a1{border-top:3px solid var(--rct)} .aim.a1 .aim-n{color:var(--rct)}
+.aim.a2{border-top:3px solid var(--ink-2)} .aim.a2 .aim-n{color:var(--ink-2)}
+.aim.a3{border-top:3px solid var(--rwe)} .aim.a3 .aim-n{color:var(--rwe)}
+
+/* ---------- Q&A ---------- */
+details{border:1px solid var(--rule); border-radius:3px; background:var(--surface); overflow:hidden}
+details+details{margin-top:10px}
+summary{padding:14px 18px; cursor:pointer; font-weight:600; font-size:15px; list-style:none; display:flex; gap:12px; align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q"; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--rwe); border:1px solid var(--rwe-line); background:var(--rwe-soft); border-radius:2px; padding:1px 5px; flex:0 0 auto; margin-top:4px}
+summary:hover{background:var(--inset)}
+summary:focus-visible{outline:2px solid var(--rct); outline-offset:-2px}
+.ans{padding:0 18px 18px 48px; font-size:14.5px; color:var(--ink-2); display:flex; flex-direction:column; gap:10px}
+.ans strong{color:var(--ink); font-weight:600}
+
+/* ---------- timeline ---------- */
+.gantt{display:flex; flex-direction:column; gap:2px; background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:20px; box-shadow:var(--shadow); overflow-x:auto}
+.g-inner{min-width:620px}
+.g-row{display:grid; grid-template-columns:190px 1fr; gap:14px; align-items:center; padding:5px 0}
+.g-lab{font-size:12.5px; color:var(--ink-2)}
+.g-track{position:relative; height:20px; background:var(--inset); border-radius:2px}
+.g-bar{position:absolute; top:3px; bottom:3px; border-radius:2px; display:flex; align-items:center; padding-left:8px; font-family:"IBM Plex Mono",monospace; font-size:10px; color:#fff; white-space:nowrap}
+.g-axis{display:grid; grid-template-columns:190px 1fr; gap:14px; margin-top:8px; padding-top:8px; border-top:1px solid var(--rule)}
+.g-ticks{display:grid; grid-template-columns:repeat(5,1fr); font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--muted)}
+
+ul,ol{margin:0; padding-left:1.25em}
+li{margin:5px 0}
+li::marker{color:var(--muted)}
+.tight li{margin:3px 0; font-size:14px}
+
+.foot{margin-top:72px; padding-top:24px; border-top:1px solid var(--rule); font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:8px}
+.refs{font-size:12.5px; line-height:1.85; color:var(--ink-2)}
+.refs li{margin:7px 0}
+.refs a{color:var(--rct); text-decoration:none; border-bottom:1px solid var(--rule)}
+.refs a:hover{border-bottom-color:var(--rct)}
+
+@media (max-width:640px){
+  .f-row,.f-head{grid-template-columns:150px 1fr 96px}
+  .g-row,.g-axis{grid-template-columns:120px 1fr}
+  .ans{padding-left:18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="mast-in">
+    <div class="eyebrow">
+      <span>流行病學研究所　博士班資格考</span>
+      <span>論文題目初稿口試</span>
+      <span>研究藍圖 v1</span>
+    </div>
+    <h1>猛健樂（Tirzepatide）的預防效益：<br>隨機試驗與真實世界證據的校準、外推與延伸</h1>
+    <p class="dek">
+      以 SURPASS-CVOT 為錨點，先驗證真實世界資料能否重現隨機試驗結果，再把校準過的設計外推到試驗未涵蓋的族群與終點。
+      主軸不是「猛健樂有沒有效」，而是「當 RCT 不可能做時，我們憑什麼相信 RWE」。
+    </p>
+    <div class="mast-meta">
+      <span class="chip rct">RCT 錨定</span>
+      <span class="chip rwe">RWE 外推</span>
+      <span class="chip">Target Trial Emulation</span>
+      <span class="chip">CV ・ Cardiorenal ・ Dementia ・ Cancer</span>
+      <span class="chip">2026.09</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-in">
+    <a href="#s1">01 定位</a>
+    <a href="#s2">02 證據地圖</a>
+    <a href="#s3">03 研究缺口</a>
+    <a href="#s4">04 三篇論文架構</a>
+    <a href="#s5">05 方法：TTE</a>
+    <a href="#s6">06 資料庫選擇</a>
+    <a href="#s7">07 偏差與因應</a>
+    <a href="#s8">08 統計計畫</a>
+    <a href="#s9">09 時程</a>
+    <a href="#s10">10 口委問答</a>
+    <a href="#refs">參考文獻</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <div class="sec-head">
+    <span class="num">01</span>
+    <h2>三十秒定位：你要在口試一開始說的那段話</h2>
+    <p class="sub">口委在前兩分鐘就會決定要不要買單。先給結論，再給理由。</p>
+  </div>
+
+  <div class="stack">
+    <div class="pull">
+      <strong>「Tirzepatide 是第一個同時作用於 GIP 與 GLP-1 受體的雙重促效劑。它的減重與代謝效果超越既有藥物，但它的『預防』效益——心血管、腎臟、失智、癌症——目前只有一個心血管結果試驗（SURPASS-CVOT）給了答案，而且是對比 dulaglutide 的非劣效。其餘所有預防終點，RCT 在可預見的未來都不會有答案：事件率低、需要的追蹤時間長、樣本數與成本不可行。因此問題轉成：真實世界資料能不能替代？我的論文不是直接用 RWE 給答案，而是先用 SURPASS-CVOT 校準我的 RWE 設計，量化它的偏差方向與幅度，再把校準過的設計外推到 RCT 到不了的族群與終點。」</strong>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <span class="label rct">錨點 Anchor</span>
+        <h3>SURPASS-CVOT</h3>
+        <p style="font-size:14px;color:var(--ink-2)">N=13,299、T2D 併 ASCVD、BMI≥25、中位追蹤 4 年，tirzepatide vs dulaglutide。MACE-3 達非劣效但未達優效。<br><span class="tag chk">數值待核</span></p>
+      </div>
+      <div class="card">
+        <span class="label">缺口 Gap</span>
+        <h3>RCT 到不了的地方</h3>
+        <p style="font-size:14px;color:var(--ink-2)">初級預防族群、非糖尿病肥胖者、東亞人、CKD 晚期、老年；以及失智、癌症、CKM 進程等長潛伏期終點。</p>
+      </div>
+      <div class="card">
+        <span class="label rwe">方法 Method</span>
+        <h3>先校準，再外推</h3>
+        <p style="font-size:14px;color:var(--ink-2)">Target trial emulation + benchmarking，把「RWE 與 RCT 的差距」本身當作可測量的量，而非事後的免責聲明。</p>
+      </div>
+    </div>
+
+    <div class="pull warn">
+      <strong>把這句準備好：</strong>「如果我的 emulation 重現不了 SURPASS-CVOT，那不是研究失敗，那是本論文最重要的發現之一——它會告訴我們，用同樣的資料去談失智與癌症預防有多不可靠。」
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <div class="sec-head">
+    <span class="num">02</span>
+    <h2>現有證據地圖：RCT 與 RWE 講的不是同一件事</h2>
+    <p class="sub">下圖與下表是你整份提案的立論基礎。刻意把兩類證據放在同一條軸上，讓「不一致」自己說話。</p>
+  </div>
+
+  <div class="stack-lg">
+
+    <div class="forest">
+      <div class="forest-inner">
+        <div class="f-head"><div>研究／終點</div><div>Hazard Ratio（對數尺度）</div><div>HR (95% CI)</div></div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>SURPASS-CVOT</b>MACE-3；tirze vs dula <span class="tag rct">RCT</span></div>
+          <div class="f-track">
+            <div class="f-ci" style="left:45.4%; width:12.2%; background:var(--rct-line)"></div>
+            <div class="f-pt" style="left:51.8%; background:var(--rct-line)"></div>
+          </div>
+          <div class="f-val">0.92 (0.83–1.01)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>SURPASS-CVOT</b>Expanded MACE <span class="tag rct">RCT</span></div>
+          <div class="f-track">
+            <div class="f-ci" style="left:43.1%; width:11.3%; background:var(--rct-line)"></div>
+            <div class="f-pt" style="left:49.0%; background:var(--rct-line)"></div>
+          </div>
+          <div class="f-val">0.88 (0.80–0.96)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>SUMMIT</b>HFpEF＋肥胖 複合終點 <span class="tag rct">RCT</span></div>
+          <div class="f-track">
+            <div class="f-ci" style="left:1.5%; width:52.2%; background:var(--rct-line)"></div>
+            <div class="f-pt" style="left:27.2%; background:var(--rct-line)"></div>
+          </div>
+          <div class="f-val">0.62 (0.41–0.95)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>US claims TTE</b>MI／stroke／死亡；tirze vs sema <span class="tag rwe">RWE</span></div>
+          <div class="f-track">
+            <div class="f-ci" style="left:53.8%; width:13.5%; background:var(--rwe-line)"></div>
+            <div class="f-pt" style="left:60.6%; background:var(--rwe-line)"></div>
+          </div>
+          <div class="f-val">1.06 (0.95–1.18)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>TriNetX TTE</b>失智；tirze vs SGLT2i <span class="tag rwe">RWE</span></div>
+          <div class="f-track">
+            <div class="f-ci" style="left:10.0%; width:42.4%; background:var(--rwe-line)"></div>
+            <div class="f-pt" style="left:31.1%; background:var(--rwe-line)"></div>
+          </div>
+          <div class="f-val">0.66 (0.47–0.93)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>TriNetX TTE</b>失智；tirze vs sema <span class="tag rwe">RWE</span></div>
+          <div class="f-track">
+            <div class="f-ci" style="left:11.3%; width:45.0%; background:var(--rwe-line)"></div>
+            <div class="f-pt" style="left:33.9%; background:var(--rwe-line)"></div>
+          </div>
+          <div class="f-val">0.69 (0.48–0.99)</div>
+        </div>
+
+        <div class="f-axis">
+          <span style="left:13.9%">0.5</span>
+          <span style="left:34.8%">0.7</span>
+          <span style="left:56.9%">1.0</span>
+          <span style="left:82.1%">1.5</span>
+          <span style="left:99%">2.0</span>
+        </div>
+      </div>
+      <div class="f-foot">
+        <span class="key"><i style="background:var(--rct-line)"></i>隨機試驗</span>
+        <span class="key"><i style="background:var(--rwe-line)"></i>真實世界研究</span>
+        <span><span class="tag chk">注意</span> 本圖數值為文獻檢索整理，正式書面資料務必回原文逐一核對點估計與信賴區間。</span>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:18px; margin-bottom:12px">關鍵文獻清單</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>研究</th><th>類型</th><th>族群／N</th><th>比較</th><th>主要結果</th><th>對你的意義</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>SURPASS-CVOT</b><br>NEJM 2025.12</td>
+              <td><span class="tag rct">RCT</span></td>
+              <td>T2D＋ASCVD，BMI≥25<br>N=13,299，中位 4 年</td>
+              <td>tirzepatide vs<br>dulaglutide</td>
+              <td class="num-cell">MACE-3 12.2% vs 13.1%<br>非劣效 p=0.003<br>優效 p=0.09<br>Expanded MACE 顯著降低<br>全死因死亡有利（主由非CV死亡驅動）</td>
+              <td>你的 <b>benchmark 目標</b>。主動對照設計、非安慰劑，是 emulation 的一大優勢（減少 confounding by indication）。</td>
+            </tr>
+            <tr>
+              <td><b>SURPASS-CVOT 心腎次要分析</b><br>2026</td>
+              <td><span class="tag rct">RCT</span></td>
+              <td>同上（post hoc）</td>
+              <td>同上</td>
+              <td>腎臟複合終點與 eGFR 斜率之次要結果</td>
+              <td>Aim 2 心腎終點的對照基準；口試前務必讀完整篇。</td>
+            </tr>
+            <tr>
+              <td><b>SUMMIT</b><br>NEJM 2024</td>
+              <td><span class="tag rct">RCT</span></td>
+              <td>HFpEF＋肥胖<br>N≈730</td>
+              <td>tirzepatide vs placebo</td>
+              <td class="num-cell">CV死亡／HF惡化事件顯著降低；KCCQ 改善</td>
+              <td>心衰竭終點唯一的 RCT 證據，樣本小、事件少 → RWE 補強空間大。</td>
+            </tr>
+            <tr>
+              <td><b>Tirzepatide 事前指定統合分析</b><br>Nat Med 2022</td>
+              <td><span class="tag rct">Meta</span></td>
+              <td>SURPASS 第三期試驗合併</td>
+              <td>vs 對照組合併</td>
+              <td class="num-cell">MACE-4 未增加風險（CI 寬）</td>
+              <td>說明「為何 SURPASS-CVOT 有必要」的歷史脈絡；也是你談 meta 層次證據的起點。</td>
+            </tr>
+            <tr>
+              <td><b>US claims 三庫 TTE</b><br>Nat Med 2025</td>
+              <td><span class="tag rwe">RWE</span></td>
+              <td>Medicare／Optum／MarketScan<br>頭對頭 N=297,842</td>
+              <td>tirzepatide vs<br>semaglutide</td>
+              <td class="num-cell">HR 1.06 (0.95–1.18)<br>中位追蹤僅約 150 天</td>
+              <td><b>最直接的競品</b>。他們已做過 SUSTAIN-6／SURPASS-CVOT 的 benchmarking。你的 novelty 必須明講與它的差異。</td>
+            </tr>
+            <tr>
+              <td><b>STEER</b><br>Diabetes Obes Metab 2026</td>
+              <td><span class="tag rwe">RWE</span></td>
+              <td>肥胖＋CVD、無糖尿病<br>各 10,625</td>
+              <td>semaglutide 2.4 vs<br>tirzepatide</td>
+              <td class="num-cell">事件數 15 vs 39<br>平均追蹤 3.8–4.3 個月<br>方向：semaglutide 較優</td>
+              <td><b>你的最佳教材</b>：與上一列方向相反。四個月追蹤談 MACE 預防、事件數極少 → 拿來示範 RWE 的失效模式。</td>
+            </tr>
+            <tr>
+              <td><b>TriNetX 失智 TTE</b><br>Diabetes Res Clin Pract 2026</td>
+              <td><span class="tag rwe">RWE</span></td>
+              <td>T2D，各組 12,246–57,959</td>
+              <td>tirze／sema vs SGLT2i；<br>tirze vs sema</td>
+              <td class="num-cell">0.66 (0.47–0.93)<br>0.71 (0.63–0.78)<br>0.69 (0.48–0.99)</td>
+              <td>Aim 3 的直接前作。事件數少、追蹤短、失智潛伏期長 → 反向因果與偵測偏差是主戰場。</td>
+            </tr>
+            <tr>
+              <td><b>HFpEF TTE</b><br>Nat Commun 2025</td>
+              <td><span class="tag rwe">RWE</span></td>
+              <td>HFpEF 病人</td>
+              <td>tirzepatide vs 對照</td>
+              <td>心衰竭相關結果改善</td>
+              <td>SUMMIT 的 RWE 對照組，現成的 benchmark 案例。</td>
+            </tr>
+            <tr>
+              <td><b>CKM 分期進程</b><br>Diabetes Res Clin Pract 2026</td>
+              <td><span class="tag rwe">RWE</span></td>
+              <td>T2D</td>
+              <td>tirzepatide vs GLP-1 RA</td>
+              <td>心腎代謝分期進程較慢</td>
+              <td>提供「CKM 連續體」的框架語言，很適合當你 Aim 2 的概念骨架。</td>
+            </tr>
+            <tr>
+              <td><b>GLP-1 與癌症</b><br>Ann Oncol 2026 ／ 系統性回顧 2025</td>
+              <td><span class="tag rwe">RWE</span></td>
+              <td>43 個美國醫療系統，N≈170,000</td>
+              <td>GLP-1 RA vs DPP-4i</td>
+              <td class="num-cell">肥胖相關癌症 ↓7%<br>大腸癌 ↓16%、直腸癌 ↓28%<br>絕對風險差極小</td>
+              <td>多數個案用的是舊世代藥物、tirzepatide 佔比低 → 你的 Aim 3 有明確空隙。</td>
+            </tr>
+            <tr>
+              <td><b>RCT-DUPLICATE</b><br>Circulation 2021／JAMA 2023</td>
+              <td><span class="tag plain">方法</span></td>
+              <td>32 個試驗的 emulation</td>
+              <td>—</td>
+              <td>提出 regulatory agreement、estimate agreement、standardized difference 三項一致性指標</td>
+              <td><b>你整篇論文的方法學母體</b>。Aim 1 基本上就是把它套用到 tirzepatide。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pull">
+      <strong>這張表最該被講出來的一句話：</strong>同一個藥、同一類終點，兩個 2025–2026 年的大型真實世界研究給出了方向相反的結論（HR 1.06 的中性 vs STEER 的 semaglutide 優勢），而唯一的 RCT 給的是對 dulaglutide 的非劣效。這個矛盾不是背景，這就是你的研究問題。
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <div class="sec-head">
+    <span class="num">03</span>
+    <h2>研究缺口與研究問題</h2>
+    <p class="sub">從「文獻沒做過」升級到「文獻做錯了什麼、為什麼重要」。</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="label">缺口 1</span>
+      <h3>RWE 的可信度沒有被量化</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">既有 tirzepatide 的 RWE 研究幾乎都是「做完就報 HR」，很少有人先證明自己的設計能重現已知的 RCT 答案。當追蹤只有 4 個月、事件數只有幾十個，這些估計值的意義極為可疑。</p>
+    </div>
+    <div class="card">
+      <span class="label">缺口 2</span>
+      <h3>初級預防幾乎是空白</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">SURPASS-CVOT 收的是已有 ASCVD 的次級預防族群。臨床上真正大量使用 tirzepatide 的，是沒有 ASCVD、甚至沒有糖尿病的肥胖者——這群人的預防效益完全外推自試驗。</p>
+    </div>
+    <div class="card">
+      <span class="label">缺口 3</span>
+      <h3>東亞族群的證據極少</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">東亞人在較低 BMI 即出現代謝異常、體組成與 GIP 反應可能不同。SURPASS-CVOT 的亞洲次族群樣本有限，台灣本土證據近乎於零。</p>
+    </div>
+    <div class="card">
+      <span class="label">缺口 4</span>
+      <h3>長潛伏期終點無 RCT，且短期 RWE 不可信</h3>
+      <p style="font-size:14.5px;color:var(--ink-2)">失智、癌症、CKD 進展需要數年潛伏期，但現有 RWE 追蹤中位數常不到一年。方向性正確的估計，可能只是反向因果與偵測偏差的產物。</p>
+    </div>
+  </div>
+
+  <div class="stack" style="margin-top:26px">
+    <div class="card">
+      <h3>總研究問題</h3>
+      <p style="font-size:15.5px">在真實世界資料中，tirzepatide 相較於其他 incretin 類藥物，對心血管、心腎、神經退化與癌症等預防性終點的效果為何？而<b>我們能在多大程度上相信這些估計</b>？</p>
+      <div style="height:14px"></div>
+      <h4>三個可檢驗的假說</h4>
+      <ol class="tight" style="color:var(--ink-2)">
+        <li><b>H1（校準）：</b>採用主動對照新使用者設計、且施加充分追蹤期要求後，RWE 對 SURPASS-CVOT 主要終點的估計可達到 regulatory agreement，但點估計會系統性偏向有利於 tirzepatide（healthy adherer／自費族群選擇）。</li>
+            <li><b>H2（外推）：</b>在無 ASCVD 的初級預防族群，絕對風險下降幅度顯著小於次級預防族群，但相對效果（HR）近似——即效果修飾主要來自基線風險而非生物機轉。</li>
+        <li><b>H3（延伸）：</b>失智與癌症終點的「保護效果」在施加 lag window、排除早期事件、並以陰性對照結果做經驗校準後，效果量會明顯衰減，甚至跨越無效線。</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <div class="sec-head">
+    <span class="num">04</span>
+    <h2>論文架構：校準 → 外推 → 延伸</h2>
+    <p class="sub">三篇論文之間有真正的邏輯依賴，不是三個獨立分析拼在一起。這是口委最看重的一點。</p>
+  </div>
+
+  <div class="aims">
+    <div class="aim a1">
+      <span class="aim-n">Aim 1 ／ 校準</span>
+      <h3>能不能重現 SURPASS-CVOT？</h3>
+      <p>以真實世界資料嚴格 emulate SURPASS-CVOT：同樣的納入排除、同樣的主動對照（dulaglutide）、同樣的終點定義與追蹤長度。同時 emulate SUMMIT 作為第二個錨點。</p>
+      <p>報告 RCT-DUPLICATE 三項一致性指標，並拆解不一致的來源（族群差異 vs 依從性 vs 終點錯分 vs 殘餘干擾）。</p>
+      <div class="out">產出：一組可量化的「偏差校正參數」，供 Aim 2、3 使用。</div>
+    </div>
+    <div class="aim a2">
+      <span class="aim-n">Aim 2 ／ 外推</span>
+      <h3>RCT 沒收的人，效果一樣嗎？</h3>
+      <p>把 Aim 1 校準後的設計，外推到 SURPASS-CVOT 排除或代表性不足的族群：無 ASCVD 者、非糖尿病肥胖者、eGFR 較低者、高齡者、東亞族群。</p>
+      <p>以 transportability／standardization 方法，把試驗結果轉移到目標族群，並與直接觀察到的 RWE 估計相互驗證。</p>
+      <div class="out">產出：效果異質性圖譜＋絕對風險下降與 NNT 的族群別估計。</div>
+    </div>
+    <div class="aim a3">
+      <span class="aim-n">Aim 3 ／ 延伸</span>
+      <h3>RCT 不會有答案的終點</h3>
+      <p>延伸到失智／輕度認知障礙、肥胖相關癌症、CKD 進展與 MASLD。這些終點沒有 RCT 可對照，因此完全仰賴 Aim 1 建立的偏差量級。</p>
+      <p>核心不是報告 HR，而是報告「在什麼強度的未測量干擾下，這個結論會被推翻」——E-value、量化偏差分析、陰性對照經驗校準。</p>
+      <div class="out">產出：帶有明確可信度標籤的預防效益估計。</div>
+    </div>
+  </div>
+
+  <div class="pull" style="margin-top:22px">
+    <strong>這個架構的賣點：</strong>Aim 1 的產出是 Aim 3 的輸入。多數 RWE 論文把「殘餘干擾」寫在 limitation 段落；你把它變成第一篇論文的<b>結果變數</b>，再帶進第三篇。這是方法學貢獻，不只是應用。
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s5">
+  <div class="sec-head">
+    <span class="num">05</span>
+    <h2>方法核心：Target Trial Emulation 協定</h2>
+    <p class="sub">口試時把這張表投出來，逐格講。這是證明你「懂方法」而非「會跑統計」的關鍵。</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:15%">協定要素</th><th style="width:28%">目標試驗（SURPASS-CVOT）</th><th style="width:30%">真實世界 emulation</th><th style="width:27%">最容易出錯之處</th></tr></thead>
+      <tbody>
+        <tr><td><b>合格條件</b></td><td>T2D、BMI≥25、已確立 ASCVD、HbA1c 於指定區間</td><td>指標日前 12 個月連續納保／就醫；以診斷碼＋處置碼定義 ASCVD；以檢驗值或代理指標定義 HbA1c</td><td>要求太嚴 → 樣本歸零；太寬 → 族群不可比。務必畫 attrition flow chart。</td></tr>
+        <tr><td><b>治療策略</b></td><td>Tirzepatide 劑量調升 vs dulaglutide 1.5mg</td><td>新使用者（前 12 個月無任何 incretin 類處方）；定義劑量調升的 grace period</td><td>Prevalent user bias 與 depletion of susceptibles。台灣自費處方紀錄不完整會直接破壞這一格。</td></tr>
+        <tr><td><b>分派</b></td><td>1:1 隨機，開放標籤</td><td>以基線共變項做傾向分數重疊加權；假設條件式可交換性</td><td>無法測量的變項：BMI 實測值、動機、經濟能力、生活型態。這是你論文的核心弱點，要主動承認並量化。</td></tr>
+        <tr><td><b>追蹤起點</b></td><td>隨機分派日</td><td>首次處方調劑日＝合格判定日＝分析起始日（三者必須對齊）</td><td>三者不對齊即產生 immortal time bias——RWE 最常見的致命傷。</td></tr>
+        <tr><td><b>結果</b></td><td>CV 死亡、MI、stroke 之複合終點，經委員會裁定</td><td>住院主診斷碼演算法；死亡以死因統計檔連結</td><td>行政資料無裁定機制；EHR 資料庫常缺死亡登記 → 結果錯分且可能非差異性以外的偏誤。</td></tr>
+        <tr><td><b>因果對比</b></td><td>ITT 為主，per-protocol 為次</td><td>雙軌並陳：ITT 類比（起始治療效果）＋ per-protocol（以 IPCW 處理停藥／轉換）</td><td>真實世界持續使用率低（既有研究中位追蹤僅數月），ITT 會嚴重稀釋效果。</td></tr>
+        <tr><td><b>統計分析</b></td><td>Cox 比例風險，非劣效邊界</td><td>加權 Cox＋加權 Kaplan-Meier；競爭風險以 cause-specific 與 Fine-Gray 並列</td><td>比例風險假設在長潛伏期終點常不成立；建議並報 RMST 差值。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <span class="label rct">一致性指標</span>
+      <h3>你要如何宣稱「重現成功」</h3>
+      <ul class="tight" style="color:var(--ink-2)">
+        <li><b>Regulatory agreement：</b>統計顯著性與方向是否一致。</li>
+        <li><b>Estimate agreement：</b>RWE 的 95% CI 是否涵蓋 RCT 點估計（反之亦然）。</li>
+        <li><b>Standardized difference：</b>兩個效果量差異除以合併標準誤，量化差距大小。</li>
+        <li>三者必須<b>事前指定</b>並公開註冊，否則就是事後合理化。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="label rwe">可信度工具箱</span>
+      <h3>Aim 3 沒有 RCT 可對照時怎麼辦</h3>
+      <ul class="tight" style="color:var(--ink-2)">
+        <li><b>陰性對照結果：</b>選擇理論上不受藥物影響的終點（如意外傷害、白內障），若也出現「保護效果」即代表殘餘干擾。</li>
+        <li><b>經驗校準：</b>用大量陰性對照建立零效果分布，據以校準 p 值與 CI。</li>
+        <li><b>陽性對照：</b>已知效果的終點（如體重下降、HbA1c）作為設計敏感度檢驗。</li>
+        <li><b>E-value 與偏差分析：</b>回答「需要多強的未測量干擾才能解釋掉這個結果」。</li>
+        <li><b>Lag window：</b>排除起始後 6／12／24 個月內事件，處理反向因果。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="s6">
+  <div class="sec-head">
+    <span class="num">06</span>
+    <h2>資料庫選擇：本計畫最大的可行性風險</h2>
+    <p class="sub">你尚未決定資料來源。這一節請務必在口試前定案——口委一定會問，答不出來全案失分。</p>
+  </div>
+
+  <div class="pull warn">
+    <strong>先講最痛的事實：</strong>依現行制度，台灣健保對 GLP-1 類藥物的給付限縮於血糖控制不佳的第二型糖尿病患者，猛健樂在台灣臨床上以<b>自費使用為主</b>。自費處方不會出現在健保申報檔中——這代表<b>健保資料庫可能根本抓不到你的暴露組</b>。這是本計畫的第一道生死關卡，請務必向健保署／藥廠實際查證台灣的核准適應症與給付現況後再定案。<span class="tag chk">務必查證</span>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:20px">
+    <table>
+      <thead><tr><th>資料來源</th><th>暴露捕捉</th><th>共變項</th><th>結果品質</th><th>追蹤與死亡</th><th>可行性判斷</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>健保資料庫<br>NHIRD／NHIA</b></td>
+          <td><span class="tag chk">高風險</span> 自費藥物不入檔，暴露組可能嚴重不足或高度選擇性</td>
+          <td>僅診斷與處方，<b>無</b> BMI、HbA1c、eGFR、吸菸</td>
+          <td>住院診斷碼品質尚可，可連結多檔</td>
+          <td>全國、完整；可連結死因統計檔</td>
+          <td>作為<b>單一主資料源風險過高</b>；適合作為背景疾病負擔與比較組來源</td>
+        </tr>
+        <tr>
+          <td><b>醫院電子病歷<br>如 CGRD／NTUH</b></td>
+          <td><span class="tag rct">最佳</span> 含自費處方與實際調劑紀錄</td>
+          <td><b>有檢驗值與生命徵象</b>：體重、BMI、HbA1c、eGFR、血脂</td>
+          <td>可回溯病歷驗證終點，錯分較少</td>
+          <td>院外事件會流失；死亡需連結或以出院狀態代理</td>
+          <td><b>推薦作為主資料源</b>。共變項完整度是 confounding adjustment 的命脈</td>
+        </tr>
+        <tr>
+          <td><b>TriNetX<br>全球聯邦式</b></td>
+          <td>良好，且既有 tirzepatide 研究多用此庫</td>
+          <td>有檢驗值，但缺漏比例高</td>
+          <td>EHR 為主，終點定義較粗</td>
+          <td><span class="tag chk">弱點</span> 死亡登記不完整、病人可能離開該醫療系統</td>
+          <td>適合作為<b>外部重複驗證</b>與國際比較，不宜作唯一來源</td>
+        </tr>
+        <tr>
+          <td><b>國際 claims<br>Optum／MarketScan</b></td>
+          <td>優，且能與 Nature Medicine 研究直接對照</td>
+          <td>無檢驗值（除非用 LabDB 子集）</td>
+          <td>行政資料，演算法已有文獻驗證</td>
+          <td>換保險即失聯，追蹤時間短</td>
+          <td>取得成本高；若指導教授有既有授權則極具價值</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>建議的組合策略（口試時這樣回答）</h3>
+    <p style="font-size:14.5px;color:var(--ink-2)">「以醫院電子病歷（含自費處方與檢驗值）作為主要分析資料源，因為只有它同時具備暴露捕捉與共變項深度；以健保資料庫連結取得院外事件與死亡結果，補足追蹤完整性；再以 TriNetX 作為獨立的外部重複驗證，檢驗結論是否具跨資料源穩健性。三個資料源的一致或不一致，本身就是 Aim 1 的結果之一。」</p>
+    <div style="height:10px"></div>
+    <p style="font-size:13.5px;color:var(--muted)">備援方案：若台灣個案數在口試後證實不足，Aim 1 與 Aim 3 改以國際資料庫執行，Aim 2 保留台灣資料做東亞族群的效果修飾分析——先想好這條退路，口委問「收不到案怎麼辦」時你才有東西講。</p>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s7">
+  <div class="sec-head">
+    <span class="num">07</span>
+    <h2>偏差來源與因應</h2>
+    <p class="sub">口委會逐項挑戰。每一列都要能講出「威脅方向」與「你怎麼處理」。</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:19%">偏差</th><th style="width:30%">在本題的具體樣貌</th><th style="width:14%">預期方向</th><th style="width:37%">因應策略</th></tr></thead>
+      <tbody>
+        <tr><td><b>適應症干擾</b></td><td>醫師傾向給體重較高、代謝較差者 tirzepatide</td><td>偏向<b>低估</b>效益</td><td>主動對照（dulaglutide／semaglutide）而非未使用者；傾向分數重疊加權；標準化差異須 &lt;0.1</td></tr>
+        <tr><td><b>自費造成的社經選擇</b><span class="tag chk">台灣特有</span></td><td>負擔得起自費療程者本身更健康、更常運動、健康識能更高</td><td>偏向<b>高估</b>效益</td><td>以地區收入代理、就醫頻率、健檢利用率調整；設陰性對照結果檢測；此為 Aim 1 要量化的核心偏差</td></tr>
+        <tr><td><b>Immortal time bias</b></td><td>把「持續用藥滿三個月者」定義為暴露組</td><td>大幅<b>高估</b></td><td>合格判定日／治療分派日／追蹤起始日三者對齊；必要時採 clone–censor–weight 處理 grace period</td></tr>
+        <tr><td><b>Healthy adherer</b></td><td>持續施打注射劑者本身依從性高、整體健康行為佳</td><td>偏向<b>高估</b></td><td>ITT 與 per-protocol 雙軌；per-protocol 以 IPCW 校正；並以「依從性本身」對陰性對照結果的關聯量化此偏差</td></tr>
+        <tr><td><b>反向因果</b></td><td>早期失智／未診斷癌症導致體重下降，因而不被開立減重藥</td><td>偏向<b>高估</b>保護效果</td><td>排除起始後 6／12／24 個月內事件的 lag window；排除基線已有認知或體重異常者</td></tr>
+        <tr><td><b>偵測偏差</b></td><td>使用者回診頻率高 → 更容易被診斷出 CKD、癌症、MCI</td><td>依終點而異</td><td>以就醫次數與檢查次數調整；並將「檢查頻率」列為陽性對照結果檢驗</td></tr>
+        <tr><td><b>結果錯分</b></td><td>失智診斷碼靈敏度低、延遲登錄；MASLD 常未編碼</td><td>多為<b>向無效偏移</b></td><td>採用已驗證的演算法；量化偏差分析代入敏感度／特異度；病歷抽樣驗證</td></tr>
+        <tr><td><b>治療轉換與停藥</b></td><td>缺藥、價格、副作用造成頻繁在 tirzepatide 與 semaglutide 間切換</td><td>稀釋效果</td><td>明確定義 exposure gap 與 switching 的處理規則；per-protocol 分析於轉換時設限並加權</td></tr>
+        <tr><td><b>競爭風險</b></td><td>高齡族群死亡先於失智或癌症發生</td><td>低估累積發生率</td><td>cause-specific hazard 與 Fine–Gray 並報；以 RMST 呈現絕對差異</td></tr>
+        <tr><td><b>追蹤過短</b></td><td>既有 RWE 中位追蹤僅 4–5 個月即宣稱預防效益</td><td>估計不穩定</td><td>設定最短追蹤期門檻；報告事件數與 power；若事件不足，明講「本題此資料源無法回答」</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="s8">
+  <div class="sec-head">
+    <span class="num">08</span>
+    <h2>統計分析計畫</h2>
+    <p class="sub">不必寫得太細，但每一項都要能說出「為什麼用它」。</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>主要分析</h4>
+      <ul class="tight" style="color:var(--ink-2)">
+        <li>新使用者、主動對照的世代設計</li>
+        <li>傾向分數重疊加權（overlap weighting）優於 1:1 配對：保留樣本、極端權重可控</li>
+        <li>加權 Cox 模型估計 HR；穩健變異數估計</li>
+        <li>加權 Kaplan–Meier 呈現絕對風險差與 NNT</li>
+        <li>限制平均存活時間（RMST）差值作為並列指標</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>敏感度分析</h4>
+      <ul class="tight" style="color:var(--ink-2)">
+        <li>更換對照藥（dulaglutide／semaglutide／SGLT2i／DPP-4i）</li>
+        <li>更換 grace period 與 exposure gap 定義</li>
+        <li>Lag window 6／12／24 個月</li>
+        <li>高維度傾向分數（hdPS）納入經驗選取的代理變項</li>
+        <li>陰性對照結果的經驗校準；E-value；量化偏差分析</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>效果異質性（Aim 2）</h4>
+      <ul class="tight" style="color:var(--ink-2)">
+        <li>事前指定次族群：有／無 ASCVD、有／無 T2D、BMI 分層、eGFR 分層、年齡、性別</li>
+        <li>加法與乘法尺度的交互作用皆需報告</li>
+        <li>探索性：causal forest 或 X-learner 估計條件式治療效果</li>
+        <li>Transportability：以標準化把試驗結果轉移到台灣目標族群</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>透明度與可重製性</h4>
+      <ul class="tight" style="color:var(--ink-2)">
+        <li>分析計畫事前註冊（OSF 或 EU PAS Register）</li>
+        <li>依 RECORD-PE 與 STaRT-RWE 規範撰寫</li>
+        <li>公開程式碼與代碼清單（code lists）</li>
+        <li>完整的世代流失圖與基線平衡表（含標準化差異）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="s9">
+  <div class="sec-head">
+    <span class="num">09</span>
+    <h2>四年時程</h2>
+    <p class="sub">口委會問「這做得完嗎」。資料申請與 IRB 的時間一定要畫進去。</p>
+  </div>
+
+  <div class="gantt">
+    <div class="g-inner">
+      <div class="g-row"><div class="g-lab">IRB／資料申請與取得</div><div class="g-track"><div class="g-bar" style="left:0%; width:16%; background:var(--muted)">6 個月</div></div></div>
+      <div class="g-row"><div class="g-lab">分析計畫事前註冊</div><div class="g-track"><div class="g-bar" style="left:10%; width:8%; background:var(--muted)"></div></div></div>
+      <div class="g-row"><div class="g-lab"><b>Aim 1</b> 校準與 benchmarking</div><div class="g-track"><div class="g-bar" style="left:14%; width:30%; background:var(--rct-line)">12 個月</div></div></div>
+      <div class="g-row"><div class="g-lab">論文一投稿</div><div class="g-track"><div class="g-bar" style="left:42%; width:6%; background:var(--rct-line)"></div></div></div>
+      <div class="g-row"><div class="g-lab"><b>Aim 2</b> 外推與效果異質性</div><div class="g-track"><div class="g-bar" style="left:40%; width:24%; background:var(--ink-2)">9 個月</div></div></div>
+      <div class="g-row"><div class="g-lab">論文二投稿</div><div class="g-track"><div class="g-bar" style="left:62%; width:6%; background:var(--ink-2)"></div></div></div>
+      <div class="g-row"><div class="g-lab"><b>Aim 3</b> 延伸終點與偏差分析</div><div class="g-track"><div class="g-bar" style="left:58%; width:28%; background:var(--rwe-line)">12 個月</div></div></div>
+      <div class="g-row"><div class="g-lab">論文三投稿</div><div class="g-track"><div class="g-bar" style="left:84%; width:6%; background:var(--rwe-line)"></div></div></div>
+      <div class="g-row"><div class="g-lab">論文撰寫與口試</div><div class="g-track"><div class="g-bar" style="left:82%; width:18%; background:var(--alert)">6 個月</div></div></div>
+      <div class="g-axis"><div></div><div class="g-ticks"><span>Y1</span><span>Y2</span><span>Y3</span><span>Y4</span><span>Y4末</span></div></div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:12px">Aim 2 與 Aim 3 刻意重疊：資料清理與世代建構共用，可壓縮時程。若 Aim 1 顯示 emulation 嚴重失敗，Aim 3 的定位要即時轉為「方法學警示」而非「效益估計」。</p>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10">
+  <div class="sec-head">
+    <span class="num">10</span>
+    <h2>口委可能提問與回答策略</h2>
+    <p class="sub">點開每一題看建議答法。這一節請練到能不看稿講。</p>
+  </div>
+
+  <details>
+    <summary>已經有 Nature Medicine 用三個資料庫做過同樣的 benchmarking 了，你的 novelty 在哪？</summary>
+    <div class="ans">
+      <p>不要迴避，直接拆成三點差異：</p>
+      <p><strong>一、他們止步於校準，我把校準結果當工具用。</strong>他們 benchmark 完就去做頭對頭比較；我把 benchmarking 得到的偏差方向與幅度，實際帶進沒有 RCT 可對照的終點（失智、癌症），這是他們沒有做的推論鏈。</p>
+      <p><strong>二、族群不同。</strong>他們的資料全是美國保險資料，東亞族群幾乎不存在；tirzepatide 在較低 BMI 的東亞人身上的效益是完全未知的。</p>
+      <p><strong>三、暴露情境不同。</strong>美國多為保險給付，台灣多為自費——這造就完全不同的選擇機制，而這正是我要量化的偏差來源，具有國際可轉移的方法學意義。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>猛健樂在台灣多為自費，健保資料庫抓不到，你的暴露怎麼定義？</summary>
+    <div class="ans">
+      <p>這是全案最關鍵的一題，<strong>不要含糊帶過</strong>。承認問題，然後給具體方案：</p>
+      <p>「因此我不以健保申報檔作為暴露來源，而以醫院電子病歷的實際處方與調劑紀錄（含自費）定義暴露，再連結健保檔與死因統計檔取得院外結果與死亡。若院內個案數不足以支撐主要終點，我會將 Aim 1 與 Aim 3 移至國際資料庫執行，台灣資料則專注於 Aim 2 的東亞族群效果修飾。」</p>
+      <p>口試前<strong>務必先做一次可行性查詢</strong>：目標醫院近三年 tirzepatide 處方人數、追蹤中位數、事件數。帶著一張真實的數字表進場，這題就變成你的加分題。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>既有 RWE 追蹤只有四個月，你怎麼可能談「預防」？</summary>
+    <div class="ans">
+      <p>反守為攻：<strong>這正是我要證明的問題，而不是我要複製的做法。</strong></p>
+      <p>「STEER 研究平均追蹤 3.8–4.3 個月、事件數 15 對 39，卻得出與另一個大型研究方向相反的結論。這說明現行 tirzepatide 的 RWE 文獻存在系統性的設計缺陷。我會事前設定最短追蹤期門檻與最低事件數要求，若不滿足，我的結論就是『此資料源無法回答此問題』——這本身是有價值且誠實的結果。」</p>
+      <p>並補上：藥物上市時間短是結構性限制，因此我會以逐年更新的世代設計，讓追蹤時間隨資料累積延長。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>如果你的 emulation 重現不了 SURPASS-CVOT，這篇論文不就沒了？</summary>
+    <div class="ans">
+      <p>「不會。我的主要研究產出是<strong>一致性的程度與不一致的來源</strong>，不是某一個 HR。RCT-DUPLICATE 在 32 個試驗中也並非全部重現成功，而那正是該系列最有價值的貢獻。」</p>
+      <p>接著說明你會如何拆解不一致：族群差異（以標準化重新加權至試驗族群）、依從性差異（ITT vs per-protocol）、終點錯分（演算法驗證）、殘餘干擾（陰性對照校準）。<strong>能把不一致拆解成可歸因的成分，比重現成功更有學術價值。</strong></p>
+    </div>
+  </details>
+
+  <details>
+    <summary>失智的 HR 0.66 你相信嗎？</summary>
+    <div class="ans">
+      <p>誠實回答：「以目前的證據，我傾向<strong>不相信這個數值本身</strong>，但相信它值得被嚴謹檢驗。」</p>
+      <p>理由要具體：失智潛伏期十年以上，而該研究追蹤僅數年；早期認知退化本身會造成體重下降與用藥決策改變（反向因果）；使用者回診頻率高造成偵測偏差；事件數少導致信賴區間上界貼近 1.0。</p>
+      <p>然後給方法：「我會用 lag window 排除早期事件、以陰性對照結果做經驗校準、並計算 E-value。如果 E-value 只有 1.5，那代表任何中等強度的未測量干擾就足以推翻結論。」</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>為什麼選 dulaglutide 當對照，而不是沒用藥的人？</summary>
+    <div class="ans">
+      <p>「因為<strong>主動對照新使用者設計</strong>能大幅降低適應症干擾：兩組都是被醫師判斷需要 incretin 類藥物的人，疾病嚴重度與健康行為較為可比。與『未使用者』相比則會同時混入疾病嚴重度、就醫可近性與健康識能的差異。」</p>
+      <p>加分：「而且這也讓我的 emulation 與 SURPASS-CVOT 的設計完全對齊——該試驗本身用的就是 dulaglutide 主動對照，而非安慰劑。這是本題相對於多數 CVOT emulation 的一個結構性優勢。」</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>GIP 受體的額外作用有什麼生物學理由讓它比純 GLP-1 更好？</summary>
+    <div class="ans">
+      <p>準備一段簡短但具體的機轉論述：GIP 受體促效在脂肪組織可能改善脂質緩衝與胰島素敏感性，在中樞可能增強食慾抑制並減少噁心，兩者合併帶來更大的體重與 HbA1c 下降。</p>
+      <p>但一定要接一句<strong>誠實的但書</strong>：「更大的代謝改善不必然等於更大的心血管保護——SURPASS-CVOT 對 dulaglutide 只達非劣效，正說明代理指標的優勢未必轉譯為硬終點的優勢。這個落差本身就是我研究問題的一部分。」</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Power 夠嗎？你算過樣本數嗎？</summary>
+    <div class="ans">
+      <p>務必帶著計算進場，而不是說「資料庫很大所以應該夠」。給出：預期暴露人數、預期事件率（可引用 SURPASS-CVOT 的年事件率）、可偵測的最小效果量。</p>
+      <p>更好的說法：「我不做傳統的 power calculation，而是報告<strong>在給定事件數下的信賴區間寬度</strong>，並事前設定『若 CI 寬度超過某門檻則不作因果宣稱』的規則。這比事後才發現 underpowered 誠實得多。」</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>這個研究對台灣的政策意義是什麼？</summary>
+    <div class="ans">
+      <p>連到具體決策：「目前台灣對此類藥物的給付極為限縮，而自費使用快速成長。如果能證明在特定高風險族群中存在明確的預防效益與可接受的 NNT，就能為給付範圍的討論提供本土實證；反過來說，如果證據顯示效益在初級預防族群大幅縮小，那也是對『自費濫用』的重要警訊。」</p>
+      <p>再補一句方法學層面：「更廣義地說，台灣未來會有愈來愈多藥物在健保給付之前就大量自費使用，而健保資料庫看不見它們。本研究建立的方法框架，可以套用到所有這類藥物。」</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>三篇論文會不會太多？做得完嗎？</summary>
+    <div class="ans">
+      <p>展示你的減量方案，而不是硬撐：「三篇共用同一套資料清理與世代建構程式，邊際成本主要在分析與撰寫。若時程受壓，Aim 3 可縮減為單一終點（失智），癌症部分改列為未來工作。<strong>Aim 1 是不可壓縮的核心，因為後兩篇的推論都建立在它之上。</strong>」</p>
+    </div>
+  </details>
+
+  <div class="card" style="margin-top:26px">
+    <h3>口試前一週的檢查清單</h3>
+    <ul class="tight" style="color:var(--ink-2)">
+      <li>讀完 SURPASS-CVOT 全文與補充資料，能背出主要終點的 HR、CI、事件率與非劣效邊界</li>
+      <li>讀完 Nature Medicine 那篇三資料庫 emulation 的方法段，能講出你與它的三點差異</li>
+      <li>查證台灣猛健樂的核准適應症與健保給付現況（向藥廠或健保署確認，不要引用網路文章）</li>
+      <li>跑一次目標資料庫的可行性查詢，帶著真實的個案數與事件數進場</li>
+      <li>把本頁所有數值回原文核對一遍，尤其是標記「待核」者</li>
+      <li>準備三張投影片版本：30 秒、5 分鐘、15 分鐘</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ refs ============ -->
+<section id="refs">
+  <div class="sec-head">
+    <span class="num">附</span>
+    <h2>參考文獻與連結</h2>
+    <p class="sub">依主題分組。點擊即可開啟原文。</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="label rct">隨機試驗與統合分析</span>
+      <ul class="refs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41406444/">Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes（SURPASS-CVOT）. NEJM 2025</a></li>
+        <li><a href="https://www.tctmd.com/news/surpass-cvot-published-large-trial-confirms-cvd-efficacy-tirzepatide">SURPASS-CVOT Published: Large Trial Confirms CVD Efficacy of Tirzepatide. TCTMD</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41903177/">Cardiorenal Outcomes With Tirzepatide Compared With Dulaglutide: Post Hoc Analysis of SURPASS-CVOT</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/39555826/">Tirzepatide for Heart Failure with Preserved Ejection Fraction and Obesity（SUMMIT）. NEJM 2024</a></li>
+        <li><a href="https://www.nature.com/articles/s41591-022-01707-4">Tirzepatide cardiovascular event risk assessment: a pre-specified meta-analysis. Nat Med 2022</a></li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/oby.24332">Rationale and design of the SURMOUNT-MMO trial. Obesity 2025</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="label rwe">真實世界研究</span>
+      <ul class="refs">
+        <li><a href="https://www.nature.com/articles/s41591-025-04102-x">Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice. Nat Med 2025</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41491349/">Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world（STEER）. Diabetes Obes Metab 2026</a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0168822726000021">Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia. Diabetes Res Clin Pract 2026</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41825212/">Tirzepatide versus semaglutide for prevention of MCI, dementia and Alzheimer's disease. 2026</a></li>
+        <li><a href="https://www.nature.com/articles/s41467-025-59616-2">Effectiveness of tirzepatide in HFpEF using target trial emulation. Nat Commun 2025</a></li>
+        <li><a href="https://www.annalsofoncology.org/article/S0923-7534(26)00157-2/fulltext">GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults. Ann Oncol 2026</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41359966/">Risk for Cancer With GLP-1 RA and Dual Agonists: Systematic Review and Meta-analysis. 2025</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="label">方法學</span>
+      <ul class="refs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/33327727/">Emulating RCTs With Nonrandomized RWE Studies: First Results From RCT-DUPLICATE. Circulation 2021</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/37097356/">Emulation of RCTs With Nonrandomized Database Analyses: Results of 32 Clinical Trials. JAMA 2023</a></li>
+        <li><a href="https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag267/8691342">A practical guide to target trial emulation in cardiovascular research. Eur J Prev Cardiol 2026</a></li>
+        <li><a href="https://www.nature.com/articles/s41746-026-02563-z">An operational target trial emulation framework for causal inference using EHR data. npj Digit Med 2026</a></li>
+        <li><a href="https://www.jclinepi.com/article/S0895-4356(26)00080-6/fulltext">Practical elements to consider when emulating a target trial. J Clin Epidemiol 2026</a></li>
+        <li><a href="https://encepp.europa.eu/encepp-toolkit/methodological-guide/chapter-4-study-design_en">ENCePP Methodological Guide, Chapter 4: Study design</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="label">台灣脈絡</span>
+      <ul class="refs">
+        <li><a href="https://www.fda.gov.tw/TC/newsContent.aspx?cid=4&id=t623895">食藥署：我國減重及降血脂藥品供應說明</a></li>
+        <li><a href="https://www.ntuh.gov.tw/obesity/Fpage.action?muid=2261&fid=2128">臺大醫院減重暨代謝手術中心：常見減重藥物</a></li>
+        <li><a href="https://hanwenliu.blogspot.com/2020/05/GLP-1RA-SGLT-2i-regulation.html">GLP-1 RA 及 SGLT-2 抑制劑健保給付規定整理（需查證最新版）</a></li>
+      </ul>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:10px">台灣給付與適應症資訊變動頻繁，正式書面資料請以健保署公告與仿單為準。</p>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <p><b>使用說明：</b>本頁為文獻檢索與研究方向的整理草稿，供資格考口試準備使用。所有數值、樣本數與統計量均來自公開摘要與新聞報導的整理，標記「待核」者尤須回原文核對後方可寫入正式書面資料。</p>
+  <p>建議下一步：先完成資料庫可行性查詢與台灣給付現況查證，再據以定稿 Aim 1 的資料源，並將本頁的 05、07 兩節擴寫為正式的研究計畫方法章。</p>
+</div>
+
+</div>
+</body>
+</html>
