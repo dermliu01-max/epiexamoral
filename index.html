@@ -348,13 +348,14 @@ li b{color:var(--ink)}
     <a href="#s2"><b>02</b>證據地圖</a>
     <a href="#s3"><b>03</b>缺口與假說</a>
     <a href="#s4"><b>04</b>三篇論文架構</a>
-    <a href="#s5"><b>05</b>論文一方法</a>
-    <a href="#s6"><b>06</b>論文二方法</a>
-    <a href="#s7"><b>07</b>論文三方法</a>
-    <a href="#s8"><b>08</b>偏差清單</a>
-    <a href="#s9"><b>09</b>統計計畫</a>
-    <a href="#s10"><b>10</b>時程與投稿策略</a>
-    <a href="#s11"><b>11</b>口委問答</a>
+    <a href="#s5"><b>05</b>名詞界定與治理</a>
+    <a href="#s6"><b>06</b>論文一方法</a>
+    <a href="#s7"><b>07</b>論文二方法</a>
+    <a href="#s8"><b>08</b>論文三方法</a>
+    <a href="#s9"><b>09</b>偏差清單</a>
+    <a href="#s10"><b>10</b>統計計畫</a>
+    <a href="#s11"><b>11</b>時程與投稿策略</a>
+    <a href="#s12"><b>12</b>口委問答</a>
     <a href="#refs"><b>附</b>參考文獻</a>
   </div>
 </details>
@@ -650,10 +651,118 @@ li b{color:var(--ink)}
   </div>
 </section>
 
-<!-- ============ 05 ============ -->
+
+<!-- ============ 05 名詞界定與研究治理 ============ -->
 <section id="s5">
   <div class="sec-head">
     <span class="sec-num">05</span>
+    <h2>名詞界定與研究治理</h2>
+    <p class="sub">兩件會被口委追問、但提案裡常寫不清楚的事：目標試驗模擬到底是什麼，以及哪幾篇需要送倫理審查。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note col">
+      <span class="lede">先釘死一個定義</span>
+      <b>目標試驗模擬是一個「設計框架」，不是一種資料、也不是一種統計方法。</b>它的內容就是：把你的觀察性分析，明確對應到一個「你若能做、就會去做」的假想隨機試驗協定，然後逐項說明你如何模擬每一個要素。所以「我用 TriNetX 做研究」不等於「我做了目標試驗模擬」，「我做了傾向分數配對」也不等於。這個區分在口試被問到時要能一句話講清楚。
+    </div>
+
+    <div>
+      <h3>三篇論文各自與這個框架的關係</h3>
+      <div class="tbl" style="margin-top:20px">
+        <table>
+          <thead><tr><th style="width:16%">論文</th><th style="width:26%">與目標試驗模擬的關係</th><th style="width:58%">說明</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b></td>
+              <td data-l="關係">評估別人的模擬品質</td>
+              <td data-l="說明">拿七個要素當一把尺，去量現有文獻有多接近理想。<b>你自己不執行模擬</b>，你是在稽核別人有沒有做到。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b></td>
+              <td data-l="關係">不涉及模擬的執行</td>
+              <td data-l="說明">這是證據合成，分析單位是研究而非病人。目標試驗模擬只以「設計特徵」的形式出現在偏差模型裡。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b></td>
+              <td data-l="關係"><b>唯一真正執行的一篇</b></td>
+              <td data-l="說明">而且精確的說法是 <b>benchmarked target trial emulation</b>——因為有 SURPASS-CVOT 可對照，你能驗證模擬是否成功。口試講出「benchmarked」這個詞，比只說「我做 TTE」精準得多。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note col">
+      <span class="lede">論文三還有一層更精確的說法</span>
+      論文三其實跑<b>兩套設計</b>：一套嚴格對齊協定，一套刻意複製文獻中常見的寬鬆做法。這在方法學上叫 <b>within-database design comparison</b>——把「設計選擇造成多大差異」變成同一批資料上可觀察的實驗結果，而不是理論主張。這才是論文三真正的貢獻，不是又生產一個 tirzepatide 的 HR。
+    </div>
+
+    <div>
+      <h3>倫理審查與註冊：哪一篇需要什麼</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">這一節的實際用途是排時程。<b>前兩篇不需要倫理審查</b>，這是設計 C 在博三上這個時間點的核心優勢；論文三則必須及早啟動，否則會卡住整個進度。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:16%">論文</th><th style="width:22%">倫理審查</th><th style="width:24%">計畫註冊</th><th style="width:38%">說明</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b></td>
+              <td data-l="倫理審查"><b>不需要</b></td>
+              <td data-l="註冊">PROSPERO</td>
+              <td data-l="說明">分析對象是已發表的研究，不涉及可辨識個人資料，不屬於人體研究。但系統性回顧須在 PROSPERO 註冊——這是期刊要求，不是倫理審查。<b>註冊前不要開始正式篩選。</b></td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b></td>
+              <td data-l="倫理審查"><b>不需要</b></td>
+              <td data-l="註冊">PROSPERO</td>
+              <td data-l="說明">同上。可與論文一併案註冊，或另立一個註冊紀錄。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b></td>
+              <td data-l="倫理審查"><span class="flagtxt">需要，且要最早啟動</span></td>
+              <td data-l="註冊">EU PAS Register 或 OSF</td>
+              <td data-l="說明">動到病人層次資料。依《人體研究法》，使用人體衍生資料進行研究屬人體研究，<b>即使已去識別化、即使是次級資料，原則上仍須送機構倫理審查委員會</b>。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3>論文三：各資料源的實務要求</h3>
+      <div class="tbl" style="margin-top:20px">
+        <table>
+          <thead><tr><th style="width:24%">資料源</th><th style="width:76%">實務上要準備什麼</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="資料源"><b>醫院電子病歷</b></td>
+              <td data-l="要求">須經該院倫理審查委員會核准。因屬回溯性、且聯絡原病人不可行、風險最小，通常可一併申請<b>免除受試者同意</b>。</td>
+            </tr>
+            <tr>
+              <td data-l="資料源"><b>健保資料庫</b></td>
+              <td data-l="要求">向衛福部資料科學中心申請時，通常要求檢附倫理審查核准函或免審證明，這是申請文件的一部分。加上排隊與審查，時程要抓寬。</td>
+            </tr>
+            <tr>
+              <td data-l="資料源"><b>TriNetX</b></td>
+              <td data-l="要求">多數機構認定為去識別化的彙總資料、屬非人體研究，可申請免審——但<b>仍要送件取得正式的免審文件</b>，因為投稿時期刊要填倫理聲明。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">這段請務必自己去確認</span>
+      實務上這類研究多半走<b>免除審查或簡易審查</b>，不是完整的委員會審查。但「免審」本身也要送件、也要等；各校與各醫院對「去識別化次級資料」的認定標準不完全一致，有些較寬、有些較嚴。<b>口試前先問一次所上或醫院的倫理審查承辦人</b>，要到實際的文件清單與預估時程。口委問「你知道要跑多久嗎」，你答得出具體月數，說服力完全不同。
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s6">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
     <h2>論文一方法：量化 RWE 與 RCT 的落差</h2>
     <p class="sub">這一節要能講得最細。它是整份論文的地基，也是口委檢驗你方法學功力的地方。</p>
   </div>
@@ -744,9 +853,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 06 ============ -->
-<section id="s6">
+<section id="s7">
   <div class="sec-head">
-    <span class="sec-num">06</span>
+    <span class="sec-num">07</span>
     <h2>論文二方法：偏差校正後的證據再合成</h2>
     <p class="sub">把論文一的診斷變成處方。這篇處理的是沒有隨機試驗可對照的終點。</p>
   </div>
@@ -783,9 +892,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 07 ============ -->
-<section id="s7">
+<section id="s8">
   <div class="sec-head">
-    <span class="sec-num">07</span>
+    <span class="sec-num">08</span>
     <h2>論文三方法：示範性目標試驗模擬</h2>
     <p class="sub">前兩篇是紙上作業，這一篇證明你會做實證分析。資料源是最大風險，備案要先想好。</p>
   </div>
@@ -862,9 +971,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 08 ============ -->
-<section id="s8">
+<section id="s9">
   <div class="sec-head">
-    <span class="sec-num">08</span>
+    <span class="sec-num">09</span>
     <h2>偏差清單</h2>
     <p class="sub">口委會逐項挑戰。每一列都要能講出「威脅方向」與「你怎麼處理」。</p>
   </div>
@@ -910,9 +1019,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 09 ============ -->
-<section id="s9">
+<section id="s10">
   <div class="sec-head">
-    <span class="sec-num">09</span>
+    <span class="sec-num">10</span>
     <h2>統計分析計畫</h2>
     <p class="sub">不必寫得太細，但每一項都要能說出「為什麼用它」。</p>
   </div>
@@ -963,9 +1072,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 10 ============ -->
-<section id="s10">
+<section id="s11">
   <div class="sec-head">
-    <span class="sec-num">10</span>
+    <span class="sec-num">11</span>
     <h2>時程與投稿策略</h2>
     <p class="sub">起點是博三上的資格考，不是從零開始。以下以博五下畢業回推，並標出提前或延後的調整點。</p>
   </div>
@@ -1061,9 +1170,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 11 ============ -->
-<section id="s11">
+<section id="s12">
   <div class="sec-head">
-    <span class="sec-num">11</span>
+    <span class="sec-num">12</span>
     <h2>口委可能提問與回答策略</h2>
     <p class="sub">點開每一題看建議答法。這一節請練到能不看稿講。</p>
   </div>
