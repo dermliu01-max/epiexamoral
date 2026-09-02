@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
+
 :root{
   --bg:#F6F7F8; --surface:#FFFFFF; --inset:#F1F3F4;
   --ink:#14191D; --ink-2:#46525A; --muted:#78848B;
@@ -249,10 +250,89 @@ li b{color:var(--ink)}
   section{padding-top:60px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== tab bar ===== */
+.topbar{
+  position:sticky; top:0; z-index:30; background:var(--bg);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-in{
+  max-width:1160px; margin:0 auto; padding:0 22px;
+  display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+}
+.brand{
+  font-family:"Source Serif 4","Noto Serif TC",serif; font-size:14.5px; font-weight:600;
+  color:var(--muted); padding:14px 0; white-space:nowrap;
+}
+.tabs{display:flex; gap:4px; margin-left:auto}
+.tab{
+  appearance:none; background:none; border:none; cursor:pointer;
+  font-family:inherit; font-size:15px; color:var(--muted);
+  padding:15px 4px 13px; border-bottom:2px solid transparent; margin-left:22px;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--acc); font-weight:700}
+.tab:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+@media (max-width:620px){
+  .topbar-in{gap:0}
+  .brand{padding-bottom:0; width:100%}
+  .tabs{margin-left:0; width:100%}
+  .tab{margin-left:0; margin-right:26px; padding-top:8px}
+}
+#panel-search{max-width:880px; margin:0 auto}
+#panel-search .mast{padding-top:44px}
+
+/* ===== counts ===== */
+.counts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0; border-top:1px solid var(--rule-2)}
+.counts > div{padding:20px 22px 20px 0; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.counts > div:last-child{border-right:none}
+.counts .num{font-family:"IBM Plex Mono",monospace; font-size:30px; font-variant-numeric:tabular-nums; color:var(--acc); line-height:1.2}
+.counts .lab{font-size:13.5px; color:var(--ink-2); margin-top:6px; line-height:1.6}
+@media (max-width:700px){
+  .counts{grid-template-columns:repeat(2,1fr)}
+  .counts > div{padding-right:16px}
+}
+
+/* ===== code blocks ===== */
+.code{
+  font-family:"IBM Plex Mono",monospace; font-size:13px; line-height:1.85;
+  background:var(--inset); border-radius:5px; padding:20px 22px; overflow-x:auto;
+  white-space:pre-wrap; word-break:break-word; color:var(--ink); margin:0; max-width:840px;
+}
+.code b{color:var(--acc); font-weight:500}
+.code-lab{font-size:12.5px; color:var(--muted); letter-spacing:.06em; margin:0 0 8px}
+
+/* ===== seed list ===== */
+.seed{list-style:none; padding:0; counter-reset:s}
+.seed li{
+  counter-increment:s; margin:0; padding:13px 0 13px 38px; border-bottom:1px solid var(--rule);
+  position:relative; font-size:14.5px; line-height:1.7;
+}
+.seed li:last-child{border-bottom:none}
+.seed li::before{
+  content:counter(s,decimal-leading-zero); position:absolute; left:0; top:13px;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted);
+}
+.seed li b{display:block; color:var(--ink)}
+.seed li span{color:var(--muted); font-size:13px}
+
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="brand">猛健樂證據校準計畫</span>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="blueprint" aria-selected="true" aria-controls="panel-blueprint">研究藍圖</button>
+      <button class="tab" role="tab" data-tab="search" aria-selected="false" aria-controls="panel-search">論文一檢索策略</button>
+    </div>
+  </div>
+</div>
+
 <div class="page">
+
+<div id="panel-blueprint" role="tabpanel">
+
 
 <header class="mast">
   <p class="kicker">流行病學研究所　博士班資格考　·　論文題目初稿口試　·　研究藍圖 v3</p>
@@ -1166,5 +1246,315 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </div>
 
 </div>
+
+<div id="panel-search" role="tabpanel" hidden>
+
+
+<header class="mast">
+  <p class="kicker">論文一　Meta-epidemiological study　·　檢索策略與可行性評估　·　2026.09</p>
+  <h1>論文一檢索策略</h1>
+  <p class="dek">這份文件有兩個用途：一是讓你在口試時能具體回答「你收得到幾篇」，二是等正式開跑時直接照著執行。<b>現階段做的是可行性檢索，不是系統性回顧本身</b>——目的是抓量級、決定題目形狀，不需要兩人獨立篩選，也還不用註冊。</p>
+</header>
+
+<!-- 01 -->
+<section id="q1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>可行性檢索結果</h2>
+    <p class="sub">以下為 PubMed 實際查得的筆數。Embase、Web of Science 需機構帳號，尚未執行。</p>
+  </div>
+
+  <div class="counts">
+    <div><div class="num">2,354</div><div class="lab">tirzepatide<br><span class="q">全部文獻</span></div></div>
+    <div><div class="num">299</div><div class="lab">＋ real-world<br><span class="q">含代理指標研究</span></div></div>
+    <div><div class="num">131</div><div class="lab">＋ 隨機試驗類型<br><span class="q">多為 SURPASS／SURMOUNT 子分析</span></div></div>
+    <div><div class="num">208</div><div class="lab">＋ 失智／認知／癌症<br><span class="q">多為綜述與評論</span></div></div>
+    <div><div class="num">18</div><div class="lab">＋ target trial<br><span class="q">最貼近你要的設計</span></div></div>
+    <div><div class="num">45</div><div class="lab">擴大到 incretin 類<br><span class="q">＋ target trial emulation</span></div></div>
+  </div>
+
+  <div class="note flag col" style="margin-top:34px">
+    <span class="lede">這組數字的判讀 · 請認真看</span>
+    最關鍵的是最後兩格。嚴格符合你論文一需求的研究——有 tirzepatide 組、有對照組、有<b>臨床終點</b>（非體重或 HbA1c）、且報告 HR 與信賴區間——在 PubMed 大約落在 <b>15 至 30 篇</b>之間。這個量能支撐<b>描述性的一致性比較</b>，但<b>撐不起 meta-regression</b>：每個共變項至少要 10 篇，三個共變項就需要 30 篇以上的有效樣本。<br><br>
+    換句話說，<b>擴大到 incretin 類藥物很可能不是備案，而是主案</b>。把範圍設為 tirzepatide、semaglutide、dulaglutide，可用研究約提升到兩倍以上，tirzepatide 設為事前指定的主要次族群。這個決定要在口試前做，並寫進計畫書。
+  </div>
+
+  <div class="note col" style="margin-top:26px">
+    <span class="lede">口試時可以這樣講</span>
+    「我已做過可行性檢索。單以 tirzepatide 為範圍，符合臨床終點條件的研究約 15 至 30 篇，足以做描述性的一致性比較，但不足以支撐三個共變項的 meta-regression。因此我事前決定把納入範圍設為 incretin 類藥物，tirzepatide 作為主要次族群——這樣既保證統計可行性，也讓方法學結論適用於整個藥物類別。」
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="q2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>要用幾個資料庫？</h2>
+    <p class="sub">兩個是最低標準，但你的題目有一個特殊理由必須加到四個以上。</p>
+  </div>
+
+  <div class="stack">
+    <div class="note col">
+      <span class="lede">為什麼你的題目不能只用兩個</span>
+      一般系統性回顧用 MEDLINE 加 Embase 就算合格。但你的論文一<b>要處理的偏差之一就是發表偏差</b>——顯著的保護效果比較容易被發表，這正是你要量化的東西。如果你的檢索本身漏掉未發表與灰色文獻，你就是用一個有發表偏差的樣本去估計發表偏差。<b>對這篇論文而言，灰色文獻不是加分項，是必要項。</b>這一點在口試講出來會很加分。
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:22%">資料庫</th><th style="width:16%">必要性</th><th style="width:62%">理由</th></tr></thead>
+        <tbody>
+          <tr><td data-l="資料庫"><b>MEDLINE（PubMed）</b></td><td data-l="必要性">必備</td><td data-l="理由">核心生醫文獻。免費、可重現、檢索式易於在論文中呈現。</td></tr>
+          <tr><td data-l="資料庫"><b>Embase</b></td><td data-l="必要性">必備</td><td data-l="理由">歐洲期刊與<b>學會摘要</b>涵蓋遠優於 MEDLINE，藥物研究尤其明顯。需機構訂閱。</td></tr>
+          <tr><td data-l="資料庫"><b>Cochrane CENTRAL</b></td><td data-l="必要性">建議</td><td data-l="理由">確保隨機試驗那一側收得完整。你的主要指標是兩類證據的比值，<b>RCT 側漏掉一篇的代價比 RWE 側大得多</b>。</td></tr>
+          <tr><td data-l="資料庫"><b>Web of Science 或 Scopus</b></td><td data-l="必要性">建議</td><td data-l="理由">用於<b>引用追蹤</b>：以已知的關鍵文獻做前向與後向追引，補足關鍵詞檢索抓不到的研究。二選一即可。</td></tr>
+          <tr><td data-l="資料庫"><b>ClinicalTrials.gov</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">找出<b>已註冊但未發表</b>的試驗——這是量化發表偏差的直接證據。</td></tr>
+          <tr><td data-l="資料庫"><b>EU PAS Register</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">歐洲藥物流行病學研究的註冊平台。真實世界研究的「未發表」名單就在這裡，一般系統性回顧很少查，是你的差異化之處。</td></tr>
+          <tr><td data-l="資料庫"><b>medRxiv 預印本</b></td><td data-l="必要性">建議</td><td data-l="理由">此領域發展極快，重要結果常先以預印本出現。</td></tr>
+          <tr><td data-l="資料庫"><b>學會摘要</b><br><span class="q">ADA、EASD、AHA、ACC、ISPE</span></td><td data-l="必要性">建議</td><td data-l="理由">2023 年起逐年翻閱。ISPE 尤其重要——藥物流病方法學研究常只發表在該會。</td></tr>
+          <tr><td data-l="資料庫"><b>中文資料庫</b></td><td data-l="必要性">不需要</td><td data-l="理由">此題無中文文獻價值，寫進方法章反而顯得不專業。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note col">
+      <span class="lede">回答「為什麼是這幾個」</span>
+      Cochrane 的方法學研究顯示，MEDLINE 加 Embase 加 CENTRAL 已能捕捉絕大多數合格研究，再加更多書目資料庫的邊際報酬遞減；<b>但引用追蹤與試驗註冊平台的報酬仍然很高</b>。所以我的配置是「三個書目資料庫＋一個引用追蹤工具＋兩個註冊平台」，而不是盲目堆疊資料庫數量。
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="q3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>檢索式</h2>
+    <p class="sub">可直接複製貼上。日期上限請在正式執行時統一設定並記錄。</p>
+  </div>
+
+  <div class="stack">
+
+    <div>
+      <p class="code-lab">PUBMED　完整版（四個概念區塊）</p>
+      <pre class="code"><b>#1　藥物</b>
+"tirzepatide"[Supplementary Concept] OR tirzepatide[tiab] OR Mounjaro[tiab]
+OR Zepbound[tiab] OR LY3298176[tiab] OR "LY 3298176"[tiab]
+OR "dual GIP"[tiab] OR "GIP/GLP-1"[tiab] OR twincretin[tiab]
+
+<b>#1b　擴大版　若採 incretin 類範圍則改用此區塊</b>
+#1 OR semaglutide[tiab] OR Ozempic[tiab] OR Wegovy[tiab] OR Rybelsus[tiab]
+OR dulaglutide[tiab] OR Trulicity[tiab]
+OR "Glucagon-Like Peptide-1 Receptor Agonists"[Mesh]
+
+<b>#2　臨床終點</b>
+"Cardiovascular Diseases"[Mesh] OR "Myocardial Infarction"[Mesh]
+OR "Stroke"[Mesh] OR "Heart Failure"[Mesh]
+OR "Renal Insufficiency, Chronic"[Mesh] OR "Dementia"[Mesh]
+OR "Cognitive Dysfunction"[Mesh] OR "Neoplasms"[Mesh] OR "Mortality"[Mesh]
+OR MACE[tiab] OR "major adverse cardiovascular"[tiab]
+OR "cardiovascular death"[tiab] OR "all-cause mortality"[tiab]
+OR "kidney outcome*"[tiab] OR "eGFR slope"[tiab]
+OR dementia[tiab] OR "cognitive impairment"[tiab]
+OR cancer[tiab] OR neoplasm*[tiab]
+
+<b>#3　觀察性設計</b>
+"Cohort Studies"[Mesh] OR "Propensity Score"[Mesh] OR "Databases, Factual"[Mesh]
+OR cohort[tiab] OR "real-world"[tiab] OR "real world"[tiab]
+OR observational[tiab] OR "target trial"[tiab] OR emulat*[tiab]
+OR claims[tiab] OR "propensity score"[tiab] OR TriNetX[tiab]
+OR registry[tiab] OR "electronic health record*"[tiab]
+OR retrospective[tiab] OR "new user"[tiab] OR "active comparator"[tiab]
+
+<b>#4　隨機試驗</b>
+randomized controlled trial[pt] OR controlled clinical trial[pt]
+OR randomi*[tiab] OR placebo[tiab] OR "double-blind"[tiab]
+OR SURPASS[tiab] OR SURMOUNT[tiab] OR SUMMIT[tiab]
+
+<b>最終檢索式</b>
+(#1) AND (#2) AND (#3 OR #4)</pre>
+    </div>
+
+    <div>
+      <p class="code-lab">EMBASE　Emtree 語法（需機構帳號）</p>
+      <pre class="code">('tirzepatide'/exp OR tirzepatide:ti,ab,kw OR mounjaro:ti,ab,kw
+ OR zepbound:ti,ab,kw OR 'ly 3298176':ti,ab,kw)
+AND
+('cardiovascular disease'/exp OR 'heart infarction'/exp
+ OR 'cerebrovascular accident'/exp OR 'heart failure'/exp
+ OR 'chronic kidney failure'/exp OR 'dementia'/exp
+ OR 'mild cognitive impairment'/exp OR 'neoplasm'/exp OR 'mortality'/exp
+ OR mace:ti,ab,kw OR 'major adverse cardiovascular':ti,ab,kw)
+AND
+('cohort analysis'/exp OR 'observational study'/exp OR 'retrospective study'/exp
+ OR 'propensity score'/exp OR 'health care database'/exp
+ OR 'target trial':ti,ab,kw OR emulat*:ti,ab,kw
+ OR 'randomized controlled trial'/exp OR 'double blind procedure'/exp)
+AND [embase]/lim NOT [medline]/lim</pre>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">最後一行很重要：<b>排除已被 MEDLINE 索引的紀錄</b>，避免與 PubMed 大量重複，可省下數千筆的篩選工作。這一行也讓你在 PRISMA 流程圖裡的去重數字更乾淨。</p>
+    </div>
+
+    <div>
+      <p class="code-lab">WEB OF SCIENCE　核心合輯</p>
+      <pre class="code">TS=(tirzepatide OR Mounjaro OR Zepbound OR "LY3298176")
+AND
+TS=(cardiovascular OR "myocardial infarction" OR stroke OR "heart failure"
+    OR kidney OR renal OR dementia OR cognitive OR cancer OR mortality)
+AND
+TS=(cohort OR "real world" OR observational OR "target trial"
+    OR randomized OR randomised OR trial)</pre>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">Web of Science 的真正用途是<b>引用追蹤</b>：對下一節的種子文獻逐篇做前向引用（誰引用了它）與後向引用（它引用了誰）。這一步常能補到關鍵詞檢索完全抓不到的研究。</p>
+    </div>
+
+    <div>
+      <p class="code-lab">註冊平台與灰色文獻</p>
+      <pre class="code">ClinicalTrials.gov     Intervention: tirzepatide
+                       Study type: Interventional + Observational
+                       特別注意：狀態為 Completed 但無結果者
+
+EU PAS Register        關鍵字：tirzepatide, GLP-1, GIP
+                       這裡是真實世界研究的「未發表名單」
+
+medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
+
+學會摘要               ADA、EASD、AHA、ACC、ISPE，2023 年起逐年翻閱</pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="q4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>種子文獻檢驗</h2>
+    <p class="sub">先列出你已知一定要被抓到的文獻，再驗證檢索式能不能全部撈回來。這叫 known-item testing，是檢驗檢索式敏感度最實際的方法。</p>
+  </div>
+
+  <div class="panel">
+    <p class="cap">已確認存在的關鍵文獻　你的檢索式必須 100% 撈到這些</p>
+    <ol class="seed">
+      <li><b>SURPASS-CVOT：Cardiovascular Outcomes with Tirzepatide versus Dulaglutide</b><span>NEJM 2025　隨機試驗　主要錨點</span></li>
+      <li><b>SURPASS-CVOT 心腎次要分析</b><span>2026　隨機試驗</span></li>
+      <li><b>SUMMIT：Tirzepatide for HFpEF and Obesity</b><span>NEJM 2024　隨機試驗</span></li>
+      <li><b>Tirzepatide cardiovascular event risk assessment: pre-specified meta-analysis</b><span>Nat Med 2022　統合分析</span></li>
+      <li><b>Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice</b><span>Nat Med 2025　真實世界　三個美國保險資料庫</span></li>
+      <li><b>STEER：Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world</b><span>Diabetes Obes Metab 2026　真實世界</span></li>
+      <li><b>Comparative Effectiveness of Tirzepatide Versus Dulaglutide or Semaglutide on Major Cardiovascular Events</b><span>2026　真實世界　新查到，之前的清單沒有</span></li>
+      <li><b>Cardiovascular and Cerebrovascular Outcomes: Semaglutide vs Tirzepatide, A Target Trial Emulation</b><span>2026　真實世界　新查到</span></li>
+      <li><b>Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia</b><span>Diabetes Res Clin Pract 2026　真實世界</span></li>
+      <li><b>Effectiveness of tirzepatide in HFpEF using target trial emulation</b><span>Nat Commun 2025　真實世界</span></li>
+      <li><b>Target Trial Emulations of GLP-1 and Dual GLP-1/GIP Agonists to Reduce Major Adverse Liver Outcomes</b><span>2025　真實世界　新查到</span></li>
+      <li><b>GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults</b><span>Ann Oncol 2026　真實世界</span></li>
+      <li><b>Cardiovascular Outcomes in T2D Treated With Tirzepatide: Systematic Review and Meta-Analysis of Real-World Studies</b><span>Endocr Pract 2025　既有競品</span></li>
+      <li><b>Real-World vs. Randomized Trial Evidence for Incretin-Based Therapies</b><span>J Diabetes 2026　既有競品</span></li>
+    </ol>
+    <p style="font-size:14px;color:var(--muted);margin-top:18px">若檢索式漏掉其中任何一篇，就回頭補該篇的標題詞與關鍵詞，直到全數命中為止。這個過程本身要記錄下來，寫進論文的檢索式開發段落。</p>
+  </div>
+
+  <div class="note col" style="margin-top:26px">
+    <span class="lede">第 7、8、11 篇是這次跑檢索的意外收穫</span>
+    尤其第 7 篇「Tirzepatide 對 dulaglutide 或 semaglutide 的主要心血管事件比較效果」，族群與 SURPASS-CVOT 高度重疊，<b>很可能是你 Aim 1 最重要的一組配對證據</b>。口試前請務必找出全文讀完，並確認它與 Nature Medicine 那篇是否共用資料庫——若是，這就是你「資料重複」論點的第一個實例。
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="q5">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>納入排除條件與擷取欄位</h2>
+    <p class="sub">現在先寫下來，正式執行時直接沿用。事前寫定是避免事後挑選的唯一方法。</p>
+  </div>
+
+  <div class="stack-s">
+    <div class="panel">
+      <p class="cap">納入</p>
+      <ul class="tight">
+        <li>介入組含 tirzepatide（或擴大版：任一 incretin 類藥物），且有明確對照組</li>
+        <li>結果為<b>臨床終點</b>：心血管事件、心衰竭住院、腎臟終點、失智或輕度認知障礙、癌症、全死因死亡</li>
+        <li>報告相對效果量（HR、RR、OR）並附變異數或信賴區間</li>
+        <li>隨機與非隨機研究皆納入，不限語言、不限國家</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">排除</p>
+      <ul class="tight">
+        <li>僅報告代理指標（體重、HbA1c、血脂）者——但另存一份清單做敏感度分析</li>
+        <li>無對照組的單臂研究、個案報告、綜述、評論、社論</li>
+        <li>動物或體外研究</li>
+        <li>同一資料與族群的重複發表——保留樣本最大或報告最完整者，其餘記錄於重疊矩陣</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">擷取欄位　建議做成試算表，每篇一列</p>
+      <ul class="tight">
+        <li><b>識別</b>　第一作者、年份、期刊、DOI、國家</li>
+        <li><b>設計</b>　研究類型、是否自稱目標試驗模擬、資料來源名稱、收案期間</li>
+        <li><b>族群</b>　有無 T2D、有無 ASCVD、平均年齡、女性比例、平均 BMI、樣本數</li>
+        <li><b>暴露與對照</b>　藥物、劑量、是否新使用者設計、對照類型</li>
+        <li><b>終點</b>　定義、是否經裁定、代碼清單是否提供、事件數</li>
+        <li><b>結果</b>　效果量、95% 信賴區間、追蹤中位數、ITT 或 per-protocol</li>
+        <li><b>忠實度評分</b>　七個要素各 0 至 2 分，總分 0 至 14</li>
+        <li><b>其他</b>　是否事前註冊、資金來源、是否做陰性對照或量化偏差分析</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="q6">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>接下來的順序</h2>
+    <p class="sub">這一節是給這學期用的，不是給論文用的。</p>
+  </div>
+
+  <div class="panel">
+    <ol>
+      <li><b>本週</b>　把上面的 PubMed 檢索式跑一次完整版，匯出書目檔，用種子文獻檢驗敏感度。這一步你自己做，因為要練手感。</li>
+      <li><b>兩週內</b>　請圖書館協助跑 Embase 與 Web of Science，或申請帳號自己跑。順便問清楚學校有沒有 Covidence 或 Rayyan 的授權，篩選工具會省下大量時間。</li>
+      <li><b>口試前</b>　完成粗篩，畫出一張<b>草稿版 PRISMA 流程圖</b>，帶進口試。就算數字之後會變，有圖跟沒圖的說服力差很多。</li>
+      <li><b>口試後</b>　確定範圍（單藥或擴大到 incretin 類）後，才到 PROSPERO 正式註冊。<b>註冊前不要開始正式篩選</b>，順序反了會被審稿人抓。</li>
+    </ol>
+  </div>
+</section>
+
+<div class="end">
+  <p><b>執行紀錄</b>　本頁的 PubMed 筆數為 2026 年 9 月以 PubMed 網頁介面查得，屬粗略的可行性估計，未經去重與篩選。正式檢索時請重跑並記錄執行日期、資料庫版本與完整檢索式，這些都是 PRISMA 要求申報的項目。</p>
+  <p><b>未執行</b>　Embase、Web of Science、Scopus、Cochrane CENTRAL 需機構訂閱帳號，本次無法連線，檢索式已備妥待你或圖書館執行。</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = {
+    blueprint: document.getElementById('panel-blueprint'),
+    search: document.getElementById('panel-search')
+  };
+  function show(name, scroll){
+    tabs.forEach(function(t){
+      t.setAttribute('aria-selected', String(t.dataset.tab === name));
+    });
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== name); });
+    try { history.replaceState(null, '', '#' + name); } catch(e){}
+    if (scroll) window.scrollTo(0, 0);
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.tab, true); });
+  });
+  var h = (location.hash || '').slice(1);
+  if (h === 'search' || /^q\d/.test(h)) {
+    show('search', false);
+  } else {
+    show('blueprint', false);
+  }
+  if (h && h !== 'search' && h !== 'blueprint') {
+    var el = document.getElementById(h);
+    if (el) setTimeout(function(){ el.scrollIntoView(); }, 0);
+  }
+})();
+</script>
 </body>
 </html>
