@@ -1,1760 +1,1709 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
-<body>
-<title>Cindy 的小二複習站</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>猛健樂證據校準計畫</title>
 <style>
+
 :root{
-  --paper:#EFF3F8; --surface:#FFFFFF; --surface-2:#E4EAF3; --surface-3:#F6F9FC;
-  --ink:#16233D; --ink-2:#4A5870; --ink-3:#7B889D;
-  --line:#D2DBE8; --line-2:#BDC9DA;
-  --accent:#2B54C4; --accent-soft:#DEE6FC; --on-accent:#FFFFFF;
-  --gold:#B57405; --gold-soft:#FAEED4;
-  --good:#1B7F5A; --good-soft:#D7EFE4;
-  --bad:#BF3B39; --bad-soft:#FADEDC;
-  --s-chinese:#C24A3E; --s-math:#2F5AA8; --s-english:#B67505;
-  --s-science:#2A8560; --s-social:#6B4A90; --s-other:#55637C;
-  --shadow-1:0 1px 2px rgba(22,35,61,.07);
-  --shadow-2:0 2px 4px rgba(22,35,61,.06), 0 10px 26px rgba(22,35,61,.09);
-  --r-s:8px; --r-m:14px; --r-l:22px;
-  --font-zh:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-  --font-display:"Noto Serif TC",Georgia,"Songti TC",serif;
-  --font-en:"Andika","Noto Sans TC",Verdana,system-ui,sans-serif;
+  --sans:Arial,"Helvetica Neue",Helvetica,"PingFang TC","Microsoft JhengHei","Heiti TC","Noto Sans CJK TC",sans-serif;
+  --mono:Consolas,Menlo,Monaco,"Courier New",monospace;
+  --bg:#F6F7F8; --surface:#FFFFFF; --inset:#F1F3F4;
+  --ink:#14191D; --ink-2:#46525A; --muted:#78848B;
+  --rule:#E2E7EA; --rule-2:#CDD5D9;
+  --acc:#0D6B67; --acc-soft:#E8F1F0;
+  --amber:#9B640F;
+  --flag:#93332A; --flag-soft:#F6E9E7;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#101725; --surface:#1A2436; --surface-2:#232F46; --surface-3:#151E2E;
-    --ink:#E9EFF9; --ink-2:#A9B7CD; --ink-3:#7B8AA3;
-    --line:#2D3A54; --line-2:#3B4A68;
-    --accent:#8AA8FF; --accent-soft:#22304E; --on-accent:#0E1626;
-    --gold:#EDB443; --gold-soft:#382C12;
-    --good:#4FC796; --good-soft:#123226;
-    --bad:#F0837F; --bad-soft:#3B1E1E;
-    --s-chinese:#E88C7F; --s-math:#8AA8FF; --s-english:#EDB443;
-    --s-science:#5FC698; --s-social:#B695DC; --s-other:#94A3BC;
-    --shadow-1:0 1px 2px rgba(0,0,0,.3);
-    --shadow-2:0 2px 4px rgba(0,0,0,.25), 0 10px 26px rgba(0,0,0,.35);
+    --bg:#0F1417; --surface:#161C20; --inset:#1B2327;
+    --ink:#E8EDEF; --ink-2:#AFBBC1; --muted:#828E95;
+    --rule:#242E33; --rule-2:#33403F;
+    --acc:#5CC2BB; --acc-soft:#0F2E2C;
+    --amber:#D9A05F;
+    --flag:#E58D83; --flag-soft:#331E1B;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#101725; --surface:#1A2436; --surface-2:#232F46; --surface-3:#151E2E;
-  --ink:#E9EFF9; --ink-2:#A9B7CD; --ink-3:#7B8AA3;
-  --line:#2D3A54; --line-2:#3B4A68;
-  --accent:#8AA8FF; --accent-soft:#22304E; --on-accent:#0E1626;
-  --gold:#EDB443; --gold-soft:#382C12;
-  --good:#4FC796; --good-soft:#123226;
-  --bad:#F0837F; --bad-soft:#3B1E1E;
-  --s-chinese:#E88C7F; --s-math:#8AA8FF; --s-english:#EDB443;
-  --s-science:#5FC698; --s-social:#B695DC; --s-other:#94A3BC;
-  --shadow-1:0 1px 2px rgba(0,0,0,.3);
-  --shadow-2:0 2px 4px rgba(0,0,0,.25), 0 10px 26px rgba(0,0,0,.35);
+  --bg:#0F1417; --surface:#161C20; --inset:#1B2327;
+  --ink:#E8EDEF; --ink-2:#AFBBC1; --muted:#828E95;
+  --rule:#242E33; --rule-2:#33403F;
+  --acc:#5CC2BB; --acc-soft:#0F2E2C;
+  --amber:#D9A05F;
+  --flag:#E58D83; --flag-soft:#331E1B;
 }
 
 *{box-sizing:border-box}
 body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font-family:var(--font-zh); font-size:16px; line-height:1.65;
-  -webkit-text-size-adjust:100%;
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px; line-height:1.9; letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;
 }
-button{font:inherit; color:inherit; cursor:pointer}
-:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
-@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important; transition-duration:.01ms !important}}
+h1,h2,h3{
+  font-family:var(--sans);
+  font-weight:700; margin:0; line-height:1.4; text-wrap:balance; letter-spacing:-.012em;
+}
+p{margin:0}
+a{color:inherit}
+strong,b{font-weight:700}
 
-.en{font-family:var(--font-en)}
-.shell{max-width:900px; margin:0 auto; padding:0 16px 72px}
+.page{max-width:1160px; margin:0 auto; padding:0 22px 110px}
+.col{max-width:700px}
 
-/* ---------- 注音 ---------- */
-.zy{display:inline-flex; align-items:flex-start; line-height:1.08; vertical-align:baseline}
-.zy-c{line-height:1.08}
-.zy-r{
-  display:inline-flex; align-items:flex-end; margin:0 .05em;
-  font-weight:400; color:var(--ink-3);
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  -webkit-user-select:none; user-select:none;
-}
-.zy-r.light{flex-direction:column; align-items:center}      /* 輕聲：點在符號上方 */
-.zy-s{display:flex; flex-direction:column; align-items:center; font-size:max(8px,.36em)}
-.zy-s i{display:block; font-style:normal; line-height:1.04}
-.zy-t{font-size:max(8px,.36em); line-height:.66; margin-left:.03em}  /* 聲調：符號右下 */
-.zy-r.light .zy-t{line-height:.34; margin:0 0 .04em 0}
-.zybtn{
-  flex:none; border:1px solid var(--line-2); background:var(--surface); color:var(--ink-2);
-  border-radius:999px; padding:5px 11px; font-size:13px; min-height:40px; font-weight:700;
-  letter-spacing:.04em;
-}
-.zybtn[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+/* ============ masthead ============ */
+.mast{padding:52px 0 34px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.kicker{font-size:13px; color:var(--muted); letter-spacing:.06em; margin-bottom:18px}
+h1{font-size:clamp(26px,4.6vw,38px); line-height:1.4}
+.dek{font-size:17px; color:var(--ink-2); margin-top:20px; max-width:700px}
+.stamp{margin-top:24px; font-size:13.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 20px}
 
-/* ---------- top bar ---------- */
-.topbar{position:sticky; top:0; z-index:20; background:var(--surface); border-bottom:1px solid var(--line)}
-.topbar-in{max-width:900px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:12px}
-.brand{display:flex; align-items:center; gap:10px; flex:1; min-width:0}
-.mark{
-  width:38px; height:38px; flex:none; border-radius:12px;
-  background:var(--accent); color:var(--on-accent);
-  font-family:var(--font-display); font-weight:900; font-size:20px;
-  display:grid; place-items:center;
+/* ============ table of contents ============ */
+.toc{border-bottom:1px solid var(--rule); margin-bottom:16px}
+.toc summary{
+  list-style:none; cursor:pointer; padding:16px 0; font-size:14.5px; color:var(--ink-2);
+  display:flex; align-items:center; gap:9px;
 }
-.brand h1{margin:0; font-family:var(--font-display); font-size:17px; line-height:1.25}
-.brand p{margin:0; font-size:11px; color:var(--ink-3); letter-spacing:.06em}
-.topnav{display:flex; gap:4px; flex:none}
-.topnav button{background:none; border:0; padding:8px 10px; border-radius:10px; font-size:13px; color:var(--ink-2); min-height:40px}
-.topnav button[aria-current="true"]{background:var(--accent-soft); color:var(--accent); font-weight:700}
+.toc summary::-webkit-details-marker{display:none}
+.toc summary::after{content:"▾"; font-size:11px; color:var(--muted); transition:transform .2s}
+.toc[open] summary::after{transform:rotate(180deg)}
+.toc summary:focus-visible{outline:2px solid var(--acc); outline-offset:3px}
+.toc-list{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:2px 26px;
+  padding:0 0 20px;
+}
+.toc-list a{
+  display:block; padding:7px 0; font-size:14.5px; color:var(--ink-2); text-decoration:none;
+  border-bottom:1px solid var(--rule);
+}
+.toc-list a:hover{color:var(--acc)}
+.toc-list a b{font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:11.5px; color:var(--muted); font-weight:400; margin-right:9px}
 
-/* ---------- generic ---------- */
-.crumb{display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:16px 0 4px; font-size:13px; color:var(--ink-3)}
-.crumb button{background:none; border:0; padding:6px 0; color:var(--accent); font-size:13px}
-.page-head{padding:6px 0 18px; border-bottom:1px solid var(--line); margin-bottom:20px}
-.page-head h2{margin:0 0 6px; font-family:var(--font-display); font-size:26px; line-height:1.25; text-wrap:balance}
-.page-head p{margin:0; color:var(--ink-2); font-size:14px; max-width:62ch}
-.eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin:0 0 10px}
-.sec{margin:26px 0 0}
-.sec > h3{margin:0 0 10px; font-size:13px; font-weight:700; letter-spacing:.1em; color:var(--ink-3); text-transform:uppercase}
-.muted{color:var(--ink-3); font-size:13px}
-.note{background:var(--surface-3); border:1px dashed var(--line-2); border-radius:var(--r-m); padding:14px 16px; color:var(--ink-2); font-size:14px}
+/* ============ sections ============ */
+section{padding-top:76px}
+.sec-head{margin-bottom:34px}
+.sec-num{
+  font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:12px; color:var(--acc);
+  letter-spacing:.1em; display:block; margin-bottom:10px;
+}
+.sec-head h2{font-size:clamp(21px,3.4vw,28px)}
+.sec-head .sub{font-size:14.5px; color:var(--muted); margin-top:10px; max-width:640px; line-height:1.75}
 
-/* ---------- this week ---------- */
-.week-hero{
-  background:var(--surface); border:1px solid var(--line); border-left:6px solid var(--gold);
-  border-radius:var(--r-l); padding:20px 22px; box-shadow:var(--shadow-1); margin:16px 0 22px;
+h3{font-size:18.5px; margin-bottom:12px}
+h4{font-family:inherit; font-size:15px; font-weight:700; color:var(--ink); margin:0 0 10px}
+
+.stack{display:flex; flex-direction:column; gap:34px}
+.stack-s{display:flex; flex-direction:column; gap:20px}
+
+/* ============ quiet blocks ============ */
+.note{
+  border-left:2px solid var(--acc); padding:4px 0 4px 22px; color:var(--ink);
+  font-size:17px; line-height:1.9;
 }
-.week-hero .wk-top{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:2px}
-.week-hero .wk-n{font-family:var(--font-display); font-size:24px; line-height:1.2}
-.week-hero .wk-d{font-size:13px; color:var(--ink-3); font-variant-numeric:tabular-nums}
-.week-hero .wk-u{margin:6px 0 14px; font-size:14px; color:var(--ink-2)}
-.week-hero h2{margin:0 0 4px; font-family:var(--font-display); font-size:15px; letter-spacing:.02em}
-.sentence-box{
-  background:var(--accent-soft); border-radius:var(--r-m); padding:14px 16px; margin-top:14px;
+.note.flag{border-left-color:var(--flag)}
+.note .lede{display:block; font-weight:700; margin-bottom:6px; font-size:14.5px; letter-spacing:.02em; color:var(--muted)}
+
+.panel{
+  background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:26px 28px;
 }
-.sentence-box .s-en{font-family:var(--font-en); font-weight:700; font-size:18px; line-height:1.4; color:var(--ink)}
-.sentence-box .s-zh{font-size:14px; color:var(--ink-2); margin-top:2px}
-.exam-flag{
-  display:inline-block; background:var(--bad-soft); color:var(--bad); font-weight:700;
-  font-size:12px; padding:3px 10px; border-radius:999px;
+.panel + .panel{margin-top:16px}
+.panel h3{margin-bottom:14px}
+.panel > .cap{
+  font-size:12.5px; color:var(--muted); letter-spacing:.06em; margin-bottom:9px;
 }
 
-.hero{
-  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
-  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-l);
-  padding:20px 22px; box-shadow:var(--shadow-1); margin:16px 0 24px;
+.trio{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:0}
+.trio > div{padding:22px 26px 22px 0; border-right:1px solid var(--rule)}
+.trio > div:last-child{border-right:none; padding-right:0}
+.trio h4{color:var(--acc); font-size:14px; margin-bottom:8px}
+.trio p{font-size:14.5px; color:var(--ink-2); line-height:1.8}
+
+/* ============ tables ============ */
+.tbl{margin:0; overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; min-width:680px; font-size:14.5px; line-height:1.75}
+thead th{
+  text-align:left; font-weight:500; font-size:12.5px; color:var(--muted); letter-spacing:.05em;
+  padding:0 18px 11px 0; border-bottom:1px solid var(--rule-2); vertical-align:bottom;
 }
-.hero-text{flex:1 1 240px; min-width:0}
-.hero-text h2{margin:0 0 4px; font-family:var(--font-display); font-size:22px; text-wrap:balance}
-.hero-text p{margin:0; color:var(--ink-2); font-size:14px}
-.ring{flex:none; display:flex; align-items:center; gap:12px}
-.ring svg{display:block}
-.ring .rlabel{font-size:12px; color:var(--ink-3); line-height:1.4}
-.ring .rlabel b{display:block; font-size:20px; color:var(--ink); font-variant-numeric:tabular-nums}
+tbody td{padding:16px 18px 16px 0; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-2)}
+tbody td:first-child{color:var(--ink)}
+tbody td:last-child{padding-right:0}
+thead th:last-child{padding-right:0}
+.n{font-family:var(--sans); font-variant-numeric:tabular-nums; font-variant-numeric:tabular-nums; font-size:13.5px; white-space:nowrap; color:var(--ink)}
+.q{color:var(--muted); font-size:13px}
+.flagtxt{color:var(--flag); font-weight:500}
 
-/* ---------- subject cards ---------- */
-.subjects{display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-.subj{
-  display:flex; align-items:center; gap:14px; text-align:left; width:100%;
-  background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--sc);
-  border-radius:var(--r-m); padding:14px 16px; min-height:76px;
-  transition:transform .12s ease, box-shadow .12s ease;
+@media (max-width:780px){
+  .tbl{overflow:visible}
+  table{min-width:0; display:block}
+  thead{display:none}
+  tbody{display:block}
+  tbody tr{
+    display:block; border:1px solid var(--rule); border-radius:5px; background:var(--surface);
+    padding:18px 20px; margin-bottom:12px;
+  }
+  tbody td{display:block; border:none; padding:9px 0}
+  tbody td:first-child{padding-top:0; font-weight:700; font-size:16px}
+  tbody td:last-child{padding-bottom:0}
+  tbody td[data-l]::before{
+    content:attr(data-l); display:block; font-size:11.5px; letter-spacing:.08em;
+    color:var(--muted); margin-bottom:3px; font-weight:400;
+  }
+  tbody td:first-child[data-l]::before{font-size:11.5px}
 }
-.subj:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
-.subj-ico{
-  width:42px; height:42px; flex:none; border-radius:11px; display:grid; place-items:center;
-  background:color-mix(in srgb, var(--sc) 15%, transparent); color:var(--sc);
-  font-family:var(--font-display); font-weight:900; font-size:17px;
+
+/* ============ forest plot ============ */
+.forest{overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px}
+.forest-in{min-width:600px}
+.f-hd{display:grid; grid-template-columns:230px 1fr 116px; gap:16px; padding-bottom:10px; border-bottom:1px solid var(--rule-2)}
+.f-hd span{font-size:12.5px; color:var(--muted); letter-spacing:.05em}
+.f-hd span:last-child{text-align:right}
+.f-row{display:grid; grid-template-columns:230px 1fr 116px; gap:16px; align-items:center; padding:13px 0; border-bottom:1px solid var(--rule)}
+.f-lab{font-size:13.5px; line-height:1.55; color:var(--muted)}
+.f-lab b{display:block; font-weight:700; color:var(--ink); font-size:14.5px; margin-bottom:1px}
+.f-tr{position:relative; height:20px}
+.f-tr::before{content:""; position:absolute; left:56.93%; top:-13px; bottom:-13px; width:1px; background:var(--rule-2)}
+.f-ci{position:absolute; top:50%; height:1.5px; transform:translateY(-50%)}
+.f-ci::before,.f-ci::after{content:""; position:absolute; top:-3.5px; width:1.5px; height:8.5px; background:inherit}
+.f-ci::before{left:0} .f-ci::after{right:0}
+.f-pt{position:absolute; top:50%; width:8px; height:8px; border-radius:50%; transform:translate(-50%,-50%)}
+.f-val{font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:12.5px; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink)}
+.f-ax{position:relative; height:24px; margin-top:2px}
+.f-ax span{position:absolute; top:5px; transform:translateX(-50%); font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:11.5px; color:var(--muted)}
+.f-key{margin-top:16px; font-size:13px; color:var(--muted); display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center}
+.f-key i{width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:7px; vertical-align:middle}
+
+/* ============ papers ============ */
+.papers{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:0}
+.paper{padding:0 28px 4px 0; border-right:1px solid var(--rule)}
+.paper:last-child{border-right:none; padding-right:0}
+.paper .tag{font-size:12.5px; color:var(--acc); letter-spacing:.06em; display:block; margin-bottom:10px}
+.paper h3{font-size:17.5px; margin-bottom:12px}
+.paper p{font-size:14.5px; color:var(--ink-2); line-height:1.8; margin-bottom:12px}
+.paper .out{font-size:13.5px; color:var(--muted); border-top:1px solid var(--rule); padding-top:12px; margin-top:4px}
+@media (max-width:800px){
+  .papers{gap:28px}
+  .paper{border-right:none; padding-right:0; border-bottom:1px solid var(--rule); padding-bottom:24px}
+  .paper:last-child{border-bottom:none; padding-bottom:0}
+  .trio{gap:0}
+  .trio > div{border-right:none; border-bottom:1px solid var(--rule); padding:20px 0}
+  .trio > div:last-child{border-bottom:none; padding-bottom:0}
+  .trio > div:first-child{padding-top:0}
 }
-.subj-main{flex:1; min-width:0}
-.subj-main strong{display:flex; align-items:center; gap:8px; font-size:16px; font-weight:700}
-.subj-main .subj-desc{display:block; font-size:12.5px; color:var(--ink-3)}
-.subj-arrow{color:var(--ink-3); font-size:18px; flex:none}
-.chip-soon{font-size:11px; line-height:1.6; padding:1px 9px; border-radius:999px; flex:none; background:var(--surface-2); color:var(--ink-3); font-weight:500}
 
-/* ---------- rows ---------- */
-.rows{display:flex; flex-direction:column; gap:8px}
-.row{
-  display:flex; align-items:center; gap:13px; width:100%; text-align:left;
-  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-m);
-  padding:11px 14px; min-height:68px;
+/* ============ formula ============ */
+.formula{
+  font-family:var(--mono); font-size:14px; line-height:2.1;
+  background:var(--inset); border-radius:5px; padding:22px 24px; overflow-x:auto; color:var(--ink);
 }
-.row:hover{border-color:var(--line-2)}
-.row.now{border-color:var(--gold); border-width:2px; background:var(--gold-soft)}
-.row.exam{background:var(--surface-3); border-style:dashed}
-.rnum{
-  width:40px; height:40px; flex:none; border-radius:11px; display:grid; place-items:center;
-  font-family:var(--font-display); font-weight:900; font-size:16px; line-height:1;
-  background:var(--accent-soft); color:var(--accent); font-variant-numeric:tabular-nums;
+.formula em{color:var(--muted); font-style:normal; font-size:13px}
+
+/* ============ Q&A ============ */
+.qa{border-top:1px solid var(--rule)}
+.qa:last-of-type{border-bottom:1px solid var(--rule)}
+.qa summary{
+  list-style:none; cursor:pointer; padding:20px 34px 20px 0; font-size:16.5px; font-weight:700;
+  position:relative; line-height:1.6;
 }
-.row.done .rnum{background:var(--good-soft); color:var(--good)}
-.row.now .rnum{background:var(--gold); color:#fff}
-.row.exam .rnum{background:var(--bad-soft); color:var(--bad); font-size:13px}
-.rmain{flex:1; min-width:0; overflow:hidden}
-.rmain .rt{font-size:14.5px; font-weight:700; line-height:1.35}
-.rmain .rt .en{font-weight:700}
-.rmain .rs{font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums}
-.rmain .rw{font-family:var(--font-en); font-size:12.5px; color:var(--ink-2); margin-top:2px;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.rtag{flex:none; font-size:11px; padding:2px 9px; border-radius:999px; background:var(--surface-2); color:var(--ink-3); font-weight:700}
-.rtag.ok{background:var(--good-soft); color:var(--good)}
-.bar{height:5px; border-radius:999px; background:var(--surface-2); overflow:hidden; margin-top:6px; max-width:190px}
-.bar i{display:block; height:100%; background:var(--gold); border-radius:999px}
-.stars{flex:none; font-size:12px; color:var(--gold); letter-spacing:1px}
-
-/* ---------- tabs ---------- */
-.tabs{display:flex; gap:2px; background:var(--surface-2); padding:4px; border-radius:var(--r-m); margin-bottom:20px; overflow-x:auto}
-.tabs button{flex:1 0 auto; background:none; border:0; padding:9px 14px; border-radius:10px; font-size:14px; color:var(--ink-2); white-space:nowrap; min-height:42px}
-.tabs button[aria-selected="true"]{background:var(--surface); color:var(--ink); font-weight:700; box-shadow:var(--shadow-1)}
-
-/* ---------- reference ---------- */
-.kv{display:grid; gap:10px}
-.kv-row{display:flex; gap:12px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-m); padding:12px 14px}
-.kv-row .kv-k{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); font-weight:700; flex:0 0 76px; padding-top:3px}
-.kv-row .kv-v{flex:1; min-width:0; font-size:14.5px}
-
-.wordlist{display:grid; gap:8px; grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
-.wordlist.compact{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
-.wordlist.compact .w-zh{font-size:12.5px}
-.word{display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-s); padding:9px 10px 9px 12px; min-height:48px}
-.word .w-en{font-family:var(--font-en); font-weight:700; font-size:15px; flex:1; min-width:0}
-.word .w-zh{font-size:13px; color:var(--ink-2); flex:none}
-.speak{flex:none; width:34px; height:34px; border-radius:9px; border:1px solid var(--line); background:var(--surface-3); display:grid; place-items:center; color:var(--ink-2); font-size:14px}
-.speak:hover{border-color:var(--accent); color:var(--accent)}
-.goal-list{margin:0; padding-left:1.1em; color:var(--ink-2); font-size:14.5px}
-.goal-list li{margin:4px 0}
-.tag{display:inline-block; font-size:12px; padding:3px 10px; border-radius:999px; background:var(--gold-soft); color:var(--gold); font-weight:700; margin:0 6px 6px 0}
-
-/* ---------- sentence list ---------- */
-.sent{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-m); padding:12px 14px}
-.sent.ok{border-color:var(--good); background:var(--good-soft)}
-.sent .sn{flex:none; width:28px; height:28px; border-radius:8px; background:var(--surface-2); color:var(--ink-3); display:grid; place-items:center; font-size:12px; font-weight:700; font-variant-numeric:tabular-nums}
-.sent.ok .sn{background:var(--good); color:#fff}
-.sent .sm{flex:1; min-width:0}
-.sent .sm .se{font-family:var(--font-en); font-weight:700; font-size:15.5px; line-height:1.4}
-.sent .sm .sz{font-size:13px; color:var(--ink-2)}
-.sent .sa{display:flex; gap:4px; flex:none}
-
-/* ---------- flashcard ---------- */
-.fc-wrap{display:flex; flex-direction:column; align-items:center; gap:16px}
-.fc{width:100%; max-width:440px; min-height:210px; border-radius:var(--r-l); background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow-2); display:grid; place-items:center; padding:24px; text-align:center; gap:10px}
-.fc .fc-main{font-family:var(--font-en); font-weight:700; font-size:32px; line-height:1.2; word-break:break-word}
-.fc .fc-main.zh{font-family:var(--font-zh); font-size:28px}
-.fc .fc-sub{font-size:17px; color:var(--ink-2); min-height:24px}
-.fc .fc-hint{font-size:12px; color:var(--ink-3); letter-spacing:.06em}
-.fc-bar{display:flex; align-items:center; gap:10px; width:100%; max-width:440px}
-.fc-bar .count{font-size:13px; color:var(--ink-3); font-variant-numeric:tabular-nums; flex:none}
-
-.btn{border:1px solid var(--line-2); background:var(--surface); color:var(--ink); border-radius:12px; padding:11px 18px; font-size:15px; min-height:48px; font-weight:500}
-.btn:hover{border-color:var(--accent); color:var(--accent)}
-.btn.primary{background:var(--accent); border-color:var(--accent); color:var(--on-accent); font-weight:700}
-.btn.primary:hover{filter:brightness(1.08); color:var(--on-accent)}
-.btn.small{padding:7px 12px; font-size:13px; min-height:38px; border-radius:10px}
-.btn.wide{width:100%}
-.btn-row{display:flex; gap:10px; flex-wrap:wrap}
-
-/* ---------- quiz ---------- */
-.quiz{max-width:540px; margin:0 auto}
-.qprog{display:flex; align-items:center; gap:10px; margin-bottom:16px}
-.qprog .bar{max-width:none; flex:1; margin:0; height:6px}
-.qprog .bar i{background:var(--accent)}
-.qprog span{font-size:13px; color:var(--ink-3); font-variant-numeric:tabular-nums; flex:none}
-.qcard{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-l); padding:22px; box-shadow:var(--shadow-1)}
-.qkind{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); font-weight:700}
-.qtext{margin:8px 0 18px; font-size:21px; line-height:1.45; text-wrap:balance}
-.opts{display:grid; gap:9px}
-.opt{text-align:left; width:100%; background:var(--surface-3); border:1.5px solid var(--line); border-radius:12px; padding:13px 16px; font-size:16px; min-height:52px}
-.opt.en{font-family:var(--font-en)}
-.opt:hover:not(:disabled){border-color:var(--accent)}
-.opt:disabled{cursor:default}
-.opt.right{background:var(--good-soft); border-color:var(--good); color:var(--good); font-weight:700}
-.opt.wrong{background:var(--bad-soft); border-color:var(--bad); color:var(--bad)}
-.feedback{margin-top:14px; font-size:14px; padding:11px 14px; border-radius:12px; display:none}
-.feedback.show{display:block}
-.feedback.ok{background:var(--good-soft); color:var(--good)}
-.feedback.no{background:var(--bad-soft); color:var(--bad)}
-.result{text-align:center; padding:26px 20px}
-.result .big{font-family:var(--font-display); font-size:52px; line-height:1; font-variant-numeric:tabular-nums}
-.result .msg{margin:10px 0 20px; color:var(--ink-2)}
-
-/* ---------- spelling ---------- */
-.sp-target{text-align:center; margin-bottom:12px}
-.sp-target .zh{font-size:24px; font-weight:700}
-.sp-slots{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:18px 0; min-height:52px}
-.slot{width:36px; height:48px; border-radius:9px; border:2px dashed var(--line-2); display:grid; place-items:center; font-family:var(--font-en); font-weight:700; font-size:22px; background:var(--surface-3)}
-.slot.gap{border:0; background:none; width:14px}
-.slot.filled{border-style:solid; border-color:var(--accent); background:var(--accent-soft); color:var(--accent)}
-.sp-pool{display:flex; gap:8px; justify-content:center; flex-wrap:wrap}
-.tile{width:42px; height:48px; border-radius:10px; border:1.5px solid var(--line-2); background:var(--surface); font-family:var(--font-en); font-weight:700; font-size:22px}
-.tile:disabled{opacity:.28}
-
-/* ---------- tables & forms ---------- */
-.ptable{width:100%; border-collapse:collapse; font-size:14px}
-.ptable th,.ptable td{padding:10px 8px; border-bottom:1px solid var(--line); text-align:left}
-.ptable th{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
-.ptable td.num{text-align:right; font-variant-numeric:tabular-nums}
-.scroll-x{overflow-x:auto}
-.pill{display:inline-block; font-size:12px; padding:2px 9px; border-radius:999px; font-weight:700; white-space:nowrap}
-.ptable td,.ptable th{white-space:nowrap}
-.ptable td:first-child{white-space:normal; min-width:130px}
-.pill.ok{background:var(--good-soft); color:var(--good)}
-.pill.mid{background:var(--gold-soft); color:var(--gold)}
-.pill.no{background:var(--surface-2); color:var(--ink-3)}
-
-.form{display:grid; gap:12px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-m); padding:16px}
-.field{display:grid; gap:5px}
-.field label{font-size:12.5px; font-weight:700; color:var(--ink-2)}
-.field input,.field select,.field textarea{font:inherit; font-size:15px; color:var(--ink); background:var(--surface-3); border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; min-height:46px; width:100%}
-.field textarea{min-height:76px; resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent); outline:none}
-.two{display:grid; gap:12px; grid-template-columns:1fr 1fr}
-.item{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-m); padding:12px 14px}
-.item .imain{flex:1; min-width:0}
-.item .imain .is{font-size:12.5px; color:var(--ink-3); margin-top:2px}
-.del{background:none; border:0; color:var(--ink-3); font-size:13px; padding:6px 8px; border-radius:8px}
-.del:hover{color:var(--bad); background:var(--bad-soft)}
-
-.status{position:fixed; left:50%; transform:translateX(-50%); bottom:18px; z-index:40; background:var(--ink); color:var(--paper); padding:10px 18px; border-radius:999px; font-size:14px; box-shadow:var(--shadow-2); opacity:0; pointer-events:none; transition:opacity .18s ease}
-.status.show{opacity:1}
-.footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-size:12px; color:var(--ink-3)}
-
-@media (max-width:520px){
-  .brand h1{font-size:15px} .brand p{display:none}
-  .topnav button{padding:8px; font-size:12.5px}
-  .page-head h2{font-size:22px}
-  .two{grid-template-columns:1fr}
-  .kv-row{flex-direction:column; gap:4px}
-  .kv-row .kv-k{flex:none; padding-top:0}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{
+  content:"+"; position:absolute; right:2px; top:20px; font-family:var(--sans); font-variant-numeric:tabular-nums;
+  font-size:17px; color:var(--muted); font-weight:400;
 }
+.qa[open] summary::after{content:"−"}
+.qa summary:hover{color:var(--acc)}
+.qa summary:focus-visible{outline:2px solid var(--acc); outline-offset:3px}
+.qa .ans{padding:0 0 26px; display:flex; flex-direction:column; gap:14px; color:var(--ink-2); font-size:16px; max-width:660px}
+
+/* ============ timeline ============ */
+.gantt{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.g-in{min-width:580px}
+.g-row{display:grid; grid-template-columns:190px 1fr; gap:18px; align-items:center; padding:7px 0}
+.g-lab{font-size:14px; color:var(--ink-2)}
+.g-tr{position:relative; height:22px; background:var(--inset); border-radius:3px}
+.g-bar{position:absolute; top:4px; bottom:4px; border-radius:3px; display:flex; align-items:center; padding-left:10px; font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:11px; color:#fff; white-space:nowrap}
+.g-ax{display:grid; grid-template-columns:190px 1fr; gap:18px; margin-top:10px; padding-top:10px; border-top:1px solid var(--rule)}
+.g-tk{display:grid; grid-template-columns:repeat(5,1fr); font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:11.5px; color:var(--muted)}
+
+/* ============ lists ============ */
+ul,ol{margin:0; padding-left:1.35em}
+li{margin:9px 0; color:var(--ink-2)}
+li::marker{color:var(--rule-2)}
+li b{color:var(--ink)}
+
+.refs{list-style:none; padding:0}
+.refs li{margin:0; border-bottom:1px solid var(--rule)}
+.refs li:last-child{border-bottom:none}
+.refs a{display:block; padding:13px 0; font-size:14.5px; line-height:1.7; color:var(--ink-2); text-decoration:none}
+.refs a:hover{color:var(--acc)}
+.refs a span{display:block; font-size:12.5px; color:var(--muted); margin-top:2px}
+
+.end{margin-top:90px; padding-top:28px; border-top:1px solid var(--rule); font-size:14.5px; color:var(--muted); display:flex; flex-direction:column; gap:14px; line-height:1.8}
+
+@media (max-width:780px){
+  body{font-size:16.5px}
+  .g-row,.g-ax{grid-template-columns:130px 1fr}
+  .f-hd,.f-row{grid-template-columns:150px 1fr 100px; gap:12px}
+  section{padding-top:60px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== 論文計畫書封面 ===== */
+.titlepage{padding:66px 0 46px; border-bottom:1px solid var(--rule); text-align:center}
+.tp-inst{font-size:15px; color:var(--ink-2); letter-spacing:.1em; line-height:2}
+.tp-kind{font-size:clamp(17px,2.6vw,21px); font-weight:700; margin-top:20px; letter-spacing:.22em; text-indent:.22em}
+.tp-kind-en{font-size:12.5px; color:var(--muted); letter-spacing:.2em; text-transform:uppercase; margin-top:8px}
+.tp-rule{width:56px; height:1px; background:var(--rule-2); margin:34px auto}
+.tp-title{font-size:clamp(21px,3.4vw,29px); font-weight:700; line-height:1.65; max-width:780px; margin:0 auto; letter-spacing:.01em}
+.tp-sub{font-size:clamp(15.5px,2.3vw,18.5px); font-weight:400; color:var(--ink-2); line-height:1.75; margin:12px auto 0; max-width:780px}
+.tp-en{font-size:14px; color:var(--muted); line-height:1.75; margin:24px auto 0; max-width:660px; font-style:italic}
+.tp-meta{
+  margin:38px auto 0; display:inline-grid; grid-template-columns:auto auto;
+  gap:11px 28px; text-align:left; font-size:15px;
+}
+.tp-meta dt{color:var(--muted); letter-spacing:.16em; text-indent:.16em; white-space:nowrap}
+.tp-meta dd{margin:0; color:var(--ink)}
+.tp-fill{color:var(--flag); border-bottom:1px dashed currentColor; padding-bottom:1px}
+.tp-note{margin-top:30px; font-size:13px; color:var(--muted)}
+@media (max-width:600px){
+  .titlepage{padding-top:44px}
+  .tp-meta{gap:9px 18px; font-size:14.5px}
+}
+
+/* ===== tab bar ===== */
+.topbar{
+  position:sticky; top:0; z-index:30; background:var(--bg);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-in{
+  max-width:1160px; margin:0 auto; padding:0 22px;
+  display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+}
+.brand{
+  font-family:var(--sans); font-size:14.5px; font-weight:600;
+  color:var(--muted); padding:14px 0; white-space:nowrap;
+}
+.tabs{display:flex; gap:4px; margin-left:auto}
+.tab{
+  appearance:none; background:none; border:none; cursor:pointer;
+  font-family:inherit; font-size:15px; color:var(--muted);
+  padding:15px 4px 13px; border-bottom:2px solid transparent; margin-left:22px;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--acc); font-weight:700}
+.tab:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+@media (max-width:620px){
+  .topbar-in{gap:0}
+  .brand{padding-bottom:0; width:100%}
+  .tabs{margin-left:0; width:100%}
+  .tab{margin-left:0; margin-right:26px; padding-top:8px}
+}
+#panel-search{max-width:880px; margin:0 auto}
+#panel-search .mast{padding-top:44px}
+
+/* ===== counts ===== */
+.counts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0; border-top:1px solid var(--rule-2)}
+.counts > div{padding:20px 22px 20px 0; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.counts > div:last-child{border-right:none}
+.counts .num{font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:30px; font-variant-numeric:tabular-nums; color:var(--acc); line-height:1.2}
+.counts .lab{font-size:13.5px; color:var(--ink-2); margin-top:6px; line-height:1.6}
+@media (max-width:700px){
+  .counts{grid-template-columns:repeat(2,1fr)}
+  .counts > div{padding-right:16px}
+}
+
+/* ===== code blocks ===== */
+.code{
+  font-family:var(--mono); font-size:13px; line-height:1.85;
+  background:var(--inset); border-radius:5px; padding:20px 22px; overflow-x:auto;
+  white-space:pre-wrap; word-break:break-word; color:var(--ink); margin:0; max-width:840px;
+}
+.code b{color:var(--acc); font-weight:500}
+.code-lab{font-size:12.5px; color:var(--muted); letter-spacing:.06em; margin:0 0 8px}
+
+/* ===== seed list ===== */
+.seed{list-style:none; padding:0; counter-reset:s}
+.seed li{
+  counter-increment:s; margin:0; padding:13px 0 13px 38px; border-bottom:1px solid var(--rule);
+  position:relative; font-size:14.5px; line-height:1.7;
+}
+.seed li:last-child{border-bottom:none}
+.seed li::before{
+  content:counter(s,decimal-leading-zero); position:absolute; left:0; top:13px;
+  font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:12px; color:var(--muted);
+}
+.seed li b{display:block; color:var(--ink)}
+.seed li span{color:var(--muted); font-size:13px}
+
 </style>
-
-<header class="topbar">
-  <div class="topbar-in" data-nozy>
-    <div class="brand">
-      <div class="mark">C</div>
-      <div>
-        <h1>Cindy 的小二複習站</h1>
-        <p>再興小學 · 115 學年度第一學期</p>
-      </div>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="brand">博士學位論文研究計畫書</span>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="blueprint" aria-selected="true" aria-controls="panel-blueprint">研究計畫書</button>
+      <button class="tab" role="tab" data-tab="search" aria-selected="false" aria-controls="panel-search">附件一　檢索策略</button>
     </div>
-    <nav class="topnav" id="topnav">
-      <button class="zybtn" id="zytoggle" aria-pressed="true" title="顯示或隱藏注音">ㄅㄆㄇ</button>
-      <button data-go="home">首頁</button>
-      <button data-go="progress">進度</button>
-      <button data-go="parent">家長區</button>
-    </nav>
   </div>
+</div>
+
+<div class="page">
+
+<div id="panel-blueprint" role="tabpanel">
+
+
+<header class="titlepage">
+  <p class="tp-inst"><span class="tp-fill">〔校名／學院〕</span>　流行病學研究所</p>
+  <p class="tp-kind">博士學位論文研究計畫書</p>
+  <p class="tp-kind-en">Doctoral Dissertation Proposal</p>
+
+  <div class="tp-rule"></div>
+
+  <h1 class="tp-title">Tirzepatide 預防效益之真實世界證據評估</h1>
+  <p class="tp-sub">與隨機分派試驗之一致性、偏差校正及目標試驗模擬</p>
+
+  <p class="tp-en">Real-World Evidence for the Preventive Effects of Tirzepatide:<br>
+  Discordance with Randomized Trials, Bias-Adjusted Synthesis,<br>
+  and a Benchmarked Target Trial Emulation</p>
+
+  <div class="tp-rule"></div>
+
+  <dl class="tp-meta">
+    <dt>研究生</dt><dd>劉子瑜</dd>
+    <dt>指導教授</dt><dd><span class="tp-fill">〔指導教授〕</span>　博士</dd>
+    <dt>提出日期</dt><dd>中華民國一一五年九月</dd>
+  </dl>
+
+  <p class="tp-note">紅色虛線處請填入正式資訊後再送出。</p>
 </header>
 
-<main class="shell" id="app"></main>
-<div class="status" id="status" role="status" aria-live="polite"></div>
+<details class="toc" open>
+  <summary>目次</summary>
+  <div class="toc-list">
+    <a href="#s1"><b>01</b>三十秒定位</a>
+    <a href="#s2"><b>02</b>證據地圖</a>
+    <a href="#s3"><b>03</b>缺口與假說</a>
+    <a href="#s4"><b>04</b>三篇論文架構</a>
+    <a href="#s5"><b>05</b>名詞界定與治理</a>
+    <a href="#s6"><b>06</b>論文一方法</a>
+    <a href="#s7"><b>07</b>論文二方法</a>
+    <a href="#s8"><b>08</b>論文三方法</a>
+    <a href="#s9"><b>09</b>偏差清單</a>
+    <a href="#s10"><b>10</b>統計計畫</a>
+    <a href="#s11"><b>11</b>時程與投稿策略</a>
+    <a href="#s12"><b>12</b>口委問答</a>
+    <a href="#refs"><b>附</b>參考文獻</a>
+  </div>
+</details>
+
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>三十秒定位</h2>
+    <p class="sub">口試一開始要說的那段話。先給結論，再給理由——口委在前兩分鐘就會決定要不要買單。</p>
+  </div>
+
+  <div class="stack">
+    <div class="note col">
+      Tirzepatide 上市不到四年，真實世界研究已經大量出現，而且彼此矛盾：同樣比較 tirzepatide 與 semaglutide 的心血管結果，一個大型研究得到中性的 HR 1.06，另一個卻得到 semaglutide 明顯較優——而後者的平均追蹤只有四個月、事件數只有十幾個。與此同時，唯一的心血管結果試驗 SURPASS-CVOT 給的是對 dulaglutide 的非劣效。<br><br>問題不在於哪一個答案對，而在於：<b>我們沒有工具去判斷哪一個該被相信</b>。我的論文就是要造這個工具——先量化真實世界估計偏離隨機試驗的方向與幅度，並找出是哪些設計特徵造成的；再用這組參數對沒有試驗可對照的終點做偏差校正；最後親自做一個設計做對的模擬研究，驗證修正是否真的改變結論。
+    </div>
+
+    <div class="trio">
+      <div>
+        <h4>診斷</h4>
+        <p>以 Ratio of Hazard Ratios 量化 RWE 與 RCT 的落差，並用 meta-regression 找出預測落差的設計特徵。</p>
+      </div>
+      <div>
+        <h4>處方</h4>
+        <p>把偏差參數代入階層式校正合成模型，重估失智、癌症、腎臟等無試驗終點。</p>
+      </div>
+      <div>
+        <h4>示範</h4>
+        <p>親自執行一個嚴格的目標試驗模擬，以 SURPASS-CVOT 為基準檢驗設計修正的實際效果。</p>
+      </div>
+    </div>
+
+    <div class="note col">
+      <span class="lede">策略優勢</span>
+      論文一與論文二<b>完全不需要資料庫申請</b>，第一年就能開始寫、能投稿。論文三的資料取得可以並行洽談。萬一台灣的資料源談不下來，前兩篇仍然構成一份完整且可通過的博士論文。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>證據地圖：矛盾本身就是研究對象</h2>
+    <p class="sub">刻意把兩類證據放在同一條軸上。這張圖是你整份提案的立論基礎。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="forest">
+      <div class="forest-in">
+        <div class="f-hd"><span>研究與終點</span><span>Hazard Ratio（對數尺度）</span><span>HR (95% CI)</span></div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>SURPASS-CVOT</b>MACE-3；隨機試驗</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:45.4%; width:12.2%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:51.8%; background:var(--acc)"></div>
+          </div>
+          <div class="f-val">0.92 (0.83–1.01)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>SURPASS-CVOT</b>Expanded MACE；隨機試驗</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:43.1%; width:11.3%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:49.0%; background:var(--acc)"></div>
+          </div>
+          <div class="f-val">0.88 (0.80–0.96)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>SUMMIT</b>HFpEF＋肥胖；隨機試驗</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:1.5%; width:52.2%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:27.2%; background:var(--acc)"></div>
+          </div>
+          <div class="f-val">0.62 (0.41–0.95)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>US claims 三庫</b>MI／stroke／死亡；真實世界</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:53.8%; width:13.5%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:60.6%; background:var(--amber)"></div>
+          </div>
+          <div class="f-val">1.06 (0.95–1.18)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>TriNetX</b>失智，對 SGLT2i；真實世界</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:10.0%; width:42.4%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:31.1%; background:var(--amber)"></div>
+          </div>
+          <div class="f-val">0.66 (0.47–0.93)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>TriNetX</b>失智，對 semaglutide；真實世界</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:11.3%; width:45.0%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:33.9%; background:var(--amber)"></div>
+          </div>
+          <div class="f-val">0.69 (0.48–0.99)</div>
+        </div>
+
+        <div class="f-ax">
+          <span style="left:13.9%">0.5</span>
+          <span style="left:34.8%">0.7</span>
+          <span style="left:56.9%">1.0</span>
+          <span style="left:82.1%">1.5</span>
+          <span style="left:98%">2.0</span>
+        </div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--acc)"></i>隨機試驗</span>
+        <span><i style="background:var(--amber)"></i>真實世界研究</span>
+        <span class="flagtxt">數值為文獻檢索整理，正式書面資料務必回原文核對。</span>
+      </p>
+    </div>
+
+    <div>
+      <h3>關鍵文獻與既有競品</h3>
+      <p class="sub" style="font-size:14.5px;color:var(--muted);margin-bottom:22px;max-width:640px">最後五列是方法學母體與你必須明確區隔的既有研究。口委一定會問，先講先贏。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:19%">研究</th><th style="width:24%">族群與設計</th><th style="width:25%">主要結果</th><th style="width:32%">對你的意義</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="研究"><b>SURPASS-CVOT</b><br><span class="q">NEJM 2025.12　隨機試驗</span></td>
+              <td data-l="族群與設計">T2D＋ASCVD，BMI≥25；N=13,299，中位 4 年；tirzepatide 對 dulaglutide</td>
+              <td data-l="主要結果"><span class="n">MACE-3 12.2% vs 13.1%</span><br>非劣效 p=0.003；優效 p=0.09<br>Expanded MACE 顯著降低</td>
+              <td data-l="意義">你的<b>唯一硬終點錨點</b>。主動對照而非安慰劑，是配對比較時的一大優勢。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>SURPASS-CVOT 心腎次要分析</b><br><span class="q">2026　隨機試驗</span></td>
+              <td data-l="族群與設計">同上，post hoc</td>
+              <td data-l="主要結果">腎臟複合終點與 eGFR 斜率</td>
+              <td data-l="意義">心腎終點的配對對象。口試前務必讀完整篇。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>SUMMIT</b><br><span class="q">NEJM 2024　隨機試驗</span></td>
+              <td data-l="族群與設計">HFpEF＋肥胖，N≈730，對安慰劑</td>
+              <td data-l="主要結果">CV 死亡與心衰竭惡化顯著降低</td>
+              <td data-l="意義">第二個可配對的錨點，且已有對應的真實世界模擬研究存在。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>事前指定統合分析</b><br><span class="q">Nat Med 2022　合成</span></td>
+              <td data-l="族群與設計">SURPASS 三期試驗合併</td>
+              <td data-l="主要結果">MACE-4 未增加風險，信賴區間寬</td>
+              <td data-l="意義">隨機試驗側的合成估計來源之一。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>US claims 三庫模擬</b><br><span class="q">Nat Med 2025　真實世界</span></td>
+              <td data-l="族群與設計">頭對頭 N=297,842，中位追蹤約 150 天</td>
+              <td data-l="主要結果"><span class="n">HR 1.06 (0.95–1.18)</span></td>
+              <td data-l="意義">目前設計品質最高的真實世界研究，會是你忠實度評分的高分範例。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>STEER</b><br><span class="q">Diabetes Obes Metab 2026　真實世界</span></td>
+              <td data-l="族群與設計">各 10,625，無糖尿病，平均追蹤 3.8–4.3 個月</td>
+              <td data-l="主要結果"><span class="n">事件 15 vs 39</span><br>方向：semaglutide 較優</td>
+              <td data-l="意義">與上一列方向相反。你的<b>低分範例</b>與最有力的教材。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>TriNetX 失智模擬</b><br><span class="q">Diabetes Res Clin Pract 2026　真實世界</span></td>
+              <td data-l="族群與設計">各組 12,246–57,959</td>
+              <td data-l="主要結果"><span class="n">0.66　0.71　0.69</span></td>
+              <td data-l="意義">無隨機試驗可對照的終點，論文二偏差校正的主要對象。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>真實世界統合分析</b><br><span class="q">Endocr Pract 2025　<span class="flagtxt">競品</span></span></td>
+              <td data-l="族群與設計">tirzepatide 心血管結果的系統性回顧</td>
+              <td data-l="主要結果">合併真實世界估計</td>
+              <td data-l="意義"><b>只 pool 真實世界研究，沒有與隨機試驗做量化比較，也沒有分析設計特徵。</b>你的區隔就在這兩點。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>Incretin 類 RWE 對 RCT</b><br><span class="q">J Diabetes 2026　<span class="flagtxt">競品</span></span></td>
+              <td data-l="族群與設計">敘事性回顧</td>
+              <td data-l="主要結果">指出兩類證據的落差</td>
+              <td data-l="意義"><b>是敘事性的，沒有量化、沒有 meta-regression。</b>可引用它來證明這個問題被公認重要但尚未被量化。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>Cochrane 方法學回顧</b><br><span class="q">MR000034.pub3, 2024　方法</span></td>
+              <td data-l="族群與設計">觀察性研究對隨機試驗的整體比較</td>
+              <td data-l="主要結果">提供 ratio of ratios 的標準做法</td>
+              <td data-l="意義"><b>你論文一的方法學母體。</b>直接沿用其分析架構套到 tirzepatide。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>RCT-DUPLICATE</b><br><span class="q">Circulation 2021／JAMA 2023　方法</span></td>
+              <td data-l="族群與設計">32 個試驗的模擬</td>
+              <td data-l="主要結果">三項一致性指標</td>
+              <td data-l="意義">一致性指標的來源，論文一與論文三共用。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>資料重複框架</b><br><span class="q">J Clin Epidemiol 2024　方法</span></td>
+              <td data-l="族群與設計">大型資料庫在證據合成中的重複計算</td>
+              <td data-l="主要結果">提出辨識與處理框架</td>
+              <td data-l="意義">處理 TriNetX 被多篇論文重複使用的關鍵依據。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>研究缺口與可檢驗的假說</h2>
+    <p class="sub">從「文獻沒做過」升級到「文獻做錯了什麼、為什麼重要」。</p>
+  </div>
+
+  <div class="stack">
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:26%">缺口</th><th style="width:74%">說明</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="缺口 1"><b>落差沒有被量化</b></td>
+            <td data-l="說明">既有回顧指出真實世界證據與隨機試驗對 incretin 類藥物的結論不一致，但停在敘事層次。沒有人計算過 ratio of ratios，也沒有人檢驗哪些設計特徵預測不一致。</td>
+          </tr>
+          <tr>
+            <td data-l="缺口 2"><b>設計品質沒有被系統性評分</b></td>
+            <td data-l="說明">多數 tirzepatide 的真實世界研究自稱使用目標試驗模擬，但實際上是否對齊三個時間點、是否避開不朽時間偏差、是否用主動對照，從未被逐項稽核過。</td>
+          </tr>
+          <tr>
+            <td data-l="缺口 3"><b>資料重複被完全忽略</b></td>
+            <td data-l="說明">大量「獨立」的真實世界研究其實共用同一個聯邦式資料庫的同一批病人。既有的統合分析直接 pool，會人工壓縮信賴區間、製造假的精確度。</td>
+          </tr>
+          <tr>
+            <td data-l="缺口 4"><b>無試驗終點只能全信或全不信</b></td>
+            <td data-l="說明">失智、癌症、CKD 進展沒有隨機試驗，臨床上只能選擇相信或不相信那些 HR。沒有中間地帶——沒有人提供校正後的估計與翻轉條件。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h3>總研究問題</h3>
+      <p style="color:var(--ink-2)">Tirzepatide 預防效益的真實世界估計，與隨機試驗估計相差多少、往哪個方向差、由哪些研究設計特徵所驅動？在校正這些偏差之後，對於沒有隨機試驗可對照的預防終點，我們還能主張什麼？</p>
+      <h4 style="margin-top:26px">三個可檢驗的假說</h4>
+      <ol>
+        <li><b>H1（論文一）</b>　合併後的真實世界估計相對於隨機試驗估計，其 ratio of hazard ratios 顯著小於 1，即真實世界證據<b>系統性高估</b> tirzepatide 的預防效益；且此高估幅度可由三項設計特徵預測——追蹤時間過短、未採新使用者設計、以未使用者而非主動藥物為對照。</li>
+        <li><b>H2（論文二）</b>　對失智與癌症等無試驗終點施加偏差校正後，效果量會明顯往無效線衰減，且多數估計的 E-value 低於已知混淆因子（如社經地位、健康行為）的實際關聯強度，亦即現有結論不夠穩健。</li>
+        <li><b>H3（論文三）</b>　在同一資料源上，嚴格對齊目標試驗協定所得到的估計，會比未對齊的傳統世代分析<b>更接近 SURPASS-CVOT</b>，且差距的主要來源是追蹤起點對齊與新使用者限制，而非共變項調整方法。</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>論文架構：診斷 → 處方 → 示範</h2>
+    <p class="sub">三篇之間有真正的邏輯依賴，前一篇的產出是下一篇的輸入。這是口委最看重的一點。</p>
+  </div>
+
+  <div class="stack">
+    <div class="papers">
+      <div class="paper">
+        <span class="tag">Paper 1　診斷</span>
+        <h3>RWE 與 RCT 差多少？</h3>
+        <p>Meta-epidemiological study。系統性收錄 tirzepatide 所有隨機與非隨機研究，配成 PICO 相符的證據對，計算 ratio of hazard ratios。</p>
+        <p>以自建的目標試驗忠實度評分與其他研究層次特徵做 meta-regression，找出預測落差的設計因子。</p>
+        <p class="out">產出：偏差方向、幅度與其預測因子。<b>不需資料庫申請。</b></p>
+      </div>
+      <div class="paper">
+        <span class="tag">Paper 2　處方</span>
+        <h3>校正之後還剩多少？</h3>
+        <p>把論文一得到的偏差參數，代入階層式偏差校正合成模型，重新估計失智、肥胖相關癌症、CKD 進展等無隨機試驗終點。</p>
+        <p>核心產出不是新的 HR，而是「需要多強的未測量干擾才會推翻結論」——E-value 與翻轉點分析。</p>
+        <p class="out">產出：帶可信度標籤的預防效益估計。<b>不需資料庫申請。</b></p>
+      </div>
+      <div class="paper">
+        <span class="tag">Paper 3　示範</span>
+        <h3>設計做對會不一樣嗎？</h3>
+        <p>在單一資料源上，同時執行「嚴格對齊目標試驗」與「文獻中常見的寬鬆設計」，比較兩者與 SURPASS-CVOT 的距離。</p>
+        <p>再把校正後的設計外推到試驗未涵蓋族群：無 ASCVD 者、非糖尿病肥胖者、東亞族群。</p>
+        <p class="out">產出：設計修正的實證效果與台灣本土估計。<b>需資料源，可並行洽談。</b></p>
+      </div>
+    </div>
+
+    <div class="note col">
+      <span class="lede">為什麼這個順序是對的</span>
+      多數博士論文把方法學檢討寫在最後的限制段落。你把它前置成論文一的<b>結果變數</b>，讓後兩篇站在它上面。而且前兩篇零資料門檻，能在第一年內投稿——這對資格考後的士氣與履歷都是實質幫助。
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 05 名詞界定與研究治理 ============ -->
+<section id="s5">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>名詞界定與研究治理</h2>
+    <p class="sub">兩件會被口委追問、但提案裡常寫不清楚的事：目標試驗模擬到底是什麼，以及哪幾篇需要送倫理審查。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note col">
+      <span class="lede">先釘死一個定義</span>
+      <b>目標試驗模擬是一個「設計框架」，不是一種資料、也不是一種統計方法。</b>它的內容就是：把你的觀察性分析，明確對應到一個「你若能做、就會去做」的假想隨機試驗協定，然後逐項說明你如何模擬每一個要素。所以「我用 TriNetX 做研究」不等於「我做了目標試驗模擬」，「我做了傾向分數配對」也不等於。這個區分在口試被問到時要能一句話講清楚。
+    </div>
+
+    <div>
+      <h3>三篇論文各自與這個框架的關係</h3>
+      <div class="tbl" style="margin-top:20px">
+        <table>
+          <thead><tr><th style="width:16%">論文</th><th style="width:26%">與目標試驗模擬的關係</th><th style="width:58%">說明</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b></td>
+              <td data-l="關係">評估別人的模擬品質</td>
+              <td data-l="說明">拿七個要素當一把尺，去量現有文獻有多接近理想。<b>你自己不執行模擬</b>，你是在稽核別人有沒有做到。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b></td>
+              <td data-l="關係">不涉及模擬的執行</td>
+              <td data-l="說明">這是證據合成，分析單位是研究而非病人。目標試驗模擬只以「設計特徵」的形式出現在偏差模型裡。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b></td>
+              <td data-l="關係"><b>唯一真正執行的一篇</b></td>
+              <td data-l="說明">而且精確的說法是 <b>benchmarked target trial emulation</b>——因為有 SURPASS-CVOT 可對照，你能驗證模擬是否成功。口試講出「benchmarked」這個詞，比只說「我做 TTE」精準得多。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note col">
+      <span class="lede">論文三還有一層更精確的說法</span>
+      論文三其實跑<b>兩套設計</b>：一套嚴格對齊協定，一套刻意複製文獻中常見的寬鬆做法。這在方法學上叫 <b>within-database design comparison</b>——把「設計選擇造成多大差異」變成同一批資料上可觀察的實驗結果，而不是理論主張。這才是論文三真正的貢獻，不是又生產一個 tirzepatide 的 HR。
+    </div>
+
+    <div>
+      <h3>倫理審查與註冊：哪一篇需要什麼</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">這一節的實際用途是排時程。<b>前兩篇不需要倫理審查</b>，這是設計 C 在博三上這個時間點的核心優勢；論文三則必須及早啟動，否則會卡住整個進度。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:16%">論文</th><th style="width:22%">倫理審查</th><th style="width:24%">計畫註冊</th><th style="width:38%">說明</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b></td>
+              <td data-l="倫理審查"><b>不需要</b></td>
+              <td data-l="註冊">PROSPERO</td>
+              <td data-l="說明">分析對象是已發表的研究，不涉及可辨識個人資料，不屬於人體研究。但系統性回顧須在 PROSPERO 註冊——這是期刊要求，不是倫理審查。<b>註冊前不要開始正式篩選。</b></td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b></td>
+              <td data-l="倫理審查"><b>不需要</b></td>
+              <td data-l="註冊">PROSPERO</td>
+              <td data-l="說明">同上。可與論文一併案註冊，或另立一個註冊紀錄。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b></td>
+              <td data-l="倫理審查"><span class="flagtxt">需要，且要最早啟動</span></td>
+              <td data-l="註冊">EU PAS Register 或 OSF</td>
+              <td data-l="說明">動到病人層次資料。依《人體研究法》，使用人體衍生資料進行研究屬人體研究，<b>即使已去識別化、即使是次級資料，原則上仍須送機構倫理審查委員會</b>。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3>論文三：各資料源的實務要求</h3>
+      <div class="tbl" style="margin-top:20px">
+        <table>
+          <thead><tr><th style="width:24%">資料源</th><th style="width:76%">實務上要準備什麼</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="資料源"><b>醫院電子病歷</b></td>
+              <td data-l="要求">須經該院倫理審查委員會核准。因屬回溯性、且聯絡原病人不可行、風險最小，通常可一併申請<b>免除受試者同意</b>。</td>
+            </tr>
+            <tr>
+              <td data-l="資料源"><b>健保資料庫</b></td>
+              <td data-l="要求">向衛福部資料科學中心申請時，通常要求檢附倫理審查核准函或免審證明，這是申請文件的一部分。加上排隊與審查，時程要抓寬。</td>
+            </tr>
+            <tr>
+              <td data-l="資料源"><b>TriNetX</b></td>
+              <td data-l="要求">多數機構認定為去識別化的彙總資料、屬非人體研究，可申請免審——但<b>仍要送件取得正式的免審文件</b>，因為投稿時期刊要填倫理聲明。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">這段請務必自己去確認</span>
+      實務上這類研究多半走<b>免除審查或簡易審查</b>，不是完整的委員會審查。但「免審」本身也要送件、也要等；各校與各醫院對「去識別化次級資料」的認定標準不完全一致，有些較寬、有些較嚴。<b>口試前先問一次所上或醫院的倫理審查承辦人</b>，要到實際的文件清單與預估時程。口委問「你知道要跑多久嗎」，你答得出具體月數，說服力完全不同。
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s6">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>論文一方法：量化 RWE 與 RCT 的落差</h2>
+    <p class="sub">這一節要能講得最細。它是整份論文的地基，也是口委檢驗你方法學功力的地方。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="panel">
+      <h4>納入條件</h4>
+      <ul>
+        <li>介入含 tirzepatide，且有明確對照組</li>
+        <li>結果為<b>臨床終點</b>：心血管事件、心衰竭住院、腎臟終點、失智與輕度認知障礙、癌症、全死因死亡</li>
+        <li>報告相對效果量（HR、RR、OR）與變異數</li>
+        <li>隨機與非隨機研究皆納入，不限語言</li>
+        <li>排除純代理指標研究（單看 HbA1c、體重），但另做一組平行分析當敏感度檢驗</li>
+      </ul>
+      <h4 style="margin-top:28px">證據配對規則</h4>
+      <ul>
+        <li>以 PICO 四要素相似度配對：族群（有無 T2D、有無 ASCVD）、介入、<b>對照藥物必須同類</b>、終點定義</li>
+        <li>一個隨機試驗可對應多篇真實世界研究，形成「證據叢集」</li>
+        <li>配對由兩人獨立執行，不一致由第三人仲裁，報告 kappa</li>
+        <li>配對規則須<b>事前寫入註冊計畫</b>，避免事後挑選</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>主要指標：Ratio of Hazard Ratios</h3>
+      <div class="formula">
+RHR = HR<sub>RWE</sub> ÷ HR<sub>RCT</sub><br>
+ln(RHR) = ln(HR<sub>RWE</sub>) − ln(HR<sub>RCT</sub>)<br>
+Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
+<em>RHR &lt; 1　真實世界高估保護效益（最可能來源：健康使用者與依從性偏差）</em><br>
+<em>RHR &gt; 1　真實世界低估保護效益（可能來源：適應症干擾、結果錯分）</em><br>
+<em>RHR = 1　兩類證據一致</em>
+      </div>
+      <p style="font-size:14.5px;color:var(--muted);margin-top:16px;max-width:660px">以隨機效果模型合併各證據對的 ln(RHR)，並報告 τ² 與 I² 量化異質性。若不同終點的方向不同，則分終點呈現，不強行合併。</p>
+    </div>
+
+    <div>
+      <h3>你的原創工具：目標試驗忠實度評分</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin-bottom:24px;max-width:660px">把目標試驗協定的七個要素轉成 0–2 分的評分表，總分 0–14。這個分數既是論文一的描述性結果，也是 meta-regression 的核心連續共變項。<b>這是你最容易被記住的貢獻。</b></p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:16%">要素</th><th style="width:28%">0 分</th><th style="width:28%">1 分</th><th style="width:28%">2 分</th></tr></thead>
+          <tbody>
+            <tr><td data-l="要素"><b>合格條件</b></td><td data-l="0 分">未報告基線期長度</td><td data-l="1 分">有基線期但未報告排除流程</td><td data-l="2 分">明確基線期與完整流失圖</td></tr>
+            <tr><td data-l="要素"><b>治療策略</b></td><td data-l="0 分">未區分新舊使用者</td><td data-l="1 分">有洗脫期但未定義劑量調升或寬限期</td><td data-l="2 分">新使用者設計與明確寬限期規則</td></tr>
+            <tr><td data-l="要素"><b>對照選擇</b></td><td data-l="0 分">未使用者或不使用藥物者</td><td data-l="1 分">不同機轉藥物</td><td data-l="2 分">同類主動藥物對照</td></tr>
+            <tr><td data-l="要素"><b>時間零點</b></td><td data-l="0 分">三個時間點明顯不對齊</td><td data-l="1 分">未明確說明對齊方式</td><td data-l="2 分">合格判定、分派、追蹤起點三者明確對齊</td></tr>
+            <tr><td data-l="要素"><b>結果定義</b></td><td data-l="0 分">未提供代碼清單</td><td data-l="1 分">有代碼但未經驗證</td><td data-l="2 分">已驗證演算法與完整代碼清單</td></tr>
+            <tr><td data-l="要素"><b>因果對比</b></td><td data-l="0 分">未說明 ITT 或 per-protocol</td><td data-l="1 分">僅其一</td><td data-l="2 分">雙軌並陳且 per-protocol 有處理停藥加權</td></tr>
+            <tr><td data-l="要素"><b>分析與透明度</b></td><td data-l="0 分">無事前註冊、無敏感度分析</td><td data-l="1 分">其一</td><td data-l="2 分">事前註冊與陰性對照或量化偏差分析</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:14.5px;color:var(--muted);margin-top:18px;max-width:660px">評分由兩人獨立進行，報告加權 kappa 與各要素的分數分布。可預期的亮點結果：多數自稱使用目標試驗模擬的研究，在「時間零點」與「因果對比」兩項得分偏低。</p>
+    </div>
+
+    <div class="panel">
+      <h4>Meta-regression 共變項（事前指定）</h4>
+      <ul>
+        <li><b>主要三項</b>　忠實度總分、追蹤中位數（&lt;6／6–12／&gt;12 個月）、對照類型（主動藥物或其他）</li>
+        <li><b>次要</b>　資料型態（claims／EHR／registry／單中心）、事件數、是否事前註冊、資金來源、發表年份</li>
+        <li>每個共變項至少需 10 篇研究支撐。若不足，僅做描述性分層呈現並明說</li>
+      </ul>
+      <h4 style="margin-top:28px">資料重複的處理（本篇的關鍵加分點）</h4>
+      <ul>
+        <li>建立「資料庫 × 收案期間 × 族群定義」的重疊矩陣</li>
+        <li>主分析：每個重疊叢集<b>只保留一篇</b>（樣本最大者）</li>
+        <li>敏感度：改保留最新者、改保留忠實度最高者</li>
+        <li>額外報告：若全數納入，合併估計的信賴區間會被人工壓縮多少百分比</li>
+        <li>依 J Clin Epidemiol 2024 的資料重複框架執行並引用</li>
+      </ul>
+      <h4 style="margin-top:28px">一致性指標（沿用 RCT-DUPLICATE，搬到研究層次）</h4>
+      <ul>
+        <li><b>Regulatory agreement</b>　兩者在統計顯著性與方向上是否一致</li>
+        <li><b>Estimate agreement</b>　真實世界的 95% 信賴區間是否涵蓋隨機試驗的點估計</li>
+        <li><b>Standardized difference</b>　兩估計之差除以合併標準誤，量化差距</li>
+        <li>三者皆須事前定義，並在 OSF 或 PROSPERO 註冊</li>
+      </ul>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">可行性的先決條件</span>
+      納入研究數是這篇的生死線。<b>口試前請先做一次快速檢索並數出篇數</b>：以 tirzepatide 為主，若臨床終點的真實世界研究不足 20 篇，備案是把範圍擴大為 incretin 類藥物（含 semaglutide、dulaglutide），做藥物類層次的分析，tirzepatide 作為事前指定的主要次族群。這個備案要事先寫進計畫書，不要等口委問了才想。
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="s7">
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>論文二方法：偏差校正後的證據再合成</h2>
+    <p class="sub">把論文一的診斷變成處方。這篇處理的是沒有隨機試驗可對照的終點。</p>
+  </div>
+
+  <div class="stack">
+    <div class="note col">
+      <span class="lede">核心邏輯</span>
+      論文一告訴我們：在有隨機試驗可對照的終點上，具備某些設計特徵的真實世界研究平均高估了多少。論文二的假設是——<b>同樣的設計特徵，在沒有隨機試驗可對照的終點上，會造成類似方向與量級的偏差</b>。於是我們可以用論文一估出的偏差分布，作為先驗，對失智、癌症、腎臟終點的合成估計做校正。這個假設本身要明講、要做敏感度分析，這是本篇最需要防守的地方。
+    </div>
+
+    <div class="panel">
+      <h4>分析步驟</h4>
+      <ol>
+        <li>對每個無隨機試驗終點，做標準的隨機效果合成，得到未校正估計</li>
+        <li>依論文一的 meta-regression 係數，為每篇研究計算其預期偏差項與不確定性</li>
+        <li>建立階層式偏差校正模型：在合成時同時加入偏差的平移與額外變異</li>
+        <li>比較校正前後的點估計、信賴區間寬度與統計顯著性是否改變</li>
+        <li>對每個校正後估計計算 E-value 與翻轉點</li>
+      </ol>
+      <h4 style="margin-top:28px">敏感度與防守</h4>
+      <ul>
+        <li>可轉移性假設：分別以「僅心血管終點推導的偏差」與「全終點推導的偏差」兩組參數執行</li>
+        <li>加入專家意見引出的偏差先驗作為第三組比較</li>
+        <li>對失智與癌症額外處理<b>潛伏期</b>：僅納入有報告 lag window 的研究，或依追蹤長度加權</li>
+        <li>報告「若要讓校正後結果仍達顯著，所需的最小真實效果」</li>
+      </ul>
+    </div>
+
+    <div class="note col">
+      <span class="lede">這篇的一句話賣點</span>
+      目前臨床端對「tirzepatide 能否預防失智」只能二選一——全信或全不信。這篇提供第三個選項：<b>一個被明確標示了可信度、並附上翻轉條件的數字。</b>這正是流行病學該做的事。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s8">
+  <div class="sec-head">
+    <span class="sec-num">08</span>
+    <h2>論文三方法：示範性目標試驗模擬</h2>
+    <p class="sub">前兩篇是紙上作業，這一篇證明你會做實證分析。資料源是最大風險，備案要先想好。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note col">
+      <span class="lede">設計：同資料源、雙設計對照</span>
+      在同一個資料源上執行<b>兩套分析</b>：一套嚴格對齊 SURPASS-CVOT 的目標試驗協定（忠實度滿分），一套刻意複製文獻中常見的寬鬆做法（例如以持續用藥者定義暴露、以未使用者為對照、不限制新使用者）。比較兩者各自與 SURPASS-CVOT 的距離。這個對照設計讓「設計品質造成多大差異」變成可直接觀察的實驗結果，而不只是理論主張。
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:15%">協定要素</th><th style="width:27%">目標試驗（SURPASS-CVOT）</th><th style="width:30%">嚴格模擬</th><th style="width:28%">最容易出錯之處</th></tr></thead>
+        <tbody>
+          <tr><td data-l="要素"><b>合格條件</b></td><td data-l="目標試驗">T2D、BMI≥25、已確立 ASCVD</td><td data-l="嚴格模擬">指標日前 12 個月連續納保或就醫；診斷碼與處置碼定義 ASCVD</td><td data-l="易錯處">要求太嚴樣本歸零、太寬族群不可比。務必畫流失圖。</td></tr>
+          <tr><td data-l="要素"><b>治療策略</b></td><td data-l="目標試驗">Tirzepatide 劑量調升對 dulaglutide 1.5mg</td><td data-l="嚴格模擬">新使用者（前 12 個月無任何 incretin 處方）；定義劑量調升寬限期</td><td data-l="易錯處">盛行使用者偏差與易感者耗竭。</td></tr>
+          <tr><td data-l="要素"><b>分派</b></td><td data-l="目標試驗">1:1 隨機</td><td data-l="嚴格模擬">傾向分數重疊加權；標準化差異須小於 0.1</td><td data-l="易錯處">無法測量的變項：實測 BMI、動機、經濟能力、生活型態。</td></tr>
+          <tr><td data-l="要素"><b>時間零點</b></td><td data-l="目標試驗">隨機分派日</td><td data-l="嚴格模擬">首次調劑日＝合格判定日＝追蹤起始日</td><td data-l="易錯處">三者不對齊即產生不朽時間偏差，這是最常見的致命傷。</td></tr>
+          <tr><td data-l="要素"><b>結果</b></td><td data-l="目標試驗">複合終點經委員會裁定</td><td data-l="嚴格模擬">已驗證的住院診斷碼演算法；死亡連結死因統計檔</td><td data-l="易錯處">行政資料無裁定機制；電子病歷常缺死亡登記。</td></tr>
+          <tr><td data-l="要素"><b>因果對比</b></td><td data-l="目標試驗">ITT 為主</td><td data-l="嚴格模擬">ITT 類比與 per-protocol（以 IPCW 處理停藥與轉換）</td><td data-l="易錯處">真實世界持續使用率低，ITT 會嚴重稀釋效果。</td></tr>
+          <tr><td data-l="要素"><b>統計分析</b></td><td data-l="目標試驗">Cox，非劣效邊界</td><td data-l="嚴格模擬">加權 Cox 與加權 KM；競爭風險以 cause-specific 與 Fine–Gray 並列</td><td data-l="易錯處">長潛伏期終點的比例風險假設常不成立，建議並報 RMST。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">台灣資料的生死關卡</span>
+      依現行制度，健保對 GLP-1 類藥物的給付限縮於血糖控制不佳的第二型糖尿病患者，猛健樂在台灣臨床上<b>以自費使用為主</b>。自費處方不會出現在健保申報檔中——這代表<b>健保資料庫可能根本抓不到你的暴露組</b>。請務必向健保署與藥廠實際查證台灣的核准適應症與給付現況後再定案。
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:18%">資料來源</th><th style="width:21%">暴露捕捉</th><th style="width:20%">共變項</th><th style="width:19%">結果與追蹤</th><th style="width:22%">可行性判斷</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="來源"><b>醫院電子病歷</b><br><span class="q">如 CGRD、NTUH</span></td>
+            <td data-l="暴露捕捉">最佳，含自費處方與實際調劑紀錄</td>
+            <td data-l="共變項"><b>有檢驗值</b>：體重、BMI、HbA1c、eGFR、血脂</td>
+            <td data-l="結果與追蹤">可回溯病歷驗證終點；院外事件會流失</td>
+            <td data-l="判斷"><b>推薦作為主資料源。</b>共變項完整度是干擾調整的命脈</td>
+          </tr>
+          <tr>
+            <td data-l="來源"><b>健保資料庫</b><br><span class="q">NHIRD／NHIA</span></td>
+            <td data-l="暴露捕捉"><span class="flagtxt">高風險</span>　自費藥物不入檔</td>
+            <td data-l="共變項">僅診斷與處方，<b>無</b> BMI、HbA1c、eGFR</td>
+            <td data-l="結果與追蹤">全國完整，可連結死因統計檔</td>
+            <td data-l="判斷">不宜作為單一主資料源；適合<b>連結補足院外事件與死亡</b></td>
+          </tr>
+          <tr>
+            <td data-l="來源"><b>TriNetX</b><br><span class="q">全球聯邦式</span></td>
+            <td data-l="暴露捕捉">良好，多數既有研究用此庫</td>
+            <td data-l="共變項">有檢驗值但缺漏率高</td>
+            <td data-l="結果與追蹤"><span class="flagtxt">弱點</span>　死亡登記不完整</td>
+            <td data-l="判斷">適合<b>外部重複驗證</b>，且與論文一的重疊分析直接呼應</td>
+          </tr>
+          <tr>
+            <td data-l="來源"><b>國際 claims</b><br><span class="q">Optum／MarketScan</span></td>
+            <td data-l="暴露捕捉">優，可與既有研究直接對照</td>
+            <td data-l="共變項">無檢驗值，除非用 Lab 子集</td>
+            <td data-l="結果與追蹤">換保險即失聯</td>
+            <td data-l="判斷">取得成本高。若指導教授有既有授權則極具價值</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h4>外推分析（論文三的後半）</h4>
+      <p style="color:var(--ink-2);font-size:16px">在完成嚴格模擬並確認可信度後，把設計外推到 SURPASS-CVOT 排除或代表性不足的族群：無 ASCVD 的初級預防者、非糖尿病肥胖者、eGFR 較低者、高齡者、東亞族群。以標準化與可轉移性方法把試驗結果轉移到台灣目標族群，並報告族群別的絕對風險下降與 NNT。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="s9">
+  <div class="sec-head">
+    <span class="sec-num">09</span>
+    <h2>偏差清單</h2>
+    <p class="sub">口委會逐項挑戰。每一列都要能講出「威脅方向」與「你怎麼處理」。</p>
+  </div>
+
+  <div class="stack">
+    <div>
+      <h3>研究層次（論文一、二）</h3>
+      <div class="tbl" style="margin-top:20px">
+        <table>
+          <thead><tr><th style="width:20%">偏差</th><th style="width:34%">具體樣貌</th><th style="width:46%">因應</th></tr></thead>
+          <tbody>
+            <tr><td data-l="偏差"><b>資料重複</b></td><td data-l="樣貌">多篇「獨立」研究共用 TriNetX 同一批病人</td><td data-l="因應">重疊矩陣；每叢集只保留一篇；報告全納入時信賴區間被壓縮的幅度</td></tr>
+            <tr><td data-l="偏差"><b>發表偏差</b></td><td data-l="樣貌">顯著的保護效果較易被發表，尤其失智與癌症</td><td data-l="因應">漏斗圖與 Egger 檢定；檢索預印本、學會摘要與試驗註冊平台；比較已註冊未發表者</td></tr>
+            <tr><td data-l="偏差"><b>配對不當</b></td><td data-l="樣貌">把 PICO 不同的隨機試驗與真實世界研究強行配對</td><td data-l="因應">事前寫死配對規則；兩人獨立配對並報告 kappa；做嚴格與寬鬆兩版本</td></tr>
+            <tr><td data-l="偏差"><b>選擇性報告</b></td><td data-l="樣貌">同一研究報告多個終點，僅取顯著者</td><td data-l="因應">事前指定每篇研究的主要擷取終點階層，一研究一估計</td></tr>
+            <tr><td data-l="偏差"><b>可轉移性假設</b></td><td data-l="樣貌">用心血管終點推得的偏差去校正失智終點</td><td data-l="因應">論文二最核心的假設，需明講並以多組偏差參數做敏感度分析</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3>病人層次（論文三，也是論文一評分的依據）</h3>
+      <div class="tbl" style="margin-top:20px">
+        <table>
+          <thead><tr><th style="width:19%">偏差</th><th style="width:29%">具體樣貌</th><th style="width:14%">預期方向</th><th style="width:38%">因應策略</th></tr></thead>
+          <tbody>
+            <tr><td data-l="偏差"><b>適應症干擾</b></td><td data-l="樣貌">醫師傾向給體重較高、代謝較差者 tirzepatide</td><td data-l="方向">偏向<b>低估</b>效益</td><td data-l="因應">主動對照新使用者設計；傾向分數重疊加權</td></tr>
+            <tr><td data-l="偏差"><b>自費造成的社經選擇</b><br><span class="q flagtxt">台灣特有</span></td><td data-l="樣貌">負擔得起自費療程者本身更健康、健康識能更高</td><td data-l="方向">偏向<b>高估</b>效益</td><td data-l="因應">以地區收入代理、就醫頻率、健檢利用率調整；陰性對照結果檢測</td></tr>
+            <tr><td data-l="偏差"><b>不朽時間偏差</b></td><td data-l="樣貌">把「持續用藥滿三個月者」定義為暴露組</td><td data-l="方向">大幅<b>高估</b></td><td data-l="因應">三個時間點對齊；必要時採 clone–censor–weight 處理寬限期</td></tr>
+            <tr><td data-l="偏差"><b>健康依從者</b></td><td data-l="樣貌">持續施打注射劑者本身健康行為佳</td><td data-l="方向">偏向<b>高估</b></td><td data-l="因應">ITT 與 per-protocol 雙軌；IPCW 校正；以依從性對陰性對照的關聯量化此偏差</td></tr>
+            <tr><td data-l="偏差"><b>反向因果</b></td><td data-l="樣貌">早期失智或未診斷癌症造成體重下降，因而不被開立減重藥</td><td data-l="方向">偏向<b>高估</b>保護</td><td data-l="因應">lag window 排除起始後 6／12／24 個月內事件</td></tr>
+            <tr><td data-l="偏差"><b>偵測偏差</b></td><td data-l="樣貌">使用者回診頻率高，更容易被診斷出 CKD、癌症、認知障礙</td><td data-l="方向">依終點而異</td><td data-l="因應">以就醫與檢查次數調整；將檢查頻率列為陽性對照結果</td></tr>
+            <tr><td data-l="偏差"><b>結果錯分</b></td><td data-l="樣貌">失智診斷碼靈敏度低、MASLD 常未編碼</td><td data-l="方向">多為<b>向無效偏移</b></td><td data-l="因應">已驗證演算法；量化偏差分析代入敏感度與特異度；病歷抽樣驗證</td></tr>
+            <tr><td data-l="偏差"><b>治療轉換</b></td><td data-l="樣貌">缺藥與價格造成頻繁在 tirzepatide 與 semaglutide 間切換</td><td data-l="方向">稀釋效果</td><td data-l="因應">明確定義暴露空窗與轉換規則；per-protocol 於轉換時設限並加權</td></tr>
+            <tr><td data-l="偏差"><b>競爭風險</b></td><td data-l="樣貌">高齡者死亡先於失智或癌症發生</td><td data-l="方向">低估累積發生率</td><td data-l="因應">cause-specific 與 Fine–Gray 並報；以 RMST 呈現絕對差異</td></tr>
+            <tr><td data-l="偏差"><b>追蹤過短</b></td><td data-l="樣貌">既有研究中位追蹤僅 4–5 個月即宣稱預防效益</td><td data-l="方向">估計不穩定</td><td data-l="因應">設定最短追蹤門檻；報告事件數與信賴區間寬度；不足則明講無法回答</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="s10">
+  <div class="sec-head">
+    <span class="sec-num">10</span>
+    <h2>統計分析計畫</h2>
+    <p class="sub">不必寫得太細，但每一項都要能說出「為什麼用它」。</p>
+  </div>
+
+  <div class="stack-s">
+    <div class="panel">
+      <p class="cap">論文一　研究層次</p>
+      <ul>
+        <li>隨機效果模型合併 ln(RHR)，報告 τ² 與 I²</li>
+        <li>Meta-regression，事前指定三個主要共變項</li>
+        <li>一致性指標三項的比例與 95% 信賴區間</li>
+        <li>重疊叢集的敏感度分析</li>
+        <li>漏斗圖與 Egger 檢定</li>
+        <li>ROBINS-I V2 與自建的目標試驗忠實度評分</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">論文二　偏差校正合成</p>
+      <ul>
+        <li>階層式偏差校正統合分析（平移與額外變異）</li>
+        <li>校正前後估計、信賴區間寬度與顯著性的對照表</li>
+        <li>E-value 與翻轉點分析</li>
+        <li>三組偏差參數來源的敏感度比較</li>
+        <li>依 GRADE 與 ROBINS-I 給出證據確定性等級</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">論文三　病人層次</p>
+      <ul>
+        <li>新使用者、主動對照的世代設計</li>
+        <li>傾向分數重疊加權，優於 1:1 配對：保留樣本、極端權重可控</li>
+        <li>加權 Cox 估計 HR，穩健變異數</li>
+        <li>加權 Kaplan–Meier 呈現絕對風險差與 NNT</li>
+        <li>RMST 差值並列</li>
+        <li>陰性對照結果的經驗校準；高維度傾向分數</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">透明度與可重製性</p>
+      <ul>
+        <li>論文一於 PROSPERO 註冊，論文三於 OSF 或 EU PAS Register 註冊</li>
+        <li>撰寫規範：PRISMA（論文一、二）、RECORD-PE 與 STaRT-RWE（論文三）</li>
+        <li>公開程式碼、擷取表單與代碼清單</li>
+        <li>完整流失圖與基線平衡表，含標準化差異</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s11">
+  <div class="sec-head">
+    <span class="sec-num">11</span>
+    <h2>時程與投稿策略</h2>
+    <p class="sub">起點是博三上的資格考，不是從零開始。以下以博五下畢業回推，並標出提前或延後的調整點。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note flag col">
+      <span class="lede">先講最急的一件事</span>
+      系上有影響因數或分區門檻，代表<b>投稿被拒一次的成本會直接吃掉一個學期</b>。從投稿到接受，順利也要八到十二個月；若被拒後改投，再加半年。這意味著<b>最後一篇必須在畢業前約一年投出</b>——而不是寫完再投。時程要從畢業日往回推，不是從今天往前排。
+    </div>
+
+    <div class="gantt">
+      <div class="g-in">
+        <div class="g-row"><div class="g-lab" style="color:var(--flag)"><b>IRB 與資料申請</b>　資格考後立刻送出</div><div class="g-tr"><div class="g-bar" style="left:0%; width:25%; background:var(--flag)">最遲博三下送出</div></div></div>
+        <div class="g-row"><div class="g-lab"><b>論文一</b>　執行（11 個月）</div><div class="g-tr"><div class="g-bar" style="left:0%; width:38%; background:var(--acc)">檢索・評分・分析</div></div></div>
+        <div class="g-row"><div class="g-lab">論文一　投稿與審查</div><div class="g-tr"><div class="g-bar" style="left:38%; width:24%; background:var(--muted)">含改投緩衝</div></div></div>
+        <div class="g-row"><div class="g-lab"><b>論文二</b>　執行（8 個月）</div><div class="g-tr"><div class="g-bar" style="left:36%; width:22%; background:var(--acc)">偏差校正合成</div></div></div>
+        <div class="g-row"><div class="g-lab">論文二　投稿與審查</div><div class="g-tr"><div class="g-bar" style="left:58%; width:26%; background:var(--muted)"></div></div></div>
+        <div class="g-row"><div class="g-lab"><b>論文三</b>　執行（16 個月）</div><div class="g-tr"><div class="g-bar" style="left:25%; width:50%; background:var(--acc)">目標試驗模擬</div></div></div>
+        <div class="g-row"><div class="g-lab">論文三　投稿</div><div class="g-tr"><div class="g-bar" style="left:75%; width:17%; background:var(--muted)"></div></div></div>
+        <div class="g-row"><div class="g-lab">畢業論文撰寫與口試</div><div class="g-tr"><div class="g-bar" style="left:84%; width:16%; background:var(--ink-2)"></div></div></div>
+        <div class="g-ax"><div></div><div class="g-tk"><span>博三下</span><span>博四上</span><span>博四下</span><span>博五上</span><span>博五下</span></div></div>
+      </div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:20%">情境</th><th style="width:80%">調整方式</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="情境"><b>提前到博四下畢業</b></td>
+            <td data-l="調整">把論文三降為選配。以論文一、二為兩篇主要發表，論文三改為規模較小的單一終點分析，或直接列為學位論文的「未來工作」章節。<b>不要三篇都硬做</b>——兩篇投中的機率遠高於三篇都趕。</td>
+          </tr>
+          <tr>
+            <td data-l="情境"><b>維持博五下畢業</b></td>
+            <td data-l="調整">上圖即為主方案。關鍵節點是論文一必須在<b>博四上結束前投出</b>；若延誤超過一個學期，就要啟動上一列的降載方案。</td>
+          </tr>
+          <tr>
+            <td data-l="情境"><b>延後到博六</b></td>
+            <td data-l="調整">論文三可擴充為多資料源驗證（台灣院內資料＋TriNetX＋國際 claims），三個資料源的一致性本身就是一個更強的結果。投稿也可以往更高分的期刊嘗試。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>目標期刊與階梯式投稿</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">因為有影響因數或分區門檻，建議每篇都事先定好「首選、次選、保底」三層，並設定<b>時間停損</b>：首選被拒就立刻改投，不要為了衝分數反覆申訴或大改重投。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:14%">論文</th><th style="width:29%">首選</th><th style="width:29%">次選</th><th style="width:28%">保底</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b><br><span class="q">方法學比較</span></td>
+              <td data-l="首選">Journal of Clinical Epidemiology<br><span class="q">方法學題目的天然歸宿</span></td>
+              <td data-l="次選">Diabetes, Obesity and Metabolism<br><span class="q">藥物導向、審查較快</span></td>
+              <td data-l="保底">Clinical Epidemiology／<br>Pharmacoepidemiol Drug Saf</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b><br><span class="q">偏差校正合成</span></td>
+              <td data-l="首選">European Journal of Epidemiology<br><span class="q">偏差分析是該刊強項</span></td>
+              <td data-l="次選">American Journal of Epidemiology<br>／Epidemiology</td>
+              <td data-l="保底">BMC Medicine／<br>Journal of Clinical Epidemiology</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b><br><span class="q">目標試驗模擬</span></td>
+              <td data-l="首選">Diabetes Care<br><span class="q">分數最高，但競爭激烈</span></td>
+              <td data-l="次選">JAMA Network Open<br>／Diabetes, Obesity and Metabolism</td>
+              <td data-l="保底">Cardiovascular Diabetology／<br>Diabetes Research and Clinical Practice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:14.5px;color:var(--muted);margin-top:18px;max-width:660px">以上為領域定位建議，<b>影響因數與分區每年變動，請以最新一期 JCR 查證</b>，並先向系上確認門檻的認定方式是採投稿當年或接受當年的分區。這一點問清楚可以省下很多麻煩。</p>
+    </div>
+
+    <div class="panel">
+      <h3>這學期（博三上）剩下的時間該做的四件事</h3>
+      <ol>
+        <li><b>把資料申請與 IRB 的流程問清楚並開始備件。</b>論文三需要病人層次資料，依《人體研究法》須經倫理審查；即使是去識別化的次級資料，實務上多走免除審查或簡易審查，但仍要送件、仍要等。健保資料庫申請通常要求檢附核准函或免審證明。<b>加上排隊，半年是常態。</b>（論文一、二不需要 IRB，只需在 PROSPERO 註冊。）</li>
+        <li><b>跑一次系統性檢索並數出篇數</b>，決定論文一是否需擴大到 incretin 類藥物。這件事一週內可以完成，卻決定整篇論文的形狀。</li>
+        <li><b>做目標醫院的處方量可行性查詢</b>：近三年 tirzepatide 使用人數、追蹤中位數、事件數。帶著真實數字進口試。</li>
+        <li><b>向系上確認畢業門檻的細節</b>：需要幾篇、是否限第一作者、分區以投稿年或接受年計。這直接決定要不要做到三篇。</li>
+      </ol>
+    </div>
+
+    <div class="note col">
+      <span class="lede">若論文三的資料最終拿不到</span>
+      論文二可拆為兩篇，分別處理心腎終點與神經及腫瘤終點，仍構成完整的三篇式學位論文。這是設計 C 從一開始就內建的保險，也是它在博三上這個時間點比純資料庫路線更合適的原因。
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="s12">
+  <div class="sec-head">
+    <span class="sec-num">12</span>
+    <h2>口委可能提問與回答策略</h2>
+    <p class="sub">點開每一題看建議答法。這一節請練到能不看稿講。</p>
+  </div>
+
+  <details class="qa">
+    <summary>前兩篇都是二手研究，博士論文的原創性在哪裡？</summary>
+    <div class="ans">
+      <p>這是新設計下最可能被問的一題，一定要準備好。</p>
+      <p><b>一、原創性不等於原始資料。</b>Meta-epidemiological study 是一個獨立的研究方法類型，其分析單位是研究、其資料是研究特徵——這是一手蒐集的資料，不是二手引用。Cochrane 方法學回顧系列與 RCT-DUPLICATE 都是這個傳統。</p>
+      <p><b>二、我提出了新的測量工具。</b>目標試驗忠實度評分是我建構的，需要經過信度檢驗（兩人評分的加權 kappa）與效度檢驗（能否預測與隨機試驗的落差）。建構並驗證一個測量工具，本身就是方法學的原創貢獻。</p>
+      <p><b>三、論文三是完整的原始資料分析。</b>而且它的設計是被前兩篇決定的——這比隨便挑一個題目做模擬更有理據。</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>已經有人做過 tirzepatide 真實世界研究的統合分析了，你的差異在哪？</summary>
+    <div class="ans">
+      <p>直接指名並拆成三點：</p>
+      <p><b>一、他們只 pool 真實世界研究，沒有與隨機試驗做量化比較。</b>我的主要指標是 ratio of hazard ratios，這是他們完全沒有的分析。</p>
+      <p><b>二、他們沒有分析設計特徵。</b>我要回答的是「為什麼會差」，不只是「差多少」。這需要 meta-regression 與一套設計評分工具。</p>
+      <p><b>三、他們沒有處理資料重複。</b>大量 tirzepatide 的真實世界研究共用同一個聯邦式資料庫，直接 pool 會人工壓縮信賴區間。我會建重疊矩陣並量化這個影響——這一點本身就可能是一個獨立的發現。</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>可納入的研究篇數夠嗎？Tirzepatide 才上市三四年。</summary>
+    <div class="ans">
+      <p><b>不要說「資料庫很大應該夠」。帶著實際檢索結果進場。</b>口試前先跑一次 PubMed 與 Embase 檢索，數出臨床終點的隨機試驗與真實世界研究各幾篇。</p>
+      <p>然後給出事先寫好的備案：「若 tirzepatide 單藥的臨床終點研究不足 20 篇，我會把範圍擴大為 incretin 類藥物，做藥物類層次的 meta-epidemiological 分析，並將 tirzepatide 設為事前指定的主要次族群。這樣既保證統計可行性，也讓結論的適用範圍更廣。」</p>
+      <p>再補：「meta-regression 的經驗法則是每個共變項至少 10 篇。因此我事前只指定三個主要共變項，其餘僅作描述性分層呈現，不做過度模型化。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>你怎麼判定一篇研究「有不朽時間偏差」？這不是很主觀嗎？</summary>
+    <div class="ans">
+      <p>給出明確可操作的準則，而不是印象判斷：</p>
+      <p>「我採用可操作的判定規則：檢查該研究的<b>合格判定日、治療分派日、追蹤起始日</b>三者是否對齊。只要暴露的定義需要用到指標日之後的資訊（例如『持續用藥滿三個月』『至少領藥兩次』），就判定存在不朽時間偏差。這個判定由兩人獨立進行，報告 kappa，並把有爭議的案例全部列在補充資料裡供讀者檢視。」</p>
+      <p>加分：「這也是為什麼我用 0–2 分的評分而非二分法——它保留了程度差異，也讓 meta-regression 有更多資訊。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>論文二把心血管終點推得的偏差拿去校正失智終點，這個假設站得住腳嗎？</summary>
+    <div class="ans">
+      <p>誠實承認這是本篇最脆弱的假設，然後展示你如何處理它。</p>
+      <p>「這確實是一個強假設，我不會假裝它成立。我的處理是三層：<b>第一</b>，明確寫出這個可轉移性假設並放在限制的第一條；<b>第二</b>，用三組不同來源的偏差參數分別執行（僅心血管終點推導、全終點推導、專家意見引出），比較結論是否穩健；<b>第三</b>，我的主要產出不是校正後的點估計，而是<b>翻轉點</b>——也就是『偏差要有多大，結論才會改變』。這個產出對假設的依賴度低得多。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>猛健樂在台灣多為自費，健保資料庫抓不到，論文三的暴露怎麼定義？</summary>
+    <div class="ans">
+      <p>承認問題，然後給具體方案：</p>
+      <p>「我不以健保申報檔作為暴露來源，而以醫院電子病歷的實際處方與調劑紀錄（含自費）定義暴露，再連結健保檔與死因統計檔取得院外結果與死亡。」</p>
+      <p>「若院內個案數不足以支撐主要終點，論文三改以國際資料庫執行，台灣資料則專注於東亞族群的效果修飾分析。而且——<b>這個設計最大的好處是，論文三失敗不會拖垮整本論文</b>，因為前兩篇是獨立完整的。」</p>
+      <p>口試前<b>務必先做一次可行性查詢</b>：目標醫院近三年 tirzepatide 處方人數、追蹤中位數、事件數。帶著真實數字進場，這題就變成加分題。</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>失智的 HR 0.66 你相信嗎？</summary>
+    <div class="ans">
+      <p>「以目前的證據，我傾向<b>不相信這個數值本身</b>，但相信它值得被嚴謹檢驗——而這正是我論文二要做的事。」</p>
+      <p>理由要具體：失智潛伏期十年以上而該研究追蹤僅數年；早期認知退化本身會造成體重下降與用藥決策改變（反向因果）；使用者回診頻率高造成偵測偏差；事件數少導致信賴區間上界貼近 1.0。</p>
+      <p>「如果校正後的 E-value 只有 1.5，那代表任何中等強度的未測量干擾——例如社經地位——就足以解釋掉整個效果。這個數字比 HR 0.66 本身有用得多。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>為什麼要用主動藥物對照，而不是沒用藥的人？</summary>
+    <div class="ans">
+      <p>「因為<b>主動對照新使用者設計</b>能大幅降低適應症干擾：兩組都是被醫師判斷需要 incretin 類藥物的人，疾病嚴重度與健康行為較為可比。與未使用者相比則會同時混入疾病嚴重度、就醫可近性與健康識能的差異。」</p>
+      <p>加分：「而且 SURPASS-CVOT 本身用的就是 dulaglutide 主動對照而非安慰劑，這讓我的配對比較在結構上更乾淨——這也是為什麼 tirzepatide 是做這個方法學題目的好題材。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>GIP 受體的額外作用有什麼生物學理由讓它比純 GLP-1 更好？</summary>
+    <div class="ans">
+      <p>準備一段簡短具體的機轉論述：GIP 受體促效在脂肪組織可能改善脂質緩衝與胰島素敏感性，在中樞可能增強食慾抑制並減少噁心，兩者合併帶來更大的體重與 HbA1c 下降。</p>
+      <p>但一定要接上誠實的但書：「更大的代謝改善不必然等於更大的心血管保護——SURPASS-CVOT 對 dulaglutide 只達非劣效，正說明代理指標的優勢未必轉譯為硬終點的優勢。這個落差本身就是我研究問題的一部分。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>這個研究對台灣的政策意義是什麼？</summary>
+    <div class="ans">
+      <p>連到具體決策：「目前台灣對此類藥物的給付極為限縮，而自費使用快速成長。如果證據顯示效益在初級預防族群大幅縮小，那是對自費濫用的重要警訊；反之，若特定高風險族群有明確效益與可接受的 NNT，就能為給付討論提供本土實證。」</p>
+      <p>再補方法學層面：「更廣義地說，台灣未來會有愈來愈多藥物在健保給付之前就大量自費使用，健保資料庫看不見它們。而全球也會有愈來愈多新藥在隨機試驗完成前就被大量使用，臨床決策被迫依賴真實世界證據。我建立的評估框架，適用於所有這類情境。」</p>
+    </div>
+  </details>
+
+  <div class="panel" style="margin-top:40px">
+    <h3>口試前一週的檢查清單</h3>
+    <ul>
+      <li>跑一次 PubMed 與 Embase 檢索，數出可納入篇數，帶著 PRISMA 流程圖草稿進場</li>
+      <li>讀完 Cochrane MR000034.pub3 的方法段，能講出 ratio of ratios 的計算與合併方式</li>
+      <li>讀完 SURPASS-CVOT 全文與補充資料，能背出主要終點的 HR、信賴區間、事件率與非劣效邊界</li>
+      <li>讀完 Endocr Pract 2025 那篇統合分析，能講出你與它的三點差異</li>
+      <li>查證台灣猛健樂的核准適應症與健保給付現況，向藥廠或健保署確認，不要引用網路文章</li>
+      <li>把本頁所有數值回原文核對一遍</li>
+      <li>準備三張投影片版本：30 秒、5 分鐘、15 分鐘</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ refs ============ -->
+<section id="refs">
+  <div class="sec-head">
+    <span class="sec-num">附</span>
+    <h2>參考文獻與連結</h2>
+    <p class="sub">依主題分組，點擊開啟原文。</p>
+  </div>
+
+  <div class="stack-s">
+    <div class="panel">
+      <p class="cap">隨機試驗與統合分析</p>
+      <ul class="refs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41406444/">Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes（SURPASS-CVOT）<span>NEJM 2025</span></a></li>
+        <li><a href="https://www.tctmd.com/news/surpass-cvot-published-large-trial-confirms-cvd-efficacy-tirzepatide">SURPASS-CVOT Published: Large Trial Confirms CVD Efficacy of Tirzepatide<span>TCTMD</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41903177/">Cardiorenal Outcomes With Tirzepatide Compared With Dulaglutide: Post Hoc Analysis of SURPASS-CVOT<span>2026</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/39555826/">Tirzepatide for HFpEF and Obesity（SUMMIT）<span>NEJM 2024</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41591-022-01707-4">Tirzepatide cardiovascular event risk assessment: a pre-specified meta-analysis<span>Nat Med 2022</span></a></li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/oby.24332">Rationale and design of the SURMOUNT-MMO trial<span>Obesity 2025</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">真實世界研究與既有合成</p>
+      <ul class="refs">
+        <li><a href="https://www.nature.com/articles/s41591-025-04102-x">Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice<span>Nat Med 2025</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41491349/">Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world（STEER）<span>Diabetes Obes Metab 2026</span></a></li>
+        <li><a href="https://www.endocrinepractice.org/article/S1530-891X(25)01292-3/abstract">Cardiovascular Outcomes in T2D Treated With Tirzepatide: Systematic Review and Meta-Analysis of Real-World Studies<span>Endocr Pract 2025　競品</span></a></li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/1753-0407.70248">Real-World vs. Randomized Trial Evidence for Incretin-Based Therapies: A Narrative Review<span>J Diabetes 2026　競品</span></a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0168822726000021">Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia<span>Diabetes Res Clin Pract 2026</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41467-025-59616-2">Effectiveness of tirzepatide in HFpEF using target trial emulation<span>Nat Commun 2025</span></a></li>
+        <li><a href="https://www.annalsofoncology.org/article/S0923-7534(26)00157-2/fulltext">GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults<span>Ann Oncol 2026</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">方法學　證據合成與比較</p>
+      <ul class="refs">
+        <li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.MR000034.pub3/full">Healthcare outcomes assessed with observational study designs compared with randomized trials<span>Cochrane 2024　論文一的方法學母體</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1186/s12916-022-02369-2">Evaluating agreement between bodies of evidence from RCTs and cohort studies<span>BMC Med 2022</span></a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0895435624003974">Impact of data duplication on estimates generated by meta-analyses<span>J Clin Epidemiol 2024</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1186/s12889-022-14213-6">Double-counting of populations in evidence synthesis<span>BMC Public Health 2022</span></a></li>
+        <li><a href="https://www.riskofbias.info/welcome/robins-i-v2">ROBINS-I V2 tool<span>riskofbias.info</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">方法學　目標試驗模擬</p>
+      <ul class="refs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/33327727/">Emulating RCTs With Nonrandomized RWE Studies: First Results From RCT-DUPLICATE<span>Circulation 2021</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/37097356/">Emulation of RCTs With Nonrandomized Database Analyses: Results of 32 Clinical Trials<span>JAMA 2023</span></a></li>
+        <li><a href="https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag267/8691342">A practical guide to target trial emulation in cardiovascular research<span>Eur J Prev Cardiol 2026</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41746-026-02563-z">An operational target trial emulation framework using EHR data<span>npj Digit Med 2026</span></a></li>
+        <li><a href="https://www.jclinepi.com/article/S0895-4356(26)00080-6/fulltext">Practical elements to consider when emulating a target trial<span>J Clin Epidemiol 2026</span></a></li>
+        <li><a href="https://encepp.europa.eu/encepp-toolkit/methodological-guide/chapter-4-study-design_en">ENCePP Methodological Guide, Chapter 4: Study design<span>ENCePP</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">台灣脈絡</p>
+      <ul class="refs">
+        <li><a href="https://www.fda.gov.tw/TC/newsContent.aspx?cid=4&id=t623895">食藥署：我國減重及降血脂藥品供應說明<span>衛福部食藥署</span></a></li>
+        <li><a href="https://www.ntuh.gov.tw/obesity/Fpage.action?muid=2261&fid=2128">臺大醫院減重暨代謝手術中心：常見減重藥物<span>NTUH</span></a></li>
+        <li><a href="https://hanwenliu.blogspot.com/2020/05/GLP-1RA-SGLT-2i-regulation.html">GLP-1 RA 及 SGLT-2 抑制劑健保給付規定整理<span>需查證最新版</span></a></li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin-top:16px">台灣給付與適應症資訊變動頻繁，正式書面資料請以健保署公告與仿單為準。</p>
+    </div>
+  </div>
+</section>
+
+<div class="end">
+  <p><b>版本</b>　本稿為博士班三年級上學期資格考、論文題目初稿口試用版本，中華民國一一五年九月。</p>
+  <p><b>使用說明</b>　本頁為文獻檢索與研究方向的整理草稿，供資格考口試準備使用。所有數值、樣本數與統計量均來自公開摘要與新聞報導的整理，須回原文核對後方可寫入正式書面資料。</p>
+  <p><b>下一步</b>　① 跑一次系統性檢索並數出可納入篇數，決定論文一是否需擴大到 incretin 類；② 查證台灣猛健樂給付現況與目標醫院處方量，決定論文三資料源；③ 兩者確認後即可將 05 至 07 節擴寫為正式計畫書方法章。</p>
+</div>
+
+</div>
+
+<div id="panel-search" role="tabpanel" hidden>
+
+
+<header class="mast">
+  <p class="kicker">附件一　·　論文一 Meta-epidemiological study　·　檢索策略與可行性評估</p>
+  <h1>附件一　論文一檢索策略</h1>
+  <p class="dek">這份文件有兩個用途：一是讓你在口試時能具體回答「你收得到幾篇」，二是等正式開跑時直接照著執行。<b>現階段做的是可行性檢索，不是系統性回顧本身</b>——目的是抓量級、決定題目形狀，不需要兩人獨立篩選，也還不用註冊。</p>
+</header>
+
+<!-- 01 -->
+<section id="q1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>可行性檢索結果</h2>
+    <p class="sub">以下為 PubMed 實際查得的筆數。Embase、Web of Science 需機構帳號，尚未執行。</p>
+  </div>
+
+  <div class="counts">
+    <div><div class="num">2,354</div><div class="lab">tirzepatide<br><span class="q">全部文獻</span></div></div>
+    <div><div class="num">299</div><div class="lab">＋ real-world<br><span class="q">含代理指標研究</span></div></div>
+    <div><div class="num">131</div><div class="lab">＋ 隨機試驗類型<br><span class="q">多為 SURPASS／SURMOUNT 子分析</span></div></div>
+    <div><div class="num">208</div><div class="lab">＋ 失智／認知／癌症<br><span class="q">多為綜述與評論</span></div></div>
+    <div><div class="num">18</div><div class="lab">＋ target trial<br><span class="q">最貼近你要的設計</span></div></div>
+    <div><div class="num">45</div><div class="lab">擴大到 incretin 類<br><span class="q">＋ target trial emulation</span></div></div>
+  </div>
+
+  <div class="note flag col" style="margin-top:34px">
+    <span class="lede">這組數字的判讀 · 請認真看</span>
+    最關鍵的是最後兩格。嚴格符合你論文一需求的研究——有 tirzepatide 組、有對照組、有<b>臨床終點</b>（非體重或 HbA1c）、且報告 HR 與信賴區間——在 PubMed 大約落在 <b>15 至 30 篇</b>之間。這個量能支撐<b>描述性的一致性比較</b>，但<b>撐不起 meta-regression</b>：每個共變項至少要 10 篇，三個共變項就需要 30 篇以上的有效樣本。<br><br>
+    換句話說，<b>擴大到 incretin 類藥物很可能不是備案，而是主案</b>。把範圍設為 tirzepatide、semaglutide、dulaglutide，可用研究約提升到兩倍以上，tirzepatide 設為事前指定的主要次族群。這個決定要在口試前做，並寫進計畫書。
+  </div>
+
+  <div class="note col" style="margin-top:26px">
+    <span class="lede">口試時可以這樣講</span>
+    「我已做過可行性檢索。單以 tirzepatide 為範圍，符合臨床終點條件的研究約 15 至 30 篇，足以做描述性的一致性比較，但不足以支撐三個共變項的 meta-regression。因此我事前決定把納入範圍設為 incretin 類藥物，tirzepatide 作為主要次族群——這樣既保證統計可行性，也讓方法學結論適用於整個藥物類別。」
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="q2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>要用幾個資料庫？</h2>
+    <p class="sub">兩個是最低標準，但你的題目有一個特殊理由必須加到四個以上。</p>
+  </div>
+
+  <div class="stack">
+    <div class="note col">
+      <span class="lede">為什麼你的題目不能只用兩個</span>
+      一般系統性回顧用 MEDLINE 加 Embase 就算合格。但你的論文一<b>要處理的偏差之一就是發表偏差</b>——顯著的保護效果比較容易被發表，這正是你要量化的東西。如果你的檢索本身漏掉未發表與灰色文獻，你就是用一個有發表偏差的樣本去估計發表偏差。<b>對這篇論文而言，灰色文獻不是加分項，是必要項。</b>這一點在口試講出來會很加分。
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:22%">資料庫</th><th style="width:16%">必要性</th><th style="width:62%">理由</th></tr></thead>
+        <tbody>
+          <tr><td data-l="資料庫"><b>MEDLINE（PubMed）</b></td><td data-l="必要性">必備</td><td data-l="理由">核心生醫文獻。免費、可重現、檢索式易於在論文中呈現。</td></tr>
+          <tr><td data-l="資料庫"><b>Embase</b></td><td data-l="必要性">必備</td><td data-l="理由">歐洲期刊與<b>學會摘要</b>涵蓋遠優於 MEDLINE，藥物研究尤其明顯。需機構訂閱。</td></tr>
+          <tr><td data-l="資料庫"><b>Cochrane CENTRAL</b></td><td data-l="必要性">建議</td><td data-l="理由">確保隨機試驗那一側收得完整。你的主要指標是兩類證據的比值，<b>RCT 側漏掉一篇的代價比 RWE 側大得多</b>。</td></tr>
+          <tr><td data-l="資料庫"><b>Web of Science 或 Scopus</b></td><td data-l="必要性">建議</td><td data-l="理由">用於<b>引用追蹤</b>：以已知的關鍵文獻做前向與後向追引，補足關鍵詞檢索抓不到的研究。二選一即可。</td></tr>
+          <tr><td data-l="資料庫"><b>ClinicalTrials.gov</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">找出<b>已註冊但未發表</b>的試驗——這是量化發表偏差的直接證據。</td></tr>
+          <tr><td data-l="資料庫"><b>EU PAS Register</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">歐洲藥物流行病學研究的註冊平台。真實世界研究的「未發表」名單就在這裡，一般系統性回顧很少查，是你的差異化之處。</td></tr>
+          <tr><td data-l="資料庫"><b>medRxiv 預印本</b></td><td data-l="必要性">建議</td><td data-l="理由">此領域發展極快，重要結果常先以預印本出現。</td></tr>
+          <tr><td data-l="資料庫"><b>學會摘要</b><br><span class="q">ADA、EASD、AHA、ACC、ISPE</span></td><td data-l="必要性">建議</td><td data-l="理由">2023 年起逐年翻閱。ISPE 尤其重要——藥物流病方法學研究常只發表在該會。</td></tr>
+          <tr><td data-l="資料庫"><b>中文資料庫</b></td><td data-l="必要性">不需要</td><td data-l="理由">此題無中文文獻價值，寫進方法章反而顯得不專業。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note col">
+      <span class="lede">回答「為什麼是這幾個」</span>
+      Cochrane 的方法學研究顯示，MEDLINE 加 Embase 加 CENTRAL 已能捕捉絕大多數合格研究，再加更多書目資料庫的邊際報酬遞減；<b>但引用追蹤與試驗註冊平台的報酬仍然很高</b>。所以我的配置是「三個書目資料庫＋一個引用追蹤工具＋兩個註冊平台」，而不是盲目堆疊資料庫數量。
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="q3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>檢索式</h2>
+    <p class="sub">可直接複製貼上。日期上限請在正式執行時統一設定並記錄。</p>
+  </div>
+
+  <div class="stack">
+
+    <div>
+      <p class="code-lab">PUBMED　完整版（四個概念區塊）</p>
+      <pre class="code"><b>#1　藥物</b>
+"tirzepatide"[Supplementary Concept] OR tirzepatide[tiab] OR Mounjaro[tiab]
+OR Zepbound[tiab] OR LY3298176[tiab] OR "LY 3298176"[tiab]
+OR "dual GIP"[tiab] OR "GIP/GLP-1"[tiab] OR twincretin[tiab]
+
+<b>#1b　擴大版　若採 incretin 類範圍則改用此區塊</b>
+#1 OR semaglutide[tiab] OR Ozempic[tiab] OR Wegovy[tiab] OR Rybelsus[tiab]
+OR dulaglutide[tiab] OR Trulicity[tiab]
+OR "Glucagon-Like Peptide-1 Receptor Agonists"[Mesh]
+
+<b>#2　臨床終點</b>
+"Cardiovascular Diseases"[Mesh] OR "Myocardial Infarction"[Mesh]
+OR "Stroke"[Mesh] OR "Heart Failure"[Mesh]
+OR "Renal Insufficiency, Chronic"[Mesh] OR "Dementia"[Mesh]
+OR "Cognitive Dysfunction"[Mesh] OR "Neoplasms"[Mesh] OR "Mortality"[Mesh]
+OR MACE[tiab] OR "major adverse cardiovascular"[tiab]
+OR "cardiovascular death"[tiab] OR "all-cause mortality"[tiab]
+OR "kidney outcome*"[tiab] OR "eGFR slope"[tiab]
+OR dementia[tiab] OR "cognitive impairment"[tiab]
+OR cancer[tiab] OR neoplasm*[tiab]
+
+<b>#3　觀察性設計</b>
+"Cohort Studies"[Mesh] OR "Propensity Score"[Mesh] OR "Databases, Factual"[Mesh]
+OR cohort[tiab] OR "real-world"[tiab] OR "real world"[tiab]
+OR observational[tiab] OR "target trial"[tiab] OR emulat*[tiab]
+OR claims[tiab] OR "propensity score"[tiab] OR TriNetX[tiab]
+OR registry[tiab] OR "electronic health record*"[tiab]
+OR retrospective[tiab] OR "new user"[tiab] OR "active comparator"[tiab]
+
+<b>#4　隨機試驗</b>
+randomized controlled trial[pt] OR controlled clinical trial[pt]
+OR randomi*[tiab] OR placebo[tiab] OR "double-blind"[tiab]
+OR SURPASS[tiab] OR SURMOUNT[tiab] OR SUMMIT[tiab]
+
+<b>最終檢索式</b>
+(#1) AND (#2) AND (#3 OR #4)</pre>
+    </div>
+
+    <div>
+      <p class="code-lab">EMBASE　Emtree 語法（需機構帳號）</p>
+      <pre class="code">('tirzepatide'/exp OR tirzepatide:ti,ab,kw OR mounjaro:ti,ab,kw
+ OR zepbound:ti,ab,kw OR 'ly 3298176':ti,ab,kw)
+AND
+('cardiovascular disease'/exp OR 'heart infarction'/exp
+ OR 'cerebrovascular accident'/exp OR 'heart failure'/exp
+ OR 'chronic kidney failure'/exp OR 'dementia'/exp
+ OR 'mild cognitive impairment'/exp OR 'neoplasm'/exp OR 'mortality'/exp
+ OR mace:ti,ab,kw OR 'major adverse cardiovascular':ti,ab,kw)
+AND
+('cohort analysis'/exp OR 'observational study'/exp OR 'retrospective study'/exp
+ OR 'propensity score'/exp OR 'health care database'/exp
+ OR 'target trial':ti,ab,kw OR emulat*:ti,ab,kw
+ OR 'randomized controlled trial'/exp OR 'double blind procedure'/exp)
+AND [embase]/lim NOT [medline]/lim</pre>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">最後一行很重要：<b>排除已被 MEDLINE 索引的紀錄</b>，避免與 PubMed 大量重複，可省下數千筆的篩選工作。這一行也讓你在 PRISMA 流程圖裡的去重數字更乾淨。</p>
+    </div>
+
+    <div>
+      <p class="code-lab">WEB OF SCIENCE　核心合輯</p>
+      <pre class="code">TS=(tirzepatide OR Mounjaro OR Zepbound OR "LY3298176")
+AND
+TS=(cardiovascular OR "myocardial infarction" OR stroke OR "heart failure"
+    OR kidney OR renal OR dementia OR cognitive OR cancer OR mortality)
+AND
+TS=(cohort OR "real world" OR observational OR "target trial"
+    OR randomized OR randomised OR trial)</pre>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">Web of Science 的真正用途是<b>引用追蹤</b>：對下一節的種子文獻逐篇做前向引用（誰引用了它）與後向引用（它引用了誰）。這一步常能補到關鍵詞檢索完全抓不到的研究。</p>
+    </div>
+
+    <div>
+      <p class="code-lab">註冊平台與灰色文獻</p>
+      <pre class="code">ClinicalTrials.gov     Intervention: tirzepatide
+                       Study type: Interventional + Observational
+                       特別注意：狀態為 Completed 但無結果者
+
+EU PAS Register        關鍵字：tirzepatide, GLP-1, GIP
+                       這裡是真實世界研究的「未發表名單」
+
+medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
+
+學會摘要               ADA、EASD、AHA、ACC、ISPE，2023 年起逐年翻閱</pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="q4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>種子文獻檢驗</h2>
+    <p class="sub">先列出你已知一定要被抓到的文獻，再驗證檢索式能不能全部撈回來。這叫 known-item testing，是檢驗檢索式敏感度最實際的方法。</p>
+  </div>
+
+  <div class="panel">
+    <p class="cap">已確認存在的關鍵文獻　你的檢索式必須 100% 撈到這些</p>
+    <ol class="seed">
+      <li><b>SURPASS-CVOT：Cardiovascular Outcomes with Tirzepatide versus Dulaglutide</b><span>NEJM 2025　隨機試驗　主要錨點</span></li>
+      <li><b>SURPASS-CVOT 心腎次要分析</b><span>2026　隨機試驗</span></li>
+      <li><b>SUMMIT：Tirzepatide for HFpEF and Obesity</b><span>NEJM 2024　隨機試驗</span></li>
+      <li><b>Tirzepatide cardiovascular event risk assessment: pre-specified meta-analysis</b><span>Nat Med 2022　統合分析</span></li>
+      <li><b>Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice</b><span>Nat Med 2025　真實世界　三個美國保險資料庫</span></li>
+      <li><b>STEER：Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world</b><span>Diabetes Obes Metab 2026　真實世界</span></li>
+      <li><b>Comparative Effectiveness of Tirzepatide Versus Dulaglutide or Semaglutide on Major Cardiovascular Events</b><span>2026　真實世界　新查到，之前的清單沒有</span></li>
+      <li><b>Cardiovascular and Cerebrovascular Outcomes: Semaglutide vs Tirzepatide, A Target Trial Emulation</b><span>2026　真實世界　新查到</span></li>
+      <li><b>Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia</b><span>Diabetes Res Clin Pract 2026　真實世界</span></li>
+      <li><b>Effectiveness of tirzepatide in HFpEF using target trial emulation</b><span>Nat Commun 2025　真實世界</span></li>
+      <li><b>Target Trial Emulations of GLP-1 and Dual GLP-1/GIP Agonists to Reduce Major Adverse Liver Outcomes</b><span>2025　真實世界　新查到</span></li>
+      <li><b>GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults</b><span>Ann Oncol 2026　真實世界</span></li>
+      <li><b>Cardiovascular Outcomes in T2D Treated With Tirzepatide: Systematic Review and Meta-Analysis of Real-World Studies</b><span>Endocr Pract 2025　既有競品</span></li>
+      <li><b>Real-World vs. Randomized Trial Evidence for Incretin-Based Therapies</b><span>J Diabetes 2026　既有競品</span></li>
+    </ol>
+    <p style="font-size:14px;color:var(--muted);margin-top:18px">若檢索式漏掉其中任何一篇，就回頭補該篇的標題詞與關鍵詞，直到全數命中為止。這個過程本身要記錄下來，寫進論文的檢索式開發段落。</p>
+  </div>
+
+  <div class="note col" style="margin-top:26px">
+    <span class="lede">第 7、8、11 篇是這次跑檢索的意外收穫</span>
+    尤其第 7 篇「Tirzepatide 對 dulaglutide 或 semaglutide 的主要心血管事件比較效果」，族群與 SURPASS-CVOT 高度重疊，<b>很可能是你 Aim 1 最重要的一組配對證據</b>。口試前請務必找出全文讀完，並確認它與 Nature Medicine 那篇是否共用資料庫——若是，這就是你「資料重複」論點的第一個實例。
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="q5">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>納入排除條件與擷取欄位</h2>
+    <p class="sub">現在先寫下來，正式執行時直接沿用。事前寫定是避免事後挑選的唯一方法。</p>
+  </div>
+
+  <div class="stack-s">
+    <div class="panel">
+      <p class="cap">納入</p>
+      <ul class="tight">
+        <li>介入組含 tirzepatide（或擴大版：任一 incretin 類藥物），且有明確對照組</li>
+        <li>結果為<b>臨床終點</b>：心血管事件、心衰竭住院、腎臟終點、失智或輕度認知障礙、癌症、全死因死亡</li>
+        <li>報告相對效果量（HR、RR、OR）並附變異數或信賴區間</li>
+        <li>隨機與非隨機研究皆納入，不限語言、不限國家</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">排除</p>
+      <ul class="tight">
+        <li>僅報告代理指標（體重、HbA1c、血脂）者——但另存一份清單做敏感度分析</li>
+        <li>無對照組的單臂研究、個案報告、綜述、評論、社論</li>
+        <li>動物或體外研究</li>
+        <li>同一資料與族群的重複發表——保留樣本最大或報告最完整者，其餘記錄於重疊矩陣</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="cap">擷取欄位　建議做成試算表，每篇一列</p>
+      <ul class="tight">
+        <li><b>識別</b>　第一作者、年份、期刊、DOI、國家</li>
+        <li><b>設計</b>　研究類型、是否自稱目標試驗模擬、資料來源名稱、收案期間</li>
+        <li><b>族群</b>　有無 T2D、有無 ASCVD、平均年齡、女性比例、平均 BMI、樣本數</li>
+        <li><b>暴露與對照</b>　藥物、劑量、是否新使用者設計、對照類型</li>
+        <li><b>終點</b>　定義、是否經裁定、代碼清單是否提供、事件數</li>
+        <li><b>結果</b>　效果量、95% 信賴區間、追蹤中位數、ITT 或 per-protocol</li>
+        <li><b>忠實度評分</b>　七個要素各 0 至 2 分，總分 0 至 14</li>
+        <li><b>其他</b>　是否事前註冊、資金來源、是否做陰性對照或量化偏差分析</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="q6">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>接下來的順序</h2>
+    <p class="sub">這一節是給這學期用的，不是給論文用的。</p>
+  </div>
+
+  <div class="panel">
+    <ol>
+      <li><b>本週</b>　把上面的 PubMed 檢索式跑一次完整版，匯出書目檔，用種子文獻檢驗敏感度。這一步你自己做，因為要練手感。</li>
+      <li><b>兩週內</b>　請圖書館協助跑 Embase 與 Web of Science，或申請帳號自己跑。順便問清楚學校有沒有 Covidence 或 Rayyan 的授權，篩選工具會省下大量時間。</li>
+      <li><b>口試前</b>　完成粗篩，畫出一張<b>草稿版 PRISMA 流程圖</b>，帶進口試。就算數字之後會變，有圖跟沒圖的說服力差很多。</li>
+      <li><b>口試後</b>　確定範圍（單藥或擴大到 incretin 類）後，才到 PROSPERO 正式註冊。<b>註冊前不要開始正式篩選</b>，順序反了會被審稿人抓。</li>
+    </ol>
+  </div>
+</section>
+
+<div class="end">
+  <p><b>執行紀錄</b>　本頁的 PubMed 筆數為 2026 年 9 月以 PubMed 網頁介面查得，屬粗略的可行性估計，未經去重與篩選。正式檢索時請重跑並記錄執行日期、資料庫版本與完整檢索式，這些都是 PRISMA 要求申報的項目。</p>
+  <p><b>未執行</b>　Embase、Web of Science、Scopus、Cochrane CENTRAL 需機構訂閱帳號，本次無法連線，檢索式已備妥待你或圖書館執行。</p>
+</div>
+
+</div>
+
+</div>
 
 <script>
-"use strict";
-
-/* ============================================================
-   跨裝置同步設定（放在 GitHub 上時才需要）
-   ------------------------------------------------------------
-   把 Firebase Realtime Database 的網址貼在下面雙引號中間，
-   進度就會在手機、平板、電腦之間自動同步。
-   網址長得像：
-   https://你的專案-default-rtdb.asia-southeast1.firebasedatabase.app/cindy.json
-   留空白則只存在這台裝置（仍可用「備份碼」手動搬移）。
-   在 Claude 的線上版不需要設定，那邊本來就會同步。
-   ============================================================ */
-const SYNC_URL = "";
-
-/* ============================================================
-   學校資料 —— 再興小學 115 學年度第一學期 二年級英語
-   來源：二年級單字表（Next Move 2）、每週一句
-   ============================================================ */
-
-const TERM = {school:"臺北市私立再興小學", grade:"二年級", term:"115 學年度 第一學期", book:"Next Move 2"};
-
-const WEEKS = [
-  {n:1,  s:"2026-08-31", e:"2026-09-05", unit:"Unit 0", note:"", words:[
-    ["one","一"],["two","二"],["three","三"],["four","四"],
-    ["five","五"],["six","六"],["seven","七"],["eight","八"]]},
-  {n:2,  s:"2026-09-06", e:"2026-09-12", unit:"Unit 1", note:"", words:[
-    ["nine","九"],["ten","十"],["eleven","十一"],["twelve","十二"],
-    ["thirteen","十三"],["fourteen","十四"],["fifteen","十五"],["sixteen","十六"]]},
-  {n:3,  s:"2026-09-13", e:"2026-09-19", unit:"Unit 1", note:"", words:[
-    ["seventeen","十七"],["eighteen","十八"],["nineteen","十九"],["twenty","二十"],
-    ["number","數字"],["aunt","阿姨／姑姑"],["uncle","叔叔／舅舅"],["cousin","表（堂）兄弟姊妹"]]},
-  {n:4,  s:"2026-09-20", e:"2026-09-26", unit:"Unit 1", note:"", words:[
-    ["reading","閱讀"],["counting","數數"],["coloring","著色"],["cutting","剪"],
-    ["writing","寫字"],["drawing","畫圖"],["gluing","黏貼"],["talking","說話"]]},
-  {n:5,  s:"2026-09-27", e:"2026-10-03", unit:"Unit 1", note:"Quiz 1", words:[
-    ["erasing","擦掉"],["listening","聆聽"],["using","使用"],["glue","膠水"],
-    ["marker","麥克筆"],["notebook","筆記本"],["scissors","剪刀"],["paintbrush","水彩筆"]]},
-  {n:6,  s:"2026-10-04", e:"2026-10-10", unit:"Unit 2", note:"", words:[
-    ["hot","熱的"],["sunny","晴朗的"],["cloudy","多雲的"],["rainy","下雨的"],
-    ["windy","有風的"],["cold","冷的"],["snowy","下雪的"],["raincoat","雨衣"]]},
-  {n:7,  s:"2026-10-11", e:"2026-10-17", unit:"Unit 2", note:"", words:[
-    ["boots","靴子"],["sweater","毛衣"],["gloves","手套"],["hat","帽子"],
-    ["jacket","夾克"],["pants","長褲"],["wearing","穿著"],["bathing suit","泳衣"]]},
-  {n:8,  s:"2026-10-18", e:"2026-10-24", unit:"Unit 2", note:"", words:[
-    ["shorts","短褲"],["jeans","牛仔褲"],["socks","襪子"],["shoes","鞋子"],
-    ["sneakers","運動鞋"],["skirt","裙子"],["coat","外套"],["umbrella","雨傘"]]},
-  {n:9,  s:"2026-10-25", e:"2026-10-31", unit:"Unit 2", note:"Quiz 2", words:[
-    ["Monday","星期一"],["Tuesday","星期二"],["Wednesday","星期三"],["Thursday","星期四"],
-    ["Friday","星期五"],["Saturday","星期六"],["Sunday","星期日"],["today","今天"]]},
-  {n:10, s:"2026-11-01", e:"2026-11-07", unit:"", note:"期中考 Unit 1–2", exam:true, words:[]},
-  {n:11, s:"2026-11-08", e:"2026-11-14", unit:"Unit 3", note:"", words:[
-    ["jump rope","跳繩"],["play game","玩遊戲"],["basketball","籃球"],
-    ["baseball","棒球"],["soccer","足球"],["hide seek","捉迷藏"]]},
-  {n:12, s:"2026-11-15", e:"2026-11-21", unit:"Unit 3", note:"", words:[
-    ["ride bike","騎腳踏車"],["fly kite","放風箏"],["rollerblade","溜直排輪"],
-    ["skate","溜冰"],["skateboard","滑板"],["ball","球"]]},
-  {n:13, s:"2026-11-22", e:"2026-11-28", unit:"Unit 3", note:"", words:[
-    ["throw","丟"],["catch","接住"],["bounce","拍（球）"],["play tag","玩鬼抓人"],
-    ["fun","好玩的"],["boring","無聊的"],["run","跑"],["crawl","爬行"]]},
-  {n:14, s:"2026-11-29", e:"2026-12-05", unit:"Unit 3", note:"Quiz 3", words:[
-    ["climb","攀爬"],["slide","溜滑梯"],["swing","盪鞦韆"],["playground","遊樂場"],
-    ["sport","運動"],["rules","規則"],["fair","公平的"],["take turns","輪流"]]},
-  {n:15, s:"2026-12-06", e:"2026-12-12", unit:"Unit 4", note:"", words:[
-    ["tub","浴缸"],["shower","淋浴間"],["rug","地毯"],["shelves","層架"],
-    ["stairs","樓梯"],["stove","爐子"],["microwave","微波爐"],["bookcase","書櫃"]]},
-  {n:16, s:"2026-12-13", e:"2026-12-19", unit:"Unit 4", note:"", words:[
-    ["armchair","扶手椅"],["fireplace","壁爐"],["above","在…上方"],["behind","在…後面"],
-    ["under","在…下面"],["between","在…之間"],["next to","在…旁邊"],["in front of","在…前面"]]},
-  {n:17, s:"2026-12-20", e:"2026-12-26", unit:"Unit 4", note:"", words:[
-    ["window","窗戶"],["phone","電話"],["door","門"],["sink","水槽"],
-    ["refrigerator","冰箱"],["inside","裡面"],["outside","外面"],["welcome","歡迎"]]},
-  {n:18, s:"2026-12-27", e:"2027-01-02", unit:"Unit 4", note:"Quiz 4", words:[
-    ["different","不同的"],["people","人們"],["visit","拜訪"],["shape","形狀"],
-    ["favorite","最喜歡的"],["help","幫忙"],["chores","家事"],["furniture","家具"]]},
-  {n:19, s:"2027-01-03", e:"2027-01-09", unit:"Review Unit 3–4", note:"", words:[
-    ["special","特別的"],["really","真的"],["artist","藝術家"],["children","孩子們"],
-    ["weather","天氣"],["dress","洋裝／穿衣"],["neat","整齊的"],["put away","收好"]]},
-  {n:20, s:"2027-01-10", e:"2027-01-16", unit:"", note:"期末考 Unit 3–4", exam:true, words:[]},
-  {n:21, s:"2027-01-17", e:"2027-01-20", unit:"Review", note:"總複習", words:[]}
-];
-
-const SENTENCES = [
-  [1,"I love ____ class!","我愛 ____ 課！"],
-  [2,"Will we play a game today?","我們今天會玩遊戲嗎？"],
-  [3,"Can you please be quiet?","可以請你安靜嗎？"],
-  [4,"Shhh! I can't hear the teacher.","噓！我聽不見老師說話。"],
-  [5,"What do I need for class?","上課要準備什麼？"],
-  [6,"Sorry, I don't have my ____.","對不起，我沒有帶 ____。"],
-  [7,"I lost my ____. Can you share?","我的 ____ 不見了。可以跟同學一起嗎？"],
-  [8,"I didn't understand today's lesson.","我不懂今天的課程。"],
-  [9,"Can you please speak slower?","可以請你說慢一些嗎？"],
-  [10,"I have a question.","我有一個問題。"],
-  [11,"Can you help me say this word?","可以教我說這個字嗎？"],
-  [12,"Can you repeat that again?","可以再說一遍嗎？"],
-  [13,"Can you help me spell ____?","可以教我拼 ____ 這個字嗎？"],
-  [14,"I don't know where ____ is.","我不知道 ____ 在哪裡。"],
-  [15,"Which page are we working on?","我們現在上哪一頁？"],
-  [16,"Can I go to the board?","我可以去黑板嗎？"],
-  [17,"Is this what you wanted?","這是你要的嗎？"],
-  [18,"Can I fix my answer?","我可以修正答案嗎？"],
-  [19,"English first! Speak English, please.","老師說要使用英文。"],
-  [20,"I forgot what I was going to say.","我忘了我要說什麼。"]
-];
-
-/* ============================================================
-   課本單元（Next Move 2 · Scope and Sequence）
-   Unit 0–4 為本學期範圍，Unit 5–9 為下學期
-   ============================================================ */
-
-const SUBJECTS = [
-  {id:"chinese", name:"國語",    ico:"國", css:"--s-chinese", desc:"生字、詞語、課文重點", ready:false},
-  {id:"math",    name:"數學",    ico:"數", css:"--s-math",    desc:"加減、乘法、單位、應用題", ready:false},
-  {id:"english", name:"English", ico:"E",  css:"--s-english", desc:"Next Move 2 · 21 週進度", ready:true},
-  {id:"science", name:"自然",    ico:"自", css:"--s-science", desc:"觀察、植物、動物、天氣", ready:false},
-  {id:"social",  name:"社會",    ico:"社", css:"--s-social",  desc:"我和家人、學校、社區", ready:false},
-  {id:"other",   name:"其他",    ico:"他", css:"--s-other",   desc:"生活、健體、綜合", ready:false}
-];
-
-const UNITS = [
-  {
-    n:0, en:"My Family", zh:"我的家人", page:"p.4", term:1, weeks:[1],
-    area:"暖身單元 · 數字與家人",
-    goals:["說出 1 到 20 的數字","說出家人的稱呼","說出自己幾歲"],
-    v1:{label:"數字 1–10", strategy:"", words:[
-      ["one","一"],["two","二"],["three","三"],["four","四"],["five","五"],
-      ["six","六"],["seven","七"],["eight","八"],["nine","九"],["ten","十"]]},
-    v2:{label:"家人", strategy:"", words:[
-      ["mother","媽媽"],["father","爸爸"],["sister","姊妹"],["brother","兄弟"],
-      ["grandmother","奶奶／外婆"],["grandfather","爺爺／外公"],["baby","寶寶"],["family","家庭"]]},
-    g1:"Who's this? — This is my sister.（這是誰？這是我姊姊。）",
-    g2:"How old are you? — I'm seven.（你幾歲？我七歲。）",
-    reading:"", readingZh:"", strategyR:"", writing:"", writingFocus:"",
-    value:"", valueZh:"", project:"",
-    quiz:[
-      {q:"___ this? — This is my brother.", o:["Who's","What's","Where's"], a:0, why:"問「這是誰」用 Who's。"},
-      {q:"I'm seven ___ old.", o:["years","year","yearss"], a:0, why:"幾歲要用 years old。"},
-      {q:"3 + 4 = ___", o:["seven","eight","six"], a:0, why:"3 加 4 等於 seven。"},
-      {q:"This ___ my family.", o:["is","are","am"], a:0, why:"單數主詞 This 用 is。"}
-    ]
-  },
-  {
-    n:1, en:"Fun in Class", zh:"課堂樂趣", page:"p.10", term:1, weeks:[2,3,4,5],
-    area:"Social and Instructional Language · Language Arts",
-    goals:["說出別人正在做什麼","說出我正在用的教室用品","說出東西在哪裡"],
-    v1:{label:"正在做的事", strategy:"字根加字尾 -ing", words:[
-      ["coloring","著色"],["counting","數數"],["cutting","剪"],["drawing","畫圖"],
-      ["erasing","擦掉"],["gluing","黏貼"],["listening","聆聽"],["reading","閱讀"],
-      ["talking","說話"],["writing","寫字"]]},
-    v2:{label:"教室用品", strategy:"比較 /s/ 和 /z/ 的發音", words:[
-      ["glue","膠水"],["marker","麥克筆"],["notebook","筆記本"],
-      ["paintbrush","水彩筆"],["scissors","剪刀"]]},
-    g1:"現在進行式（第一人稱複數）：We are reading.（我們正在閱讀。）",
-    g2:"Are there…? 及簡答：Are there ten markers? — Yes, there are. / No, there aren't.",
-    reading:"Paper Art", readingZh:"紙的藝術", strategyR:"比較與對照（Compare and Contrast）",
-    writing:"畫下並寫出你和你的朋友", writingFocus:"寫短句，寫出名字和動作",
-    value:"Be neat.", valueZh:"保持整潔", project:"做一個裝文具的收納盒",
-    quiz:[
-      {q:"We ___ reading a book.", o:["are","is","am"], a:0, why:"We 後面用 are。"},
-      {q:"___ there ten markers?", o:["Are","Is","Do"], a:0, why:"複數 markers 用 Are there。"},
-      {q:"Are there five books? — No, there ___.", o:["aren't","isn't","not"], a:0, why:"複數否定簡答用 there aren't。"},
-      {q:"She is ___ a picture.（她正在畫圖）", o:["drawing","draw","draws"], a:0, why:"進行式用 be + V-ing。"},
-      {q:"我要剪紙，需要 ___", o:["scissors","glue","notebook"], a:0, why:"剪刀＝scissors。"}
-    ]
-  },
-  {
-    n:2, en:"Boots and Bathing Suits", zh:"靴子與泳衣", page:"p.26", term:1, weeks:[6,7,8,9],
-    area:"Language Arts · Science",
-    goals:["談論天氣","談論我的衣服","說出星期幾"],
-    v1:{label:"天氣", strategy:"字母順序（Alphabetical order）", words:[
-      ["hot","熱的"],["cold","冷的"],["sunny","晴朗的"],["cloudy","多雲的"],
-      ["rainy","下雨的"],["snowy","下雪的"],["windy","有風的"],["weather","天氣"]]},
-    v2:{label:"衣物", strategy:"", words:[
-      ["raincoat","雨衣"],["boots","靴子"],["sweater","毛衣"],["gloves","手套"],
-      ["hat","帽子"],["jacket","夾克"],["pants","長褲"],["shorts","短褲"],
-      ["jeans","牛仔褲"],["socks","襪子"],["shoes","鞋子"],["sneakers","運動鞋"],
-      ["skirt","裙子"],["coat","外套"],["umbrella","雨傘"],["bathing suit","泳衣"]]},
-    g1:"What's + 名詞 + like? — It's…：What's the weather like? — It's sunny.",
-    g2:"祈使句（Imperatives）：Put on your boots!（穿上你的靴子！）",
-    reading:"Snow Animals", readingZh:"雪地動物", strategyR:"找出主旨與細節（Main Idea and Details）",
-    writing:"寫一張你自己的照片", writingFocus:"描述天氣和身上的衣服",
-    value:"Dress for the weather.", valueZh:"看天氣穿衣服", project:"做一個天氣吊飾",
-    quiz:[
-      {q:"___ the weather like today?", o:["What's","Who's","Where's"], a:0, why:"問天氣用 What's the weather like?"},
-      {q:"It's ___. I need my umbrella.", o:["rainy","sunny","windy"], a:0, why:"需要雨傘表示在下雨。"},
-      {q:"___ on your coat! It's cold.", o:["Put","Puts","Putting"], a:0, why:"祈使句用動詞原形。"},
-      {q:"星期三的英文是 ___", o:["Wednesday","Thursday","Tuesday"], a:0, why:"星期三＝Wednesday。"},
-      {q:"天氣很熱，我要穿 ___", o:["shorts","sweater","boots"], a:0, why:"熱的時候穿短褲。"}
-    ]
-  },
-  {
-    n:3, en:"Fun in the Sun", zh:"陽光下的樂趣", page:"p.42", term:1, weeks:[11,12,13,14],
-    area:"Language Arts · Health and Physical Education",
-    goals:["說出我喜歡在戶外做的事","說出球類動作","說出遊樂場的規則"],
-    v1:{label:"戶外活動", strategy:"一字多義（Multiple-meaning words）", words:[
-      ["jump rope","跳繩"],["play game","玩遊戲"],["basketball","籃球"],["baseball","棒球"],
-      ["soccer","足球"],["hide seek","捉迷藏"],["ride bike","騎腳踏車"],["fly kite","放風箏"],
-      ["rollerblade","溜直排輪"],["skate","溜冰"],["skateboard","滑板"]]},
-    v2:{label:"動作與遊樂場", strategy:"比較 /eɪ/ 和 /aɪ/ 的發音", words:[
-      ["throw","丟"],["catch","接住"],["bounce","拍（球）"],["play tag","玩鬼抓人"],
-      ["run","跑"],["crawl","爬行"],["climb","攀爬"],["slide","溜滑梯"],
-      ["swing","盪鞦韆"],["playground","遊樂場"],["fun","好玩的"],["boring","無聊的"]]},
-    g1:"like + to + 原形動詞：I like to ride a bike.（我喜歡騎腳踏車。）",
-    g2:"Let's…：Let's play soccer!（我們來踢足球吧！）",
-    reading:"Amazing Playgrounds", readingZh:"驚奇遊樂場", strategyR:"提出問題（Ask Questions）",
-    writing:"寫下你做的活動", writingFocus:"寫出你喜歡做的事",
-    value:"Be a good sport. / Take turns. Be fair.", valueZh:"有運動家精神、輪流、公平", project:"做一幅壁畫",
-    quiz:[
-      {q:"I like ___ a kite.", o:["to fly","fly","flying to"], a:0, why:"like 後面接 to + 原形動詞。"},
-      {q:"___ play soccer!", o:["Let's","Let","Lets"], a:0, why:"「我們來…吧」用 Let's。"},
-      {q:"We play ___ with a bat and a ball.", o:["baseball","tag","hide seek"], a:0, why:"用球棒和球的是棒球。"},
-      {q:"在遊樂場要 ___（輪流）", o:["take turns","run","crawl"], a:0, why:"輪流＝take turns。"},
-      {q:"This game is not fun. It's ___.", o:["boring","fair","special"], a:0, why:"不好玩＝boring。"}
-    ]
-  },
-  {
-    n:4, en:"Inside Our House", zh:"我們的家裡", page:"p.62", term:1, weeks:[15,16,17,18,19],
-    area:"Social Studies",
-    goals:["說出家具和家用物品","說出東西在家裡的位置","說出在家幫忙做的事"],
-    v1:{label:"家具與設備", strategy:"複合字（Compound words）", words:[
-      ["tub","浴缸"],["shower","淋浴間"],["rug","地毯"],["shelves","層架"],
-      ["stairs","樓梯"],["stove","爐子"],["microwave","微波爐"],["bookcase","書櫃"],
-      ["armchair","扶手椅"],["fireplace","壁爐"],["window","窗戶"],["phone","電話"],
-      ["door","門"],["sink","水槽"],["refrigerator","冰箱"],["furniture","家具"]]},
-    v2:{label:"位置介系詞", strategy:"單一音 /oʊ/", words:[
-      ["above","在…上方"],["behind","在…後面"],["under","在…下面"],["between","在…之間"],
-      ["next to","在…旁邊"],["in front of","在…前面"],["inside","裡面"],["outside","外面"]]},
-    g1:"地方介系詞：The cat is under the armchair. / The lamp is next to the sofa.",
-    g2:"主詞代名詞 it / they：The rug is red. It is soft. / The books are old. They are heavy.",
-    reading:"Fun Houses", readingZh:"有趣的房子", strategyR:"用圖像幫助理解（Use Visuals）",
-    writing:"寫你家的一個房間", writingFocus:"寫出房間裡有什麼、在哪裡",
-    value:"Help at home. Do chores.", valueZh:"在家幫忙做家事", project:"用紙箱做一間房子",
-    quiz:[
-      {q:"The cat is ___ the armchair.（在椅子下面）", o:["under","above","between"], a:0, why:"下面＝under。"},
-      {q:"The books are on the ___.", o:["shelves","stove","tub"], a:0, why:"書放在層架上。"},
-      {q:"The shoes are dirty. ___ are old, too.", o:["They","It","He"], a:0, why:"複數 shoes 用 They。"},
-      {q:"我把牛奶放進 ___", o:["refrigerator","microwave","fireplace"], a:0, why:"冰箱＝refrigerator。"},
-      {q:"I help my mom. I do my ___.", o:["chores","rules","shapes"], a:0, why:"家事＝chores。"}
-    ]
-  },
-  {
-    n:5, en:"Day by Day", zh:"每一天", page:"p.78", term:2, weeks:[],
-    area:"Social and Instructional Language · Language Arts",
-    goals:["說出我每天做的事","說出我什麼時候做這些事","說出一天的時段"],
-    v1:{label:"每天的活動", strategy:"不規則複數（tooth → teeth）", words:[
-      ["brush my teeth","刷牙"],["eat breakfast","吃早餐"],["eat lunch","吃午餐"],["eat dinner","吃晚餐"],
-      ["get dressed","穿衣服"],["get up","起床"],["go to bed","上床睡覺"],["go to school","上學"],
-      ["play video games","玩電動"],["play with friends","和朋友玩"],["wash my face","洗臉"]]},
-    v2:{label:"一天的時段", strategy:"", words:[
-      ["in the morning","在早上"],["in the afternoon","在下午"],["in the evening","在傍晚"],
-      ["at night","在晚上"],["late","遲到／晚"]]},
-    g1:"說時間（Telling time）：It's seven o'clock.",
-    g2:"頻率副詞：always / usually / sometimes / never",
-    reading:"A Day in the Space Station", readingZh:"太空站的一天", strategyR:"找出事件順序",
-    writing:"寫你最喜歡的一天", writingFocus:"照順序寫出那天做的事",
-    value:"Be on time.", valueZh:"守時", project:"做一本手風琴書",
-    quiz:[
-      {q:"___ seven o'clock. Time to get up!", o:["It's","Its","Is"], a:0, why:"說時間用 It's。"},
-      {q:"I eat breakfast ___ the morning.", o:["in","at","on"], a:0, why:"morning 用 in the morning。"},
-      {q:"I go to bed ___ night.", o:["at","in","on"], a:0, why:"night 用 at night。"},
-      {q:"one tooth, two ___", o:["teeth","tooths","toothes"], a:0, why:"tooth 的複數是 teeth。"}
-    ]
-  },
-  {
-    n:6, en:"How Are You?", zh:"你好嗎？", page:"p.94", term:2, weeks:[],
-    area:"Language Arts",
-    goals:["說出別人看起來如何","說出別人的感覺","說出別人正在做什麼"],
-    v1:{label:"感覺", strategy:"反義詞與同義詞", words:[
-      ["angry","生氣的"],["bored","無聊的"],["excited","興奮的"],["hungry","飢餓的"],
-      ["scared","害怕的"],["silly","傻氣的"],["surprised","驚訝的"],["thirsty","口渴的"],
-      ["tired","疲倦的"],["worried","擔心的"]]},
-    v2:{label:"表情動作", strategy:"", words:[
-      ["crying","哭"],["frowning","皺眉"],["laughing","大笑"],["smiling","微笑"],["yawning","打呵欠"]]},
-    g1:"He / she looks…：She looks tired.",
-    g2:"How are you? — I'm + 形容詞；規則與不規則複數",
-    reading:"Fabulous Faces", readingZh:"精采的臉", strategyR:"提出問題",
-    writing:"寫一張特別活動的照片", writingFocus:"描述照片裡的人和感覺",
-    value:"Help make other people happy.", valueZh:"讓別人開心", project:"做一個紙袋玩偶",
-    quiz:[
-      {q:"How are you? — ___ tired.", o:["I'm","I","My"], a:0, why:"回答用 I'm + 形容詞。"},
-      {q:"She ___ happy today.", o:["looks","look","looking"], a:0, why:"第三人稱單數動詞加 s。"},
-      {q:"I want some water. I'm ___.", o:["thirsty","hungry","bored"], a:0, why:"想喝水是口渴。"},
-      {q:"one child, two ___", o:["children","childs","childes"], a:0, why:"child 的複數是 children。"}
-    ]
-  },
-  {
-    n:7, en:"Awesome Animals", zh:"超棒的動物", page:"p.114", term:2, weeks:[],
-    area:"Science · Social Studies",
-    goals:["說出動物的名稱","描述動物","說出動物會做和不會做的事"],
-    v1:{label:"動物", strategy:"上下文線索", words:[
-      ["camel","駱駝"],["crocodile","鱷魚"],["elephant","大象"],["giraffe","長頸鹿"],
-      ["hippo","河馬"],["kangaroo","袋鼠"],["lion","獅子"],["monkey","猴子"],
-      ["parrot","鸚鵡"],["penguin","企鵝"],["tiger","老虎"],["zebra","斑馬"]]},
-    v2:{label:"動物的特徵", strategy:"", words:[
-      ["big teeth","大牙齒"],["colorful feathers","彩色羽毛"],["long trunk","長鼻子"],
-      ["sharp claws","尖爪子"],["short tail","短尾巴"]]},
-    g1:"can / can't 表示能力：A penguin can swim.",
-    g2:"Does it have…? — Yes, it does. / No, it doesn't.",
-    reading:"Two Big Birds", readingZh:"兩種大鳥", strategyR:"比較與對照",
-    writing:"寫你最喜歡的動物", writingFocus:"寫出牠長什麼樣、會做什麼",
-    value:"Respect animals.", valueZh:"尊重動物", project:"做全班的動物卡",
-    quiz:[
-      {q:"A penguin ___ swim.", o:["can","cans","can to"], a:0, why:"can 後面直接接原形動詞。"},
-      {q:"A hippo ___ fly.", o:["can't","doesn't can","not can"], a:0, why:"否定用 can't。"},
-      {q:"A ___ has a very long neck.", o:["giraffe","camel","zebra"], a:0, why:"長頸鹿脖子最長。"},
-      {q:"A parrot has colorful ___.", o:["feathers","claws","trunk"], a:0, why:"鸚鵡有彩色羽毛。"}
-    ]
-  },
-  {
-    n:8, en:"The World of Work", zh:"工作的世界", page:"p.130", term:2, weeks:[],
-    area:"Language Arts · Social Studies",
-    goals:["談論各種工作","說出人們在哪裡工作","說出我長大想做什麼"],
-    v1:{label:"職業", strategy:"字尾 -er / -or", words:[
-      ["bus driver","公車司機"],["chef","廚師"],["dentist","牙醫"],["doctor","醫生"],
-      ["farmer","農夫"],["firefighter","消防員"],["nurse","護理師"],["office worker","上班族"],
-      ["police officer","警察"],["scientist","科學家"],["singer","歌手"],["vet","獸醫"]]},
-    v2:{label:"更多職業", strategy:"", words:[
-      ["artist","藝術家"],["inventor","發明家"],["movie star","電影明星"],
-      ["rock star","搖滾巨星"],["soccer player","足球員"]]},
-    g1:"Wh- 問句：Where does she work?",
-    g2:"want + to + 原形動詞：I want to be a vet.",
-    reading:"Wonderful Work!", readingZh:"了不起的工作", strategyR:"摘要",
-    writing:"寫一個人的工作", writingFocus:"寫出他做什麼、在哪裡工作",
-    value:"Work hard.", valueZh:"努力工作", project:"做一張最喜歡職業的海報",
-    quiz:[
-      {q:"Where ___ she work?", o:["does","do","is"], a:0, why:"she 用 does。"},
-      {q:"I ___ to be a vet.", o:["want","wants","wanting"], a:0, why:"I 後面用原形 want。"},
-      {q:"sing + er = ___", o:["singer","singor","singger"], a:0, why:"字尾加 -er 表示做這件事的人。"},
-      {q:"A ___ works in a restaurant and cooks food.", o:["chef","farmer","nurse"], a:0, why:"在餐廳煮菜的是廚師。"}
-    ]
-  },
-  {
-    n:9, en:"Let's Eat!", zh:"開動囉！", page:"p.146", term:2, weeks:[],
-    area:"Social Studies · Health and Physical Education",
-    goals:["談論食物","說出我喜歡吃什麼","有禮貌地要東西"],
-    v1:{label:"食物", strategy:"查字典", words:[
-      ["beans","豆子"],["bread","麵包"],["carrots","紅蘿蔔"],["corn","玉米"],
-      ["hamburgers","漢堡"],["ice cream","冰淇淋"],["mangoes","芒果"],["meat","肉"],
-      ["noodles","麵"],["pasta","義大利麵"],["peppers","甜椒"],["potatoes","馬鈴薯"],["tomatoes","番茄"]]},
-    v2:{label:"點心", strategy:"比較 /tʃ/ 和 /ʃ/ 的發音", words:[
-      ["cheese","起司"],["chips","洋芋片"],["grapes","葡萄"],["nuts","堅果"],
-      ["snacks","點心"],["yogurt","優格"]]},
-    g1:"any 的問答：Do you have any grapes?",
-    g2:"用 may 有禮貌地請求：May I have some bread, please?",
-    reading:"Super Snacks!", readingZh:"超級點心", strategyR:"掃讀找資訊",
-    writing:"寫你最喜歡的點心", writingFocus:"寫出點心的名字和為什麼喜歡",
-    value:"Eat good food.", valueZh:"吃健康的食物", project:"做全班的點心",
-    quiz:[
-      {q:"Do you have ___ grapes?", o:["any","a","an"], a:0, why:"疑問句的複數名詞前用 any。"},
-      {q:"___ I have some bread, please?", o:["May","Do","Am"], a:0, why:"有禮貌的請求用 May I…?"},
-      {q:"one potato, two ___", o:["potatoes","potatos","potatoe"], a:0, why:"字尾 o 加 es。"},
-      {q:"起司的英文是 ___", o:["cheese","chips","corn"], a:0, why:"起司＝cheese。"}
-    ]
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = {
+    blueprint: document.getElementById('panel-blueprint'),
+    search: document.getElementById('panel-search')
+  };
+  function show(name, scroll){
+    tabs.forEach(function(t){
+      t.setAttribute('aria-selected', String(t.dataset.tab === name));
+    });
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== name); });
+    try { history.replaceState(null, '', '#' + name); } catch(e){}
+    if (scroll) window.scrollTo(0, 0);
   }
-];
-
-/* ============================================================
-   狀態與儲存
-   ============================================================ */
-
-const state = {
-  view:"home", subject:null, unit:null, week:null, tab:"ref", entab:"week",
-  progress:{}, custom:{words:[], questions:[]}, db:null,
-  updatedAt:0, sync:SYNC_URL ? "connecting" : "off"
-};
-const LS_KEY = "cindy-study-v2";
-
-function snapshot(){
-  return {progress:state.progress, custom:state.custom, updatedAt:state.updatedAt};
-}
-function applySnapshot(o){
-  if(!o || typeof o !== "object") return false;
-  state.progress = o.progress || {};
-  state.custom = {words:(o.custom && o.custom.words) || [], questions:(o.custom && o.custom.questions) || []};
-  state.updatedAt = o.updatedAt || 0;
-  return true;
-}
-function loadLocal(){
-  try{
-    const raw = localStorage.getItem(LS_KEY);
-    if(raw) applySnapshot(JSON.parse(raw));
-  }catch(e){}
-}
-function saveLocal(){
-  try{ localStorage.setItem(LS_KEY, JSON.stringify(snapshot())); }catch(e){}
-}
-
-/* 自架同步：Firebase Realtime Database 的 REST 介面，不需要任何 SDK */
-async function pullRemote(){
-  if(!SYNC_URL) return null;
-  const res = await fetch(SYNC_URL, {cache:"no-store"});
-  if(!res.ok) throw new Error("HTTP " + res.status);
-  return await res.json();
-}
-async function pushRemote(){
-  if(!SYNC_URL) return;
-  const res = await fetch(SYNC_URL, {
-    method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify(snapshot())
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.tab, true); });
   });
-  if(!res.ok) throw new Error("HTTP " + res.status);
-}
-async function syncNow(loud){
-  if(!SYNC_URL) return;
-  try{
-    const remote = await pullRemote();
-    if(remote && (remote.updatedAt || 0) > state.updatedAt){
-      applySnapshot(remote); saveLocal();
-      state.sync = "ok";
-      if(loud) toast("已從雲端取得較新的進度");
-      render();
-      return;
-    }
-    await pushRemote();
-    state.sync = "ok";
-    if(loud){ toast("同步完成"); render(); }
-  }catch(e){
-    state.sync = "error";
-    if(loud){ toast("同步失敗，請檢查同步網址"); render(); }
+  var h = (location.hash || '').slice(1);
+  if (h === 'search' || /^q\d/.test(h)) {
+    show('search', false);
+  } else {
+    show('blueprint', false);
   }
-}
-
-let saveTimer = null;
-function save(){
-  state.updatedAt = Date.now();
-  saveLocal();
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(async ()=>{
-    if(state.db){
-      try{
-        await state.db.doc("study/progress").set({units:state.progress, updatedAt:new Date().toISOString()});
-        await state.db.doc("study/custom").set({words:state.custom.words, questions:state.custom.questions});
-      }catch(e){
-        toast(e && e.code === "quota_exceeded" ? "儲存空間已滿，請先刪掉一些自訂題目" : "這次沒存到雲端，資料留在這台裝置");
-      }
-    }
-    if(SYNC_URL){
-      try{ await pushRemote(); state.sync = "ok"; }catch(e){ state.sync = "error"; }
-    }
-  }, 600);
-}
-async function initDb(){
-  if(!window.claude || typeof window.claude.use !== "function") return;
-  let db = null;
-  try{ db = await window.claude.use("db"); }catch(e){ db = null; }
-  if(!db) return;
-  state.db = db;
-  try{
-    const [p, c] = await Promise.all([db.doc("study/progress").get(), db.doc("study/custom").get()]);
-    if(p.exists) state.progress = Object.assign({}, (p.data().units)||{}, state.progress);
-    if(c.exists){ const d = c.data(); state.custom = {words:d.words||[], questions:d.questions||[]}; }
-    saveLocal(); render();
-  }catch(e){}
-}
-
-/* ============================================================
-   小工具
-   ============================================================ */
-const $ = (s, r)=> (r||document).querySelector(s);
-const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
-const uid = () => Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-4);
-
-let toastTimer = null;
-function toast(msg){
-  const el = $("#status"); el.textContent = msg; el.classList.add("show");
-  clearTimeout(toastTimer); toastTimer = setTimeout(()=> el.classList.remove("show"), 2200);
-}
-function speak(text){
-  try{
-    if(!("speechSynthesis" in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-US"; u.rate = 0.85; speechSynthesis.speak(u);
-  }catch(e){}
-}
-function todayISO(){
-  const d = new Date();
-  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
-}
-function fmtRange(w){
-  const f = s => s.slice(5).replace("-","/");
-  return f(w.s) + "–" + f(w.e);
-}
-function currentWeek(){
-  const t = todayISO();
-  for(const w of WEEKS){ if(t >= w.s && t <= w.e) return w; }
-  if(t < WEEKS[0].s) return WEEKS[0];
-  if(t > WEEKS[WEEKS.length-1].e) return WEEKS[WEEKS.length-1];
-  // 落在兩週之間（例如跨年假期）：取下一個尚未開始的週次
-  const next = WEEKS.find(w => t < w.s);
-  return next || WEEKS[WEEKS.length-1];
-}
-function sentenceOfWeek(){
-  const w = currentWeek();
-  return SENTENCES.find(s => s[0] === w.n) || SENTENCES[0];
-}
-
-/* progress helpers */
-function pget(k){ return state.progress[k] || {}; }
-function pset(k, patch){ state.progress[k] = Object.assign({}, state.progress[k], patch); save(); }
-const wordWeeks = WEEKS.filter(w => w.words.length);
-function weekPct(){
-  const done = wordWeeks.filter(w => pget("wk"+w.n).learned).length;
-  return Math.round(done / wordWeeks.length * 100);
-}
-function sentDone(){ return (pget("sent").done) || {}; }
-function sentPct(){ return Math.round(Object.keys(sentDone()).length / SENTENCES.length * 100); }
-function unitScore(n){
-  const p = pget("u"+n); let d = 0;
-  if(p.ref) d++; if(p.cards) d++; if((p.quiz||0)>=60) d++; if((p.spell||0)>=60) d++;
-  return d;
-}
-
-/* word sources */
-function schoolWordsForUnit(u){
-  const out = [];
-  u.weeks.forEach(n => {
-    const w = WEEKS.find(x => x.n === n);
-    if(w) w.words.forEach(p => out.push({en:p[0], zh:p[1]}));
-  });
-  return out;
-}
-function customWords(unitN){
-  return state.custom.words
-    .filter(w => w.subject === "english" && String(w.unit) === String(unitN))
-    .map(w => ({en:w.en, zh:w.zh, mine:true}));
-}
-function unitAllWords(u){
-  const seen = {}, out = [];
-  const push = w => { const k = w.en.toLowerCase(); if(!seen[k]){ seen[k]=1; out.push(w); } };
-  schoolWordsForUnit(u).forEach(push);
-  if(u.v1) u.v1.words.forEach(p => push({en:p[0], zh:p[1]}));
-  if(u.v2) u.v2.words.forEach(p => push({en:p[0], zh:p[1]}));
-  customWords(u.n).forEach(push);
-  return out;
-}
-const ALL_SCHOOL_WORDS = (()=>{ const a=[]; WEEKS.forEach(w => w.words.forEach(p => a.push({en:p[0], zh:p[1]}))); return a; })();
-
-/* ============================================================
-   注音（ㄅㄆㄇ）
-   c：每個字的預設讀音；p：多音字詞的讀音（以台灣課本讀法校正）
-   ============================================================ */
-const ZY = {"i":{"ㄅㄚ":"八叭巴扒捌疤笆芭","ㄅㄚˇ":"把靶","ㄅㄚˊ":"拔跋","ㄅㄚˋ":"壩灞爸罷耙霸","ㄅㄚ˙":"吧","ㄅㄛ":"剝撥播波玻缽菠","ㄅㄛˇ":"簸跛","ㄅㄛˊ":"亳伯勃博帛搏渤箔脖膊舶蔔鈸鉑駁","ㄅㄛˋ":"檗蘗","ㄅㄛ˙":"卜","ㄅㄞ":"擘","ㄅㄞˇ":"佰擺柏百襬","ㄅㄞˊ":"白","ㄅㄞˋ":"拜敗","ㄅㄟ":"卑悲揹杯盃碑陂","ㄅㄟˇ":"北","ㄅㄟˋ":"倍備孛悖憊焙狽背蓓被貝輩邶鋇","ㄅㄠ":"包胞苞褒","ㄅㄠˇ":"保堡寶葆褓飽","ㄅㄠˊ":"薄雹","ㄅㄠˋ":"報抱暴爆豹鉋鑤鮑","ㄅㄢ":"扳搬斑班瘢般頒","ㄅㄢˇ":"板版舨鈑闆阪","ㄅㄢˋ":"伴半姅扮拌瓣絆辦","ㄅㄣ":"奔","ㄅㄣˇ":"本畚苯","ㄅㄣˋ":"笨","ㄅㄤ":"幫梆邦","ㄅㄤˇ":"榜綁膀","ㄅㄤˋ":"傍棒磅蚌謗鎊","ㄅㄥ":"崩","ㄅㄥˇ":"繃","ㄅㄥˊ":"甭","ㄅㄥˋ":"泵蹦迸","ㄅㄧ":"逼","ㄅㄧˇ":"俾匕妣彼比沘筆箄鄙","ㄅㄧˊ":"荸鼻","ㄅㄧˋ":"嗶壁婢幣庇弊弼必愎敝斃璧畢痺碧篦臂蔽薜裨襞詖賁蹕避鉍閉陛","ㄅㄧㄝ":"鱉","ㄅㄧㄝˇ":"癟","ㄅㄧㄝˊ":"別","ㄅㄧㄝˋ":"彆","ㄅㄧㄠ":"彪杓標膘鏢鑣驃","ㄅㄧㄠˇ":"婊表錶","ㄅㄧㄠˋ":"鰾","ㄅㄧㄢ":"砭編蝙邊鞭","ㄅㄧㄢˇ":"匾扁褊貶","ㄅㄧㄢˋ":"便卞弁汴變辨辮辯遍釆","ㄅㄧㄣ":"儐彬檳濱瀕繽豳賓","ㄅㄧㄣˋ":"殯臏鬢","ㄅㄧㄥ":"兵冰","ㄅㄧㄥˇ":"丙摒柄炳秉稟鉼餅","ㄅㄧㄥˋ":"並併并病","ㄅㄨ":"誧鈽","ㄅㄨˇ":"哺捕補","ㄅㄨˋ":"不佈埠布怖步簿部","ㄆㄚ":"啪葩趴","ㄆㄚˊ":"杷爬琶","ㄆㄚˋ":"帕怕","ㄆㄛ":"坡泊潑頗","ㄆㄛˇ":"叵","ㄆㄛˊ":"婆鄱","ㄆㄛˋ":"珀破粕迫釙魄","ㄆㄞ":"拍","ㄆㄞˊ":"俳徘排牌","ㄆㄞˋ":"派湃","ㄆㄟ":"呸胚","ㄆㄟˊ":"培裴賠陪","ㄆㄟˋ":"佩沛珮轡配","ㄆㄠ":"拋","ㄆㄠˇ":"跑","ㄆㄠˊ":"刨匏咆庖袍","ㄆㄠˋ":"泡炮皰砲","ㄆㄡ":"剖","ㄆㄡˊ":"裒","ㄆㄢ":"攀潘","ㄆㄢˊ":"槃盤磐蟠蹣","ㄆㄢˋ":"判叛拚畔盼","ㄆㄣ":"噴","ㄆㄣˊ":"盆","ㄆㄤ":"乓滂","ㄆㄤˊ":"彷徬旁螃龐","ㄆㄤˋ":"胖","ㄆㄥ":"抨澎烹砰","ㄆㄥˇ":"捧","ㄆㄥˊ":"彭朋棚硼篷膨蓬鵬","ㄆㄥˋ":"碰踫","ㄆㄧ":"丕劈批披紕鈹霹","ㄆㄧˇ":"仳匹疋痞癖","ㄆㄧˊ":"啤埤枇毗琵疲皮脾陴鼙","ㄆㄧˋ":"僻媲屁睥譬辟闢","ㄆㄧㄝ":"撇瞥","ㄆㄧㄠ":"剽漂飄","ㄆㄧㄠˇ":"瞟縹","ㄆㄧㄠˊ":"嫖瓢","ㄆㄧㄠˋ":"票","ㄆㄧㄢ":"偏篇翩","ㄆㄧㄢˊ":"胼駢","ㄆㄧㄢˋ":"片騙","ㄆㄧㄣ":"姘拼","ㄆㄧㄣˇ":"品","ㄆㄧㄣˊ":"嬪貧頻顰","ㄆㄧㄣˋ":"牝聘","ㄆㄧㄥ":"乒娉","ㄆㄧㄥˊ":"坪屏平憑枰瓶萍蘋評","ㄆㄨ":"仆噗扑撲","ㄆㄨˇ":"圃埔普朴樸浦溥譜蹼","ㄆㄨˊ":"僕匍濮璞脯莆菩葡蒲","ㄆㄨˋ":"曝瀑鋪","ㄇㄚ":"媽嬤","ㄇㄚˇ":"瑪碼螞馬","ㄇㄚˊ":"痲蟆麻","ㄇㄚˋ":"罵","ㄇㄚ˙":"嗎嘛","ㄇㄛ":"摸","ㄇㄛˇ":"抹","ㄇㄛˊ":"摩摹模磨糢膜蘑謨魔","ㄇㄛˋ":"墨寞末歿沫漠秣茉莫貊陌驀默","ㄇㄜ˙":"么麼","ㄇㄞˇ":"買","ㄇㄞˊ":"埋霾","ㄇㄞˋ":"脈賣邁麥","ㄇㄟˇ":"每美鎂","ㄇㄟˊ":"媒枚梅楣沒湄煤玫眉莓霉黴","ㄇㄟˋ":"妹媚寐昧沬袂魅","ㄇㄠ":"貓","ㄇㄠˇ":"卯泖鉚","ㄇㄠˊ":"毛犛矛茅茆錨髦","ㄇㄠˋ":"冒帽懋瑁耄茂貌貿","ㄇㄡˇ":"某","ㄇㄡˊ":"牟眸繆謀","ㄇㄢˇ":"屘滿","ㄇㄢˊ":"瞞蠻饅鰻","ㄇㄢˋ":"幔慢曼漫縵蔓鏝","ㄇㄣˊ":"捫門","ㄇㄣˋ":"悶懣燜","ㄇㄣ˙":"們","ㄇㄤˇ":"莽蟒","ㄇㄤˊ":"忙杗氓盲芒茫","ㄇㄥˇ":"懵猛艋蜢錳","ㄇㄥˊ":"朦檬濛甍盟矇萌蒙虻","ㄇㄥˋ":"夢孟","ㄇㄧ":"咪瞇","ㄇㄧˇ":"弭敉米羋","ㄇㄧˊ":"彌瀰糜謎迷靡麋","ㄇㄧˋ":"冪密汨泌祕秘糸蜜覓謐","ㄇㄧㄝ":"咩","ㄇㄧㄝˋ":"滅篾蔑","ㄇㄧㄠˇ":"杪渺眇秒緲藐邈","ㄇㄧㄠˊ":"描瞄苗","ㄇㄧㄠˋ":"妙廟","ㄇㄧㄡˋ":"謬","ㄇㄧㄢˇ":"偭免冕勉娩沔湎澠緬","ㄇㄧㄢˊ":"棉眠綿","ㄇㄧㄢˋ":"面麵","ㄇㄧㄣˇ":"愍憫抿敏泯湣皿閔閩","ㄇㄧㄣˊ":"岷民","ㄇㄧㄥˇ":"酩","ㄇㄧㄥˊ":"冥名明暝瞑茗螟銘鳴","ㄇㄧㄥˋ":"命","ㄇㄨˇ":"姆拇母牡畝","ㄇㄨˋ":"募墓幕慕暮木沐牧目睦穆苜","ㄈㄚ":"發醱","ㄈㄚˇ":"法髮","ㄈㄚˊ":"乏伐砝筏罰閥","ㄈㄚˋ":"琺","ㄈㄟ":"啡妃扉菲霏非飛","ㄈㄟˇ":"匪斐翡誹","ㄈㄟˊ":"肥腓","ㄈㄟˋ":"吠屝廢沸痱肺芾費","ㄈㄡˇ":"否缶","ㄈㄢ":"幡番繙翻蕃藩","ㄈㄢˇ":"反返釩","ㄈㄢˊ":"凡墦帆樊煩礬繁","ㄈㄢˋ":"梵氾汎泛犯範范販飯","ㄈㄣ":"分吩棻氛紛芬","ㄈㄣˇ":"粉","ㄈㄣˊ":"墳汾焚","ㄈㄣˋ":"份奮忿憤糞","ㄈㄤ":"坊方枋芳","ㄈㄤˇ":"仿倣紡舫訪","ㄈㄤˊ":"妨房肪防","ㄈㄤˋ":"放","ㄈㄥ":"丰封峰楓烽瘋蜂豐鋒風","ㄈㄥˇ":"諷","ㄈㄥˊ":"逢馮","ㄈㄥˋ":"俸奉縫鳳","ㄈㄨ":"伕夫孵敷膚趺鈇麩","ㄈㄨˇ":"俯府撫斧甫腐腑輔釜頫","ㄈㄨˊ":"伏佛俘匐孚幅弗彿怫扶拂服氟浮涪福符紱紼芙芣菔蝠袱輻","ㄈㄨˋ":"付傅副咐婦富復父縛腹複覆訃負賦賻赴阜附馥駙","ㄉㄚ":"搭瘩褡","ㄉㄚˇ":"打","ㄉㄚˊ":"怛答躂達靼韃","ㄉㄚˋ":"大","ㄉㄜˊ":"德","ㄉㄜ˙":"得的","ㄉㄞ":"呆","ㄉㄞˇ":"歹逮","ㄉㄞˋ":"代岱帶待怠戴殆玳袋貸迨黛","ㄉㄠ":"刀叨","ㄉㄠˇ":"導島搗禱蹈","ㄉㄠˋ":"倒到悼燾盜稻道","ㄉㄡ":"兜都","ㄉㄡˇ":"抖枓蚪陡","ㄉㄡˋ":"斗痘竇脰豆逗鬥","ㄉㄢ":"丹單擔簞耽","ㄉㄢˇ":"撢疸膽","ㄉㄢˋ":"但啖啗彈憚旦氮淡澹蛋誕","ㄉㄤ":"噹當襠鐺","ㄉㄤˇ":"擋讜黨","ㄉㄤˋ":"儅檔盪蕩","ㄉㄥ":"燈登蹬","ㄉㄥˇ":"等","ㄉㄥˋ":"凳嶝瞪磴鄧","ㄉㄧ":"低堤氐滴隄","ㄉㄧˇ":"底抵柢牴砥詆邸","ㄉㄧˊ":"嘀嫡敵滌狄笛翟荻迪鏑","ㄉㄧˋ":"地娣帝弟棣第締蒂諦遞","ㄉㄧㄝ":"爹","ㄉㄧㄝˊ":"喋牒疊碟絰耋蝶諜跌迭","ㄉㄧㄠ":"凋刁叼彫碉貂雕鯛","ㄉㄧㄠˋ":"吊弔掉調釣","ㄉㄧㄡ":"丟","ㄉㄧㄢ":"巔滇甸癲顛","ㄉㄧㄢˇ":"典碘點","ㄉㄧㄢˋ":"佃墊奠店惦殿澱玷電靛","ㄉㄧㄥ":"丁仃叮盯酊釘","ㄉㄧㄥˇ":"頂鼎","ㄉㄧㄥˋ":"定訂錠","ㄉㄨ":"嘟督","ㄉㄨˇ":"堵睹篤賭","ㄉㄨˊ":"櫝毒瀆牘犢獨讀髑黷","ㄉㄨˋ":"妒度杜渡肚蠹鍍","ㄉㄨㄛ":"咄多","ㄉㄨㄛˇ":"朵綞躲","ㄉㄨㄛˊ":"奪踱鐸","ㄉㄨㄛˋ":"剁墮惰舵跺","ㄉㄨㄟ":"堆","ㄉㄨㄟˋ":"兌對碓隊","ㄉㄨㄢ":"端耑","ㄉㄨㄢˇ":"短","ㄉㄨㄢˋ":"斷段緞鍛","ㄉㄨㄣ":"噸墩惇敦蹲","ㄉㄨㄣˇ":"盹躉","ㄉㄨㄣˋ":"囤沌燉盾遁鈍頓","ㄉㄨㄥ":"冬咚東鼕","ㄉㄨㄥˇ":"懂董","ㄉㄨㄥˋ":"凍動峒恫棟洞湩胴","ㄊㄚ":"他塌她它牠","ㄊㄚˇ":"塔獺","ㄊㄚˋ":"撻榻踏蹋遝遢","ㄊㄜˋ":"慝特","ㄊㄞ":"胎","ㄊㄞˊ":"台抬檯臺苔薹跆颱","ㄊㄞˋ":"太態汰泰","ㄊㄠ":"掏滔濤絛韜饕","ㄊㄠˇ":"討","ㄊㄠˊ":"啕桃檮洮淘萄逃陶","ㄊㄠˋ":"套","ㄊㄡ":"偷","ㄊㄡˊ":"投頭骰","ㄊㄡˋ":"透","ㄊㄢ":"坍攤灘癱貪","ㄊㄢˇ":"坦毯袒","ㄊㄢˊ":"壇曇檀潭痰罈覃談譚","ㄊㄢˋ":"嘆探歎炭碳","ㄊㄤ":"湯鏜","ㄊㄤˇ":"倘儻帑淌躺","ㄊㄤˊ":"唐堂塘搪棠瑭糖膛螳醣","ㄊㄤˋ":"燙趟","ㄊㄥˊ":"滕疼籐藤謄騰","ㄊㄧ":"剔梯踢","ㄊㄧˇ":"體","ㄊㄧˊ":"啼提緹蹄銻題","ㄊㄧˋ":"剃嚏屜悌惕替涕逖","ㄊㄧㄝ":"帖貼","ㄊㄧㄝˇ":"鐵","ㄊㄧㄝˋ":"餮","ㄊㄧㄠ":"佻挑","ㄊㄧㄠˇ":"窕","ㄊㄧㄠˊ":"條蜩迢鯈","ㄊㄧㄠˋ":"眺覜跳","ㄊㄧㄢ":"天添","ㄊㄧㄢˇ":"忝腆舔靦","ㄊㄧㄢˊ":"填恬甜田畋鈿闐","ㄊㄧㄥ":"听廳汀聽","ㄊㄧㄥˇ":"挺梃艇","ㄊㄧㄥˊ":"亭停婷庭廷蜓霆","ㄊㄨ":"凸禿","ㄊㄨˇ":"吐土","ㄊㄨˊ":"圖塗屠徒突荼菟途酴","ㄊㄨˋ":"兔","ㄊㄨㄛ":"托拖脫託","ㄊㄨㄛˇ":"妥橢","ㄊㄨㄛˊ":"佗沱跎陀馱駝鴕","ㄊㄨㄛˋ":"唾拓柝","ㄊㄨㄟ":"推","ㄊㄨㄟˇ":"腿","ㄊㄨㄟˊ":"頹","ㄊㄨㄟˋ":"蛻褪退","ㄊㄨㄢ":"湍","ㄊㄨㄢˊ":"團糰","ㄊㄨㄣ":"吞","ㄊㄨㄣˊ":"屯臀豚飩","ㄊㄨㄥ":"通","ㄊㄨㄥˇ":"桶筒統","ㄊㄨㄥˊ":"僮同彤桐潼瞳童銅","ㄊㄨㄥˋ":"慟痛","ㄋㄚˇ":"哪","ㄋㄚˊ":"拿","ㄋㄚˋ":"吶娜捺納那鈉","ㄋㄜˋ":"訥","ㄋㄜ˙":"呢","ㄋㄞˇ":"乃奶氖迺","ㄋㄞˋ":"奈耐","ㄋㄟˇ":"餒","ㄋㄟˋ":"內","ㄋㄠˇ":"惱瑙腦","ㄋㄠˊ":"呶撓蟯鐃","ㄋㄠˋ":"鬧","ㄋㄡˋ":"耨","ㄋㄢˇ":"赧","ㄋㄢˊ":"南喃楠男難","ㄋㄣˋ":"嫩","ㄋㄤˇ":"曩","ㄋㄤˊ":"囊","ㄋㄥˊ":"能","ㄋㄧ":"妮","ㄋㄧˇ":"你妳擬旎","ㄋㄧˊ":"倪尼怩泥霓","ㄋㄧˋ":"匿暱溺睨膩逆","ㄋㄧㄝ":"捏","ㄋㄧㄝˋ":"囁孽涅聶臬躡鎳鑷齧","ㄋㄧㄠˇ":"嬝裊鳥","ㄋㄧㄠˋ":"尿","ㄋㄧㄡ":"妞","ㄋㄧㄡˇ":"忸扭紐鈕","ㄋㄧㄡˊ":"牛","ㄋㄧㄢ":"拈","ㄋㄧㄢˇ":"捻撚攆涊碾輦","ㄋㄧㄢˊ":"年黏","ㄋㄧㄢˋ":"唸廿念","ㄋㄧㄣˊ":"您","ㄋㄧㄤˊ":"娘孃","ㄋㄧㄤˋ":"釀","ㄋㄧㄥˊ":"凝嚀寧擰檸獰苧","ㄋㄧㄥˋ":"佞濘","ㄋㄨˇ":"努弩","ㄋㄨˊ":"奴駑","ㄋㄨˋ":"怒","ㄋㄨㄛˊ":"挪","ㄋㄨㄛˋ":"懦糯諾","ㄋㄨㄢˇ":"暖煖","ㄋㄨㄥˊ":"儂噥濃穠膿農","ㄋㄨㄥˋ":"弄","ㄋㄩˇ":"女","ㄋㄩㄝˋ":"瘧虐","ㄌㄚ":"垃拉邋","ㄌㄚˇ":"喇","ㄌㄚˊ":"剌","ㄌㄚˋ":"臘蠟辣","ㄌㄚ˙":"啦","ㄌㄜ":"肋","ㄌㄜˋ":"叻樂","ㄌㄜ˙":"了","ㄌㄞˊ":"來徠萊","ㄌㄞˋ":"瀨癩睞籟賴","ㄌㄟ":"勒","ㄌㄟˇ":"儡壘磊耒蕾","ㄌㄟˊ":"嫘擂縲羸鐳雷","ㄌㄟˋ":"淚累類","ㄌㄠ":"撈","ㄌㄠˇ":"佬姥潦老","ㄌㄠˊ":"勞嘮牢癆","ㄌㄠˋ":"烙酪","ㄌㄡˇ":"摟簍","ㄌㄡˊ":"嘍婁樓螻髏","ㄌㄡˋ":"漏瘺鏤陋","ㄌㄢˇ":"懶攬欖纜覽","ㄌㄢˊ":"婪嵐攔斕欄瀾籃籣藍蘭襤闌","ㄌㄢˋ":"濫爛","ㄌㄤˇ":"朗","ㄌㄤˊ":"廊榔狼琅瑯螂郎","ㄌㄤˋ":"浪","ㄌㄥˇ":"冷","ㄌㄥˊ":"楞稜","ㄌㄥˋ":"愣","ㄌㄧ":"哩","ㄌㄧˇ":"俚娌李浬澧理禮裡邐醴里鋰鯉","ㄌㄧˊ":"喱梨漓犁狸琍璃籬罹蜊蠡貍釐離驪黎","ㄌㄧˋ":"例俐儷利力勵厲吏唳壢慄戾曆栗欐歷溧瀝痢癘礪礫立笠粒荔莉蒞蠣酈鎘隸靂麗","ㄌㄧㄚˇ":"倆","ㄌㄧㄝˇ":"咧","ㄌㄧㄝˋ":"冽列劣捩洌烈獵裂鬣","ㄌㄧㄠ":"撩","ㄌㄧㄠˇ":"瞭","ㄌㄧㄠˊ":"僚嘹寥寮暸燎療繚聊遼","ㄌㄧㄠˋ":"廖料","ㄌㄧㄡ":"溜","ㄌㄧㄡˇ":"柳","ㄌㄧㄡˊ":"劉榴流瀏琉留瘤硫遛","ㄌㄧㄡˋ":"六霤餾","ㄌㄧㄢˇ":"斂臉","ㄌㄧㄢˊ":"奩帘廉憐漣濂簾聯蓮連鐮鰱","ㄌㄧㄢˋ":"戀楝殮瀲煉練鍊鏈","ㄌㄧㄣ":"拎","ㄌㄧㄣˇ":"凜懍","ㄌㄧㄣˊ":"林淋燐琳璘痳磷臨轔遴鄰霖鱗麟","ㄌㄧㄣˋ":"吝藺賃躪","ㄌㄧㄤˇ":"兩魎","ㄌㄧㄤˊ":"梁樑涼粱糧良","ㄌㄧㄤˋ":"亮晾諒輛量","ㄌㄧㄥˇ":"嶺領","ㄌㄧㄥˊ":"伶凌昤櫺泠玲綾羚翎聆苓菱蔆蛉鈴陵零靈鴒齡","ㄌㄧㄥˋ":"令另","ㄌㄨˇ":"嚕擄櫓滷虜魯鹵","ㄌㄨˊ":"廬瀘爐盧臚蘆鑪顱鱸","ㄌㄨˋ":"僇戮碌祿穋賂路錄陸露鷺鹿麓","ㄌㄨㄛ":"囉","ㄌㄨㄛˇ":"裸","ㄌㄨㄛˊ":"儸玀籮羅蘿螺邏鏍鑼騾","ㄌㄨㄛˋ":"洛漯犖珞絡落雒駱","ㄌㄨㄢˇ":"卵","ㄌㄨㄢˊ":"孿巒攣灤鑾鸞","ㄌㄨㄢˋ":"亂","ㄌㄨㄣ":"掄","ㄌㄨㄣˊ":"侖倫崙淪綸輪","ㄌㄨㄣˋ":"論","ㄌㄨㄥˇ":"壟攏隴","ㄌㄨㄥˊ":"嚨朧瓏矓窿籠聾隆龍","ㄌㄩˇ":"侶呂屢履旅縷膂褸鋁","ㄌㄩˊ":"櫚閭驢","ㄌㄩˋ":"律慮氯濾率綠","ㄌㄩㄝˋ":"掠略","ㄍㄚ":"伽呷嘎","ㄍㄚˊ":"噶","ㄍㄚˋ":"尬","ㄍㄜ":"割咯哥戈擱歌疙胳鴿","ㄍㄜˊ":"格膈葛閣閤隔革骼鬲","ㄍㄜˋ":"個各箇鉻","ㄍㄞ":"垓該賅","ㄍㄞˇ":"改","ㄍㄞˋ":"丐概溉蓋鈣","ㄍㄟˇ":"給","ㄍㄠ":"皋篙糕羔膏高","ㄍㄠˇ":"搞杲槁稿縞","ㄍㄠˋ":"告誥","ㄍㄡ":"佝勾溝鉤","ㄍㄡˇ":"枸狗苟","ㄍㄡˋ":"垢夠媾搆構詬購遘雊","ㄍㄢ":"坩尷杆柑甘疳竿肝","ㄍㄢˇ":"感敢桿橄稈趕","ㄍㄢˋ":"干幹榦淦贛","ㄍㄣ":"根跟","ㄍㄣˇ":"艮","ㄍㄣˋ":"亙","ㄍㄤ":"剛岡杠綱缸肛釭鋼","ㄍㄤˇ":"崗港","ㄍㄤˋ":"槓","ㄍㄥ":"庚羹耕賡","ㄍㄥˇ":"哽埂梗耿","ㄍㄥˋ":"更","ㄍㄨ":"估呱咕姑孤沽菰蛄辜鴣","ㄍㄨˇ":"古牯瞽穀罟股蠱詁谷轂鈷骨鼓","ㄍㄨˋ":"僱固故錮雇顧","ㄍㄨㄚ":"刮瓜聒蝸颳","ㄍㄨㄚˇ":"寡","ㄍㄨㄚˋ":"卦括挂掛褂","ㄍㄨㄛ":"堝蟈郭鍋","ㄍㄨㄛˇ":"果槨猓裹","ㄍㄨㄛˊ":"國幗","ㄍㄨㄛˋ":"過","ㄍㄨㄞ":"乖摑","ㄍㄨㄞˇ":"拐枴","ㄍㄨㄞˋ":"怪","ㄍㄨㄟ":"傀圭歸珪瑰皈規閨鮭龜","ㄍㄨㄟˇ":"晷癸詭軌鬼","ㄍㄨㄟˋ":"劊匱桂檜櫃貴跪鱖","ㄍㄨㄢ":"倌冠官棺觀關鰥","ㄍㄨㄢˇ":"琯管莞館","ㄍㄨㄢˋ":"慣灌盥罐貫鸛","ㄍㄨㄣˇ":"滾袞輥鯀","ㄍㄨㄣˋ":"棍","ㄍㄨㄤ":"光洸胱","ㄍㄨㄤˇ":"廣獷","ㄍㄨㄤˋ":"逛","ㄍㄨㄥ":"供公功宮工弓恭攻肱蚣躬龔","ㄍㄨㄥˇ":"廾拱汞鞏","ㄍㄨㄥˋ":"共貢","ㄎㄚ":"咖喀","ㄎㄚˇ":"卡","ㄎㄜ":"嗑柯棵瞌磕科稞窠苛蝌軻顆髁","ㄎㄜˇ":"可坷渴","ㄎㄜˊ":"咳殼","ㄎㄜˋ":"克刻剋客恪溘緙課","ㄎㄞ":"揩開","ㄎㄞˇ":"凱剴愷慨楷","ㄎㄞˋ":"愒愾","ㄎㄠˇ":"拷烤考","ㄎㄠˋ":"犒銬靠","ㄎㄡˇ":"口","ㄎㄡˋ":"叩寇扣釦","ㄎㄢ":"刊勘堪戡","ㄎㄢˇ":"侃坎檻砍","ㄎㄢˋ":"崁看瞰","ㄎㄣˇ":"啃墾懇肯齦","ㄎㄤ":"康慷糠","ㄎㄤˊ":"扛","ㄎㄤˋ":"亢伉抗炕","ㄎㄥ":"吭坑鏗阬","ㄎㄨ":"哭枯窟骷","ㄎㄨˇ":"苦","ㄎㄨˋ":"庫褲酷","ㄎㄨㄚ":"夸誇","ㄎㄨㄚˇ":"垮","ㄎㄨㄚˋ":"胯跨","ㄎㄨㄛˋ":"廓擴蛞闊","ㄎㄨㄞˋ":"儈塊快筷膾","ㄎㄨㄟ":"盔窺虧","ㄎㄨㄟˊ":"夔奎揆睽葵逵魁","ㄎㄨㄟˋ":"喟愧潰簣餽饋","ㄎㄨㄢ":"寬髖","ㄎㄨㄢˇ":"款","ㄎㄨㄣ":"坤崑昆焜琨錕髡","ㄎㄨㄣˇ":"捆梱綑","ㄎㄨㄣˋ":"困睏","ㄎㄨㄤ":"劻匡框筐","ㄎㄨㄤˊ":"狂誑","ㄎㄨㄤˋ":"壙曠況眶礦","ㄎㄨㄥ":"倥崆硿空","ㄎㄨㄥˇ":"孔恐","ㄎㄨㄥˋ":"控","ㄏㄚ":"哈","ㄏㄚˊ":"蛤","ㄏㄜ":"呵喝訶","ㄏㄜˊ":"何劾合曷核河涸盍盒禾紇翮荷蚵郃闔頜","ㄏㄜˋ":"壑褐賀赫鶴","ㄏㄞ":"嗨","ㄏㄞˇ":"海","ㄏㄞˊ":"孩還骸","ㄏㄞˋ":"亥害氦駭","ㄏㄟ":"嘿黑","ㄏㄠ":"蒿","ㄏㄠˇ":"好郝","ㄏㄠˊ":"嗥嚎壕毫濠蠔豪貉","ㄏㄠˋ":"昊浩皓耗號鄗鎬顥","ㄏㄡˇ":"吼","ㄏㄡˊ":"侯喉猴篌","ㄏㄡˋ":"候厚后堠後逅鱟","ㄏㄢ":"蚶酣鼾","ㄏㄢˇ":"喊罕","ㄏㄢˊ":"函含寒涵韓","ㄏㄢˋ":"和悍憾捍撼旱汗漢瀚焊翰銲頷","ㄏㄣˇ":"很狠","ㄏㄣˊ":"痕","ㄏㄣˋ":"恨","ㄏㄤˊ":"杭航","ㄏㄤˋ":"沆","ㄏㄥ":"亨哼","ㄏㄥˊ":"恆桁橫衡","ㄏㄨ":"乎呼忽惚","ㄏㄨˇ":"唬琥虎","ㄏㄨˊ":"囫壺弧斛湖狐瑚糊胡葫蝴鬍鵠","ㄏㄨˋ":"互戶扈楛沍滬瓠護","ㄏㄨㄚ":"嘩花","ㄏㄨㄚˊ":"滑猾華譁","ㄏㄨㄚˋ":"划劃化樺畫話","ㄏㄨㄛ":"豁","ㄏㄨㄛˇ":"伙夥火","ㄏㄨㄛˊ":"活","ㄏㄨㄛˋ":"惑或濩獲禍穫貨霍","ㄏㄨㄞˊ":"徊懷槐淮踝","ㄏㄨㄞˋ":"坏壞","ㄏㄨㄟ":"徽恢揮暉灰虺詼輝麾","ㄏㄨㄟˇ":"悔毀燬","ㄏㄨㄟˊ":"回茴蛔迴","ㄏㄨㄟˋ":"匯卉喙彗彙惠慧晦會燴穢繪蕙誨諱賄","ㄏㄨㄢ":"歡","ㄏㄨㄢˇ":"緩","ㄏㄨㄢˊ":"寰桓洹澴環鍰","ㄏㄨㄢˋ":"喚奐宦幻患換渙煥瘓豢","ㄏㄨㄣ":"婚昏葷","ㄏㄨㄣˊ":"梡渾琿餛魂","ㄏㄨㄣˋ":"混","ㄏㄨㄤ":"慌肓荒","ㄏㄨㄤˇ":"幌恍晃謊","ㄏㄨㄤˊ":"凰徨惶湟煌璜皇磺篁簧蝗遑隍韹黃","ㄏㄨㄥ":"烘薨轟","ㄏㄨㄥˇ":"哄","ㄏㄨㄥˊ":"宏弘泓洪紅虹閎鴻黌","ㄏㄨㄥˋ":"訌鬨","ㄐㄧ":"乩勣唧嘰圾基姬屐嵇機激犄璣畸畿磯稽積箕緝績羈肌譏跡蹟躋雞飢饑","ㄐㄧˇ":"几己幾戟擠麂","ㄐㄧˊ":"亟伋即及吉嫉岌急戢擊棘楫極汲疾瘠籍級脊藉輯集","ㄐㄧˋ":"冀劑妓季寂寄忌悸技既暨洎濟祭稷紀繼芰薊薺覬計記際霽驥髻","ㄐㄧㄚ":"佳傢加嘉家浹痂茄葭袈豭迦","ㄐㄧㄚˇ":"假甲胛賈鉀","ㄐㄧㄚˊ":"夾戛莢頰","ㄐㄧㄚˋ":"價嫁架稼駕","ㄐㄧㄝ":"嗟接揭皆街階","ㄐㄧㄝˇ":"姐解","ㄐㄧㄝˊ":"傑劫孑截拮捷杰桀潔睫碣竭節結羯訐詰","ㄐㄧㄝˋ":"介借屆戒界疥芥誡","ㄐㄧㄠ":"交姣嬌椒澆焦礁膠蕉蛟跤郊驕鮫","ㄐㄧㄠˇ":"僥剿攪狡皎矯絞繳腳角鉸餃","ㄐㄧㄠˋ":"叫教窖較轎酵醮","ㄐㄧㄡ":"啾揪糾赳鳩","ㄐㄧㄡˇ":"久九灸玖酒韭","ㄐㄧㄡˋ":"咎就廄救柩疚究臼舅舊","ㄐㄧㄢ":"兼堅奸姦尖殲湔煎監箋緘縑肩艱菅間韉","ㄐㄧㄢˇ":"儉剪囝揀撿柬檢減瞼筧簡繭鹼","ㄐㄧㄢˋ":"件健僭劍建毽漸澗濺箭腱艦荐薦見諫賤踐鍵鑑鑒餞","ㄐㄧㄣ":"今巾斤津矜筋襟觔金","ㄐㄧㄣˇ":"僅儘瑾盡緊謹錦饉","ㄐㄧㄣˋ":"勁噤晉浸燼禁縉覲近進","ㄐㄧㄤ":"僵姜將江漿疆薑韁","ㄐㄧㄤˇ":"槳獎蔣講","ㄐㄧㄤˋ":"匠彊絳醬降","ㄐㄧㄥ":"京兢旌晶涇睛粳精經荊莖菁驚鯨","ㄐㄧㄥˇ":"井憬景璟警阱頸","ㄐㄧㄥˋ":"境徑敬淨痙竟競逕鏡靖靜","ㄐㄩ":"居拘掬狙疽砠鞠駒","ㄐㄩˇ":"咀沮矩舉莒齟","ㄐㄩˊ":"侷局桔橘菊跼","ㄐㄩˋ":"俱倨具劇句屨巨懼拒據炬聚苣距踞遽鉅鋸颶","ㄐㄩㄝˊ":"倔劂厥噱嚼孓崛抉掘攫決爵獗玨絕蕨覺觼訣譎蹶鴃","ㄐㄩㄢ":"娟捐涓鐫鵑","ㄐㄩㄢˇ":"卷捲","ㄐㄩㄢˋ":"倦狷眷絹雋","ㄐㄩㄣ":"君均菌軍鈞","ㄐㄩㄣˋ":"俊峻浚濬竣郡駿","ㄐㄩㄥˇ":"炯窘迥","ㄑㄧ":"七妻悽慼戚柒棲槭欺淒漆萋蹊","ㄑㄧˇ":"乞啟杞綺豈起","ㄑㄧˊ":"俟其圻奇岐崎旗期棋歧淇琦琪畦祁祇祈祺耆臍錡騎鰭麒齊","ㄑㄧˋ":"企器契憩棄氣汽泣砌磧訖迄","ㄑㄧㄚˋ":"恰洽","ㄑㄧㄝˇ":"且","ㄑㄧㄝˋ":"切妾怯愜挈竊鍥","ㄑㄧㄠ":"悄敲橇蹺鍬","ㄑㄧㄠˇ":"巧愀","ㄑㄧㄠˊ":"僑喬憔樵橋瞧","ㄑㄧㄠˋ":"俏峭撬竅翹誚譙鞘","ㄑㄧㄡ":"丘秋蚯邱鞦鰍","ㄑㄧㄡˊ":"囚梂毬求泅球裘酋","ㄑㄧㄢ":"仟千愆搴牽簽籤謙遷鉛阡韆騫","ㄑㄧㄢˇ":"淺譴遣","ㄑㄧㄢˊ":"乾前潛箝虔鈐鉗錢黔","ㄑㄧㄢˋ":"倩塹嵌欠歉縴","ㄑㄧㄣ":"侵嶔欽親","ㄑㄧㄣˇ":"寢","ㄑㄧㄣˊ":"勤噙擒琴禽秦芹","ㄑㄧㄣˋ":"撳沁","ㄑㄧㄤ":"嗆戕槍羌腔鎗鏘","ㄑㄧㄤˇ":"搶繈","ㄑㄧㄤˊ":"強檣牆薔","ㄑㄧㄥ":"傾卿氫清蜻輕青","ㄑㄧㄥˇ":"請頃","ㄑㄧㄥˊ":"情擎晴檠","ㄑㄧㄥˋ":"慶磬罄","ㄑㄩ":"區屈嶇曲蛆蛐趨軀驅麴","ㄑㄩˇ":"取娶齲","ㄑㄩˊ":"劬渠璩瞿衢","ㄑㄩˋ":"去趣","ㄑㄩㄝ":"缺","ㄑㄩㄝˊ":"瘸","ㄑㄩㄝˋ":"卻榷確闋闕雀鵲","ㄑㄩㄢ":"圈","ㄑㄩㄢˇ":"犬畎","ㄑㄩㄢˊ":"佺全拳權泉痊荃蜷詮踡銓","ㄑㄩㄢˋ":"券勸","ㄑㄩㄣˊ":"群裙","ㄑㄩㄥˊ":"瓊穹窮","ㄒㄧ":"僖兮吸唏嘻夕奚嬉希悉惜攜昔晞晰曦析汐淅溪烯熄熙熹犀犧稀羲翕膝蜥蟋西譆谿錫","ㄒㄧˇ":"喜徙洗璽禧","ㄒㄧˊ":"媳席息檄習蓆襲","ㄒㄧˋ":"係戲潟矽系細繫隙","ㄒㄧㄚ":"煆瞎蝦","ㄒㄧㄚˊ":"俠匣峽暇柙狎狹瑕轄遐霞黠","ㄒㄧㄚˋ":"下嚇夏","ㄒㄧㄝ":"些楔歇蠍","ㄒㄧㄝˇ":"寫血","ㄒㄧㄝˊ":"偕勰協挾擷斜脅諧邪鞋頡","ㄒㄧㄝˋ":"卸屑懈械榭泄洩瀉燮紲蟹褻謝邂","ㄒㄧㄠ":"哮嘐囂宵梟消瀟硝簫蕭逍銷霄驍","ㄒㄧㄠˇ":"小曉篠","ㄒㄧㄠˊ":"崤淆","ㄒㄧㄠˋ":"傚嘯孝效校笑肖詨","ㄒㄧㄡ":"休修咻羞脩","ㄒㄧㄡˇ":"朽","ㄒㄧㄡˋ":"嗅岫溴秀繡袖鏽","ㄒㄧㄢ":"仙先掀暹祆秈纖鮮","ㄒㄧㄢˇ":"蘚銑險顯","ㄒㄧㄢˊ":"咸啣嫌嫻弦涎絃舷賢銜閑閒鹹","ㄒㄧㄢˋ":"僩峴憲獻現線縣羨腺莧蜆限陷霰餡","ㄒㄧㄣ":"心新昕欣芯薪訢辛鋅馨","ㄒㄧㄣˋ":"信釁","ㄒㄧㄤ":"廂湘瓖相箱襄鄉鑲香","ㄒㄧㄤˇ":"享想響餉饗","ㄒㄧㄤˊ":"庠祥翔詳","ㄒㄧㄤˋ":"像向嚮巷橡象項","ㄒㄧㄥ":"惺星猩腥","ㄒㄧㄥˇ":"醒","ㄒㄧㄥˊ":"刑型形硎行邢陘","ㄒㄧㄥˋ":"倖姓幸性悻杏興","ㄒㄩ":"吁噓墟戌胥虛訏需須頊鬚","ㄒㄩˇ":"栩許","ㄒㄩˊ":"徐","ㄒㄩˋ":"勗卹婿序恤敘旭洫煦絮緒續蓄酗","ㄒㄩ˙":"蓿","ㄒㄩㄝ":"削薛靴","ㄒㄩㄝˇ":"雪","ㄒㄩㄝˊ":"學穴","ㄒㄩㄢ":"喧宣暄萱諼軒","ㄒㄩㄢˇ":"晅癬選","ㄒㄩㄢˊ":"懸旋漩玄璿","ㄒㄩㄢˋ":"渲炫眩絢鉉","ㄒㄩㄣ":"勛勳壎燻薰醺","ㄒㄩㄣˊ":"尋巡循旬洵潯荀詢馴","ㄒㄩㄣˋ":"巽徇殉汛潠蕈訊訓迅遜","ㄒㄩㄥ":"兄兇凶匈洶胸","ㄒㄩㄥˊ":"熊雄","ㄓ":"之卮吱支枝梔汁泜知祗織肢胝脂芝蜘隻","ㄓˇ":"只咫址徵指旨止祉紙芷衹趾","ㄓˊ":"值執姪摭植殖直職質躑","ㄓˋ":"制峙幟志摯擲智櫛治滯炙痔痣秩稚窒緻置至致蛭製誌躓輊雉","ㄓㄚ":"吒喳扎渣","ㄓㄚˇ":"眨砟","ㄓㄚˊ":"札閘","ㄓㄚˋ":"乍搾柞榨炸蚱詐","ㄓㄜ":"蜇遮","ㄓㄜˇ":"者褶赭","ㄓㄜˊ":"哲折摺謫輒轍","ㄓㄜˋ":"浙蔗這鷓","ㄓㄞ":"摘齋","ㄓㄞˇ":"窄","ㄓㄞˊ":"宅","ㄓㄞˋ":"債寨","ㄓㄠ":"啁招昭釗","ㄓㄠˇ":"找沼爪","ㄓㄠˋ":"兆召棹櫂炤照罩肇詔趙","ㄓㄡ":"周州洲粥舟週","ㄓㄡˇ":"帚肘","ㄓㄡˊ":"妯軸","ㄓㄡˋ":"冑咒宙晝皺籀紂縐胄驟","ㄓㄢ":"氈沾瞻詹譫霑","ㄓㄢˇ":"展嶄斬盞輾","ㄓㄢˋ":"佔占戰棧湛站綻蘸","ㄓㄣ":"偵斟楨榛珍甄真砧禎箴臻貞針","ㄓㄣˇ":"枕疹診","ㄓㄣˋ":"圳振朕甽賑鎮陣震鴆","ㄓㄤ":"張彰樟漳獐璋章蟑","ㄓㄤˇ":"掌漲","ㄓㄤˋ":"丈仗帳幛杖瘴脹賬障","ㄓㄥ":"崢征怔掙爭猙癥睜箏蒸錚鯖","ㄓㄥˇ":"拯整","ㄓㄥˋ":"幀政正症証諍證鄭","ㄓㄨ":"侏朱株珠硃茱蛛誅諸豬跦銖","ㄓㄨˇ":"主囑拄渚煮矚","ㄓㄨˊ":"燭竹竺躅逐","ㄓㄨˋ":"佇住助杼柱注祝筑箸築蛀註貯鑄駐","ㄓㄨㄚ":"抓","ㄓㄨㄛ":"拙捉桌涿","ㄓㄨㄛˊ":"卓啄擢斫濁濯灼茁著酌鐲","ㄓㄨㄞ":"拽","ㄓㄨㄟ":"追錐隹","ㄓㄨㄟˋ":"墜惴綴贅","ㄓㄨㄢ":"專磚顓","ㄓㄨㄢˇ":"轉","ㄓㄨㄢˋ":"僎囀撰篆賺","ㄓㄨㄣ":"肫諄","ㄓㄨㄣˇ":"准準","ㄓㄨㄤ":"妝樁莊裝","ㄓㄨㄤˋ":"壯撞狀","ㄓㄨㄥ":"中忠盅終衷鍾鐘","ㄓㄨㄥˇ":"冢塚種腫踵","ㄓㄨㄥˋ":"仲眾重","ㄔ":"吃喫嗤痴癡笞蚩魑","ㄔˇ":"侈呎尺恥褫齒","ㄔˊ":"墀弛持池踟遲馳","ㄔˋ":"叱啻敕斥熾翅赤飭","ㄔㄚ":"叉插","ㄔㄚˊ":"察搽查茶","ㄔㄚˋ":"岔差詫","ㄔㄜ":"車","ㄔㄜˇ":"扯","ㄔㄜˋ":"坼徹掣撤澈","ㄔㄞ":"拆釵","ㄔㄞˊ":"儕柴豺齜","ㄔㄠ":"勦抄超鈔","ㄔㄠˇ":"吵炒","ㄔㄠˊ":"嘲巢晁朝潮","ㄔㄡ":"抽","ㄔㄡˇ":"丑醜","ㄔㄡˊ":"仇儔惆愁疇稠籌綢裯躊酬","ㄔㄡˋ":"臭","ㄔㄢ":"攙","ㄔㄢˇ":"剷產諂鏟闡","ㄔㄢˊ":"儳嬋巉毚潺澶禪纏蟬蟾讒饞","ㄔㄢˋ":"懺羼顫","ㄔㄣ":"琛瞋縝","ㄔㄣˊ":"塵宸忱晨沉臣諶辰陳","ㄔㄣˋ":"櫬疢襯讖趁","ㄔㄤ":"倀娼昌猖鯧","ㄔㄤˇ":"場廠敞氅","ㄔㄤˊ":"償嘗嚐嫦常徜腸萇長","ㄔㄤˋ":"倡唱悵暢","ㄔㄥ":"撐瞠稱","ㄔㄥˇ":"逞騁","ㄔㄥˊ":"丞乘呈城懲成承橙澄程誠","ㄔㄥˋ":"秤","ㄔㄨ":"出初齣","ㄔㄨˇ":"儲杵楚楮礎褚","ㄔㄨˊ":"廚櫥芻躇鋤除雛","ㄔㄨˋ":"怵歜畜矗絀處觸黜","ㄔㄨㄛ":"戳","ㄔㄨㄛˋ":"綽輟齪","ㄔㄨㄞ":"揣","ㄔㄨㄞˋ":"啜踹","ㄔㄨㄟ":"吹炊","ㄔㄨㄟˊ":"垂捶椎槌箠錘鎚陲","ㄔㄨㄢ":"川穿","ㄔㄨㄢˇ":"喘舛","ㄔㄨㄢˊ":"傳船","ㄔㄨㄢˋ":"串釧","ㄔㄨㄣ":"春","ㄔㄨㄣˇ":"蠢","ㄔㄨㄣˊ":"唇淳純脣醇鶉","ㄔㄨㄤ":"瘡窗","ㄔㄨㄤˇ":"闖","ㄔㄨㄤˊ":"幢床","ㄔㄨㄤˋ":"創愴","ㄔㄨㄥ":"充憧沖舂衝","ㄔㄨㄥˇ":"寵","ㄔㄨㄥˊ":"崇虫蟲","ㄕ":"失尸屍師施溼濕獅虱蝨詩","ㄕˇ":"使史始屎矢豕駛","ㄕˊ":"十塒實拾時石蝕食","ㄕˋ":"世事仕似侍勢嗜噬士奭室市式弒恃拭是柿氏示筮舐螫視試誓識豉軾逝適釋飾","ㄕ˙":"匙","ㄕㄚ":"剎殺沙煞砂紗莎裟鯊","ㄕㄚˇ":"傻","ㄕㄚˋ":"廈霎","ㄕㄜ":"奢賒","ㄕㄜˇ":"捨舍","ㄕㄜˊ":"舌蛇","ㄕㄜˋ":"射懾攝歙涉社設赦麝","ㄕㄞ":"篩","ㄕㄞˋ":"晒曬","ㄕㄟˊ":"誰","ㄕㄠ":"捎梢燒稍","ㄕㄠˇ":"少","ㄕㄠˊ":"勺芍韶","ㄕㄠˋ":"哨紹邵","ㄕㄡ":"收","ㄕㄡˇ":"守手首","ㄕㄡˊ":"熟","ㄕㄡˋ":"受售壽授狩獸瘦綬","ㄕㄢ":"刪姍山杉柵潸煽珊縿羶舢芟衫跚","ㄕㄢˇ":"閃陝","ㄕㄢˋ":"善扇擅汕疝繕膳訕贍鱔","ㄕㄣ":"伸呻娠深申砷紳莘身","ㄕㄣˇ":"哂嬸審沈瀋","ㄕㄣˊ":"什神","ㄕㄣˋ":"慎滲甚脤腎蜃","ㄕㄤ":"傷商殤觴","ㄕㄤˇ":"晌賞","ㄕㄤˋ":"上尚","ㄕㄤ˙":"裳","ㄕㄥ":"升昇牲生甥笙聲陞","ㄕㄥˇ":"省","ㄕㄥˊ":"繩","ㄕㄥˋ":"剩勝盛聖賸","ㄕㄨ":"倏叔抒書梳樞橾殊淑疏舒菽蔬輸","ㄕㄨˇ":"屬暑曙署薯藷蜀黍鼠","ㄕㄨˊ":"塾孰贖","ㄕㄨˋ":"墅庶恕戍數朮束樹漱術豎述","ㄕㄨㄚ":"刷","ㄕㄨㄚˇ":"耍","ㄕㄨㄛ":"說","ㄕㄨㄛˋ":"妁朔爍碩鑠","ㄕㄨㄞ":"摔衰","ㄕㄨㄞˇ":"甩","ㄕㄨㄞˋ":"帥蟀","ㄕㄨㄟˇ":"水","ㄕㄨㄟˋ":"睡稅","ㄕㄨㄢ":"拴栓閂","ㄕㄨㄢˋ":"涮","ㄕㄨㄣˇ":"吮","ㄕㄨㄣˋ":"瞬舜順","ㄕㄨㄤ":"孀雙霜","ㄕㄨㄤˇ":"塽爽","ㄖˋ":"日","ㄖㄜˇ":"惹","ㄖㄜˋ":"熱","ㄖㄠˇ":"擾","ㄖㄠˊ":"嬈橈饒","ㄖㄠˋ":"繞","ㄖㄡˊ":"揉柔蹂鞣","ㄖㄡˋ":"肉","ㄖㄢˇ":"冉染苒","ㄖㄢˊ":"然燃髯","ㄖㄣˇ":"忍稔荏","ㄖㄣˊ":"人仁壬","ㄖㄣˋ":"仞任刃妊紉衽認軔韌飪","ㄖㄤˇ":"嚷壤攘","ㄖㄤˊ":"瓤禳","ㄖㄤˋ":"讓","ㄖㄥ":"扔","ㄖㄥˊ":"仍","ㄖㄨˇ":"乳汝辱","ㄖㄨˊ":"儒嚅如孺濡燸茹蠕","ㄖㄨˋ":"入褥","ㄖㄨㄛˋ":"偌弱篛若鶸","ㄖㄨㄟˇ":"蕊","ㄖㄨㄟˋ":"瑞睿銳","ㄖㄨㄢˇ":"軟阮","ㄖㄨㄣˋ":"潤閏","ㄖㄨㄥ":"茸","ㄖㄨㄥˇ":"冗","ㄖㄨㄥˊ":"容嶸戎榕榮溶熔絨蓉融鎔","ㄗ":"咨姿孜孳淄滋玆緇茲訾諮貲資輜錙髭","ㄗˇ":"姊梓滓籽紫","ㄗˋ":"字恣漬自","ㄗ˙":"子","ㄗㄚ":"匝紮臢","ㄗㄚˇ":"咋","ㄗㄚˊ":"偺砸雜","ㄗㄜˊ":"則嘖擇澤笮責","ㄗㄜˋ":"仄","ㄗㄞ":"哉栽災","ㄗㄞˇ":"仔宰","ㄗㄞˋ":"再在載","ㄗㄟˊ":"賊鯽","ㄗㄠ":"糟遭","ㄗㄠˇ":"早棗澡藻蚤","ㄗㄠˊ":"鑿","ㄗㄠˋ":"噪灶燥皂譟躁造","ㄗㄡ":"鄒鄹陬","ㄗㄡˇ":"走","ㄗㄡˋ":"奏揍","ㄗㄢ":"簪","ㄗㄢˊ":"咱","ㄗㄢˋ":"暫瓚讚贊鏨","ㄗㄣˇ":"怎","ㄗㄤ":"臧贓髒","ㄗㄤˋ":"奘臟葬","ㄗㄥ":"增憎繒","ㄗㄥˋ":"贈","ㄗㄨ":"租","ㄗㄨˇ":"俎祖組詛阻","ㄗㄨˊ":"卒族足鏃","ㄗㄨㄛˇ":"佐左","ㄗㄨㄛˊ":"昨琢","ㄗㄨㄛˋ":"作做坐座祚","ㄗㄨㄟˇ":"嘴","ㄗㄨㄟˋ":"最罪蕞醉","ㄗㄨㄢ":"鑽","ㄗㄨㄢˇ":"纂","ㄗㄨㄣ":"尊樽遵","ㄗㄨㄣˇ":"撙","ㄗㄨㄥ":"宗棕綜蹤鬃","ㄗㄨㄥˇ":"傯總","ㄗㄨㄥˋ":"粽縱","ㄘ":"疵","ㄘˇ":"此","ㄘˊ":"慈瓷磁祠茨詞辭雌","ㄘˋ":"伺刺次賜","ㄘㄚ":"擦","ㄘㄜˋ":"側冊廁惻測策","ㄘㄞ":"猜","ㄘㄞˇ":"彩採睬綵踩采","ㄘㄞˊ":"才材纔裁財","ㄘㄞˋ":"菜蔡","ㄘㄠ":"操糙","ㄘㄠˇ":"草","ㄘㄠˊ":"嘈曹槽漕","ㄘㄡˋ":"湊輳","ㄘㄢ":"參餐","ㄘㄢˇ":"慘","ㄘㄢˊ":"慚殘蠶","ㄘㄢˋ":"孱摻燦璨","ㄘㄣˊ":"岑涔","ㄘㄤ":"倉傖滄艙蒼","ㄘㄤˊ":"藏","ㄘㄥˊ":"層曾","ㄘㄨ":"粗","ㄘㄨˋ":"促簇蹙蹴醋","ㄘㄨㄛ":"搓撮磋蹉","ㄘㄨㄛˊ":"嵯","ㄘㄨㄛˋ":"厝挫措銼錯","ㄘㄨㄟ":"催崔摧","ㄘㄨㄟˇ":"璀","ㄘㄨㄟˋ":"悴淬瘁粹翠脆萃","ㄘㄨㄢˋ":"爨竄篡","ㄘㄨㄣ":"村皴","ㄘㄨㄣˇ":"忖","ㄘㄨㄣˊ":"存","ㄘㄨㄣˋ":"吋寸","ㄘㄨㄥ":"匆囪樅聰蔥","ㄘㄨㄥˊ":"叢從淙","ㄙ":"司嘶廝撕斯私絲鷥","ㄙˇ":"死","ㄙˋ":"兕嗣四姒寺巳泗祀耜肆飼駟","ㄙ˙":"思","ㄙㄚ":"撒","ㄙㄚˇ":"灑","ㄙㄚˋ":"卅薩颯","ㄙㄜˋ":"嗇澀瑟穡色","ㄙㄞ":"塞腮鰓","ㄙㄞˋ":"賽","ㄙㄠ":"搔繅騷","ㄙㄠˇ":"嫂掃","ㄙㄡ":"搜艘蒐颼餿","ㄙㄡˇ":"叟嗾擻藪","ㄙㄡˋ":"嗽","ㄙㄢ":"三","ㄙㄢˇ":"傘糝","ㄙㄢˋ":"散","ㄙㄣ":"森","ㄙㄤ":"桑","ㄙㄤˇ":"嗓","ㄙㄤˋ":"喪","ㄙㄥ":"僧","ㄙㄨ":"囌甦穌蘇酥","ㄙㄨˊ":"俗","ㄙㄨˋ":"嗉塑夙宿溯簌粟素肅訴速","ㄙㄨㄛ":"唆娑梭簑縮蓑","ㄙㄨㄛˇ":"所瑣索鎖","ㄙㄨㄛ˙":"嗦","ㄙㄨㄟ":"睢綏雖","ㄙㄨㄟˇ":"髓","ㄙㄨㄟˊ":"隋隨","ㄙㄨㄟˋ":"歲燧碎祟穗誶遂邃隧","ㄙㄨㄢ":"痠酸","ㄙㄨㄢˋ":"算蒜","ㄙㄨㄣ":"孫蓀飧","ㄙㄨㄣˇ":"損榫筍","ㄙㄨㄥ":"崧嵩忪松淞鬆","ㄙㄨㄥˇ":"悚慫聳","ㄙㄨㄥˋ":"宋訟誦送頌","ㄚ":"阿","ㄚ˙":"啊","ㄛ":"喔噢","ㄛˊ":"哦","ㄜ":"婀","ㄜˊ":"俄娥峨蛾訛額鵝","ㄜˋ":"厄呃噩堊惡愕扼萼詻軛遏鄂鍔顎餓鱷","ㄞ":"哀哎唉噯埃挨","ㄞˇ":"矮藹靄","ㄞˊ":"捱癌皚","ㄞˋ":"愛曖璦礙艾閡隘","ㄠ":"凹","ㄠˇ":"媼拗襖","ㄠˊ":"嗷敖熬翱聱遨鏖鼇","ㄠˋ":"傲奧懊澳","ㄡ":"歐毆甌鷗","ㄡˇ":"偶嘔耦藕","ㄢ":"安庵氨菴諳鞍鵪","ㄢˇ":"俺銨","ㄢˋ":"岸按暗案黯","ㄣ":"恩","ㄣˊ":"嗯","ㄤ":"骯","ㄤˊ":"昂","ㄤˋ":"盎","ㄦˇ":"洱爾耳邇餌","ㄦˊ":"儿兒而","ㄦˋ":"二貳","ㄧ":"一伊依咿噫壹揖漪衣醫","ㄧˇ":"乙以倚偯已旖椅矣蟻","ㄧˊ":"儀咦圯夷姨宜彝怡栘沂疑痍移胰訑貽迆迤遺頤飴","ㄧˋ":"亦佚佾億刈劓囈奕屹帟弈弋役意憶懿抑易毅浥液溢異疫益睪縊繹義羿翌翳翼肄臆藝蜴裔詣誼譯議軼逸邑鎰驛","ㄧㄚ":"丫壓押鴉鴨","ㄧㄚˇ":"啞雅","ㄧㄚˊ":"崖涯牙琊芽蚜衙","ㄧㄚˋ":"亞氬訝軋","ㄧㄚ˙":"呀","ㄧㄛ":"唷喲","ㄧㄝ":"噎掖暍椰","ㄧㄝˇ":"也冶野","ㄧㄝˊ":"爺耶","ㄧㄝˋ":"夜曄曳業腋葉謁鄴靨頁","ㄧㄠ":"吆夭妖腰邀","ㄧㄠˇ":"咬杳窈舀","ㄧㄠˊ":"堯姚搖榣爻瑤窯肴謠遙餚","ㄧㄠˋ":"曜耀藥要鑰鷂","ㄧㄡ":"優幽悠憂攸","ㄧㄡˇ":"友有牖莠酉黝","ㄧㄡˊ":"尢尤油游猶猷由疣遊郵鈾魷","ㄧㄡˋ":"佑侑又右囿宥幼柚祐誘釉鼬","ㄧㄢ":"嫣淹湮焉煙胭腌菸醃","ㄧㄢˇ":"偃儼兗奄掩演眼縯衍郾魘鼴","ㄧㄢˊ":"嚴妍岩巖延檐沿炎研筵簷言閻顏鹽","ㄧㄢˋ":"厭咽唁嚥堰宴彥晏焰燄燕硯艷諺豔贗釅雁饜驗","ㄧㄣ":"因姻慇殷氤茵蔭陰音","ㄧㄣˇ":"尹引癮蚓隱飲","ㄧㄣˊ":"吟垠夤寅淫鄞銀霪","ㄧㄣˋ":"印胤","ㄧㄤ":"央殃泱秧鞅鴦","ㄧㄤˇ":"仰氧癢養","ㄧㄤˊ":"佯徉揚暘楊洋烊煬瘍羊鍚陽颺","ㄧㄤˋ":"怏恙樣漾","ㄧㄥ":"嚶嬰應櫻瑛瓔纓罌膺英鶯鷹鸚","ㄧㄥˇ":"影穎郢","ㄧㄥˊ":"塋嬴楹瀛熒營瑩盈縈螢蠅贏迎","ㄧㄥˋ":"映硬","ㄨ":"嗚圬屋巫汙污烏誣鎢","ㄨˇ":"五伍侮午嫵憮捂武舞鵡","ㄨˊ":"吳吾唔梧毋無蕪蜈鼯","ㄨˋ":"兀務勿塢寤悟戊晤物誤霧騖","ㄨㄚ":"媧挖窪蛙","ㄨㄚˇ":"瓦","ㄨㄚˊ":"娃","ㄨㄚˋ":"襪","ㄨㄚ˙":"哇","ㄨㄛ":"倭撾渦窩萵","ㄨㄛˇ":"我","ㄨㄛˋ":"握擭斡沃渥臥齷","ㄨㄞ":"歪","ㄨㄞˇ":"崴","ㄨㄞˋ":"外","ㄨㄟ":"偎威巍煨萎薇逶","ㄨㄟˇ":"偉偽委娓尾洧猥痿緯葦諉鮪","ㄨㄟˊ":"危唯圍圩帷幃微惟桅濰為維違闈韋","ㄨㄟˋ":"位味喂尉慰未渭畏胃蔚衛褽謂餵魏","ㄨㄢ":"剜彎灣蜿豌","ㄨㄢˇ":"婉宛惋挽晚皖碗綰輓","ㄨㄢˊ":"丸完汍玩頑","ㄨㄢˋ":"腕萬","ㄨㄣ":"塭溫瘟","ㄨㄣˇ":"刎吻抆穩紊","ㄨㄣˊ":"文玟紋聞蚊雯","ㄨㄣˋ":"問汶","ㄨㄤ":"汪","ㄨㄤˇ":"往惘枉網罔輞魍","ㄨㄤˊ":"亡王","ㄨㄤˋ":"妄忘旺望","ㄨㄥ":"嗡翁","ㄨㄥˇ":"蓊","ㄨㄥˋ":"甕","ㄩ":"淤瘀紆迂","ㄩˇ":"予圄圉宇嶼庾敔禹羽與語雨齬","ㄩˊ":"于余俞妤娛愉愚於榆歟渝漁瑜盂禺竽腴臾萸虞蝓褕覦諛輿逾隅雩餘魚","ㄩˋ":"喻域堉嫗寓峪御愈慾昱欲毓浴澦煜燠獄玉瘉癒禦籲聿育芋裕諭譽豫遇郁預馭鬱","ㄩㄝ":"曰約","ㄩㄝˋ":"刖岳嶽悅月玥籥粵越躍軏閱","ㄩㄢ":"冤淵鳶鴛","ㄩㄢˇ":"遠","ㄩㄢˊ":"元原員園圓垣援沅湲源爰猿緣袁轅騵","ㄩㄢˋ":"媛怨愿苑院願","ㄩㄣ":"暈氳","ㄩㄣˇ":"允隕","ㄩㄣˊ":"云勻昀筠紜耘芸雲","ㄩㄣˋ":"孕慍熨蘊運醞韻","ㄩㄥ":"佣傭壅庸慵擁臃邕鄘雍","ㄩㄥˇ":"俑勇恿永泳涌湧甬蛹詠踴","ㄩㄥˋ":"用"},"p":{"先還原成沒有注音的版本":"ㄒㄧㄢ ㄏㄨㄢˊ ㄩㄢˊ ㄔㄥˊ ㄇㄟˊ ㄧㄡˇ ㄓㄨˋ ㄧㄣ ㄉㄜ˙ ㄅㄢˇ ㄅㄣˇ","寫一張特別活動的照片":"ㄒㄧㄝˇ ㄧ ㄓㄤ ㄊㄜˋ ㄅㄧㄝˊ ㄏㄨㄛˊ ㄉㄨㄥˋ ㄉㄜ˙ ㄓㄠˋ ㄆㄧㄢ","家長區":"ㄐㄧㄚ ㄓㄤˇ ㄑㄩ","確定要把所有進度清空嗎":"ㄑㄩㄝˋ ㄉㄧㄥˋ ㄧㄠˋ ㄅㄚˇ ㄙㄨㄛˇ ㄧㄡˇ ㄐㄧㄣˋ ㄉㄨˋ ㄑㄧㄥ ㄎㄨㄥˋ ㄇㄚ˙","還原":"ㄏㄨㄢˊ ㄩㄢˊ","已從雲端取得較新的進度":"ㄧˇ ㄘㄨㄥˊ ㄩㄣˊ ㄉㄨㄢ ㄑㄩˇ ㄉㄜˊ ㄐㄧㄠˋ ㄒㄧㄣ ㄉㄜ˙ ㄐㄧㄣˋ ㄉㄨˋ","寫出牠長什麼樣":"ㄒㄧㄝˇ ㄔㄨ ㄊㄚ ㄓㄤˇ ㄕㄣˊ ㄇㄜ˙ ㄧㄤˋ","從備份碼還原":"ㄘㄨㄥˊ ㄅㄟˋ ㄈㄣˋ ㄇㄚˇ ㄏㄨㄢˊ ㄩㄢˊ","數數":"ㄕㄨˇ ㄕㄨˋ","跟著每週單字表和每週一句練":"ㄍㄣ ㄓㄜ˙ ㄇㄟˇ ㄓㄡ ㄉㄢ ㄗˋ ㄅㄧㄠˇ ㄏㄢˋ ㄇㄟˇ ㄓㄡ ㄧ ㄐㄩˋ ㄌㄧㄢˋ","例如跨年假期":"ㄌㄧˋ ㄖㄨˊ ㄎㄨㄚˋ ㄋㄧㄢˊ ㄐㄧㄚˋ ㄑㄧˊ","先放著預習":"ㄒㄧㄢ ㄈㄤˋ ㄓㄜ˙ ㄩˋ ㄒㄧˊ","以台灣課本讀法校正":"ㄧˇ ㄊㄞˊ ㄨㄢ ㄎㄜˋ ㄅㄣˇ ㄉㄨˊ ㄈㄚˇ ㄐㄧㄠˋ ㄓㄥˋ","已還原":"ㄧˇ ㄏㄨㄢˊ ㄩㄢˊ","家長出題區":"ㄐㄧㄚ ㄓㄤˇ ㄔㄨ ㄊㄧˊ ㄑㄩ","可留空":"ㄎㄜˇ ㄌㄧㄡˊ ㄎㄨㄥˋ","網址長得像":"ㄨㄤˇ ㄓˇ ㄓㄤˇ ㄉㄜ˙ ㄒㄧㄤˋ","尖爪子":"ㄐㄧㄢ ㄓㄨㄚˇ ㄗ˙","描述照片裡的人和感覺":"ㄇㄧㄠˊ ㄕㄨˋ ㄓㄠˋ ㄆㄧㄢ ㄌㄧˇ ㄉㄜ˙ ㄖㄣˊ ㄏㄢˋ ㄍㄢˇ ㄐㄩㄝˊ","家長區加的內容會直接出現在下面":"ㄐㄧㄚ ㄓㄤˇ ㄑㄩ ㄐㄧㄚ ㄉㄜ˙ ㄋㄟˋ ㄖㄨㄥˊ ㄏㄨㄟˋ ㄓˊ ㄐㄧㄝ ㄔㄨ ㄒㄧㄢˋ ㄗㄞˋ ㄒㄧㄚˋ ㄇㄧㄢˋ","寫出點心的名字和為什麼喜歡":"ㄒㄧㄝˇ ㄔㄨ ㄉㄧㄢˇ ㄒㄧㄣ ㄉㄜ˙ ㄇㄧㄥˊ ㄗˋ ㄏㄢˋ ㄨㄟˋ ㄕㄣˊ ㄇㄜ˙ ㄒㄧˇ ㄏㄨㄢ","番茄":"ㄈㄢ ㄑㄧㄝˊ","說出我長大想做什麼":"ㄕㄨㄛ ㄔㄨ ㄨㄛˇ ㄓㄤˇ ㄉㄚˋ ㄒㄧㄤˇ ㄗㄨㄛˋ ㄕㄣˊ ㄇㄜ˙","可以教我拼":"ㄎㄜˇ ㄧˇ ㄐㄧㄠ ㄨㄛˇ ㄆㄧㄣ","有禮貌地請求":"ㄧㄡˇ ㄌㄧˇ ㄇㄠˋ ㄉㄜ˙ ㄑㄧㄥˇ ㄑㄧㄡˊ","留空白則只存在這台裝置":"ㄌㄧㄡˊ ㄎㄨㄥˋ ㄅㄞˊ ㄗㄜˊ ㄓˇ ㄘㄨㄣˊ ㄗㄞˋ ㄓㄜˋ ㄊㄞˊ ㄓㄨㄤ ㄓˋ","了不起的工作":"ㄌㄧㄠˇ ㄅㄨˋ ㄑㄧˇ ㄉㄜ˙ ㄍㄨㄥ ㄗㄨㄛˋ","跟著唸":"ㄍㄣ ㄓㄜ˙ ㄋㄧㄢˋ","有禮貌地要東西":"ㄧㄡˇ ㄌㄧˇ ㄇㄠˋ ㄉㄜ˙ ㄧㄠˋ ㄉㄨㄥ ㄒㄧ","可以教我說這個字嗎":"ㄎㄜˇ ㄧˇ ㄐㄧㄠ ㄨㄛˇ ㄕㄨㄛ ㄓㄜˋ ㄍㄜˋ ㄗˋ ㄇㄚ˙","到家長區加內容":"ㄉㄠˋ ㄐㄧㄚ ㄓㄤˇ ㄑㄩ ㄐㄧㄚ ㄋㄟˋ ㄖㄨㄥˊ","把字母清掉重排看看":"ㄅㄚˇ ㄗˋ ㄇㄨˇ ㄑㄧㄥ ㄉㄧㄠˋ ㄔㄨㄥˊ ㄆㄞˊ ㄎㄢˋ ㄎㄢˋ","把學校考卷":"ㄅㄚˇ ㄒㄩㄝˊ ㄒㄧㄠˋ ㄎㄠˇ ㄐㄩㄢˋ","上床睡覺":"ㄕㄤˋ ㄔㄨㄤˊ ㄕㄨㄟˋ ㄐㄧㄠˋ","寫一張你自己的照片":"ㄒㄧㄝˇ ㄧ ㄓㄤ ㄋㄧˇ ㄗˋ ㄐㄧˇ ㄉㄜ˙ ㄓㄠˋ ㄆㄧㄢ","短尾巴":"ㄉㄨㄢˇ ㄨㄟˇ ㄅㄚ˙","進度已清空":"ㄐㄧㄣˋ ㄉㄨˋ ㄧˇ ㄑㄧㄥ ㄎㄨㄥˋ","中文":"ㄓㄨㄥ ㄨㄣˊ","假期":"ㄐㄧㄚˋ ㄑㄧˊ","看中":"ㄎㄢˋ ㄓㄨㄥ","穿著":"ㄔㄨㄢ ㄓㄨㄛˊ","著色":"ㄓㄨㄛˊ ㄙㄜˋ","跟著":"ㄍㄣ ㄓㄜ˙","放著":"ㄈㄤˋ ㄓㄜ˙","長褲":"ㄔㄤˊ ㄎㄨˋ","長鼻子":"ㄔㄤˊ ㄅㄧˊ ㄗ˙","長頸鹿":"ㄔㄤˊ ㄐㄧㄥˇ ㄌㄨˋ","最長":"ㄗㄨㄟˋ ㄔㄤˊ","長得":"ㄓㄤˇ ㄉㄜ˙","長大":"ㄓㄤˇ ㄉㄚˋ","重排":"ㄔㄨㄥˊ ㄆㄞˊ","記得":"ㄐㄧˋ ㄉㄜ˙","看得到":"ㄎㄢˋ ㄉㄜ˙ ㄉㄠˋ","教我":"ㄐㄧㄠ ㄨㄛˇ","清空":"ㄑㄧㄥ ㄎㄨㄥˋ","留空":"ㄌㄧㄡˊ ㄎㄨㄥˋ","空白":"ㄎㄨㄥˋ ㄅㄞˊ","為下":"ㄨㄟˊ ㄒㄧㄚˋ","為本":"ㄨㄟˊ ㄅㄣˇ","有禮貌地":"ㄧㄡˇ ㄌㄧˇ ㄇㄠˋ ㄉㄜ˙","睡覺":"ㄕㄨㄟˋ ㄐㄧㄠˋ"}};
-/* 倒排表（讀音→字群）在載入時展開成 字→讀音 */
-const ZYC = (function(){
-  const m = Object.create(null);
-  for(const r in ZY.i){ const s = ZY.i[r]; for(let k = 0; k < s.length; k++) m[s.charAt(k)] = r; }
-  return m;
+  if (h && h !== 'search' && h !== 'blueprint') {
+    var el = document.getElementById(h);
+    if (el) setTimeout(function(){ el.scrollIntoView(); }, 0);
+  }
 })();
-
-let zyOn = true;
-try{ zyOn = localStorage.getItem("cindy-zhuyin") !== "off"; }catch(e){}
-
-const ZY_SKIP = {SCRIPT:1, STYLE:1, INPUT:1, TEXTAREA:1, SELECT:1, OPTION:1, SVG:1};
-const HAN = /[\u4e00-\u9fff]/;
-const HAN_RUN = /([\u4e00-\u9fff]+)/;
-
-function zyRead(run){
-  if(ZY.p[run]) return ZY.p[run].split(" ");
-  const out = [];
-  let i = 0;
-  while(i < run.length){
-    let hit = null;
-    for(let L = Math.min(8, run.length - i); L >= 2; L--){
-      const seg = run.substr(i, L);
-      if(ZY.p[seg]){ hit = ZY.p[seg].split(" "); break; }
-    }
-    if(hit){ for(const h of hit) out.push(h); i += hit.length; }
-    else { out.push(ZYC[run.charAt(i)] || ""); i++; }
-  }
-  return out;
-}
-/* 把讀音拆成「注音符號」和「聲調符號」，聲調另外排在右側 */
-const ZY_TONES = "ˊˇˋ˙";
-function zySplit(r){
-  if(!r) return ["", ""];
-  const last = r.slice(-1);
-  return ZY_TONES.indexOf(last) >= 0 ? [r.slice(0, -1), last] : [r, ""];
-}
-
-function zyApply(root){
-  if(!zyOn || !root) return;
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode(n){
-      if(!HAN.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
-      let p = n.parentElement;
-      while(p){
-        if(ZY_SKIP[p.tagName] || p.classList.contains("zy") || p.hasAttribute("data-nozy")) return NodeFilter.FILTER_REJECT;
-        if(p === root) break;
-        p = p.parentElement;
-      }
-      return NodeFilter.FILTER_ACCEPT;
-    }
-  });
-  const nodes = [];
-  while(walker.nextNode()) nodes.push(walker.currentNode);
-  nodes.forEach(n => {
-    const frag = document.createDocumentFragment();
-    n.nodeValue.split(HAN_RUN).forEach(part => {
-      if(!part) return;
-      if(!HAN.test(part)){ frag.appendChild(document.createTextNode(part)); return; }
-      const reads = zyRead(part);
-      for(let i = 0; i < part.length; i++){
-        const parts = zySplit(reads[i] || "");
-        const sym = parts[0], tone = parts[1];
-        const box = document.createElement("span"); box.className = "zy";
-        const ch = document.createElement("span"); ch.className = "zy-c"; ch.textContent = part.charAt(i);
-        box.appendChild(ch);
-        if(sym){
-          const wrap = document.createElement("span");
-          wrap.className = "zy-r" + (tone === "˙" ? " light" : "");
-          const s = document.createElement("span"); s.className = "zy-s";
-          for(let k = 0; k < sym.length; k++){
-            const g = document.createElement("i"); g.textContent = sym.charAt(k); s.appendChild(g);
-          }
-          if(tone === "˙"){
-            const t = document.createElement("span"); t.className = "zy-t"; t.textContent = tone;
-            wrap.appendChild(t); wrap.appendChild(s);
-          }else{
-            wrap.appendChild(s);
-            if(tone){ const t = document.createElement("span"); t.className = "zy-t"; t.textContent = tone; wrap.appendChild(t); }
-          }
-          box.appendChild(wrap);
-        }
-        frag.appendChild(box);
-      }
-    });
-    n.parentNode.replaceChild(frag, n);
-  });
-}
-
-/* 畫面內容隨時在變（測驗回饋、閃卡翻面…），用 MutationObserver 自動補上注音 */
-let zyQueued = false;
-function zyWatch(el){
-  if(!el || !window.MutationObserver) return;
-  new MutationObserver(() => {
-    if(!zyOn || zyQueued) return;
-    zyQueued = true;
-    requestAnimationFrame(() => { zyQueued = false; zyApply(el); });
-  }).observe(el, {childList:true, subtree:true, characterData:true});
-}
-
-/* ============================================================
-   路由
-   ============================================================ */
-const app = $("#app");
-function go(view, opts){
-  Object.assign(state, {view}, opts || {});
-  window.scrollTo({top:0});
-  render();
-}
-function render(){
-  document.querySelectorAll("#topnav button[data-go]").forEach(b =>
-    b.setAttribute("aria-current", String(b.dataset.go === state.view)));
-  ({home:renderHome, subject:renderSubject, unit:renderUnit, week:renderWeek,
-    progress:renderProgress, parent:renderParent}[state.view] || renderHome)();
-  zyApply(app);
-}
-function crumb(links, current){
-  return `<nav class="crumb">${links.map(l =>
-    `<button data-crumb="${l[1]}">${esc(l[0])}</button><span>/</span>`).join("")}<span>${esc(current)}</span></nav>`;
-}
-function bindCrumb(){
-  app.querySelectorAll("[data-crumb]").forEach(b => b.onclick = () => {
-    const t = b.dataset.crumb;
-    if(t === "english") go("subject", {subject:"english"});
-    else go(t);
-  });
-}
-function ringSvg(pct, color){
-  const r=30, c=2*Math.PI*r, off=c*(1-pct/100);
-  return `<svg width="76" height="76" viewBox="0 0 76 76" aria-hidden="true">
-    <circle cx="38" cy="38" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="8"></circle>
-    <circle cx="38" cy="38" r="${r}" fill="none" stroke="${color||"var(--gold)"}" stroke-width="8"
-      stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"
-      transform="rotate(-90 38 38)"></circle></svg>`;
-}
-function footer(){
-  return `<p class="footer">英語內容依據${esc(TERM.school)}${esc(TERM.term)}二年級單字表（${esc(TERM.book)}）與每週一句整理。
-  Unit 5–9 為下學期範圍，先放著預習。國語、數學、自然、社會、其他等科目待教材上傳後補上。</p>`;
-}
-function wordCard(w){
-  return `<div class="word">
-    <span class="w-en">${esc(w.en)}${w.mine ? ' <span class="muted">·自訂</span>' : ""}</span>
-    <span class="w-zh">${esc(w.zh)}</span>
-    <button class="speak" data-speak="${esc(w.en)}" aria-label="唸出 ${esc(w.en)}">🔊</button></div>`;
-}
-function bindSpeak(root){
-  (root||app).querySelectorAll("[data-speak]").forEach(b => b.onclick = () => speak(b.dataset.speak));
-}
-
-/* ============================================================
-   首頁
-   ============================================================ */
-function renderHome(){
-  const w = currentWeek(), s = sentenceOfWeek();
-  const wp = weekPct();
-  const cards = SUBJECTS.map(sub => {
-    const mine = state.custom.words.filter(x => x.subject === sub.id).length
-               + state.custom.questions.filter(x => x.subject === sub.id).length;
-    const desc = sub.ready ? sub.desc : (mine ? `媽媽加了 ${mine} 筆自訂內容` : sub.desc);
-    return `<button class="subj" style="--sc:var(${sub.css})" data-subject="${sub.id}">
-      <span class="subj-ico">${esc(sub.ico)}</span>
-      <span class="subj-main">
-        <strong>${esc(sub.name)}${sub.ready ? "" : '<span class="chip-soon">待補教材</span>'}</strong>
-        <span class="subj-desc">${esc(desc)}</span>
-      </span><span class="subj-arrow">→</span></button>`;
-  }).join("");
-
-  app.innerHTML = `
-    <section class="week-hero">
-      <div class="wk-top">
-        <span class="wk-n">第 ${w.n} 週</span>
-        <span class="wk-d">${esc(fmtRange(w))}</span>
-        ${w.note ? `<span class="exam-flag">${esc(w.note)}</span>` : ""}
-      </div>
-      <p class="wk-u">${w.unit ? "課程進度：" + esc(w.unit) : "本週沒有新單字，好好複習！"}</p>
-      ${w.words.length ? `<h2>本週背讀單字（${w.words.length}）</h2>
-        <div class="wordlist compact" style="margin-top:8px">${w.words.map(p => wordCard({en:p[0], zh:p[1]})).join("")}</div>
-        <div class="btn-row" style="margin-top:14px">
-          <button class="btn primary" data-wk="${w.n}">開始練這週</button>
-        </div>` : ""}
-      <div class="sentence-box">
-        <div class="muted" style="font-size:12px; letter-spacing:.1em">第 ${s[0]} 週 · 每週一句</div>
-        <div class="s-en">${esc(s[1])}</div>
-        <div class="s-zh">${esc(s[2])}</div>
-        <div class="btn-row" style="margin-top:10px">
-          <button class="btn small" data-speak="${esc(s[1])}">🔊 聽一次</button>
-        </div>
-      </div>
-    </section>
-
-    <div class="hero" style="margin-top:0">
-      <div class="hero-text"><h2>英語總進度</h2>
-        <p>單字週 ${wordWeeks.filter(x=>pget("wk"+x.n).learned).length} / ${wordWeeks.length} 週背熟 · 每週一句 ${Object.keys(sentDone()).length} / ${SENTENCES.length} 句會念</p></div>
-      <div class="ring">${ringSvg(wp)}<div class="rlabel"><b>${wp}%</b>單字進度</div></div>
-    </div>
-
-    <p class="eyebrow">六個科目</p>
-    <div class="subjects">${cards}</div>
-    ${footer()}`;
-
-  bindSpeak();
-  app.querySelectorAll("[data-subject]").forEach(b => b.onclick = () => go("subject", {subject:b.dataset.subject}));
-  const wb = app.querySelector("[data-wk]");
-  if(wb) wb.onclick = () => go("week", {week:Number(wb.dataset.wk), tab:"list"});
-}
-
-/* ============================================================
-   科目頁
-   ============================================================ */
-function renderSubject(){
-  const s = SUBJECTS.find(x => x.id === state.subject);
-  if(!s) return go("home");
-  if(s.id !== "english") return renderOtherSubject(s);
-
-  const tabs = [["week","每週單字"],["sentence","每週一句"],["unit","課本單元"]];
-  app.innerHTML = `
-    ${crumb([["首頁","home"]], "English")}
-    <div class="page-head">
-      <p class="eyebrow" style="margin-bottom:6px">${esc(TERM.book)} · ${esc(TERM.term)}</p>
-      <h2>English</h2>
-      <p>學校這學期上到 Unit 4，共 21 週。跟著每週單字表和每週一句練，考前再看課本單元的重點速查。</p>
-    </div>
-    <div class="tabs" role="tablist">${tabs.map(t =>
-      `<button role="tab" data-entab="${t[0]}" aria-selected="${state.entab===t[0]}">${t[1]}</button>`).join("")}</div>
-    <div id="panel"></div>
-    ${footer()}`;
-  bindCrumb();
-  app.querySelectorAll("[data-entab]").forEach(b => b.onclick = () => { state.entab = b.dataset.entab; renderSubject(); });
-  const panel = $("#panel");
-  if(state.entab === "week") panelWeeks(panel);
-  else if(state.entab === "sentence") panelSentences(panel);
-  else panelUnits(panel);
-}
-
-function renderOtherSubject(s){
-  const words = state.custom.words.filter(w => w.subject === s.id);
-  const qs = state.custom.questions.filter(q => q.subject === s.id);
-  app.innerHTML = `
-    ${crumb([["首頁","home"]], s.name)}
-    <div class="page-head"><h2>${esc(s.name)}</h2><p>${esc(s.desc)}</p></div>
-    <div class="note"><strong>教材還沒放進來。</strong><br>
-      把課本目錄、單字表或進度表傳給我（拍照或 PDF 都可以），我就會像英語一樣，把每週進度、單字和練習題整理進來。
-      在那之前，家長區加的內容會直接出現在下面。</div>
-    ${words.length ? `<div class="sec"><h3>自訂單字／詞語（${words.length}）</h3>
-      <div class="wordlist">${words.map(w => wordCard({en:w.en, zh:w.zh})).join("")}</div></div>` : ""}
-    ${qs.length ? `<div class="sec"><h3>自訂題目（${qs.length}）</h3><div class="kv">${qs.map(q =>
-      `<div class="kv-row"><div class="kv-k">題目</div><div class="kv-v">${esc(q.q)}
-      <div class="muted" style="margin-top:4px">答案：${esc(q.a)}</div></div></div>`).join("")}</div></div>` : ""}
-    <div class="sec"><button class="btn" id="topar">到家長區加內容</button></div>
-    ${footer()}`;
-  bindCrumb(); bindSpeak();
-  $("#topar").onclick = () => go("parent");
-}
-
-/* ---------- 每週單字表 ---------- */
-function panelWeeks(panel){
-  const now = currentWeek();
-  const rows = WEEKS.map(w => {
-    const p = pget("wk"+w.n);
-    const isNow = w.n === now.n;
-    if(!w.words.length){
-      return `<div class="row exam">
-        <span class="rnum">${w.exam ? "考" : "複"}</span>
-        <span class="rmain"><span class="rt">第 ${w.n} 週 · ${esc(w.note || "複習週")}</span>
-        <span class="rs">${esc(fmtRange(w))}</span></span>
-        ${isNow ? '<span class="rtag" style="background:var(--gold);color:#fff">本週</span>' : ""}</div>`;
-    }
-    return `<button class="row ${p.learned?"done":""} ${isNow?"now":""}" data-wk="${w.n}">
-      <span class="rnum">${w.n}</span>
-      <span class="rmain">
-        <span class="rt">${esc(w.unit)}${w.note ? ` · <span style="color:var(--bad)">${esc(w.note)}</span>` : ""}</span>
-        <span class="rs">${esc(fmtRange(w))} · ${w.words.length} 個字</span>
-        <span class="rw">${esc(w.words.map(x=>x[0]).join(" · "))}</span>
-      </span>
-      <span class="rtag ${p.learned?"ok":""}">${p.learned ? "已背熟" : (p.quiz ? p.quiz+"分" : "未練")}</span>
-    </button>`;
-  }).join("");
-  panel.innerHTML = `<div class="rows">${rows}</div>`;
-  panel.querySelectorAll("[data-wk]").forEach(b =>
-    b.onclick = () => go("week", {week:Number(b.dataset.wk), tab:"list"}));
-}
-
-/* ---------- 每週一句 ---------- */
-function panelSentences(panel){
-  const done = sentDone();
-  const now = currentWeek().n;
-  panel.innerHTML = `
-    <div class="hero" style="margin-top:0">
-      <div class="hero-text"><h2>每週一句</h2><p>上課會用到的 20 句話。點 🔊 跟著唸，會念了就打勾。</p></div>
-      <div class="ring">${ringSvg(sentPct(), "var(--accent)")}<div class="rlabel"><b>${sentPct()}%</b>會念了</div></div>
-    </div>
-    <div class="btn-row" style="margin-bottom:16px">
-      <button class="btn primary" id="sq">句子測驗（中翻英 10 題）</button>
-    </div>
-    <div class="rows">${SENTENCES.map(s => `
-      <div class="sent ${done[s[0]]?"ok":""}">
-        <span class="sn">${s[0]}</span>
-        <span class="sm"><span class="se">${esc(s[1])}</span><span class="sz">${esc(s[2])}</span>
-        ${s[0]===now ? '<span class="rtag" style="background:var(--gold);color:#fff;margin-top:4px;display:inline-block">本週</span>' : ""}</span>
-        <span class="sa">
-          <button class="speak" data-speak="${esc(s[1])}" aria-label="唸出第 ${s[0]} 句">🔊</button>
-          <button class="speak" data-tick="${s[0]}" aria-label="標記會念了">${done[s[0]] ? "✓" : "○"}</button>
-        </span>
-      </div>`).join("")}</div>`;
-  bindSpeak(panel);
-  panel.querySelectorAll("[data-tick]").forEach(b => b.onclick = () => {
-    const n = b.dataset.tick, d = Object.assign({}, sentDone());
-    if(d[n]) delete d[n]; else d[n] = true;
-    pset("sent", {done:d});
-    renderSubject();
-  });
-  $("#sq").onclick = () => {
-    const qs = shuffle(SENTENCES).slice(0,10).map(s => {
-      const others = shuffle(SENTENCES.filter(x => x[0] !== s[0])).slice(0,3).map(x => x[1]);
-      const opts = shuffle([s[1]].concat(others));
-      return {kind:"每週一句", q:`「${esc(s[2])}」的英文是？`, o:opts, a:opts.indexOf(s[1]), why:s[1], say:s[1], enOpts:true};
-    });
-    app.innerHTML = `${crumb([["首頁","home"],["English","english"]], "句子測驗")}
-      <div class="page-head"><h2>每週一句 · 中翻英</h2><p>從 20 句裡隨機抽 10 題。</p></div><div id="panel"></div>`;
-    bindCrumb();
-    runQuiz($("#panel"), qs, "每週一句測驗", ()=>{}, () => go("subject",{subject:"english", entab:"sentence"}));
-  };
-}
-
-/* ---------- 課本單元 ---------- */
-function panelUnits(panel){
-  const row = u => {
-    const sc = unitScore(u.n);
-    return `<button class="row ${sc===4?"done":""}" data-unit="${u.n}">
-      <span class="rnum">${u.n}</span>
-      <span class="rmain">
-        <span class="rt"><span class="en">${esc(u.en)}</span> ${esc(u.zh)}</span>
-        <span class="rs">${esc(u.page)}${u.weeks.length ? " · 第 " + u.weeks[0] + "–" + u.weeks[u.weeks.length-1] + " 週" : ""}</span>
-        <span class="bar"><i style="width:${sc/4*100}%"></i></span>
-      </span>
-      <span class="stars">${"★".repeat(sc)}${"☆".repeat(4-sc)}</span></button>`;
-  };
-  panel.innerHTML = `
-    <div class="btn-row" style="margin-bottom:18px">
-      <button class="btn primary" id="chal">綜合大挑戰（本學期隨機 12 題）</button>
-    </div>
-    <div class="sec" style="margin-top:0"><h3>本學期 · Unit 0–4</h3>
-      <div class="rows">${UNITS.filter(u=>u.term===1).map(row).join("")}</div></div>
-    <div class="sec"><h3>下學期預習 · Unit 5–9</h3>
-      <div class="rows">${UNITS.filter(u=>u.term===2).map(row).join("")}</div></div>`;
-  panel.querySelectorAll("[data-unit]").forEach(b =>
-    b.onclick = () => go("unit", {unit:Number(b.dataset.unit), tab:"ref"}));
-  $("#chal").onclick = startChallenge;
-}
-
-/* ============================================================
-   週次練習頁
-   ============================================================ */
-function renderWeek(){
-  const w = WEEKS.find(x => x.n === state.week);
-  if(!w || !w.words.length) return go("subject", {subject:"english", entab:"week"});
-  const words = w.words.map(p => ({en:p[0], zh:p[1]}));
-  const p = pget("wk"+w.n);
-  const tabs = [["list","單字表"],["cards","閃卡"],["quiz","測驗"],["spell","拼字"]];
-  app.innerHTML = `
-    ${crumb([["首頁","home"],["English","english"]], "第 " + w.n + " 週")}
-    <div class="page-head">
-      <p class="eyebrow" style="margin-bottom:6px">第 ${w.n} 週 · ${esc(fmtRange(w))}</p>
-      <h2>${esc(w.unit)} 背讀單字</h2>
-      <p>${w.words.length} 個字${w.note ? ` · 這週有 ${esc(w.note)}` : ""}</p>
-    </div>
-    <div class="tabs" role="tablist">${tabs.map(t =>
-      `<button role="tab" data-tab="${t[0]}" aria-selected="${state.tab===t[0]}">${t[1]}</button>`).join("")}</div>
-    <div id="panel"></div>
-    ${footer()}`;
-  bindCrumb();
-  app.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { state.tab = b.dataset.tab; renderWeek(); });
-  const panel = $("#panel");
-  if(state.tab === "list"){
-    panel.innerHTML = `<div class="wordlist">${words.map(wordCard).join("")}</div>
-      <div class="btn-row" style="margin-top:18px">
-        <button class="btn small" id="all">🔊 全部唸一遍</button>
-        <button class="btn ${p.learned?"":"primary"}" id="mark">${p.learned ? "✓ 已背熟（點一下取消）" : "我背熟了"}</button>
-      </div>`;
-    bindSpeak(panel);
-    $("#all").onclick = () => speak(words.map(x=>x.en).join(", "));
-    $("#mark").onclick = () => { pset("wk"+w.n, {learned:!p.learned}); renderWeek(); };
-  }
-  if(state.tab === "cards") makeCards(panel, words, () => { toast("這週閃卡看完了！"); });
-  if(state.tab === "quiz"){
-    const qs = buildWordQuiz(words, ALL_SCHOOL_WORDS, [], Math.min(12, words.length*2));
-    runQuiz(panel, qs, `第 ${w.n} 週測驗`, sc => pset("wk"+w.n, {quiz:Math.max(p.quiz||0, sc)}), () => { state.tab="list"; renderWeek(); });
-  }
-  if(state.tab === "spell") makeSpell(panel, words, sc => pset("wk"+w.n, {spell:Math.max(p.spell||0, sc)}), () => { state.tab="list"; renderWeek(); });
-}
-
-/* ============================================================
-   單元頁
-   ============================================================ */
-function renderUnit(){
-  const u = UNITS.find(x => x.n === state.unit);
-  if(!u) return go("subject", {subject:"english", entab:"unit"});
-  const tabs = [["ref","重點速查"],["cards","單字閃卡"],["quiz","選擇題"],["spell","拼字練習"]];
-  app.innerHTML = `
-    ${crumb([["首頁","home"],["English","english"]], "Unit " + u.n)}
-    <div class="page-head">
-      <p class="eyebrow" style="margin-bottom:6px">Unit ${u.n} · ${esc(u.page)}${u.term===2 ? " · 下學期" : ""}</p>
-      <h2><span class="en">${esc(u.en)}</span> ${esc(u.zh)}</h2>
-      <p>${esc(u.area)}</p>
-    </div>
-    <div class="tabs" role="tablist">${tabs.map(t =>
-      `<button role="tab" data-tab="${t[0]}" aria-selected="${state.tab===t[0]}">${t[1]}</button>`).join("")}</div>
-    <div id="panel"></div>
-    ${footer()}`;
-  bindCrumb();
-  app.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { state.tab = b.dataset.tab; renderUnit(); });
-  const panel = $("#panel");
-  const words = unitAllWords(u);
-  const p = pget("u"+u.n);
-  if(state.tab === "ref") renderRef(u, panel);
-  if(state.tab === "cards") makeCards(panel, words, () => { pset("u"+u.n, {cards:true}); toast("單字閃卡完成！"); });
-  if(state.tab === "quiz"){
-    const qs = buildWordQuiz(words, words.concat(ALL_SCHOOL_WORDS), unitQuestions(u), 10);
-    if(qs.length < 4){ panel.innerHTML = `<div class="note">這個單元的題目還不夠。</div>`; return; }
-    runQuiz(panel, qs, `Unit ${u.n} 測驗`, sc => pset("u"+u.n, {quiz:Math.max(p.quiz||0, sc)}), () => { state.tab="ref"; renderUnit(); });
-  }
-  if(state.tab === "spell") makeSpell(panel, words, sc => pset("u"+u.n, {spell:Math.max(p.spell||0, sc)}), () => { state.tab="ref"; renderUnit(); });
-}
-
-function unitQuestions(u){
-  const list = u.quiz.map(q => Object.assign({}, q));
-  state.custom.questions
-    .filter(q => q.subject === "english" && String(q.unit) === String(u.n) && q.opts && q.opts.length >= 2)
-    .forEach(q => list.push({q:esc(q.q), o:[q.a].concat(q.opts), a:0, why:q.note || "媽媽出的題目", mine:true}));
-  return list;
-}
-
-function renderRef(u, panel){
-  const kv = [];
-  if(u.g1) kv.push(["句型 1", esc(u.g1)]);
-  if(u.g2) kv.push(["句型 2", esc(u.g2)]);
-  if(u.reading) kv.push(["閱讀", `<span class="en">${esc(u.reading)}</span>（${esc(u.readingZh)}）<br><span class="muted">策略：${esc(u.strategyR)}</span>`]);
-  if(u.writing) kv.push(["寫作", `${esc(u.writing)}<br><span class="muted">重點：${esc(u.writingFocus)}</span>`]);
-  if(u.value) kv.push(["品格", `<span class="en">${esc(u.value)}</span> ${esc(u.valueZh)}`]);
-  if(u.project) kv.push(["專題", esc(u.project)]);
-  const school = schoolWordsForUnit(u), mine = customWords(u.n);
-  const p = pget("u"+u.n);
-
-  panel.innerHTML = `
-    <div class="sec" style="margin-top:0"><h3>學習目標</h3>
-      <ul class="goal-list">${u.goals.map(g => `<li>${esc(g)}</li>`).join("")}</ul></div>
-    ${school.length ? `<div class="sec"><h3>學校背讀單字（${school.length}）</h3>
-      <span class="tag">第 ${u.weeks[0]}–${u.weeks[u.weeks.length-1]} 週要背</span>
-      <div class="wordlist" style="margin-top:8px">${school.map(wordCard).join("")}</div></div>` : ""}
-    ${u.v1 ? `<div class="sec"><h3>課本單字 · ${esc(u.v1.label)}</h3>
-      ${u.v1.strategy ? `<span class="tag">${esc(u.v1.strategy)}</span>` : ""}
-      <div class="wordlist" style="margin-top:8px">${u.v1.words.map(x => wordCard({en:x[0],zh:x[1]})).join("")}</div></div>` : ""}
-    ${u.v2 ? `<div class="sec"><h3>課本單字 · ${esc(u.v2.label)}</h3>
-      ${u.v2.strategy ? `<span class="tag">${esc(u.v2.strategy)}</span>` : ""}
-      <div class="wordlist" style="margin-top:8px">${u.v2.words.map(x => wordCard({en:x[0],zh:x[1]})).join("")}</div></div>` : ""}
-    ${mine.length ? `<div class="sec"><h3>媽媽加的單字（${mine.length}）</h3>
-      <div class="wordlist">${mine.map(wordCard).join("")}</div></div>` : ""}
-    <div class="sec"><h3>句型與內容</h3>
-      <div class="kv">${kv.map(r => `<div class="kv-row"><div class="kv-k">${r[0]}</div><div class="kv-v">${r[1]}</div></div>`).join("")}</div></div>
-    <div class="sec"><button class="btn ${p.ref?"":"primary"}" id="mk">${p.ref ? "✓ 已讀過（點一下取消）" : "我讀完重點了"}</button></div>`;
-  bindSpeak(panel);
-  $("#mk").onclick = () => { pset("u"+u.n, {ref:!p.ref}); renderUnit(); };
-}
-
-/* ============================================================
-   練習引擎：閃卡 / 測驗 / 拼字
-   ============================================================ */
-function makeCards(panel, words, onComplete){
-  if(!words.length){ panel.innerHTML = `<div class="note">這裡還沒有單字。</div>`; return; }
-  const list = shuffle(words);
-  let i = 0, flipped = false, mode = "en";
-  panel.innerHTML = `<div class="fc-wrap">
-    <div class="btn-row" style="justify-content:center">
-      <button class="btn small" data-mode="en">先看英文</button>
-      <button class="btn small" data-mode="zh">先看中文</button></div>
-    <button class="fc" id="card"></button>
-    <div class="fc-bar">
-      <button class="btn" id="prev" style="flex:1">← 上一張</button>
-      <span class="count" id="cnt"></span>
-      <button class="btn primary" id="next" style="flex:1">下一張 →</button></div>
-    <button class="btn small" id="say">🔊 唸這個字</button></div>`;
-  const card = $("#card");
-  function draw(){
-    const w = list[i], showEn = (mode === "en") !== flipped;
-    card.innerHTML = showEn
-      ? `<div><div class="fc-main">${esc(w.en)}</div><div class="fc-sub"></div><div class="fc-hint">點卡片看中文</div></div>`
-      : `<div><div class="fc-main zh">${esc(w.zh)}</div><div class="fc-sub en">${flipped && mode==="en" ? "" : (flipped ? esc(w.en) : "")}</div><div class="fc-hint">點卡片翻面</div></div>`;
-    $("#cnt").textContent = (i+1) + " / " + list.length;
-  }
-  card.onclick = () => { flipped = !flipped; draw(); speak(list[i].en); };
-  $("#prev").onclick = () => { i = (i-1+list.length)%list.length; flipped = false; draw(); };
-  $("#next").onclick = () => {
-    if(i === list.length-1 && onComplete) onComplete();
-    i = (i+1)%list.length; flipped = false; draw();
-  };
-  panel.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { mode = b.dataset.mode; flipped = false; draw(); });
-  $("#say").onclick = () => speak(list[i].en);
-  draw();
-}
-
-function buildWordQuiz(words, pool, extraQs, count){
-  const items = [];
-  words.forEach(w => {
-    const others = shuffle(pool.filter(x => x.en !== w.en && x.zh !== w.zh)).slice(0,2);
-    if(others.length < 2) return;
-    items.push({kind:"英翻中", q:`<span class="en">${esc(w.en)}</span> 的意思是？`,
-      o:[w.zh].concat(others.map(x=>x.zh)), a:0, why:`${w.en} ＝ ${w.zh}`, say:w.en});
-    items.push({kind:"中翻英", q:`「${esc(w.zh)}」的英文是？`,
-      o:[w.en].concat(others.map(x=>x.en)), a:0, why:`${w.zh} ＝ ${w.en}`, say:w.en, enOpts:true});
-  });
-  (extraQs||[]).forEach(g => items.push({kind:g.mine ? "媽媽出題" : "句型", q:g.q, o:g.o, a:g.a, why:g.why}));
-  return shuffle(items).slice(0, count).map(it => {
-    const correct = it.o[it.a], opts = shuffle(it.o);
-    return Object.assign({}, it, {o:opts, a:opts.indexOf(correct)});
-  });
-}
-
-function startChallenge(){
-  const all = [];
-  UNITS.filter(u => u.term === 1).forEach(u => {
-    const w = unitAllWords(u);
-    if(w.length >= 3) all.push.apply(all, buildWordQuiz(w, ALL_SCHOOL_WORDS, unitQuestions(u), 4));
-  });
-  const qs = shuffle(all).slice(0, 12);
-  app.innerHTML = `${crumb([["首頁","home"],["English","english"]], "綜合大挑戰")}
-    <div class="page-head"><h2>綜合大挑戰</h2><p>從本學期 Unit 0–4 隨機抽 12 題，看看記得多少。</p></div>
-    <div id="panel"></div>`;
-  bindCrumb();
-  runQuiz($("#panel"), qs, "綜合大挑戰", ()=>{}, () => go("subject", {subject:"english", entab:"unit"}));
-}
-
-function runQuiz(panel, qs, label, onDone, onBack){
-  if(!qs.length){ panel.innerHTML = `<div class="note">題目還不夠，先去看單字表吧。</div>`; return; }
-  let i = 0, right = 0, answered = false;
-  panel.innerHTML = `<div class="quiz">
-    <div class="qprog"><span class="bar"><i id="qbar" style="width:0%"></i></span><span id="qnum"></span></div>
-    <div class="qcard" id="qcard"></div></div>`;
-  const bar = $("#qbar"), num = $("#qnum"), card = $("#qcard");
-
-  function draw(){
-    const q = qs[i]; answered = false;
-    bar.style.width = (i / qs.length * 100) + "%";
-    num.textContent = (i+1) + "/" + qs.length;
-    card.innerHTML = `<div class="qkind">${esc(q.kind || "題目")}</div>
-      <p class="qtext">${q.q}</p>
-      <div class="opts">${q.o.map((o,k) =>
-        `<button class="opt ${q.enOpts?"en":""}" data-i="${k}">${esc(o)}</button>`).join("")}</div>
-      <div class="feedback" id="fb"></div>
-      <div class="btn-row" style="margin-top:14px; display:none" id="nr">
-        <button class="btn primary wide" id="nb">${i === qs.length-1 ? "看成績" : "下一題"}</button></div>`;
-    card.querySelectorAll(".opt").forEach(b => b.onclick = () => choose(Number(b.dataset.i)));
-    $("#nb").onclick = () => { i++; if(i < qs.length) draw(); else finish(); };
-  }
-  function choose(idx){
-    if(answered) return; answered = true;
-    const q = qs[i];
-    card.querySelectorAll(".opt").forEach((b,k) => {
-      b.disabled = true;
-      if(k === q.a) b.classList.add("right");
-      else if(k === idx) b.classList.add("wrong");
-    });
-    const ok = idx === q.a; if(ok) right++;
-    const fb = $("#fb");
-    fb.className = "feedback show " + (ok ? "ok" : "no");
-    fb.textContent = (ok ? "答對了！" : "再看一次：") + (q.why || "");
-    if(q.say) speak(q.say);
-    $("#nr").style.display = "flex";
-  }
-  function finish(){
-    const score = Math.round(right / qs.length * 100);
-    bar.style.width = "100%"; num.textContent = qs.length + "/" + qs.length;
-    const msg = score === 100 ? "全部答對，太厲害了！"
-      : score >= 80 ? "很棒！只差一點點就滿分。"
-      : score >= 60 ? "有進步，再練一次會更好。" : "先回去看單字表，再來挑戰一次。";
-    card.innerHTML = `<div class="result"><div class="qkind">${esc(label)}</div>
-      <div class="big">${score}<span style="font-size:22px">分</span></div>
-      <p class="msg">答對 ${right} / ${qs.length} 題。${msg}</p>
-      <div class="btn-row" style="justify-content:center">
-        <button class="btn primary" id="ag">再做一次</button>
-        <button class="btn" id="bk">回上一頁</button></div></div>`;
-    onDone(score);
-    $("#ag").onclick = () => { i = 0; right = 0; draw(); };
-    $("#bk").onclick = onBack;
-  }
-  draw();
-}
-
-function makeSpell(panel, words, onDone, onBack){
-  const items = words.filter(w => /^[a-zA-Z ]{3,14}$/.test(w.en));
-  if(items.length < 3){ panel.innerHTML = `<div class="note">這裡的字不適合拼字練習，換個單元或週次試試。</div>`; return; }
-  const list = shuffle(items).slice(0, Math.min(8, items.length));
-  let i = 0, right = 0;
-  panel.innerHTML = `<div class="quiz">
-    <div class="qprog"><span class="bar"><i id="sbar" style="width:0%"></i></span><span id="snum"></span></div>
-    <div class="qcard" id="scard"></div></div>`;
-  const bar = $("#sbar"), num = $("#snum"), card = $("#scard");
-
-  function draw(){
-    const w = list[i];
-    const target = w.en.toLowerCase();
-    const letters = shuffle(target.replace(/ /g,"").split(""));
-    let built = [];
-    bar.style.width = (i / list.length * 100) + "%";
-    num.textContent = (i+1) + "/" + list.length;
-    card.innerHTML = `<div class="qkind">把字母排成正確的單字</div>
-      <div class="sp-target"><div class="zh">${esc(w.zh)}</div>
-        <button class="btn small" id="hear" style="margin-top:8px">🔊 聽一次</button></div>
-      <div class="sp-slots" id="slots"></div>
-      <div class="sp-pool" id="pool">${letters.map((L,k) => `<button class="tile" data-k="${k}">${esc(L)}</button>`).join("")}</div>
-      <div class="feedback" id="sfb"></div>
-      <div class="btn-row" style="margin-top:14px">
-        <button class="btn small" id="clr">清除</button>
-        <button class="btn small" id="skp">看答案</button></div>`;
-    const slots = $("#slots"), pool = $("#pool"), fb = $("#sfb");
-    $("#hear").onclick = () => speak(w.en);
-    const shape = target.split("");
-    function drawSlots(){
-      let bi = 0;
-      const html = shape.map(ch => {
-        if(ch === " ") return `<span class="slot gap"></span>`;
-        const letter = built[bi];
-        bi++;
-        return `<span class="slot ${letter ? "filled" : ""}">${letter ? esc(letter) : ""}</span>`;
-      });
-      slots.innerHTML = html.join("");
-    }
-    function check(){
-      const need = target.replace(/ /g,"");
-      if(built.length !== need.length) return;
-      const ok = built.join("") === need;
-      fb.className = "feedback show " + (ok ? "ok" : "no");
-      if(ok){ right++; speak(w.en); fb.textContent = `${w.en} — 拼對了！`; setTimeout(next, 900); }
-      else fb.textContent = "再試一次，把字母清掉重排看看。";
-    }
-    function next(){
-      i++;
-      if(i < list.length) return draw();
-      const score = Math.round(right / list.length * 100);
-      bar.style.width = "100%"; onDone(score);
-      card.innerHTML = `<div class="result"><div class="qkind">拼字練習</div>
-        <div class="big">${score}<span style="font-size:22px">分</span></div>
-        <p class="msg">拼對 ${right} / ${list.length} 個單字。</p>
-        <div class="btn-row" style="justify-content:center">
-          <button class="btn primary" id="ag2">再練一次</button>
-          <button class="btn" id="bk2">回上一頁</button></div></div>`;
-      $("#ag2").onclick = () => makeSpell(panel, words, onDone, onBack);
-      $("#bk2").onclick = onBack;
-    }
-    pool.querySelectorAll(".tile").forEach(b => b.onclick = () => {
-      if(b.disabled || built.length >= target.replace(/ /g,"").length) return;
-      b.disabled = true; built.push(b.textContent); drawSlots(); check();
-    });
-    $("#clr").onclick = () => { built = []; pool.querySelectorAll(".tile").forEach(b => b.disabled = false); fb.className = "feedback"; drawSlots(); };
-    $("#skp").onclick = () => { fb.className = "feedback show no"; fb.textContent = `答案是 ${w.en}`; speak(w.en); setTimeout(next, 1500); };
-    drawSlots();
-  }
-  draw();
-}
-
-/* ============================================================
-   進度頁
-   ============================================================ */
-function renderProgress(){
-  const wp = weekPct(), sp = sentPct();
-  const wrows = wordWeeks.map(w => {
-    const p = pget("wk"+w.n);
-    const pill = v => v == null ? `<span class="pill no">未做</span>`
-      : `<span class="pill ${v>=80?"ok":v>=60?"mid":"no"}">${v}</span>`;
-    return `<tr>
-      <td><strong>第 ${w.n} 週</strong><div class="muted">${esc(w.unit)} · ${esc(fmtRange(w))}</div></td>
-      <td>${p.learned ? `<span class="pill ok">背熟</span>` : `<span class="pill no">還沒</span>`}</td>
-      <td>${pill(p.quiz)}</td><td>${pill(p.spell)}</td></tr>`;
-  }).join("");
-  const urows = UNITS.filter(u=>u.term===1).map(u => {
-    const p = pget("u"+u.n), sc = unitScore(u.n);
-    const pill = v => v == null ? `<span class="pill no">未做</span>`
-      : `<span class="pill ${v>=80?"ok":v>=60?"mid":"no"}">${v}</span>`;
-    return `<tr>
-      <td><strong>${u.n}</strong> <span class="en">${esc(u.en)}</span></td>
-      <td>${p.ref ? `<span class="pill ok">已讀</span>` : `<span class="pill no">未讀</span>`}</td>
-      <td>${p.cards ? `<span class="pill ok">看完</span>` : `<span class="pill no">未做</span>`}</td>
-      <td>${pill(p.quiz)}</td><td>${pill(p.spell)}</td>
-      <td class="num"><span class="stars">${"★".repeat(sc)}${"☆".repeat(4-sc)}</span></td></tr>`;
-  }).join("");
-
-  app.innerHTML = `
-    ${crumb([["首頁","home"]], "進度")}
-    <div class="page-head"><h2>複習進度</h2>
-      <p>${state.db ? "進度會存到雲端，換裝置也看得到。" : "進度存在這台裝置上。"}</p></div>
-    <div class="hero" style="margin-top:0">
-      <div class="hero-text"><h2 style="font-size:19px">每週背讀單字</h2>
-        <p>${wordWeeks.filter(w=>pget("wk"+w.n).learned).length} / ${wordWeeks.length} 週已背熟</p></div>
-      <div class="ring">${ringSvg(wp)}<div class="rlabel"><b>${wp}%</b></div></div>
-    </div>
-    <div class="hero">
-      <div class="hero-text"><h2 style="font-size:19px">每週一句</h2>
-        <p>${Object.keys(sentDone()).length} / ${SENTENCES.length} 句會念了</p></div>
-      <div class="ring">${ringSvg(sp,"var(--accent)")}<div class="rlabel"><b>${sp}%</b></div></div>
-    </div>
-    <div class="sec"><h3>每週單字明細</h3><div class="scroll-x"><table class="ptable">
-      <thead><tr><th>週次</th><th>背熟</th><th>測驗</th><th>拼字</th></tr></thead>
-      <tbody>${wrows}</tbody></table></div></div>
-    <div class="sec"><h3>課本單元（本學期）</h3><div class="scroll-x"><table class="ptable">
-      <thead><tr><th>單元</th><th>重點</th><th>閃卡</th><th>測驗</th><th>拼字</th><th style="text-align:right">星星</th></tr></thead>
-      <tbody>${urows}</tbody></table></div></div>
-    <div class="sec"><h3>跨裝置同步</h3>
-      <div class="note" style="margin-bottom:10px">
-        <strong>目前狀態：</strong>${esc(syncLabel())}
-      </div>
-      ${SYNC_URL ? `<div class="btn-row" style="margin-bottom:14px"><button class="btn" id="snow">立即同步</button></div>` : ""}
-      <p class="muted" style="margin:0 0 10px">
-        沒有設定自動同步時，可以用備份碼手動搬到另一台裝置：在這台按「複製備份碼」，到另一台貼進下面的框按「還原」。</p>
-      <div class="form">
-        <div class="field"><label for="bk">備份碼</label>
-          <textarea id="bk" spellcheck="false" placeholder="按「複製備份碼」會出現在這裡；或把另一台複製來的備份碼貼進來"></textarea></div>
-        <div class="btn-row">
-          <button class="btn" id="bexp">複製備份碼</button>
-          <button class="btn" id="bimp">從備份碼還原</button>
-        </div>
-      </div>
-    </div>
-    <div class="sec"><button class="btn" id="rst">清除所有進度</button></div>
-    ${footer()}`;
-  bindCrumb();
-  const ta = $("#bk");
-  $("#bexp").onclick = () => {
-    const code = btoa(unescape(encodeURIComponent(JSON.stringify(snapshot()))));
-    ta.value = code;
-    ta.focus(); ta.select();
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(code).then(()=>toast("備份碼已複製"), ()=>toast("備份碼已產生，請手動複製"));
-    }else toast("備份碼已產生，請手動複製");
-  };
-  $("#bimp").onclick = () => {
-    const raw = ta.value.trim();
-    if(!raw) return toast("請先貼上備份碼");
-    let o = null;
-    try{ o = JSON.parse(decodeURIComponent(escape(atob(raw)))); }
-    catch(e){ try{ o = JSON.parse(raw); }catch(e2){ o = null; } }
-    if(!o || !o.progress) return toast("備份碼看起來不正確");
-    if(!confirm("要用這段備份碼取代這台裝置目前的進度嗎？")) return;
-    applySnapshot(o); state.updatedAt = Date.now(); save();
-    toast("已還原"); renderProgress();
-  };
-  const sn = $("#snow");
-  if(sn) sn.onclick = () => syncNow(true);
-  $("#rst").onclick = () => {
-    if(confirm("確定要把所有進度清空嗎？自訂單字和題目不會被刪除。")){
-      state.progress = {}; save(); toast("進度已清空"); renderProgress();
-    }
-  };
-}
-
-/* ============================================================
-   家長區
-   ============================================================ */
-function renderParent(){
-  const unitOpts = UNITS.map(u => `<option value="${u.n}">Unit ${u.n} · ${esc(u.en)}</option>`).join("");
-  const subjOpts = SUBJECTS.map(s => `<option value="${s.id}"${s.id==="english"?" selected":""}>${esc(s.name)}</option>`).join("");
-  app.innerHTML = `
-    ${crumb([["首頁","home"]], "家長區")}
-    <div class="page-head"><h2>家長出題區</h2>
-      <p>把學校考卷、聯絡簿上的單字和題目加進來，會自動混進 Cindy 的閃卡和測驗裡。${state.db ? "" : "（目前存在這台裝置）"}</p></div>
-
-    <div class="sec" style="margin-top:0"><h3>加單字</h3>
-      <form class="form" id="wf">
-        <div class="two">
-          <div class="field"><label for="ws">科目</label><select id="ws">${subjOpts}</select></div>
-          <div class="field"><label for="wu">單元（English 才需要）</label>
-            <select id="wu"><option value="">不指定</option>${unitOpts}</select></div></div>
-        <div class="two">
-          <div class="field"><label for="we">英文／原文</label><input id="we" class="en" placeholder="例：butterfly" required></div>
-          <div class="field"><label for="wz">中文</label><input id="wz" placeholder="例：蝴蝶" required></div></div>
-        <button class="btn primary" type="submit">加進去</button></form></div>
-
-    <div class="sec"><h3>加題目</h3>
-      <form class="form" id="qf">
-        <div class="two">
-          <div class="field"><label for="qs">科目</label><select id="qs">${subjOpts}</select></div>
-          <div class="field"><label for="qu">單元（English 才需要）</label>
-            <select id="qu"><option value="">不指定</option>${unitOpts}</select></div></div>
-        <div class="field"><label for="qq">題目</label><textarea id="qq" placeholder="例：The cat is ___ the bed." required></textarea></div>
-        <div class="field"><label for="qa">正確答案</label><input id="qa" placeholder="例：under" required></div>
-        <div class="field"><label for="qw">錯誤選項（用逗號分開，兩個以上才會變成選擇題）</label>
-          <input id="qw" placeholder="例：above, between"></div>
-        <div class="field"><label for="qn">說明（答錯時給的提示，可留空）</label><input id="qn" placeholder="例：在下面用 under"></div>
-        <button class="btn primary" type="submit">加進去</button></form></div>
-
-    <div class="sec"><h3>已加的單字（${state.custom.words.length}）</h3>
-      ${state.custom.words.length ? `<div class="kv">${state.custom.words.map(w => `
-        <div class="item"><div class="imain">
-          <div><span class="en" style="font-weight:700">${esc(w.en)}</span> — ${esc(w.zh)}</div>
-          <div class="is">${esc(subjName(w.subject))}${w.unit ? " · Unit " + esc(w.unit) : ""}</div></div>
-        <button class="del" data-dw="${w.id}">刪除</button></div>`).join("")}</div>`
-        : `<div class="note">還沒有自訂單字。</div>`}</div>
-
-    <div class="sec"><h3>已加的題目（${state.custom.questions.length}）</h3>
-      ${state.custom.questions.length ? `<div class="kv">${state.custom.questions.map(q => `
-        <div class="item"><div class="imain"><div>${esc(q.q)}</div>
-          <div class="is">答案：${esc(q.a)}${q.opts && q.opts.length>=2 ? " · 選擇題" : " · 只在清單顯示"} · ${esc(subjName(q.subject))}${q.unit ? " · Unit " + esc(q.unit) : ""}</div></div>
-        <button class="del" data-dq="${q.id}">刪除</button></div>`).join("")}</div>`
-        : `<div class="note">還沒有自訂題目。</div>`}</div>
-    ${footer()}`;
-  bindCrumb();
-  $("#wf").onsubmit = e => {
-    e.preventDefault();
-    const en = $("#we").value.trim(), zh = $("#wz").value.trim();
-    if(!en || !zh) return toast("英文和中文都要填");
-    state.custom.words.push({id:uid(), subject:$("#ws").value, unit:$("#wu").value, en, zh});
-    save(); toast("單字加好了"); renderParent();
-  };
-  $("#qf").onsubmit = e => {
-    e.preventDefault();
-    const q = $("#qq").value.trim(), a = $("#qa").value.trim();
-    if(!q || !a) return toast("題目和答案都要填");
-    const opts = $("#qw").value.split(/[,，]/).map(s=>s.trim()).filter(Boolean);
-    state.custom.questions.push({id:uid(), subject:$("#qs").value, unit:$("#qu").value, q, a, opts, note:$("#qn").value.trim()});
-    save(); toast(opts.length >= 2 ? "選擇題加好了，會出現在測驗裡" : "題目加好了（選項不足兩個，不會進測驗）"); renderParent();
-  };
-  app.querySelectorAll("[data-dw]").forEach(b => b.onclick = () => {
-    state.custom.words = state.custom.words.filter(w => w.id !== b.dataset.dw); save(); renderParent(); });
-  app.querySelectorAll("[data-dq]").forEach(b => b.onclick = () => {
-    state.custom.questions = state.custom.questions.filter(q => q.id !== b.dataset.dq); save(); renderParent(); });
-}
-function subjName(id){ const s = SUBJECTS.find(x => x.id === id); return s ? s.name : id; }
-function syncLabel(){
-  if(state.db) return "已連上 Claude 雲端，換裝置也看得到。";
-  if(!SYNC_URL) return "只存在這台裝置。要跨裝置自動同步，請在 HTML 最上面的 SYNC_URL 填入同步網址。";
-  if(state.sync === "ok") return "自動同步中（你設定的同步網址）。";
-  if(state.sync === "error") return "同步網址連不上，資料暫時只存在這台裝置。";
-  return "正在連線…";
-}
-
-/* ============================================================ */
-const topbarEl = document.querySelector(".topbar");
-const topbarHTML = topbarEl.innerHTML;
-
-function bindTopbar(){
-  document.querySelectorAll("#topnav button[data-go]").forEach(b => b.onclick = () => go(b.dataset.go));
-  const t = document.querySelector("#zytoggle");
-  t.setAttribute("aria-pressed", String(zyOn));
-  t.onclick = () => {
-    zyOn = !zyOn;
-    document.body.classList.toggle("zy-on", zyOn);
-    try{ localStorage.setItem("cindy-zhuyin", zyOn ? "on" : "off"); }catch(e){}
-    topbarEl.innerHTML = topbarHTML;   /* 先還原成沒有注音的版本 */
-    bindTopbar();
-    if(zyOn) zyApply(topbarEl);
-    render();
-    toast(zyOn ? "注音已開啟" : "注音已關閉");
-  };
-}
-
-loadLocal();
-bindTopbar();
-document.body.classList.toggle("zy-on", zyOn);
-render();
-zyApply(topbarEl);
-zyApply(document.querySelector("#status"));
-zyWatch(app);
-zyWatch(document.querySelector("#status"));
-initDb();
-if(SYNC_URL) syncNow(false);
 </script>
-
 </body>
 </html>
