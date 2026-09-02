@@ -364,12 +364,12 @@ li b{color:var(--ink)}
 
   <div class="tp-rule"></div>
 
-  <h1 class="tp-title">Tirzepatide 預防效益之真實世界證據評估</h1>
-  <p class="tp-sub">與隨機分派試驗之一致性、偏差校正及目標試驗模擬</p>
+  <h1 class="tp-title">真實世界證據與隨機分派試驗一致性之評估與偏差校正</h1>
+  <p class="tp-sub">以 Tirzepatide 之預防效益為例</p>
 
-  <p class="tp-en">Real-World Evidence for the Preventive Effects of Tirzepatide:<br>
-  Discordance with Randomized Trials, Bias-Adjusted Synthesis,<br>
-  and a Benchmarked Target Trial Emulation</p>
+  <p class="tp-en">Assessing and Correcting the Discordance Between<br>
+  Real-World Evidence and Randomized Trials:<br>
+  The Case of Tirzepatide and Its Preventive Effects</p>
 
   <div class="tp-rule"></div>
 
@@ -671,9 +671,9 @@ li b{color:var(--ink)}
       <div class="paper">
         <span class="tag">Paper 2　處方</span>
         <h3>校正之後還剩多少？</h3>
-        <p>把論文一得到的偏差參數，代入階層式偏差校正合成模型，重新估計失智、肥胖相關癌症、CKD 進展等無隨機試驗終點。</p>
+        <p>把論文一得到的偏差參數，代入階層式偏差校正合成模型，重新估計<b>失智與認知障礙</b>——完全沒有隨機試驗、而現有估計又最可疑的終點。</p>
         <p>核心產出不是新的 HR，而是「需要多強的未測量干擾才會推翻結論」——E-value 與翻轉點分析。</p>
-        <p class="out">產出：帶可信度標籤的預防效益估計。<b>不需資料庫申請。</b></p>
+        <p class="out">主終點失智，次要延伸至肥胖相關癌症。<b>不需資料庫申請。</b></p>
       </div>
       <div class="paper">
         <span class="tag">Paper 3　示範</span>
@@ -681,6 +681,36 @@ li b{color:var(--ink)}
         <p>在單一資料源上，同時執行「嚴格對齊目標試驗」與「文獻中常見的寬鬆設計」，比較兩者與 SURPASS-CVOT 的距離。</p>
         <p>再把校正後的設計外推到試驗未涵蓋族群：無 ASCVD 者、非糖尿病肥胖者、東亞族群。</p>
         <p class="out">產出：設計修正的實證效果與台灣本土估計。<b>需資料源，可並行洽談。</b></p>
+      </div>
+    </div>
+
+    <div>
+      <h3>終點策略：三篇刻意採用不同的收斂程度</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">這是最常被誤解的一點。三篇的分析單位不同，因此終點的處理方式也必須不同——論文一的終點要多，論文二、三的終點要少。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:14%">論文</th><th style="width:14%">分析單位</th><th style="width:26%">終點範圍</th><th style="width:46%">理由</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b></td>
+              <td data-l="分析單位">研究</td>
+              <td data-l="終點範圍"><b>全部臨床終點</b><br><span class="q">MACE、心衰竭、腎臟、失智、癌症、死亡</span></td>
+              <td data-l="理由">分析單位是研究不是病人，需要足夠篇數才能跑 meta-regression。而且「設計特徵預測落差」這個主張本來就該跨終點成立——只做一個終點反而證明不了普遍性。<b>終點在此是分層變項，不是研究主題。</b></td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b></td>
+              <td data-l="分析單位">研究</td>
+              <td data-l="終點範圍"><b>失智與認知障礙</b><br><span class="q">次要延伸：肥胖相關癌症</span></td>
+              <td data-l="理由">每個終點都有各自的潛伏期、錯分與競爭風險要處理，同時做四個等於四篇論文的工作量。選失智是因為它完全沒有隨機試驗、現有效果量大且可疑、潛伏期與反向因果問題最尖銳——偏差校正的價值在這裡最明顯。</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b></td>
+              <td data-l="分析單位">病人</td>
+              <td data-l="終點範圍"><b>MACE</b></td>
+              <td data-l="理由">沒有選擇餘地。只有 MACE 有 SURPASS-CVOT 可以 benchmark，而「能否重現隨機試驗」正是這篇的全部意義。</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -897,29 +927,30 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   <div class="sec-head">
     <span class="sec-num">07</span>
     <h2>論文二方法：偏差校正後的證據再合成</h2>
-    <p class="sub">把論文一的診斷變成處方。這篇處理的是沒有隨機試驗可對照的終點。</p>
+    <p class="sub">把論文一的診斷變成處方。主終點收斂到失智與認知障礙——沒有隨機試驗、而現有估計又最可疑的那一個。</p>
   </div>
 
   <div class="stack">
     <div class="note col">
       <span class="lede">核心邏輯</span>
-      論文一告訴我們：在有隨機試驗可對照的終點上，具備某些設計特徵的真實世界研究平均高估了多少。論文二的假設是——<b>同樣的設計特徵，在沒有隨機試驗可對照的終點上，會造成類似方向與量級的偏差</b>。於是我們可以用論文一估出的偏差分布，作為先驗，對失智、癌症、腎臟終點的合成估計做校正。這個假設本身要明講、要做敏感度分析，這是本篇最需要防守的地方。
+      論文一告訴我們：在有隨機試驗可對照的終點上，具備某些設計特徵的真實世界研究平均高估了多少。論文二的假設是——<b>同樣的設計特徵，在沒有隨機試驗可對照的終點上，會造成類似方向與量級的偏差</b>。於是我們可以用論文一估出的偏差分布，作為先驗，對失智與認知障礙的合成估計做校正。這個假設本身要明講、要做敏感度分析，這是本篇最需要防守的地方。
     </div>
 
     <div class="panel">
       <h4>分析步驟</h4>
       <ol>
-        <li>對每個無隨機試驗終點，做標準的隨機效果合成，得到未校正估計</li>
+        <li>對失智與認知障礙做標準的隨機效果合成，得到未校正估計</li>
         <li>依論文一的 meta-regression 係數，為每篇研究計算其預期偏差項與不確定性</li>
         <li>建立階層式偏差校正模型：在合成時同時加入偏差的平移與額外變異</li>
         <li>比較校正前後的點估計、信賴區間寬度與統計顯著性是否改變</li>
-        <li>對每個校正後估計計算 E-value 與翻轉點</li>
+        <li>對校正後估計計算 E-value 與翻轉點</li>
+        <li>行有餘力，以同一套流程延伸至肥胖相關癌症，展示方法的可推廣性</li>
       </ol>
       <h4 style="margin-top:28px">敏感度與防守</h4>
       <ul>
         <li>可轉移性假設：分別以「僅心血管終點推導的偏差」與「全終點推導的偏差」兩組參數執行</li>
         <li>加入專家意見引出的偏差先驗作為第三組比較</li>
-        <li>對失智與癌症額外處理<b>潛伏期</b>：僅納入有報告 lag window 的研究，或依追蹤長度加權</li>
+        <li>額外處理<b>潛伏期</b>：僅納入有報告 lag window 的研究，或依追蹤長度加權。失智潛伏期十年以上，這是本篇最關鍵的敏感度分析</li>
         <li>報告「若要讓校正後結果仍達顯著，所需的最小真實效果」</li>
       </ul>
     </div>
@@ -1224,6 +1255,16 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       <p><b>一、原創性不等於原始資料。</b>Meta-epidemiological study 是一個獨立的研究方法類型，其分析單位是研究、其資料是研究特徵——這是一手蒐集的資料，不是二手引用。Cochrane 方法學回顧系列與 RCT-DUPLICATE 都是這個傳統。</p>
       <p><b>二、我提出了新的測量工具。</b>目標試驗忠實度評分是我建構的，需要經過信度檢驗（兩人評分的加權 kappa）與效度檢驗（能否預測與隨機試驗的落差）。建構並驗證一個測量工具，本身就是方法學的原創貢獻。</p>
       <p><b>三、論文三是完整的原始資料分析。</b>而且它的設計是被前兩篇決定的——這比隨便挑一個題目做模擬更有理據。</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>心血管、心衰竭、腎臟、失智、癌症都做，主題會不會太發散？</summary>
+    <div class="ans">
+      <p>這一題要答得乾脆：<b>我的主題只有一個，而且不是藥物，是方法。</b></p>
+      <p>「我的研究問題從頭到尾是同一句：<b>真實世界證據什麼時候可信</b>。終點對我而言是素材，不是主題——就像方法學研究者需要多種疾病來檢驗一個統計方法一樣。」</p>
+      <p><b>接著說明三篇的收斂程度是刻意不同的：</b>論文一的分析單位是研究不是病人，需要足夠篇數才能跑 meta-regression，而且「設計特徵預測落差」這個主張本來就應該跨終點成立——只做一個終點反而證明不了普遍性，所以終點在這裡是分層變項。論文二與論文三的分析單位回到病人層次，每多一個終點就是一整套獨立的潛伏期、錯分與競爭風險處理，因此各自只收斂到一個主終點：論文二做失智，論文三做 MACE。</p>
+      <p>最後補一句把選擇說清楚：「論文三沒有選擇餘地，只有 MACE 有 SURPASS-CVOT 可以 benchmark。論文二選失智，是因為它完全沒有隨機試驗、現有效果量大又可疑、潛伏期與反向因果的問題最尖銳——偏差校正的價值在那裡最明顯。」</p>
     </div>
   </details>
 
