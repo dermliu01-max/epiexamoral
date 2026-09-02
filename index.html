@@ -273,7 +273,7 @@ li b{color:var(--ink)}
     <a href="#s7"><b>07</b>論文三方法</a>
     <a href="#s8"><b>08</b>偏差清單</a>
     <a href="#s9"><b>09</b>統計計畫</a>
-    <a href="#s10"><b>10</b>四年時程</a>
+    <a href="#s10"><b>10</b>時程與投稿策略</a>
     <a href="#s11"><b>11</b>口委問答</a>
     <a href="#refs"><b>附</b>參考文獻</a>
   </div>
@@ -886,25 +886,98 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <section id="s10">
   <div class="sec-head">
     <span class="sec-num">10</span>
-    <h2>四年時程</h2>
-    <p class="sub">前兩篇不受資料取得影響，是這個設計最大的時程優勢。</p>
+    <h2>時程與投稿策略</h2>
+    <p class="sub">起點是博三上的資格考，不是從零開始。以下以博五下畢業回推，並標出提前或延後的調整點。</p>
   </div>
 
-  <div class="gantt">
-    <div class="g-in">
-      <div class="g-row"><div class="g-lab">系統性檢索與註冊</div><div class="g-tr"><div class="g-bar" style="left:0%; width:10%; background:var(--muted)"></div></div></div>
-      <div class="g-row"><div class="g-lab"><b>論文一</b>　落差量化與評分</div><div class="g-tr"><div class="g-bar" style="left:4%; width:28%; background:var(--acc)">12 個月</div></div></div>
-      <div class="g-row"><div class="g-lab">論文一投稿</div><div class="g-tr"><div class="g-bar" style="left:30%; width:6%; background:var(--acc)"></div></div></div>
-      <div class="g-row"><div class="g-lab"><b>論文二</b>　偏差校正再合成</div><div class="g-tr"><div class="g-bar" style="left:28%; width:22%; background:var(--acc)">9 個月</div></div></div>
-      <div class="g-row"><div class="g-lab">論文二投稿</div><div class="g-tr"><div class="g-bar" style="left:48%; width:6%; background:var(--acc)"></div></div></div>
-      <div class="g-row"><div class="g-lab" style="color:var(--flag)">IRB 與資料申請（並行）</div><div class="g-tr"><div class="g-bar" style="left:8%; width:26%; background:var(--flag)">及早啟動</div></div></div>
-      <div class="g-row"><div class="g-lab"><b>論文三</b>　目標試驗模擬</div><div class="g-tr"><div class="g-bar" style="left:44%; width:38%; background:var(--acc)">15 個月</div></div></div>
-      <div class="g-row"><div class="g-lab">論文三投稿</div><div class="g-tr"><div class="g-bar" style="left:80%; width:6%; background:var(--acc)"></div></div></div>
-      <div class="g-row"><div class="g-lab">論文撰寫與口試</div><div class="g-tr"><div class="g-bar" style="left:80%; width:20%; background:var(--muted)">6 個月</div></div></div>
-      <div class="g-ax"><div></div><div class="g-tk"><span>Y1</span><span>Y2</span><span>Y3</span><span>Y4</span><span>Y4末</span></div></div>
+  <div class="stack">
+
+    <div class="note flag col">
+      <span class="lede">先講最急的一件事</span>
+      系上有影響因數或分區門檻，代表<b>投稿被拒一次的成本會直接吃掉一個學期</b>。從投稿到接受，順利也要八到十二個月；若被拒後改投，再加半年。這意味著<b>最後一篇必須在畢業前約一年投出</b>——而不是寫完再投。時程要從畢業日往回推，不是從今天往前排。
     </div>
+
+    <div class="gantt">
+      <div class="g-in">
+        <div class="g-row"><div class="g-lab" style="color:var(--flag)"><b>IRB 與資料申請</b>　資格考後立刻送出</div><div class="g-tr"><div class="g-bar" style="left:0%; width:25%; background:var(--flag)">最遲博三下送出</div></div></div>
+        <div class="g-row"><div class="g-lab"><b>論文一</b>　執行（11 個月）</div><div class="g-tr"><div class="g-bar" style="left:0%; width:38%; background:var(--acc)">檢索・評分・分析</div></div></div>
+        <div class="g-row"><div class="g-lab">論文一　投稿與審查</div><div class="g-tr"><div class="g-bar" style="left:38%; width:24%; background:var(--muted)">含改投緩衝</div></div></div>
+        <div class="g-row"><div class="g-lab"><b>論文二</b>　執行（8 個月）</div><div class="g-tr"><div class="g-bar" style="left:36%; width:22%; background:var(--acc)">偏差校正合成</div></div></div>
+        <div class="g-row"><div class="g-lab">論文二　投稿與審查</div><div class="g-tr"><div class="g-bar" style="left:58%; width:26%; background:var(--muted)"></div></div></div>
+        <div class="g-row"><div class="g-lab"><b>論文三</b>　執行（16 個月）</div><div class="g-tr"><div class="g-bar" style="left:25%; width:50%; background:var(--acc)">目標試驗模擬</div></div></div>
+        <div class="g-row"><div class="g-lab">論文三　投稿</div><div class="g-tr"><div class="g-bar" style="left:75%; width:17%; background:var(--muted)"></div></div></div>
+        <div class="g-row"><div class="g-lab">畢業論文撰寫與口試</div><div class="g-tr"><div class="g-bar" style="left:84%; width:16%; background:var(--ink-2)"></div></div></div>
+        <div class="g-ax"><div></div><div class="g-tk"><span>博三下</span><span>博四上</span><span>博四下</span><span>博五上</span><span>博五下</span></div></div>
+      </div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:20%">情境</th><th style="width:80%">調整方式</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="情境"><b>提前到博四下畢業</b></td>
+            <td data-l="調整">把論文三降為選配。以論文一、二為兩篇主要發表，論文三改為規模較小的單一終點分析，或直接列為學位論文的「未來工作」章節。<b>不要三篇都硬做</b>——兩篇投中的機率遠高於三篇都趕。</td>
+          </tr>
+          <tr>
+            <td data-l="情境"><b>維持博五下畢業</b></td>
+            <td data-l="調整">上圖即為主方案。關鍵節點是論文一必須在<b>博四上結束前投出</b>；若延誤超過一個學期，就要啟動上一列的降載方案。</td>
+          </tr>
+          <tr>
+            <td data-l="情境"><b>延後到博六</b></td>
+            <td data-l="調整">論文三可擴充為多資料源驗證（台灣院內資料＋TriNetX＋國際 claims），三個資料源的一致性本身就是一個更強的結果。投稿也可以往更高分的期刊嘗試。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>目標期刊與階梯式投稿</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">因為有影響因數或分區門檻，建議每篇都事先定好「首選、次選、保底」三層，並設定<b>時間停損</b>：首選被拒就立刻改投，不要為了衝分數反覆申訴或大改重投。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:14%">論文</th><th style="width:29%">首選</th><th style="width:29%">次選</th><th style="width:28%">保底</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="論文"><b>論文一</b><br><span class="q">方法學比較</span></td>
+              <td data-l="首選">Journal of Clinical Epidemiology<br><span class="q">方法學題目的天然歸宿</span></td>
+              <td data-l="次選">Diabetes, Obesity and Metabolism<br><span class="q">藥物導向、審查較快</span></td>
+              <td data-l="保底">Clinical Epidemiology／<br>Pharmacoepidemiol Drug Saf</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文二</b><br><span class="q">偏差校正合成</span></td>
+              <td data-l="首選">European Journal of Epidemiology<br><span class="q">偏差分析是該刊強項</span></td>
+              <td data-l="次選">American Journal of Epidemiology<br>／Epidemiology</td>
+              <td data-l="保底">BMC Medicine／<br>Journal of Clinical Epidemiology</td>
+            </tr>
+            <tr>
+              <td data-l="論文"><b>論文三</b><br><span class="q">目標試驗模擬</span></td>
+              <td data-l="首選">Diabetes Care<br><span class="q">分數最高，但競爭激烈</span></td>
+              <td data-l="次選">JAMA Network Open<br>／Diabetes, Obesity and Metabolism</td>
+              <td data-l="保底">Cardiovascular Diabetology／<br>Diabetes Research and Clinical Practice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:14.5px;color:var(--muted);margin-top:18px;max-width:660px">以上為領域定位建議，<b>影響因數與分區每年變動，請以最新一期 JCR 查證</b>，並先向系上確認門檻的認定方式是採投稿當年或接受當年的分區。這一點問清楚可以省下很多麻煩。</p>
+    </div>
+
+    <div class="panel">
+      <h3>這學期（博三上）剩下的時間該做的四件事</h3>
+      <ol>
+        <li><b>把資料申請與 IRB 的流程問清楚並開始備件。</b>論文三需要病人層次資料，依《人體研究法》須經倫理審查；即使是去識別化的次級資料，實務上多走免除審查或簡易審查，但仍要送件、仍要等。健保資料庫申請通常要求檢附核准函或免審證明。<b>加上排隊，半年是常態。</b>（論文一、二不需要 IRB，只需在 PROSPERO 註冊。）</li>
+        <li><b>跑一次系統性檢索並數出篇數</b>，決定論文一是否需擴大到 incretin 類藥物。這件事一週內可以完成，卻決定整篇論文的形狀。</li>
+        <li><b>做目標醫院的處方量可行性查詢</b>：近三年 tirzepatide 使用人數、追蹤中位數、事件數。帶著真實數字進口試。</li>
+        <li><b>向系上確認畢業門檻的細節</b>：需要幾篇、是否限第一作者、分區以投稿年或接受年計。這直接決定要不要做到三篇。</li>
+      </ol>
+    </div>
+
+    <div class="note col">
+      <span class="lede">若論文三的資料最終拿不到</span>
+      論文二可拆為兩篇，分別處理心腎終點與神經及腫瘤終點，仍構成完整的三篇式學位論文。這是設計 C 從一開始就內建的保險，也是它在博三上這個時間點比純資料庫路線更合適的原因。
+    </div>
+
   </div>
-  <p style="font-size:14.5px;color:var(--muted);margin-top:22px;max-width:660px">紅色列是最需要提早啟動的：資料申請與 IRB 動輒半年以上，必須在論文一還在做的時候就開始跑。若論文三的資料最終取得失敗，論文二可拆為兩篇（分別處理心腎終點與神經與腫瘤終點），仍構成完整論文。</p>
 </section>
 
 <!-- ============ 11 ============ -->
