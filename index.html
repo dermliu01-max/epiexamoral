@@ -164,7 +164,7 @@ thead th:last-child{padding-right:0}
 .f-lab{font-size:13.5px; line-height:1.55; color:var(--muted)}
 .f-lab b{display:block; font-weight:700; color:var(--ink); font-size:14.5px; margin-bottom:1px}
 .f-tr{position:relative; height:20px}
-.f-tr::before{content:""; position:absolute; left:56.93%; top:-13px; bottom:-13px; width:1px; background:var(--rule-2)}
+.f-tr::before{content:""; position:absolute; left:63.46%; top:-13px; bottom:-13px; width:1px; background:var(--rule-2)}
 .f-ci{position:absolute; top:50%; height:1.5px; transform:translateY(-50%)}
 .f-ci::before,.f-ci::after{content:""; position:absolute; top:-3.5px; width:1.5px; height:8.5px; background:inherit}
 .f-ci::before{left:0} .f-ci::after{right:0}
@@ -286,7 +286,8 @@ li b{color:var(--ink)}
   font-family:var(--sans); font-size:14.5px; font-weight:600;
   color:var(--muted); padding:14px 0; white-space:nowrap;
 }
-.tabs{display:flex; gap:4px; margin-left:auto}
+.tabs{display:flex; gap:4px; margin-left:auto; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
 .tab{
   appearance:none; background:none; border:none; cursor:pointer;
   font-family:inherit; font-size:15px; color:var(--muted);
@@ -295,14 +296,37 @@ li b{color:var(--ink)}
 .tab:hover{color:var(--ink)}
 .tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--acc); font-weight:700}
 .tab:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
-@media (max-width:620px){
-  .topbar-in{gap:0}
-  .brand{padding-bottom:0; width:100%}
-  .tabs{margin-left:0; width:100%}
-  .tab{margin-left:0; margin-right:26px; padding-top:8px}
+@media (max-width:860px){
+  .topbar-in{gap:0; padding:0 16px}
+  .brand{padding:12px 0 0; width:100%; font-size:13px}
+  .tabs{margin-left:0; width:100%; margin:0 -16px; padding:0 16px}
+  .tab{margin-left:0; margin-right:22px; padding:10px 0 9px; font-size:14.5px; flex:0 0 auto}
+  .tab:last-child{margin-right:0}
 }
-#panel-search{max-width:880px; margin:0 auto}
-#panel-search .mast{padding-top:44px}
+#panel-appendix .mast{padding-top:44px}
+#panel-appendix .code,#panel-appendix .panel{max-width:860px}
+
+/* ===== pager ===== */
+.pager{
+  display:flex; justify-content:space-between; gap:16px; align-items:stretch;
+  margin-top:72px; padding-top:26px; border-top:1px solid var(--rule);
+}
+.pager a{
+  flex:1 1 0; text-decoration:none; padding:16px 18px; border:1px solid var(--rule);
+  border-radius:5px; background:var(--surface); display:flex; flex-direction:column; gap:4px;
+  min-width:0;
+}
+.pager a:hover{border-color:var(--acc)}
+.pager a:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+.pager a.next{text-align:right; align-items:flex-end}
+.pager .dir{font-size:12.5px; color:var(--muted); letter-spacing:.08em}
+.pager .ttl{font-size:16px; font-weight:700; color:var(--ink)}
+.pager .spacer{flex:1 1 0}
+@media (max-width:560px){
+  .pager{flex-direction:column}
+  .pager a.next{text-align:left; align-items:flex-start}
+  .pager .spacer{display:none}
+}
 
 /* ===== counts ===== */
 .counts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0; border-top:1px solid var(--rule-2)}
@@ -345,17 +369,19 @@ li b{color:var(--ink)}
   <div class="topbar-in">
     <span class="brand">博士學位論文研究計畫書</span>
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" data-tab="blueprint" aria-selected="true" aria-controls="panel-blueprint">研究計畫書</button>
-      <button class="tab" role="tab" data-tab="search" aria-selected="false" aria-controls="panel-search">附件一　檢索策略</button>
+      <button class="tab" role="tab" data-tab="intro" aria-selected="true" aria-controls="panel-intro">概論</button>
+      <button class="tab" role="tab" data-tab="design" aria-selected="false" aria-controls="panel-design">研究架構</button>
+      <button class="tab" role="tab" data-tab="methods" aria-selected="false" aria-controls="panel-methods">三篇方法</button>
+      <button class="tab" role="tab" data-tab="bias" aria-selected="false" aria-controls="panel-bias">偏差與統計</button>
+      <button class="tab" role="tab" data-tab="plan" aria-selected="false" aria-controls="panel-plan">時程與口試</button>
+      <button class="tab" role="tab" data-tab="appendix" aria-selected="false" aria-controls="panel-appendix">附錄</button>
     </div>
   </div>
 </div>
 
 <div class="page">
 
-<div id="panel-blueprint" role="tabpanel">
-
-
+<div id="panel-intro" role="tabpanel">
 <header class="titlepage">
   <p class="tp-inst">國立臺灣大學　公共衛生學院<br>流行病學與預防醫學研究所</p>
   <p class="tp-inst-en">Institute of Epidemiology and Preventive Medicine<br>College of Public Health, National Taiwan University</p>
@@ -396,11 +422,11 @@ li b{color:var(--ink)}
     <a href="#s10"><b>10</b>統計計畫</a>
     <a href="#s11"><b>11</b>時程與投稿策略</a>
     <a href="#s12"><b>12</b>口委問答</a>
-    <a href="#refs"><b>附</b>參考文獻</a>
+    <a href="#q1"><b>附一</b>檢索策略</a>
+    <a href="#refs"><b>附二</b>參考文獻</a>
   </div>
 </details>
 
-<!-- ============ 01 ============ -->
 <section id="s1">
   <div class="sec-head">
     <span class="sec-num">01</span>
@@ -436,6 +462,7 @@ li b{color:var(--ink)}
 </section>
 
 <!-- ============ 02 ============ -->
+
 <section id="s2">
   <div class="sec-head">
     <span class="sec-num">02</span>
@@ -452,8 +479,8 @@ li b{color:var(--ink)}
         <div class="f-row">
           <div class="f-lab"><b>隨機試驗統合分析</b>大腸直腸癌</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:51.8%; width:25.6%; background:var(--acc)"></div>
-            <div class="f-pt" style="left:64.5%; background:var(--acc)"></div>
+            <div class="f-ci" style="left:59.1%; width:21.8%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:69.9%; background:var(--acc)"></div>
           </div>
           <div class="f-val">1.13 (0.92–1.39)</div>
         </div>
@@ -461,26 +488,17 @@ li b{color:var(--ink)}
         <div class="f-row">
           <div class="f-lab"><b>隨機試驗統合分析</b>胰臟癌</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:40.7%; width:38.5%; background:var(--acc)"></div>
-            <div class="f-pt" style="left:60.0%; background:var(--acc)"></div>
+            <div class="f-ci" style="left:49.7%; width:32.6%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:66.0%; background:var(--acc)"></div>
           </div>
           <div class="f-val">1.05 (0.77–1.43)</div>
         </div>
 
         <div class="f-row">
-          <div class="f-lab"><b>觀察性</b>對照＝未治療者，追蹤 5 年</div>
+          <div class="f-lab"><b>觀察性</b>對照＝DPP-4 抑制劑（同類主動藥物）</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:49.0%; width:5.4%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:51.8%; background:var(--amber)"></div>
-          </div>
-          <div class="f-val">0.92 (0.88–0.96)</div>
-        </div>
-
-        <div class="f-row">
-          <div class="f-lab"><b>觀察性</b>對照＝DPP-4 抑制劑（主動藥物）</div>
-          <div class="f-tr">
-            <div class="f-ci" style="left:44.6%; width:9.2%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:49.0%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:53.0%; width:7.8%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:56.7%; background:var(--amber)"></div>
           </div>
           <div class="f-val">0.88 (0.82–0.95)</div>
         </div>
@@ -488,8 +506,8 @@ li b{color:var(--ink)}
         <div class="f-row">
           <div class="f-lab"><b>觀察性</b>對照＝其他降糖藥</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:45.4%; width:5.7%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:48.3%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:53.6%; width:4.9%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:56.1%; background:var(--amber)"></div>
           </div>
           <div class="f-val">0.87 (0.83–0.91)</div>
         </div>
@@ -497,8 +515,8 @@ li b{color:var(--ink)}
         <div class="f-row">
           <div class="f-lab"><b>觀察性</b>對照＝未使用者，傾向分數配對</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:39.9%; width:11.2%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:45.4%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:49.0%; width:9.5%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:53.6%; background:var(--amber)"></div>
           </div>
           <div class="f-val">0.83 (0.76–0.91)</div>
         </div>
@@ -506,31 +524,52 @@ li b{color:var(--ink)}
         <div class="f-row">
           <div class="f-lab"><b>觀察性</b>對照＝飲食／運動諮詢，追蹤 2 年</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:17.5%; width:14.6%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:24.2%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:30.0%; width:12.4%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:35.7%; background:var(--amber)"></div>
           </div>
           <div class="f-val">0.59 (0.53–0.67)</div>
         </div>
 
+        <div class="f-row">
+          <div class="f-lab"><b>觀察性</b>對照＝insulin，十種癌別的點估計範圍</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:8.1%; width:40.9%; background:var(--amber); opacity:.45"></div>
+            <div class="f-pt" style="left:23.7%; background:var(--amber)"></div>
+          </div>
+          <div class="f-val">0.35–0.76</div>
+        </div>
+
+        <div class="f-row" style="border-top:1px solid var(--rule-2); margin-top:6px; padding-top:16px">
+          <div class="f-lab"><b>肺癌</b>非肥胖相關癌症，對照＝DPP-4 抑制劑</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:40.8%; width:18.8%; background:var(--flag)"></div>
+            <div class="f-pt" style="left:50.2%; background:var(--flag)"></div>
+          </div>
+          <div class="f-val">0.78 (0.65–0.93)</div>
+        </div>
+
         <div class="f-ax">
-          <span style="left:13.9%">0.5</span>
-          <span style="left:34.8%">0.7</span>
-          <span style="left:56.9%">1.0</span>
-          <span style="left:82.1%">1.5</span>
+          <span style="left:1%">0.3</span>
+          <span style="left:26.9%">0.5</span>
+          <span style="left:44.6%">0.7</span>
+          <span style="left:63.5%">1.0</span>
+          <span style="left:84.8%">1.5</span>
           <span style="left:98%">2.0</span>
         </div>
       </div>
       <p class="f-key">
         <span><i style="background:var(--acc)"></i>隨機試驗</span>
         <span><i style="background:var(--amber)"></i>觀察性研究</span>
+        <span><i style="background:var(--flag)"></i>陰性對照結局</span>
         <span class="flagtxt">數值取自公開文獻整理，正式書面資料務必回原文核對。</span>
       </p>
     </div>
 
     <div class="note col">
       <span class="lede">這張圖要講的一句話</span>
-      隨機試驗端一致落在無效線附近、甚至偏向危害；觀察性研究端一律落在保護側，而且<b>對照組愈鬆散、追蹤愈短，保護愈強</b>——從主動藥物對照的 0.87、未使用者的 0.83，一路到生活型態諮詢對照的 0.59。<br><br>
-      關鍵判讀是：<b>0.59 與 0.92 的差距，多半不是效果的異質性，而是它們根本在估計不同的東西。</b>這個洞察決定了本論文的整個納入條件設計。
+      隨機試驗端一致落在無效線附近、甚至偏向危害；觀察性研究端一律落在保護側，而且<b>對照組愈鬆散，保護愈強</b>——同類主動藥物 0.88、其他降糖藥 0.87、未使用者 0.83、生活型態諮詢 0.59，一路到以 insulin 為對照時的 0.35 至 0.76。同一類藥、同一族結局，點估計橫跨三倍以上。<br><br>
+      關鍵判讀是：<b>這個範圍多半不是效果的異質性，而是這些研究根本在估計不同的東西。</b>以 insulin 為對照尤其極端——insulin 使用者病程更長、共病更多，那個 0.41 主要在測量兩組病人的差異，不是藥物的效果。<br><br>
+      <b>最下面那一列是全圖最重要的一行。</b>肺癌<u>不在</u> IARC 的十三種肥胖相關癌症之內，BMI 與肺癌甚至是反向關聯，卻依然出現 HR 0.78 的顯著保護——而且該研究的肥胖組與非肥胖組效果幾乎相同（0.72 對 0.75），也未校正吸菸。<b>體重中介的機轉解釋在這裡直接失效。</b>
     </div>
 
     <div>
@@ -569,6 +608,18 @@ li b{color:var(--ink)}
               <td data-l="設計">對照＝DPP-4 抑制劑</td>
               <td data-l="結果"><span class="n">甲狀腺癌 HR 0.93 (0.66–1.31)</span></td>
               <td data-l="意義">同一癌別，換成主動對照就回到無效。<b>這一對就是估計量對齊的最佳實例。</b></td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>JAMA Netw Open 2024</b><br><span class="q">165 萬名 T2D，13 種肥胖相關癌症</span></td>
+              <td data-l="設計">對照＝insulin 與 metformin</td>
+              <td data-l="結果"><span class="n">膽囊 0.35　腦膜瘤 0.37</span><br><span class="n">胰臟 0.41　肝 0.47　大腸直腸 0.54</span><br>甲狀腺與停經後乳癌<b>無關聯</b></td>
+              <td data-l="意義">梯度的另一個極端。<b>以 insulin 為對照的估計主要在測量兩組病人的差異</b>——insulin 使用者病程更長、共病更多。這一列是估計量錯置最戲劇化的實例。</td>
+            </tr>
+            <tr style="background:var(--acc-soft)">
+              <td data-l="研究"><b>肺癌</b><br><span class="q">J Gen Intern Med 2024　TriNetX</span></td>
+              <td data-l="設計">對照＝DPP-4 抑制劑<br>配對後各 34,827 人</td>
+              <td data-l="結果"><span class="n">HR 0.777 (0.650–0.928)</span><br>肥胖組 0.721／非肥胖組 0.747<br><b>未校正吸菸</b></td>
+              <td data-l="意義"><b>本論文最重要的陰性對照。</b>肺癌不是肥胖相關癌症、BMI 與它甚至反向關聯，卻仍顯著「保護」，且肥胖與非肥胖組效果相同——體重中介的機轉解釋在此失效。</td>
             </tr>
             <tr>
               <td data-l="研究"><b>Annals of Oncology 2026</b><br><span class="q">肥胖非糖尿病成人</span></td>
@@ -627,6 +678,7 @@ li b{color:var(--ink)}
 </section>
 
 <!-- ============ 03 ============ -->
+
 <section id="s3">
   <div class="sec-head">
     <span class="sec-num">03</span>
@@ -685,6 +737,9 @@ li b{color:var(--ink)}
 </section>
 
 <!-- ============ 04 ============ -->
+</div>
+
+<div id="panel-design" role="tabpanel" hidden>
 <section id="s4">
   <div class="sec-head">
     <span class="sec-num">04</span>
@@ -761,6 +816,7 @@ li b{color:var(--ink)}
 
 
 <!-- ============ 05 名詞界定與研究治理 ============ -->
+
 <section id="s5">
   <div class="sec-head">
     <span class="sec-num">05</span>
@@ -868,6 +924,9 @@ li b{color:var(--ink)}
 </section>
 
 <!-- ============ 05 ============ -->
+</div>
+
+<div id="panel-methods" role="tabpanel" hidden>
 <section id="s6">
   <div class="sec-head">
     <span class="sec-num">06</span>
@@ -979,6 +1038,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 07 ============ -->
+
 <section id="s7">
   <div class="sec-head">
     <span class="sec-num">07</span>
@@ -1031,18 +1091,54 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       <h4>取而代之的三種內部檢驗</h4>
       <ul>
         <li><b>真正的陰性對照結局</b>　與健康行為、就醫程度、社經地位相關，但與 incretin 藥理無合理路徑者：交通事故傷害、白內障手術、疝氣修補、常規影像檢查利用率。</li>
-        <li><b>非肥胖相關癌別的特異性檢驗</b>　黑色素瘤、腦部原發腫瘤等。若「保護」在這些癌別上同樣出現，體重調節的機制解釋就被削弱。<b>這一項保留了原構想的精神，但不依賴站不住的假設。</b></li>
+        <li><b>非肥胖相關癌別的特異性檢驗</b>　<b>以肺癌為主</b>，黑色素瘤、腦部原發腫瘤、攝護腺癌為輔。若「保護」在這些癌別上同樣出現，體重中介的機制解釋就被削弱。<b>這一項保留了原構想的精神，但不依賴站不住的假設——而且既有資料已經顯示它會成立。</b></li>
         <li><b>陰性對照暴露</b>　以同期起始的 SGLT2 抑制劑或 DPP-4 抑制劑跑同一套分析。</li>
       </ul>
     </div>
 
+    <div>
+      <h3>癌別必須逐一分析，而且要分三組</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">合併所有癌別是既有文獻最大的問題。效果量橫跨 0.35 到 1.30、方向不一致、篩檢制度不同、潛伏期不同、受吸菸影響的程度也不同。本篇把癌別分成三組，每一組回答不同的問題。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:20%">分組</th><th style="width:32%">癌別</th><th style="width:48%">在本論文中的角色</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="分組"><b>A. 主要結局</b><br><span class="q">肥胖相關、非吸菸相關</span></td>
+              <td data-l="癌別">子宮內膜、卵巢、停經後乳癌、多發性骨髓瘤、腦膜瘤、膽囊</td>
+              <td data-l="角色">最乾淨的一組。體重中介的機轉最合理，且不受吸菸殘餘干擾污染。<b>若真有預防效果，應該在這裡最明顯。</b></td>
+            </tr>
+            <tr>
+              <td data-l="分組"><b>B. 受吸菸污染</b><br><span class="q">肥胖相關但同時吸菸相關</span></td>
+              <td data-l="癌別">胰臟、腎、肝、食道腺癌、胃賁門、大腸直腸</td>
+              <td data-l="角色">這些癌別同時被肥胖與吸菸驅動。吸菸者較瘦、較不會被開立減重藥物，因此吸菸的殘餘干擾會製造假的保護效果。<b>需以 C 組校準後才可解讀。</b></td>
+            </tr>
+            <tr style="background:var(--acc-soft)">
+              <td data-l="分組"><b>C. 陰性對照</b><br><span class="q">非肥胖相關</span></td>
+              <td data-l="癌別"><b>肺癌</b>（主要）；黑色素瘤、腦部原發腫瘤、攝護腺癌（次要）</td>
+              <td data-l="角色"><b>本篇的核心工具。</b>肺癌不在 IARC 名單內、BMI 與它反向關聯、且無合理的 incretin 藥理路徑，但它與肥胖相關癌別共享同一組干擾結構（社經地位、就醫程度、吸菸）。<b>觀察到的肺癌 HR 偏離 1 的幅度，就是殘餘干擾的直接測量值。</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note col">
+      <span class="lede">肺癌為什麼是最好的陰性對照</span>
+      三個條件同時滿足，而且<b>資料已經發表</b>：<br><br>
+      <b>一、暴露不可能致病。</b>肺癌不在 IARC 的十三種肥胖相關癌症之內；BMI 與肺癌甚至呈<u>反向</u>關聯，主要由吸菸驅動（吸菸者較瘦）。沒有任何合理的機轉讓 incretin 類藥物預防肺癌。這正是甲狀腺與胰臟癌不具備的條件。<br><br>
+      <b>二、共享干擾結構。</b>肺癌與肥胖相關癌別同樣受社經地位、就醫可近性、健康行為與吸菸影響——這是陰性對照能發揮作用的前提。<br><br>
+      <b>三、既有資料已經顯示問題。</b>TriNetX 以 DPP-4 抑制劑為主動對照、配對後各 34,827 人，得到肺癌 <b>HR 0.777（0.650–0.928）</b>，顯著保護。更關鍵的是<b>肥胖組與非肥胖組效果幾乎相同（0.721 對 0.747）</b>——若機轉真的是體重中介，效果不該在非肥胖者身上一樣強。而該研究未校正吸菸。<br><br>
+      所以肺癌不只是陰性對照，它是<b>殘餘干擾確實存在且量級可觀的直接證據</b>；並且可以用它校準吸菸與社經干擾的幅度，再轉移到 B 組那些同樣受吸菸影響的癌別。
+    </div>
+
     <div class="panel">
-      <h4>癌別策略</h4>
+      <h4>其他癌別層次的處理</h4>
       <ul>
-        <li><b>主要分析</b>　依 IARC 認定的肥胖相關癌症逐一分析：大腸、直腸、停經後乳癌、子宮內膜、腎、肝、胰、食道腺癌、卵巢、胃賁門、膽囊、甲狀腺、多發性骨髓瘤</li>
-        <li><b>合併規則</b>　僅在方向一致且異質性可接受時合併；否則分癌別呈現。既有研究把整體降低 7% 與大腸癌 16%、直腸癌 28% 混報，掩蓋了癌別差異</li>
+        <li><b>合併規則</b>　僅在同組內、方向一致、異質性可接受時合併。跨組不得合併</li>
+        <li><b>篩檢干擾</b>　大腸直腸癌與乳癌受篩檢利用率影響極大，須列為研究層次共變項或敏感度分析；胰臟、腎、膽囊無篩檢制度，偵測偏差機制不同</li>
         <li><b>競爭風險</b>　此族群心血管與代謝死亡率高，須以 cause-specific 與 Fine–Gray 並報</li>
-        <li><b>篩檢干擾</b>　大腸直腸癌與乳癌受篩檢利用率影響極大，須列為研究層次共變項或敏感度分析</li>
+        <li><b>甲狀腺癌另立</b>　它是過度診斷最典型的癌症，又是黑框警語標的，兩股偏差方向相反。單獨呈現並說明，不納入任何一組</li>
       </ul>
       <h4 style="margin-top:28px">族群必須分層</h4>
       <p style="color:var(--ink-2);font-size:16px">糖尿病理賠族群與肥胖自費族群的偏差方向相反，合併會互相抵銷。<b>兩組必須分別合成、分別校正、分別報告 E-value。</b>這也讓台灣的自費情境成為一個有意義的次族群，而不只是限制。</p>
@@ -1062,6 +1158,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 08 ============ -->
+
 <section id="s8">
   <div class="sec-head">
     <span class="sec-num">08</span>
@@ -1141,6 +1238,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 08 ============ -->
+</div>
+
+<div id="panel-bias" role="tabpanel" hidden>
 <section id="s9">
   <div class="sec-head">
     <span class="sec-num">09</span>
@@ -1192,6 +1292,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 09 ============ -->
+
 <section id="s10">
   <div class="sec-head">
     <span class="sec-num">10</span>
@@ -1245,6 +1346,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 10 ============ -->
+</div>
+
+<div id="panel-plan" role="tabpanel" hidden>
 <section id="s11">
   <div class="sec-head">
     <span class="sec-num">11</span>
@@ -1343,6 +1447,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ 11 ============ -->
+
 <section id="s12">
   <div class="sec-head">
     <span class="sec-num">12</span>
@@ -1492,109 +1597,15 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- ============ refs ============ -->
-<section id="refs">
-  <div class="sec-head">
-    <span class="sec-num">附</span>
-    <h2>參考文獻與連結</h2>
-    <p class="sub">依主題分組，點擊開啟原文。</p>
-  </div>
-
-  <div class="stack-s">
-    <div class="panel">
-      <p class="cap">隨機試驗與統合分析</p>
-      <ul class="refs">
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41406444/">Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes（SURPASS-CVOT）<span>NEJM 2025</span></a></li>
-        <li><a href="https://www.tctmd.com/news/surpass-cvot-published-large-trial-confirms-cvd-efficacy-tirzepatide">SURPASS-CVOT Published: Large Trial Confirms CVD Efficacy of Tirzepatide<span>TCTMD</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41903177/">Cardiorenal Outcomes With Tirzepatide Compared With Dulaglutide: Post Hoc Analysis of SURPASS-CVOT<span>2026</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/39555826/">Tirzepatide for HFpEF and Obesity（SUMMIT）<span>NEJM 2024</span></a></li>
-        <li><a href="https://www.nature.com/articles/s41591-022-01707-4">Tirzepatide cardiovascular event risk assessment: a pre-specified meta-analysis<span>Nat Med 2022</span></a></li>
-        <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/oby.24332">Rationale and design of the SURMOUNT-MMO trial<span>Obesity 2025</span></a></li>
-      </ul>
-    </div>
-
-    <div class="panel">
-      <p class="cap">真實世界研究與既有合成</p>
-      <ul class="refs">
-        <li><a href="https://www.nature.com/articles/s41591-025-04102-x">Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice<span>Nat Med 2025</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41491349/">Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world（STEER）<span>Diabetes Obes Metab 2026</span></a></li>
-        <li><a href="https://www.endocrinepractice.org/article/S1530-891X(25)01292-3/abstract">Cardiovascular Outcomes in T2D Treated With Tirzepatide: Systematic Review and Meta-Analysis of Real-World Studies<span>Endocr Pract 2025　競品</span></a></li>
-        <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/1753-0407.70248">Real-World vs. Randomized Trial Evidence for Incretin-Based Therapies: A Narrative Review<span>J Diabetes 2026　競品</span></a></li>
-        <li><a href="https://www.sciencedirect.com/science/article/pii/S0168822726000021">Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia<span>Diabetes Res Clin Pract 2026</span></a></li>
-        <li><a href="https://www.nature.com/articles/s41467-025-59616-2">Effectiveness of tirzepatide in HFpEF using target trial emulation<span>Nat Commun 2025</span></a></li>
-        <li><a href="https://www.annalsofoncology.org/article/S0923-7534(26)00157-2/fulltext">GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults<span>Ann Oncol 2026</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41359966/">Risk for Cancer With GLP-1 Receptor Agonists and Dual Agonists: A Systematic Review and Meta-analysis<span>2025　論文二的主要既有合成</span></a></li>
-        <li><a href="https://academic.oup.com/jnci/article/117/10/2053/8195732">GLP-1RA 與肥胖相關癌症，對照＝其他降糖藥：HR 0.87 (0.83–0.91)<span>JNCI 2025</span></a></li>
-        <li><a href="https://jamanetwork.com/journals/jamaoncology/fullarticle/2837870">GLP-1RA 與 14 種癌症，OneFlorida+ 目標試驗模擬，對照＝未使用者：整體 0.83；甲狀腺 0.77；胰臟 0.84；腎臟 1.38<span>JAMA Oncology 2025</span></a></li>
-        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11004669/">GLP-1RA 與甲狀腺癌：斯堪地那維亞世代，對照＝DPP-4i，HR 0.93 (0.66–1.31)<span>BMJ 2024　估計量對齊的最佳實例</span></a></li>
-        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12587238/">減重介入與肥胖相關癌症，TriNetX，對照＝DPP-4i：HR 0.88 (0.82–0.95)<span>Diabetes Obes Metab 2025</span></a></li>
-        <li><a href="https://www.sciencedirect.com/science/article/pii/S1043661824003463">GLP-1RA 與腸胃道癌症之隨機試驗統合分析：胰臟 RR 1.05；大腸直腸 1.13<span>2024　論文一的癌症側分母</span></a></li>
-        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12457091/">GLP-1RA 的胰臟炎與胰臟癌：62 試驗統合分析，胰臟炎 RR 1.44 (1.09–1.89)<span>胰臟癌不能當陰性對照的依據</span></a></li>
-        <li><a href="https://doi.org/10.3390/cancers17091451">GLP-1 受體促效劑與癌症預防：觀察性研究的方法學陷阱（七項偏差判準）<span>Cancers 2025　忠實度評分的依據</span></a></li>
-        <li><a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.2_suppl.712">GLP-1 receptor agonists and pancreatic cancer risk: a meta-analysis of real-world and trial evidence<span>JCO 2026　安全性訊號側</span></a></li>
-        <li><a href="https://www.jci.org/articles/view/194743">GLP-1 receptor agonists and cancer: current clinical evidence and translational opportunities<span>JCI　機轉背景</span></a></li>
-      </ul>
-    </div>
-
-    <div class="panel">
-      <p class="cap">方法學　證據合成與比較</p>
-      <ul class="refs">
-        <li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.MR000034.pub3/full">Toews I, et al. Healthcare outcomes assessed with observational study designs compared with randomized trials<span>Cochrane MR000034.pub3, 2024　合併 RoR 1.08 (1.01–1.15)：兩類證據「差異極小或根本沒有差異」</span></a></li>
-        <li><a href="https://link.springer.com/article/10.1186/s12916-022-02369-2">Evaluating agreement between bodies of evidence from RCTs and cohort studies<span>BMC Med 2022</span></a></li>
-        <li><a href="https://www.sciencedirect.com/science/article/pii/S0895435624003974">Impact of data duplication on estimates generated by meta-analyses<span>J Clin Epidemiol 2024</span></a></li>
-        <li><a href="https://link.springer.com/article/10.1186/s12889-022-14213-6">Double-counting of populations in evidence synthesis<span>BMC Public Health 2022</span></a></li>
-        <li><a href="https://www.riskofbias.info/welcome/robins-i-v2">ROBINS-I V2 tool<span>riskofbias.info</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/23173135/">Suissa S, Azoulay L. Metformin and the risk of cancer: time-related biases in observational studies<span>Diabetes Care 2012　論文二的最強先例</span></a></li>
-        <li><a href="https://diabetesjournals.org/care/article/46/5/904/148773/Metformin-and-Cancer-Solutions-to-a-Real-World">Metformin and Cancer: Solutions to a Real-World Evidence Failure<span>Diabetes Care 2023</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/22223710/">盛行使用者偏差：statin 統合分析的教訓。新使用者 0.77／混合 0.70／盛行 0.54，隨機試驗 0.84<span>設計嚴謹度分數的實證依據</span></a></li>
-        <li><a href="https://cran.r-project.org/web/packages/EValue/vignettes/unmeasured-confounding.html">VanderWeele &amp; Ding. E-value：未測量混淆的敏感度分析<span>方法說明與 R 套件</span></a></li>
-        <li><a href="https://link.springer.com/article/10.1007/s11606-010-1477-8">SOLVD 安慰劑遵從度與死亡率：兩試驗皆 HR 0.52<span>健康遵從者效應的實測基準</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/21422960/">WHI 安慰劑臂遵從度：癌症死亡 HR 0.60；全因死亡 0.64<span>Medical Care 2011</span></a></li>
-      </ul>
-    </div>
-
-    <div class="panel">
-      <p class="cap">方法學　目標試驗模擬</p>
-      <ul class="refs">
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/33327727/">Emulating RCTs With Nonrandomized RWE Studies: First Results From RCT-DUPLICATE<span>Circulation 2021</span></a></li>
-        <li><a href="https://pubmed.ncbi.nlm.nih.gov/37097356/">Emulation of RCTs With Nonrandomized Database Analyses: Results of 32 Clinical Trials<span>JAMA 2023</span></a></li>
-        <li><a href="https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag267/8691342">A practical guide to target trial emulation in cardiovascular research<span>Eur J Prev Cardiol 2026</span></a></li>
-        <li><a href="https://www.nature.com/articles/s41746-026-02563-z">An operational target trial emulation framework using EHR data<span>npj Digit Med 2026</span></a></li>
-        <li><a href="https://www.jclinepi.com/article/S0895-4356(26)00080-6/fulltext">Practical elements to consider when emulating a target trial<span>J Clin Epidemiol 2026</span></a></li>
-        <li><a href="https://encepp.europa.eu/encepp-toolkit/methodological-guide/chapter-4-study-design_en">ENCePP Methodological Guide, Chapter 4: Study design<span>ENCePP</span></a></li>
-      </ul>
-    </div>
-
-    <div class="panel">
-      <p class="cap">台灣脈絡</p>
-      <ul class="refs">
-        <li><a href="https://www.fda.gov.tw/TC/newsContent.aspx?cid=4&id=t623895">食藥署：我國減重及降血脂藥品供應說明<span>衛福部食藥署</span></a></li>
-        <li><a href="https://www.ntuh.gov.tw/obesity/Fpage.action?muid=2261&fid=2128">臺大醫院減重暨代謝手術中心：常見減重藥物<span>NTUH</span></a></li>
-        <li><a href="https://hanwenliu.blogspot.com/2020/05/GLP-1RA-SGLT-2i-regulation.html">GLP-1 RA 及 SGLT-2 抑制劑健保給付規定整理<span>需查證最新版</span></a></li>
-      </ul>
-      <p style="font-size:14px;color:var(--muted);margin-top:16px">台灣給付與適應症資訊變動頻繁，正式書面資料請以健保署公告與仿單為準。</p>
-    </div>
-  </div>
-</section>
-
-<div class="end">
-  <p><b>版本</b>　本稿為博士班三年級上學期資格考、論文題目初稿口試用版本，中華民國一一五年九月。</p>
-  <p><b>本次修訂</b>　依方法學審查結果修正三處核心設定：(一) 刪除「真實世界證據系統性高估」的主效應主張，改為以估計量對齊與設計嚴謹度為條件的調節效應假說；(二) 標的範圍自 tirzepatide 擴大為 incretin 類藥物，tirzepatide 列為事前指定次族群；(三) 刪除以甲狀腺與胰臟癌作為內部一致性檢驗的設計，改用真正的陰性對照結局、非肥胖相關癌別特異性檢驗與陰性對照暴露。</p>
-  <p><b>使用說明</b>　本頁為文獻檢索與研究方向的整理草稿，供資格考口試準備使用。所有數值、樣本數與統計量均來自公開摘要與新聞報導的整理，須回原文核對後方可寫入正式書面資料。</p>
-  <p><b>下一步</b>　① 跑一次系統性檢索並數出可納入篇數，決定論文一是否需擴大到 incretin 類；② 查證台灣猛健樂給付現況與目標醫院處方量，決定論文三資料源；③ 兩者確認後即可將 05 至 07 節擴寫為正式計畫書方法章。</p>
 </div>
 
-</div>
-
-<div id="panel-search" role="tabpanel" hidden>
-
-
+<div id="panel-appendix" role="tabpanel" hidden>
 <header class="mast">
   <p class="kicker">附件一　·　論文一 Meta-epidemiological study　·　檢索策略與可行性評估</p>
-  <h1>附件一　論文一檢索策略</h1>
+  <h1>附錄　檢索策略與參考文獻</h1>
   <p class="dek">這份文件有兩個用途：一是讓你在口試時能具體回答「你收得到幾篇」，二是等正式開跑時直接照著執行。<b>現階段做的是可行性檢索，不是系統性回顧本身</b>——目的是抓量級、決定題目形狀，不需要兩人獨立篩選，也還不用註冊。</p>
 </header>
 
-<!-- 01 -->
 <section id="q1">
   <div class="sec-head">
     <span class="sec-num">01</span>
@@ -1624,6 +1635,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- 02 -->
+
 <section id="q2">
   <div class="sec-head">
     <span class="sec-num">02</span>
@@ -1662,6 +1674,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 <!-- 03 -->
+
 <section id="q3">
   <div class="sec-head">
     <span class="sec-num">03</span>
@@ -1760,6 +1773,7 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
 </section>
 
 <!-- 04 -->
+
 <section id="q4">
   <div class="sec-head">
     <span class="sec-num">04</span>
@@ -1795,6 +1809,7 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
 </section>
 
 <!-- 05 -->
+
 <section id="q5">
   <div class="sec-head">
     <span class="sec-num">05</span>
@@ -1838,6 +1853,7 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
 </section>
 
 <!-- 06 -->
+
 <section id="q6">
   <div class="sec-head">
     <span class="sec-num">06</span>
@@ -1860,37 +1876,164 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
   <p><b>未執行</b>　Embase、Web of Science、Scopus、Cochrane CENTRAL 需機構訂閱帳號，本次無法連線，檢索式已備妥待你或圖書館執行。</p>
 </div>
 
+<section id="refs">
+  <div class="sec-head">
+    <span class="sec-num">附</span>
+    <h2>參考文獻與連結</h2>
+    <p class="sub">依主題分組，點擊開啟原文。</p>
+  </div>
+
+  <div class="stack-s">
+    <div class="panel">
+      <p class="cap">隨機試驗與統合分析</p>
+      <ul class="refs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41406444/">Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes（SURPASS-CVOT）<span>NEJM 2025</span></a></li>
+        <li><a href="https://www.tctmd.com/news/surpass-cvot-published-large-trial-confirms-cvd-efficacy-tirzepatide">SURPASS-CVOT Published: Large Trial Confirms CVD Efficacy of Tirzepatide<span>TCTMD</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41903177/">Cardiorenal Outcomes With Tirzepatide Compared With Dulaglutide: Post Hoc Analysis of SURPASS-CVOT<span>2026</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/39555826/">Tirzepatide for HFpEF and Obesity（SUMMIT）<span>NEJM 2024</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41591-022-01707-4">Tirzepatide cardiovascular event risk assessment: a pre-specified meta-analysis<span>Nat Med 2022</span></a></li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/oby.24332">Rationale and design of the SURMOUNT-MMO trial<span>Obesity 2025</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">真實世界研究與既有合成</p>
+      <ul class="refs">
+        <li><a href="https://www.nature.com/articles/s41591-025-04102-x">Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice<span>Nat Med 2025</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41491349/">Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world（STEER）<span>Diabetes Obes Metab 2026</span></a></li>
+        <li><a href="https://www.endocrinepractice.org/article/S1530-891X(25)01292-3/abstract">Cardiovascular Outcomes in T2D Treated With Tirzepatide: Systematic Review and Meta-Analysis of Real-World Studies<span>Endocr Pract 2025　競品</span></a></li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/1753-0407.70248">Real-World vs. Randomized Trial Evidence for Incretin-Based Therapies: A Narrative Review<span>J Diabetes 2026　競品</span></a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0168822726000021">Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia<span>Diabetes Res Clin Pract 2026</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41467-025-59616-2">Effectiveness of tirzepatide in HFpEF using target trial emulation<span>Nat Commun 2025</span></a></li>
+        <li><a href="https://www.annalsofoncology.org/article/S0923-7534(26)00157-2/fulltext">GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults<span>Ann Oncol 2026</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/41359966/">Risk for Cancer With GLP-1 Receptor Agonists and Dual Agonists: A Systematic Review and Meta-analysis<span>2025　論文二的主要既有合成</span></a></li>
+        <li><a href="https://academic.oup.com/jnci/article/117/10/2053/8195732">GLP-1RA 與肥胖相關癌症，對照＝其他降糖藥：HR 0.87 (0.83–0.91)<span>JNCI 2025</span></a></li>
+        <li><a href="https://jamanetwork.com/journals/jamaoncology/fullarticle/2837870">GLP-1RA 與 14 種癌症，OneFlorida+ 目標試驗模擬，對照＝未使用者：整體 0.83；甲狀腺 0.77；胰臟 0.84；腎臟 1.38<span>JAMA Oncology 2025</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1007/s11606-024-09076-z">GLP-1RA 與肺癌，TriNetX，對照＝DPP-4i：HR 0.777 (0.650–0.928)；肥胖組 0.721／非肥胖組 0.747<span>J Gen Intern Med 2024　本論文的核心陰性對照</span></a></li>
+        <li><a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2820833">GLP-1RA 與 13 種肥胖相關癌症，165 萬名 T2D，對照＝insulin／metformin：膽囊 0.35、胰臟 0.41、大腸直腸 0.54<span>JAMA Netw Open 2024　估計量錯置的極端案例</span></a></li>
+        <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMsr1606602">Body Fatness and Cancer — IARC Working Group：十三種肥胖相關癌症的認定<span>NEJM 2016　癌別分組的依據</span></a></li>
+        <li><a href="https://academic.oup.com/jnci/article/110/8/795/4923351">Lung Cancer, Smoking, and Obesity: It’s Complicated<span>JNCI 2018　BMI 與肺癌反向關聯的殘餘干擾</span></a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11004669/">GLP-1RA 與甲狀腺癌：斯堪地那維亞世代，對照＝DPP-4i，HR 0.93 (0.66–1.31)<span>BMJ 2024　估計量對齊的最佳實例</span></a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12587238/">減重介入與肥胖相關癌症，TriNetX，對照＝DPP-4i：HR 0.88 (0.82–0.95)<span>Diabetes Obes Metab 2025</span></a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S1043661824003463">GLP-1RA 與腸胃道癌症之隨機試驗統合分析：胰臟 RR 1.05；大腸直腸 1.13<span>2024　論文一的癌症側分母</span></a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12457091/">GLP-1RA 的胰臟炎與胰臟癌：62 試驗統合分析，胰臟炎 RR 1.44 (1.09–1.89)<span>胰臟癌不能當陰性對照的依據</span></a></li>
+        <li><a href="https://doi.org/10.3390/cancers17091451">GLP-1 受體促效劑與癌症預防：觀察性研究的方法學陷阱（七項偏差判準）<span>Cancers 2025　忠實度評分的依據</span></a></li>
+        <li><a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.2_suppl.712">GLP-1 receptor agonists and pancreatic cancer risk: a meta-analysis of real-world and trial evidence<span>JCO 2026　安全性訊號側</span></a></li>
+        <li><a href="https://www.jci.org/articles/view/194743">GLP-1 receptor agonists and cancer: current clinical evidence and translational opportunities<span>JCI　機轉背景</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">方法學　證據合成與比較</p>
+      <ul class="refs">
+        <li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.MR000034.pub3/full">Toews I, et al. Healthcare outcomes assessed with observational study designs compared with randomized trials<span>Cochrane MR000034.pub3, 2024　合併 RoR 1.08 (1.01–1.15)：兩類證據「差異極小或根本沒有差異」</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1186/s12916-022-02369-2">Evaluating agreement between bodies of evidence from RCTs and cohort studies<span>BMC Med 2022</span></a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0895435624003974">Impact of data duplication on estimates generated by meta-analyses<span>J Clin Epidemiol 2024</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1186/s12889-022-14213-6">Double-counting of populations in evidence synthesis<span>BMC Public Health 2022</span></a></li>
+        <li><a href="https://www.riskofbias.info/welcome/robins-i-v2">ROBINS-I V2 tool<span>riskofbias.info</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/23173135/">Suissa S, Azoulay L. Metformin and the risk of cancer: time-related biases in observational studies<span>Diabetes Care 2012　論文二的最強先例</span></a></li>
+        <li><a href="https://diabetesjournals.org/care/article/46/5/904/148773/Metformin-and-Cancer-Solutions-to-a-Real-World">Metformin and Cancer: Solutions to a Real-World Evidence Failure<span>Diabetes Care 2023</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/22223710/">盛行使用者偏差：statin 統合分析的教訓。新使用者 0.77／混合 0.70／盛行 0.54，隨機試驗 0.84<span>設計嚴謹度分數的實證依據</span></a></li>
+        <li><a href="https://cran.r-project.org/web/packages/EValue/vignettes/unmeasured-confounding.html">VanderWeele &amp; Ding. E-value：未測量混淆的敏感度分析<span>方法說明與 R 套件</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1007/s11606-010-1477-8">SOLVD 安慰劑遵從度與死亡率：兩試驗皆 HR 0.52<span>健康遵從者效應的實測基準</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/21422960/">WHI 安慰劑臂遵從度：癌症死亡 HR 0.60；全因死亡 0.64<span>Medical Care 2011</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">方法學　目標試驗模擬</p>
+      <ul class="refs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/33327727/">Emulating RCTs With Nonrandomized RWE Studies: First Results From RCT-DUPLICATE<span>Circulation 2021</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/37097356/">Emulation of RCTs With Nonrandomized Database Analyses: Results of 32 Clinical Trials<span>JAMA 2023</span></a></li>
+        <li><a href="https://academic.oup.com/eurjpc/advance-article/doi/10.1093/eurjpc/zwag267/8691342">A practical guide to target trial emulation in cardiovascular research<span>Eur J Prev Cardiol 2026</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41746-026-02563-z">An operational target trial emulation framework using EHR data<span>npj Digit Med 2026</span></a></li>
+        <li><a href="https://www.jclinepi.com/article/S0895-4356(26)00080-6/fulltext">Practical elements to consider when emulating a target trial<span>J Clin Epidemiol 2026</span></a></li>
+        <li><a href="https://encepp.europa.eu/encepp-toolkit/methodological-guide/chapter-4-study-design_en">ENCePP Methodological Guide, Chapter 4: Study design<span>ENCePP</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <p class="cap">台灣脈絡</p>
+      <ul class="refs">
+        <li><a href="https://www.fda.gov.tw/TC/newsContent.aspx?cid=4&id=t623895">食藥署：我國減重及降血脂藥品供應說明<span>衛福部食藥署</span></a></li>
+        <li><a href="https://www.ntuh.gov.tw/obesity/Fpage.action?muid=2261&fid=2128">臺大醫院減重暨代謝手術中心：常見減重藥物<span>NTUH</span></a></li>
+        <li><a href="https://hanwenliu.blogspot.com/2020/05/GLP-1RA-SGLT-2i-regulation.html">GLP-1 RA 及 SGLT-2 抑制劑健保給付規定整理<span>需查證最新版</span></a></li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin-top:16px">台灣給付與適應症資訊變動頻繁，正式書面資料請以健保署公告與仿單為準。</p>
+    </div>
+  </div>
+</section>
+
+<div class="end">
+  <p><b>版本</b>　本稿為博士班三年級上學期資格考、論文題目初稿口試用版本，中華民國一一五年九月。</p>
+  <p><b>本次修訂</b>　依方法學審查結果修正三處核心設定：(一) 刪除「真實世界證據系統性高估」的主效應主張，改為以估計量對齊與設計嚴謹度為條件的調節效應假說；(二) 標的範圍自 tirzepatide 擴大為 incretin 類藥物，tirzepatide 列為事前指定次族群；(三) 刪除以甲狀腺與胰臟癌作為內部一致性檢驗的設計，改用真正的陰性對照結局、非肥胖相關癌別特異性檢驗與陰性對照暴露。</p>
+  <p><b>使用說明</b>　本頁為文獻檢索與研究方向的整理草稿，供資格考口試準備使用。所有數值、樣本數與統計量均來自公開摘要與新聞報導的整理，須回原文核對後方可寫入正式書面資料。</p>
+  <p><b>下一步</b>　① 跑一次系統性檢索並數出可納入篇數，決定論文一是否需擴大到 incretin 類；② 查證台灣猛健樂給付現況與目標醫院處方量，決定論文三資料源；③ 兩者確認後即可將 05 至 07 節擴寫為正式計畫書方法章。</p>
+</div>
 </div>
 
 </div>
 
 <script>
 (function(){
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var panels = {
-    blueprint: document.getElementById('panel-blueprint'),
-    search: document.getElementById('panel-search')
-  };
   function show(name, scroll){
+    if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
     tabs.forEach(function(t){
-      t.setAttribute('aria-selected', String(t.dataset.tab === name));
+      var on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', String(on));
+      document.getElementById('panel-'+t.dataset.tab).hidden = !on;
     });
-    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== name); });
     try { history.replaceState(null, '', '#' + name); } catch(e){}
     if (scroll) window.scrollTo(0, 0);
+    return name;
   }
   tabs.forEach(function(t){
     t.addEventListener('click', function(){ show(t.dataset.tab, true); });
   });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if(!MAP[id]) return;
+    e.preventDefault();
+    show(MAP[id], false);
+    var el = document.getElementById(id);
+    if(el) el.scrollIntoView();
+    try { history.replaceState(null, '', '#' + id); } catch(err){}
+  });
+  // 每個分頁底部加上「上一頁 / 下一頁」
+  tabs.forEach(function(t, n){
+    var panel = document.getElementById('panel-' + t.dataset.tab);
+    var pager = document.createElement('div');
+    pager.className = 'pager';
+    var prev = tabs[n-1], next = tabs[n+1];
+    if (prev) {
+      var a = document.createElement('a');
+      a.href = '#' + prev.dataset.tab;
+      a.innerHTML = '<span class="dir">上一頁</span><span class="ttl">' + prev.textContent + '</span>';
+      a.addEventListener('click', function(e){ e.preventDefault(); show(prev.dataset.tab, true); });
+      pager.appendChild(a);
+    } else { var sp = document.createElement('div'); sp.className='spacer'; pager.appendChild(sp); }
+    if (next) {
+      var b = document.createElement('a');
+      b.className = 'next';
+      b.href = '#' + next.dataset.tab;
+      b.innerHTML = '<span class="dir">下一頁</span><span class="ttl">' + next.textContent + '</span>';
+      b.addEventListener('click', function(e){ e.preventDefault(); show(next.dataset.tab, true); });
+      pager.appendChild(b);
+    } else { var sp2 = document.createElement('div'); sp2.className='spacer'; pager.appendChild(sp2); }
+    panel.appendChild(pager);
+  });
+
   var h = (location.hash || '').slice(1);
-  if (h === 'search' || /^q\d/.test(h)) {
-    show('search', false);
-  } else {
-    show('blueprint', false);
-  }
-  if (h && h !== 'search' && h !== 'blueprint') {
+  if (MAP[h]) {
+    show(MAP[h], false);
     var el = document.getElementById(h);
     if (el) setTimeout(function(){ el.scrollIntoView(); }, 0);
+  } else {
+    show(h || tabs[0].dataset.tab, false);
   }
 })();
 </script>
