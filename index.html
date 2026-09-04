@@ -364,12 +364,12 @@ li b{color:var(--ink)}
 
   <div class="tp-rule"></div>
 
-  <h1 class="tp-title">真實世界證據與隨機分派試驗一致性之評估與偏差校正</h1>
-  <p class="tp-sub">以 Tirzepatide 之預防效益為例</p>
+  <h1 class="tp-title">真實世界證據與隨機分派試驗分歧之來源、量化與校正</h1>
+  <p class="tp-sub">以 incretin 類藥物之癌症預防效益為例</p>
 
-  <p class="tp-en">Assessing and Correcting the Discordance Between<br>
+  <p class="tp-en">Sources, Quantification, and Correction of Discordance Between<br>
   Real-World Evidence and Randomized Trials:<br>
-  The Case of Tirzepatide and Its Preventive Effects</p>
+  The Case of Incretin-Based Therapies and Cancer Prevention</p>
 
   <div class="tp-rule"></div>
 
@@ -410,17 +410,17 @@ li b{color:var(--ink)}
 
   <div class="stack">
     <div class="note col">
-      Tirzepatide 上市不到四年，真實世界研究已經大量出現，而且彼此矛盾：同樣比較 tirzepatide 與 semaglutide 的心血管結果，一個大型研究得到中性的 HR 1.06，另一個卻得到 semaglutide 明顯較優——而後者的平均追蹤只有四個月、事件數只有十幾個。與此同時，唯一的心血管結果試驗 SURPASS-CVOT 給的是對 dulaglutide 的非劣效。<br><br>問題不在於哪一個答案對，而在於：<b>我們沒有工具去判斷哪一個該被相信</b>。我的論文就是要造這個工具——先量化真實世界估計偏離隨機試驗的方向與幅度，並找出是哪些設計特徵造成的；再用這組參數對沒有試驗可對照的終點做偏差校正；最後親自做一個設計做對的模擬研究，驗證修正是否真的改變結論。
+      Incretin 類藥物與癌症的證據呈現一個奇怪的形狀：隨機試驗端一致落在無效線附近甚至偏向危害——胰臟癌 RR 1.05、大腸直腸癌 1.13；觀察性研究端則一律落在保護側，而且<b>對照組愈鬆散、追蹤愈短，保護愈強</b>，從主動藥物對照的 0.87、未使用者的 0.83，一路到生活型態諮詢對照的 0.59。<br><br>常見的解釋是「真實世界證據會高估效益」。但這不是定律——Cochrane 的跨領域方法學統合得到的 ratio of ratios 是 1.08，作者結論是兩類證據差異極小或根本沒有差異。<b>所以真正的問題不是誰高估，而是：0.59 與 0.92 的差距，究竟有多少是效果的異質性，有多少只是因為它們根本在估計不同的東西。</b><br><br>我的論文要回答的就是這個。先在估計量可對齊的配對上量化殘餘分歧、找出是哪些設計特徵造成的；再用這組參數對沒有試驗可對照的癌症終點做偏差校正並報告翻轉點；最後親自做一個設計做對的目標試驗模擬，驗證修正是否真的改變結論。
     </div>
 
     <div class="trio">
       <div>
         <h4>診斷</h4>
-        <p>以 Ratio of Hazard Ratios 量化 RWE 與 RCT 的落差，並用 meta-regression 找出預測落差的設計特徵。</p>
+        <p>先對齊估計量，再以 Ratio of Hazard Ratios 量化殘餘分歧，並以單一有序的設計嚴謹度分數找出來源。</p>
       </div>
       <div>
         <h4>處方</h4>
-        <p>把偏差參數代入階層式校正合成模型，重估失智、癌症、腎臟等無試驗終點。</p>
+        <p>把偏差參數代入校正合成模型，重估肥胖相關癌症，並以陰性對照做經驗校準與翻轉點分析。</p>
       </div>
       <div>
         <h4>示範</h4>
@@ -439,68 +439,77 @@ li b{color:var(--ink)}
 <section id="s2">
   <div class="sec-head">
     <span class="sec-num">02</span>
-    <h2>證據地圖：矛盾本身就是研究對象</h2>
-    <p class="sub">刻意把兩類證據放在同一條軸上。這張圖是你整份提案的立論基礎。</p>
+    <h2>證據地圖：分歧的形狀</h2>
+    <p class="sub">同一藥物類別、同一結局家族，估計值隨「對照組如何定義」與「追蹤多長」而系統性移動。這張圖就是本論文的研究對象。</p>
   </div>
 
   <div class="stack">
 
     <div class="forest">
       <div class="forest-in">
-        <div class="f-hd"><span>研究與終點</span><span>Hazard Ratio（對數尺度）</span><span>HR (95% CI)</span></div>
+        <div class="f-hd"><span>研究類型與對照組定義</span><span>效果量（對數尺度）</span><span>估計值 (95% CI)</span></div>
 
         <div class="f-row">
-          <div class="f-lab"><b>SURPASS-CVOT</b>MACE-3；隨機試驗</div>
+          <div class="f-lab"><b>隨機試驗統合分析</b>大腸直腸癌</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:45.4%; width:12.2%; background:var(--acc)"></div>
-            <div class="f-pt" style="left:51.8%; background:var(--acc)"></div>
+            <div class="f-ci" style="left:51.8%; width:25.6%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:64.5%; background:var(--acc)"></div>
           </div>
-          <div class="f-val">0.92 (0.83–1.01)</div>
+          <div class="f-val">1.13 (0.92–1.39)</div>
         </div>
 
         <div class="f-row">
-          <div class="f-lab"><b>SURPASS-CVOT</b>Expanded MACE；隨機試驗</div>
+          <div class="f-lab"><b>隨機試驗統合分析</b>胰臟癌</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:43.1%; width:11.3%; background:var(--acc)"></div>
-            <div class="f-pt" style="left:49.0%; background:var(--acc)"></div>
+            <div class="f-ci" style="left:40.7%; width:38.5%; background:var(--acc)"></div>
+            <div class="f-pt" style="left:60.0%; background:var(--acc)"></div>
           </div>
-          <div class="f-val">0.88 (0.80–0.96)</div>
+          <div class="f-val">1.05 (0.77–1.43)</div>
         </div>
 
         <div class="f-row">
-          <div class="f-lab"><b>SUMMIT</b>HFpEF＋肥胖；隨機試驗</div>
+          <div class="f-lab"><b>觀察性</b>對照＝未治療者，追蹤 5 年</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:1.5%; width:52.2%; background:var(--acc)"></div>
-            <div class="f-pt" style="left:27.2%; background:var(--acc)"></div>
+            <div class="f-ci" style="left:49.0%; width:5.4%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:51.8%; background:var(--amber)"></div>
           </div>
-          <div class="f-val">0.62 (0.41–0.95)</div>
+          <div class="f-val">0.92 (0.88–0.96)</div>
         </div>
 
         <div class="f-row">
-          <div class="f-lab"><b>US claims 三庫</b>MI／stroke／死亡；真實世界</div>
+          <div class="f-lab"><b>觀察性</b>對照＝DPP-4 抑制劑（主動藥物）</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:53.8%; width:13.5%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:60.6%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:44.6%; width:9.2%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:49.0%; background:var(--amber)"></div>
           </div>
-          <div class="f-val">1.06 (0.95–1.18)</div>
+          <div class="f-val">0.88 (0.82–0.95)</div>
         </div>
 
         <div class="f-row">
-          <div class="f-lab"><b>TriNetX</b>失智，對 SGLT2i；真實世界</div>
+          <div class="f-lab"><b>觀察性</b>對照＝其他降糖藥</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:10.0%; width:42.4%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:31.1%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:45.4%; width:5.7%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:48.3%; background:var(--amber)"></div>
           </div>
-          <div class="f-val">0.66 (0.47–0.93)</div>
+          <div class="f-val">0.87 (0.83–0.91)</div>
         </div>
 
         <div class="f-row">
-          <div class="f-lab"><b>TriNetX</b>失智，對 semaglutide；真實世界</div>
+          <div class="f-lab"><b>觀察性</b>對照＝未使用者，傾向分數配對</div>
           <div class="f-tr">
-            <div class="f-ci" style="left:11.3%; width:45.0%; background:var(--amber)"></div>
-            <div class="f-pt" style="left:33.9%; background:var(--amber)"></div>
+            <div class="f-ci" style="left:39.9%; width:11.2%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:45.4%; background:var(--amber)"></div>
           </div>
-          <div class="f-val">0.69 (0.48–0.99)</div>
+          <div class="f-val">0.83 (0.76–0.91)</div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-lab"><b>觀察性</b>對照＝飲食／運動諮詢，追蹤 2 年</div>
+          <div class="f-tr">
+            <div class="f-ci" style="left:17.5%; width:14.6%; background:var(--amber)"></div>
+            <div class="f-pt" style="left:24.2%; background:var(--amber)"></div>
+          </div>
+          <div class="f-val">0.59 (0.53–0.67)</div>
         </div>
 
         <div class="f-ax">
@@ -513,89 +522,101 @@ li b{color:var(--ink)}
       </div>
       <p class="f-key">
         <span><i style="background:var(--acc)"></i>隨機試驗</span>
-        <span><i style="background:var(--amber)"></i>真實世界研究</span>
-        <span class="flagtxt">數值為文獻檢索整理，正式書面資料務必回原文核對。</span>
+        <span><i style="background:var(--amber)"></i>觀察性研究</span>
+        <span class="flagtxt">數值取自公開文獻整理，正式書面資料務必回原文核對。</span>
       </p>
+    </div>
+
+    <div class="note col">
+      <span class="lede">這張圖要講的一句話</span>
+      隨機試驗端一致落在無效線附近、甚至偏向危害；觀察性研究端一律落在保護側，而且<b>對照組愈鬆散、追蹤愈短，保護愈強</b>——從主動藥物對照的 0.87、未使用者的 0.83，一路到生活型態諮詢對照的 0.59。<br><br>
+      關鍵判讀是：<b>0.59 與 0.92 的差距，多半不是效果的異質性，而是它們根本在估計不同的東西。</b>這個洞察決定了本論文的整個納入條件設計。
     </div>
 
     <div>
       <h3>關鍵文獻與既有競品</h3>
-      <p class="sub" style="font-size:14.5px;color:var(--muted);margin-bottom:22px;max-width:640px">最後五列是方法學母體與你必須明確區隔的既有研究。口委一定會問，先講先贏。</p>
+      <p class="sub" style="font-size:14.5px;color:var(--muted);margin-bottom:22px;max-width:640px">後半是方法學母體與你必須明確區隔的既有研究。口委一定會問，先講先贏。</p>
       <div class="tbl">
         <table>
-          <thead><tr><th style="width:19%">研究</th><th style="width:24%">族群與設計</th><th style="width:25%">主要結果</th><th style="width:32%">對你的意義</th></tr></thead>
+          <thead><tr><th style="width:22%">研究</th><th style="width:24%">設計與對照</th><th style="width:22%">主要結果</th><th style="width:32%">對你的意義</th></tr></thead>
           <tbody>
             <tr>
-              <td data-l="研究"><b>SURPASS-CVOT</b><br><span class="q">NEJM 2025.12　隨機試驗</span></td>
-              <td data-l="族群與設計">T2D＋ASCVD，BMI≥25；N=13,299，中位 4 年；tirzepatide 對 dulaglutide</td>
-              <td data-l="主要結果"><span class="n">MACE-3 12.2% vs 13.1%</span><br>非劣效 p=0.003；優效 p=0.09<br>Expanded MACE 顯著降低</td>
-              <td data-l="意義">你的<b>唯一硬終點錨點</b>。主動對照而非安慰劑，是配對比較時的一大優勢。</td>
+              <td data-l="研究"><b>隨機試驗統合分析</b><br><span class="q">腸胃道癌症，2024</span></td>
+              <td data-l="設計">GLP-1RA 之隨機試驗合併</td>
+              <td data-l="結果"><span class="n">胰臟 RR 1.05 (0.77–1.43)</span><br><span class="n">大腸直腸 RR 1.13 (0.92–1.39)</span></td>
+              <td data-l="意義">論文一癌症側的隨機試驗分母。注意方向偏危害，與觀察性研究相反。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>SURPASS-CVOT 心腎次要分析</b><br><span class="q">2026　隨機試驗</span></td>
-              <td data-l="族群與設計">同上，post hoc</td>
-              <td data-l="主要結果">腎臟複合終點與 eGFR 斜率</td>
-              <td data-l="意義">心腎終點的配對對象。口試前務必讀完整篇。</td>
+              <td data-l="研究"><b>62 試驗統合分析</b><br><span class="q">胰臟炎與胰臟癌</span></td>
+              <td data-l="設計">隨機試驗合併</td>
+              <td data-l="結果"><span class="n">胰臟炎 RR 1.44 (1.09–1.89)</span><br><span class="n">胰臟癌 RR 1.30 (0.86–1.97)</span></td>
+              <td data-l="意義">胰臟癌<b>不是</b>可用的陰性對照——這裡有被假設的真實危害。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>SUMMIT</b><br><span class="q">NEJM 2024　隨機試驗</span></td>
-              <td data-l="族群與設計">HFpEF＋肥胖，N≈730，對安慰劑</td>
-              <td data-l="主要結果">CV 死亡與心衰竭惡化顯著降低</td>
-              <td data-l="意義">第二個可配對的錨點，且已有對應的真實世界模擬研究存在。</td>
+              <td data-l="研究"><b>全國性世代</b><br><span class="q">JNCI 2025</span></td>
+              <td data-l="設計">對照＝其他降糖藥</td>
+              <td data-l="結果"><span class="n">肥胖相關癌症 HR 0.87 (0.83–0.91)</span></td>
+              <td data-l="意義">主動藥物對照的代表值，估計量相對乾淨。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>事前指定統合分析</b><br><span class="q">Nat Med 2022　合成</span></td>
-              <td data-l="族群與設計">SURPASS 三期試驗合併</td>
-              <td data-l="主要結果">MACE-4 未增加風險，信賴區間寬</td>
-              <td data-l="意義">隨機試驗側的合成估計來源之一。</td>
+              <td data-l="研究"><b>OneFlorida+ 目標試驗模擬</b><br><span class="q">JAMA Oncology 2025</span></td>
+              <td data-l="設計">對照＝未使用者</td>
+              <td data-l="結果"><span class="n">整體 0.83 (0.76–0.91)</span><br><span class="n">甲狀腺 0.77　胰臟 0.84</span><br><span class="n">腎臟 1.38 (0.99–1.93)</span></td>
+              <td data-l="意義">連被懷疑有害的癌別都呈現保護——但這證明的是<b>對照組選擇造成的偏差</b>，不是一個獨立的內部檢驗。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>US claims 三庫模擬</b><br><span class="q">Nat Med 2025　真實世界</span></td>
-              <td data-l="族群與設計">頭對頭 N=297,842，中位追蹤約 150 天</td>
-              <td data-l="主要結果"><span class="n">HR 1.06 (0.95–1.18)</span></td>
-              <td data-l="意義">目前設計品質最高的真實世界研究，會是你忠實度評分的高分範例。</td>
+              <td data-l="研究"><b>斯堪地那維亞世代</b><br><span class="q">BMJ 2024</span></td>
+              <td data-l="設計">對照＝DPP-4 抑制劑</td>
+              <td data-l="結果"><span class="n">甲狀腺癌 HR 0.93 (0.66–1.31)</span></td>
+              <td data-l="意義">同一癌別，換成主動對照就回到無效。<b>這一對就是估計量對齊的最佳實例。</b></td>
             </tr>
             <tr>
-              <td data-l="研究"><b>STEER</b><br><span class="q">Diabetes Obes Metab 2026　真實世界</span></td>
-              <td data-l="族群與設計">各 10,625，無糖尿病，平均追蹤 3.8–4.3 個月</td>
-              <td data-l="主要結果"><span class="n">事件 15 vs 39</span><br>方向：semaglutide 較優</td>
-              <td data-l="意義">與上一列方向相反。你的<b>低分範例</b>與最有力的教材。</td>
+              <td data-l="研究"><b>Annals of Oncology 2026</b><br><span class="q">肥胖非糖尿病成人</span></td>
+              <td data-l="設計">對照＝飲食／運動諮詢，中位追蹤 2 年</td>
+              <td data-l="結果"><span class="n">HR 0.59 (0.53–0.67)</span></td>
+              <td data-l="意義">梯度的最極端。對照最鬆散、追蹤最短、效果最大——三者共線，無法分離。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>TriNetX 失智模擬</b><br><span class="q">Diabetes Res Clin Pract 2026　真實世界</span></td>
-              <td data-l="族群與設計">各組 12,246–57,959</td>
-              <td data-l="主要結果"><span class="n">0.66　0.71　0.69</span></td>
-              <td data-l="意義">無隨機試驗可對照的終點，論文二偏差校正的主要對象。</td>
+              <td data-l="研究"><b>SURPASS-CVOT</b><br><span class="q">NEJM 2025　隨機試驗</span></td>
+              <td data-l="設計">tirzepatide 對 dulaglutide，中位 4 年</td>
+              <td data-l="結果"><span class="n">MACE-3 HR 0.92 (0.83–1.01)</span><br>非劣效 p=0.003；優效 p=0.09</td>
+              <td data-l="意義">論文三的唯一錨點。<b>沒有安慰劑臂</b>，估計量是「對主動藥物」，這一點在配對時必須明講。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>真實世界統合分析</b><br><span class="q">Endocr Pract 2025　<span class="flagtxt">競品</span></span></td>
-              <td data-l="族群與設計">tirzepatide 心血管結果的系統性回顧</td>
-              <td data-l="主要結果">合併真實世界估計</td>
-              <td data-l="意義"><b>只 pool 真實世界研究，沒有與隨機試驗做量化比較，也沒有分析設計特徵。</b>你的區隔就在這兩點。</td>
+              <td data-l="研究"><b>Cochrane MR000034.pub3</b><br><span class="q">Toews 等，2024　方法</span></td>
+              <td data-l="設計">跨領域的觀察性對隨機比較</td>
+              <td data-l="結果"><span class="n">合併 RoR 1.08 (1.01–1.15)</span></td>
+              <td data-l="意義"><b>「RWE 系統性高估」不是普遍定律。</b>本論文的主張必須是條件式的調節效應，不是主效應。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>Incretin 類 RWE 對 RCT</b><br><span class="q">J Diabetes 2026　<span class="flagtxt">競品</span></span></td>
-              <td data-l="族群與設計">敘事性回顧</td>
-              <td data-l="主要結果">指出兩類證據的落差</td>
-              <td data-l="意義"><b>是敘事性的，沒有量化、沒有 meta-regression。</b>可引用它來證明這個問題被公認重要但尚未被量化。</td>
+              <td data-l="研究"><b>RCT-DUPLICATE</b><br><span class="q">JAMA 2023　方法</span></td>
+              <td data-l="設計">32 個試驗的資料庫仿真</td>
+              <td data-l="結果"><span class="n">Pearson r 0.82 (0.64–0.91)</span><br>顯著性一致率 75%</td>
+              <td data-l="意義">分歧最大的配對，正是以磺醯脲類「代替安慰劑」者——直接支持對照組選擇是關鍵調節因子。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>Cochrane 方法學回顧</b><br><span class="q">MR000034.pub3, 2024　方法</span></td>
-              <td data-l="族群與設計">觀察性研究對隨機試驗的整體比較</td>
-              <td data-l="主要結果">提供 ratio of ratios 的標準做法</td>
-              <td data-l="意義"><b>你論文一的方法學母體。</b>直接沿用其分析架構套到 tirzepatide。</td>
+              <td data-l="研究"><b>statin 盛行使用者分層</b><br><span class="q">方法學經典</span></td>
+              <td data-l="設計">依使用者型態分層</td>
+              <td data-l="結果"><span class="n">新使用者 0.77｜混合 0.70｜盛行 0.54</span><br><span class="n">對應隨機試驗 0.84</span></td>
+              <td data-l="意義">「新使用者設計」這項調節因子最有力的既有證據。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>RCT-DUPLICATE</b><br><span class="q">Circulation 2021／JAMA 2023　方法</span></td>
-              <td data-l="族群與設計">32 個試驗的模擬</td>
-              <td data-l="主要結果">三項一致性指標</td>
-              <td data-l="意義">一致性指標的來源，論文一與論文三共用。</td>
+              <td data-l="研究"><b>metformin 與癌症</b><br><span class="q">前車之鑑</span></td>
+              <td data-l="設計">觀察性研究的時間相關偏差</td>
+              <td data-l="結果">避開不朽時間偏差的研究<b>得到無效果</b></td>
+              <td data-l="意義">論文二預測模式的最強先例，而且是同一個「代謝藥物－癌症」問題架構。</td>
             </tr>
             <tr>
-              <td data-l="研究"><b>資料重複框架</b><br><span class="q">J Clin Epidemiol 2024　方法</span></td>
-              <td data-l="族群與設計">大型資料庫在證據合成中的重複計算</td>
-              <td data-l="主要結果">提出辨識與處理框架</td>
-              <td data-l="意義">處理 TriNetX 被多篇論文重複使用的關鍵依據。</td>
+              <td data-l="研究"><b>Cancers 2025</b><br><span class="q">方法</span></td>
+              <td data-l="設計">GLP-1RA 與癌症預防的方法學陷阱</td>
+              <td data-l="結果">提出七項偏差判準</td>
+              <td data-l="意義"><b>你的忠實度評分應該直接建立在這七項上</b>，而不是自己另起爐灶。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>Ann Intern Med 2025 ／ J Diabetes 2026</b><br><span class="q"><span class="flagtxt">既有競品</span></span></td>
+              <td data-l="設計">系統性回顧與敘事性回顧</td>
+              <td data-l="結果">合併估計；指出兩類證據落差</td>
+              <td data-l="意義">前者沒有與隨機試驗做量化比較，後者沒有量化。你的區隔在「估計量對齊」與「設計嚴謹度量表」。</td>
             </tr>
           </tbody>
         </table>
@@ -610,29 +631,36 @@ li b{color:var(--ink)}
   <div class="sec-head">
     <span class="sec-num">03</span>
     <h2>研究缺口與可檢驗的假說</h2>
-    <p class="sub">從「文獻沒做過」升級到「文獻做錯了什麼、為什麼重要」。</p>
+    <p class="sub">假說在方法學審查後已大幅改寫。改寫的理由本身就是提案的一部分，口試時值得主動講。</p>
   </div>
 
   <div class="stack">
+
+    <div class="note flag col">
+      <span class="lede">先講一個必須修正的常見說法</span>
+      「真實世界證據系統性高估治療效益」<b>不是一條普遍定律</b>。Cochrane 的方法學統合研究以觀察性研究為參考組，跨領域合併後的 ratio of ratios 為 <b>1.08（95% CI 1.01–1.15）</b>，作者結論是兩類證據「差異極小或根本沒有差異」；RCT-DUPLICATE 的 32 個仿真中，效果估計的 Pearson 相關為 0.82。<br><br>
+      這對本論文其實是好消息：<b>真正有價值、也真正有文獻支持的主張是調節效應，不是主效應。</b>問題不是「RWE 準不準」，而是「什麼情況下不準、不準多少」。
+    </div>
+
     <div class="tbl">
       <table>
         <thead><tr><th style="width:26%">缺口</th><th style="width:74%">說明</th></tr></thead>
         <tbody>
           <tr>
-            <td data-l="缺口 1"><b>落差沒有被量化</b></td>
-            <td data-l="說明">既有回顧指出真實世界證據與隨機試驗對 incretin 類藥物的結論不一致，但停在敘事層次。沒有人計算過 ratio of ratios，也沒有人檢驗哪些設計特徵預測不一致。</td>
+            <td data-l="缺口 1"><b>估計量沒有被對齊</b></td>
+            <td data-l="說明">既有文獻把「對主動藥物」「對未使用者」「對生活型態諮詢」的估計混在一起討論，然後稱之為異質性。但這些根本是不同的因果對比。<b>不先對齊估計量就計算 RCT 與 RWE 的比值，得到的不是偏差，是兩個不同問題的答案相除。</b></td>
           </tr>
           <tr>
-            <td data-l="缺口 2"><b>設計品質沒有被系統性評分</b></td>
-            <td data-l="說明">多數 tirzepatide 的真實世界研究自稱使用目標試驗模擬，但實際上是否對齊三個時間點、是否避開不朽時間偏差、是否用主動對照，從未被逐項稽核過。</td>
+            <td data-l="缺口 2"><b>設計品質沒有被量表化</b></td>
+            <td data-l="說明">多數研究自稱使用目標試驗模擬，但是否對齊三個時間點、是否避開不朽時間偏差、是否用主動對照，從未被逐項稽核並轉成可分析的分數。</td>
           </tr>
           <tr>
-            <td data-l="缺口 3"><b>資料重複被完全忽略</b></td>
-            <td data-l="說明">大量「獨立」的真實世界研究其實共用同一個聯邦式資料庫的同一批病人。既有的統合分析直接 pool，會人工壓縮信賴區間、製造假的精確度。</td>
+            <td data-l="缺口 3"><b>偏差方向被假設為單一</b></td>
+            <td data-l="說明">既有討論多預設「健康使用者效應」。但方向會依族群反轉：糖尿病理賠族群是適應症混淆（偏危害），肥胖自費族群是健康使用者選擇（偏保護）。<b>合併而不分層，兩股相反的偏差會互相抵銷。</b></td>
           </tr>
           <tr>
-            <td data-l="缺口 4"><b>無試驗終點只能全信或全不信</b></td>
-            <td data-l="說明">失智、癌症、CKD 進展沒有隨機試驗，臨床上只能選擇相信或不相信那些 HR。沒有中間地帶——沒有人提供校正後的估計與翻轉條件。</td>
+            <td data-l="缺口 4"><b>無隨機試驗終點只能全信或全不信</b></td>
+            <td data-l="說明">肥胖相關癌症沒有以癌症發生率為主要終點的隨機試驗。臨床上只能選擇相信或不相信那些 HR，沒有中間地帶——沒有人提供校正後的估計與翻轉條件。</td>
           </tr>
         </tbody>
       </table>
@@ -640,13 +668,18 @@ li b{color:var(--ink)}
 
     <div class="panel">
       <h3>總研究問題</h3>
-      <p style="color:var(--ink-2)">Tirzepatide 預防效益的真實世界估計，與隨機試驗估計相差多少、往哪個方向差、由哪些研究設計特徵所驅動？在校正這些偏差之後，對於沒有隨機試驗可對照的預防終點，我們還能主張什麼？</p>
-      <h4 style="margin-top:26px">三個可檢驗的假說</h4>
+      <p style="color:var(--ink-2)">Incretin 類藥物預防效益的真實世界估計，與隨機試驗估計在什麼條件下分歧、往哪個方向分歧、分歧多少？在校正這些分歧來源之後，對於沒有隨機試驗可對照的癌症終點，我們還能主張什麼？</p>
+
+      <h4 style="margin-top:26px">四個可檢驗的假說</h4>
       <ol>
-        <li><b>H1（論文一）</b>　合併後的真實世界估計相對於隨機試驗估計，其 ratio of hazard ratios 顯著小於 1，即真實世界證據<b>系統性高估</b> tirzepatide 的預防效益；且此高估幅度可由三項設計特徵預測——追蹤時間過短、未採新使用者設計、以未使用者而非主動藥物為對照。</li>
-        <li><b>H2（論文二）</b>　對肥胖相關癌症施加偏差校正與潛伏期窗口後，保護效果會明顯往無效線衰減，且多數估計的 E-value 低於已知混淆因子（如社經地位、健康行為、篩檢利用率）的實際關聯強度。此外，<b>若偏差主要來自健康使用者效應，則它應同時把「保護訊號」與「危害訊號」一起往保護方向推</b>——因此甲狀腺與胰臟等安全性疑慮癌別，可作為內部一致性檢驗。</li>
+        <li><b>H1a（論文一・主假說）</b>　RCT 與 RWE 的分歧幅度<b>由估計量是否對齊決定</b>。在對照組定義、族群、時間零點與追蹤長度皆可對齊的配對上，ratio of ratios 將接近 1，與 Cochrane 的跨領域結果一致；分歧集中在估計量未對齊的配對。</li>
+        <li><b>H1b（論文一・調節效應）</b>　在估計量已對齊的前提下，殘餘分歧可由<b>單一有序的設計嚴謹度分數</b>預測，其中「新使用者設計」與「對照組型態」兩項貢獻最大，「追蹤長度」因與曆年、藥物世代、族群高度共線而無法單獨識別。</li>
+        <li><b>H2（論文二）</b>　對肥胖相關癌症施加潛伏期窗口與偏差校正後，保護效果將往無效線衰減。以主動藥物為對照的估計（E-value 約 1.5–1.7）低於安慰劑臂健康遵從者效應的實測強度，因此不夠穩健；以生活型態諮詢為對照的估計（E-value 2.78）不會被自動推翻，需另以陰性對照的經驗校準判斷。</li>
         <li><b>H3（論文三）</b>　在同一資料源上，嚴格對齊目標試驗協定所得到的估計，會比未對齊的傳統世代分析<b>更接近 SURPASS-CVOT</b>，且差距的主要來源是追蹤起點對齊與新使用者限制，而非共變項調整方法。</li>
       </ol>
+
+      <h4 style="margin-top:26px">一個必須寫進方法段的方向性前提</h4>
+      <p style="color:var(--ink-2);font-size:16px">偏差方向依族群反轉。在糖尿病理賠資料中，此類藥物的起始者通常病程較長、HbA1c 較高、共病較多——這是往<b>危害</b>方向的適應症混淆。在肥胖與自費族群中，使用者明顯偏向高所得、女性、健康參與度高——這才是往<b>保護</b>方向的健康使用者選擇。<b>合併分析時若不依族群分層，這兩股相反的偏差會互相抵銷，使迴歸係數趨近於零，而那不是「沒有偏差」。</b>這一點在台灣格外重要，因為猛健樂在台以自費為主，正落在後一種族群。</p>
     </div>
   </div>
 </section>
@@ -694,14 +727,14 @@ li b{color:var(--ink)}
             <tr>
               <td data-l="論文"><b>論文一</b></td>
               <td data-l="分析單位">研究</td>
-              <td data-l="終點範圍"><b>全部臨床終點</b><br><span class="q">MACE、心衰竭、腎臟、失智、癌症、死亡</span></td>
+              <td data-l="終點範圍"><b>全部臨床終點</b><br><span class="q">癌症、MACE、心衰竭、腎臟、死亡</span></td>
               <td data-l="理由">分析單位是研究不是病人，需要足夠篇數才能跑 meta-regression。而且「設計特徵預測落差」這個主張本來就該跨終點成立——只做一個終點反而證明不了普遍性。<b>終點在此是分層變項，不是研究主題。</b></td>
             </tr>
             <tr>
               <td data-l="論文"><b>論文二</b></td>
               <td data-l="分析單位">研究</td>
               <td data-l="終點範圍"><b>肥胖相關癌症</b><br><span class="q">依 IARC 分類，並以癌別分層</span></td>
-              <td data-l="理由">每個終點都有各自的潛伏期、錯分與競爭風險要處理，同時做四個等於四篇論文的工作量。選癌症是因為它完全沒有隨機試驗、反向因果與偵測偏差同時存在，而且<b>訊號是雙向的</b>——肥胖相關癌別疑似保護、甲狀腺與胰臟則有安全性疑慮，這讓偏差方向可以被內部檢驗。</td>
+              <td data-l="理由">每個終點都有各自的潛伏期、錯分與競爭風險要處理，同時做四個等於四篇論文的工作量。選癌症是因為它<b>沒有以癌症發生率為主要終點的隨機試驗</b>，而觀察性估計又隨對照組定義大幅擺盪（0.59 至 0.92）——偏差校正的價值在這裡最明顯。</td>
             </tr>
             <tr>
               <td data-l="論文"><b>論文三</b></td>
@@ -712,6 +745,11 @@ li b{color:var(--ink)}
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">藥物範圍：三篇都是 incretin 類，不是只有 tirzepatide</span>
+      這是方法學審查後的必要修正。<b>目前沒有任何隨機試驗提供 tirzepatide 對癌症發生率的效果估計</b>，而且它 2022 年中才開始累積暴露史，施加兩年潛伏期窗口後事件數不足。因此論文一與論文二的標的定為 incretin 類藥物（主體為 semaglutide、liraglutide、dulaglutide、exenatide），<b>tirzepatide 列為事前指定的次族群並標註為 exploratory</b>。論文三因為以 SURPASS-CVOT 為錨點，才是真正以 tirzepatide 為主體的一篇。
     </div>
 
     <div class="note col">
@@ -833,28 +871,35 @@ li b{color:var(--ink)}
 <section id="s6">
   <div class="sec-head">
     <span class="sec-num">06</span>
-    <h2>論文一方法：量化 RWE 與 RCT 的落差</h2>
+    <h2>論文一方法：分歧來自哪裡</h2>
     <p class="sub">這一節要能講得最細。它是整份論文的地基，也是口委檢驗你方法學功力的地方。</p>
   </div>
 
   <div class="stack">
 
+    <div class="note flag col">
+      <span class="lede">標的範圍：必須是 incretin 類，不能只做 tirzepatide</span>
+      要計算 ratio of hazard ratios，分母必須存在。<b>目前沒有任何隨機試驗提供 tirzepatide 對癌症發生率的效果估計</b>——它 2022 年 5 月才獲准用於糖尿病、2023 年 11 月用於肥胖，SURPASS-CVOT 的主要終點是 MACE 而非癌症。因此若標的限於 tirzepatide，RHR 在癌症終點上<b>字面上無法計算</b>。<br><br>
+      本論文的標的因此定為 <b>incretin 類藥物</b>（主體為 semaglutide、liraglutide、dulaglutide、exenatide），tirzepatide 列為事前指定的次族群並明確標註為 exploratory。這不是退讓，是讓假說可被檢驗的必要條件。
+    </div>
+
     <div class="panel">
       <h4>納入條件</h4>
       <ul>
-        <li>介入含 tirzepatide，且有明確對照組</li>
-        <li>結果為<b>臨床終點</b>：心血管事件、心衰竭住院、腎臟終點、失智與輕度認知障礙、癌症、全死因死亡</li>
-        <li>報告相對效果量（HR、RR、OR）與變異數</li>
+        <li>介入為任一 incretin 類藥物，且有明確對照組</li>
+        <li>結果為<b>臨床終點</b>：癌症發生、心血管事件、心衰竭住院、腎臟終點、全死因死亡</li>
+        <li>報告相對效果量與變異數</li>
         <li>隨機與非隨機研究皆納入，不限語言</li>
-        <li>排除純代理指標研究（單看 HbA1c、體重），但另做一組平行分析當敏感度檢驗</li>
       </ul>
-      <h4 style="margin-top:28px">證據配對規則</h4>
+      <h4 style="margin-top:28px">估計量對齊：本論文最重要的納入條件</h4>
+      <p style="color:var(--ink-2);font-size:16px;margin-bottom:14px">只在<b>估計量可對齊</b>的配對上計算 RHR。四個條件缺一不可：</p>
       <ul>
-        <li>以 PICO 四要素相似度配對：族群（有無 T2D、有無 ASCVD）、介入、<b>對照藥物必須同類</b>、終點定義</li>
-        <li>一個隨機試驗可對應多篇真實世界研究，形成「證據叢集」</li>
-        <li>配對由兩人獨立執行，不一致由第三人仲裁，報告 kappa</li>
-        <li>配對規則須<b>事前寫入註冊計畫</b>，避免事後挑選</li>
+        <li><b>同一族群</b>　有無糖尿病、有無既存心血管疾病、BMI 範圍</li>
+        <li><b>同一對照定義</b>　主動藥物對主動藥物；不可拿「對未使用者」的觀察性估計去除「對 dulaglutide」的試驗估計</li>
+        <li><b>同一時間零點</b>　隨機分派日對應首次調劑日</li>
+        <li><b>同一追蹤長度</b>　或至少在同一時間窗內截斷</li>
       </ul>
+      <p style="color:var(--ink-2);font-size:16px;margin-top:14px">不符合對齊條件的配對<b>不是排除，而是另立一組</b>——「未對齊配對」的分歧幅度，正是 H1a 要檢驗的東西。</p>
     </div>
 
     <div>
@@ -863,117 +908,160 @@ li b{color:var(--ink)}
 RHR = HR<sub>RWE</sub> ÷ HR<sub>RCT</sub><br>
 ln(RHR) = ln(HR<sub>RWE</sub>) − ln(HR<sub>RCT</sub>)<br>
 Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
-<em>RHR &lt; 1　真實世界高估保護效益（最可能來源：健康使用者與依從性偏差）</em><br>
-<em>RHR &gt; 1　真實世界低估保護效益（可能來源：適應症干擾、結果錯分）</em><br>
-<em>RHR = 1　兩類證據一致</em>
+<em>主分析　僅限估計量已對齊的配對，預期 RHR 接近 1</em><br>
+<em>對照分析　未對齊配對，預期 RHR 顯著偏離 1 且偏保護</em><br>
+<em>兩組之差　即為「估計量錯置」所造成的分歧幅度</em>
       </div>
-      <p style="font-size:14.5px;color:var(--muted);margin-top:16px;max-width:660px">以隨機效果模型合併各證據對的 ln(RHR)，並報告 τ² 與 I² 量化異質性。若不同終點的方向不同，則分終點呈現，不強行合併。</p>
+      <p style="font-size:14.5px;color:var(--muted);margin-top:16px;max-width:660px">以隨機效果模型分別合併兩組的 ln(RHR)，報告 τ² 與 I²。不同終點方向不同時分終點呈現，不強行合併。</p>
     </div>
 
     <div>
-      <h3>你的原創工具：目標試驗忠實度評分</h3>
-      <p style="font-size:16px;color:var(--ink-2);margin-bottom:24px;max-width:660px">把目標試驗協定的七個要素轉成 0–2 分的評分表，總分 0–14。這個分數既是論文一的描述性結果，也是 meta-regression 的核心連續共變項。<b>這是你最容易被記住的貢獻。</b></p>
+      <h3>設計嚴謹度分數：取代三個獨立共變項</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin-bottom:14px;max-width:660px">原本規劃三個共變項的 meta-regression 並不可行——符合條件的配對只會有個位數到十幾個，三個共變項幾乎必然過度配適，而且三者彼此高度相關。改為<b>單一有序量表做單變數 meta-regression</b>，並另做預先指定的偏差成分分解。</p>
       <div class="tbl">
         <table>
-          <thead><tr><th style="width:16%">要素</th><th style="width:28%">0 分</th><th style="width:28%">1 分</th><th style="width:28%">2 分</th></tr></thead>
+          <thead><tr><th style="width:24%">設計特徵</th><th style="width:16%">既有證據強度</th><th style="width:60%">說明</th></tr></thead>
           <tbody>
-            <tr><td data-l="要素"><b>合格條件</b></td><td data-l="0 分">未報告基線期長度</td><td data-l="1 分">有基線期但未報告排除流程</td><td data-l="2 分">明確基線期與完整流失圖</td></tr>
-            <tr><td data-l="要素"><b>治療策略</b></td><td data-l="0 分">未區分新舊使用者</td><td data-l="1 分">有洗脫期但未定義劑量調升或寬限期</td><td data-l="2 分">新使用者設計與明確寬限期規則</td></tr>
-            <tr><td data-l="要素"><b>對照選擇</b></td><td data-l="0 分">未使用者或不使用藥物者</td><td data-l="1 分">不同機轉藥物</td><td data-l="2 分">同類主動藥物對照</td></tr>
-            <tr><td data-l="要素"><b>時間零點</b></td><td data-l="0 分">三個時間點明顯不對齊</td><td data-l="1 分">未明確說明對齊方式</td><td data-l="2 分">合格判定、分派、追蹤起點三者明確對齊</td></tr>
-            <tr><td data-l="要素"><b>結果定義</b></td><td data-l="0 分">未提供代碼清單</td><td data-l="1 分">有代碼但未經驗證</td><td data-l="2 分">已驗證演算法與完整代碼清單</td></tr>
-            <tr><td data-l="要素"><b>因果對比</b></td><td data-l="0 分">未說明 ITT 或 per-protocol</td><td data-l="1 分">僅其一</td><td data-l="2 分">雙軌並陳且 per-protocol 有處理停藥加權</td></tr>
-            <tr><td data-l="要素"><b>分析與透明度</b></td><td data-l="0 分">無事前註冊、無敏感度分析</td><td data-l="1 分">其一</td><td data-l="2 分">事前註冊與陰性對照或量化偏差分析</td></tr>
+            <tr>
+              <td data-l="特徵"><b>未採新使用者設計</b></td>
+              <td data-l="證據"><b>強</b></td>
+              <td data-l="說明">statin 與死亡率的經典分層：僅納入新使用者 HR 0.77、新舊混合 0.70、僅盛行使用者 0.54，而對應的隨機試驗為 0.84。盛行者比例愈高，與試驗的落差愈大。</td>
+            </tr>
+            <tr>
+              <td data-l="特徵"><b>以未使用者為對照</b></td>
+              <td data-l="證據"><b>中至強</b></td>
+              <td data-l="說明">RCT-DUPLICATE 中分歧最大的配對，正是以磺醯脲類「代替安慰劑」的那幾個。本議題的梯度也吻合：主動藥物對照 0.87–0.88、未使用者 0.83–0.92、生活型態諮詢 0.59。</td>
+            </tr>
+            <tr>
+              <td data-l="特徵"><b>追蹤時間過短</b></td>
+              <td data-l="證據"><span class="flagtxt">弱且共線</span></td>
+              <td data-l="說明">癌症潛伏期論證生物學上站得住腳，但追蹤長度與曆年、藥物世代、資料庫、族群高度共線。目前梯度中追蹤最短的研究同時也是對照最鬆散的一項，兩者無法分離。<b>不宜作為獨立迴歸項。</b></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size:14.5px;color:var(--muted);margin-top:18px;max-width:660px">評分由兩人獨立進行，報告加權 kappa 與各要素的分數分布。可預期的亮點結果：多數自稱使用目標試驗模擬的研究，在「時間零點」與「因果對比」兩項得分偏低。</p>
     </div>
 
     <div class="panel">
-      <h4>Meta-regression 共變項（事前指定）</h4>
+      <h4>忠實度評分：建立在既有判準上，不另起爐灶</h4>
+      <p style="color:var(--ink-2);font-size:16px;margin-bottom:14px">量表結合兩個來源：目標試驗協定的七要素，以及 Cancers 2025 針對本議題提出的七項偏差判準——肥胖程度的充分校正、不朽時間偏差、治療分派偏差、存活偏差、累積劑量、藥物介入與癌症出現之間足夠的 sojourn time、效果是否專屬於肥胖相關癌別。做成 ROBINS-E 的延伸評分。</p>
       <ul>
-        <li><b>主要三項</b>　忠實度總分、追蹤中位數（&lt;6／6–12／&gt;12 個月）、對照類型（主動藥物或其他）</li>
-        <li><b>次要</b>　資料型態（claims／EHR／registry／單中心）、事件數、是否事前註冊、資金來源、發表年份</li>
-        <li>每個共變項至少需 10 篇研究支撐。若不足，僅做描述性分層呈現並明說</li>
+        <li>每項 0 至 2 分，總分作為<b>單一有序共變項</b></li>
+        <li>兩人獨立評分，報告加權 kappa</li>
+        <li>不朽時間偏差採可操作判定：<b>只要暴露定義需要用到指標日之後的資訊</b>（「持續用藥滿三個月」「至少領藥兩次」），即判定存在</li>
       </ul>
-      <h4 style="margin-top:28px">資料重複的處理（本篇的關鍵加分點）</h4>
+      <h4 style="margin-top:28px">替代的分析路徑：偏差成分分解</h4>
+      <p style="color:var(--ink-2);font-size:16px">若配對數少到連單變數 meta-regression 都不穩，改採<b>機率性偏差分析</b>：把每一項設計缺陷轉成一個帶分布的定量偏差因子，逐一施加於觀察到的估計，看要施加多少才能回到隨機試驗的估計。這條路對樣本數的要求低得多，而且產出更直接可用。</p>
+    </div>
+
+    <div class="panel">
+      <h4>資料重複的處理</h4>
       <ul>
         <li>建立「資料庫 × 收案期間 × 族群定義」的重疊矩陣</li>
-        <li>主分析：每個重疊叢集<b>只保留一篇</b>（樣本最大者）</li>
-        <li>敏感度：改保留最新者、改保留忠實度最高者</li>
-        <li>額外報告：若全數納入，合併估計的信賴區間會被人工壓縮多少百分比</li>
-        <li>依 J Clin Epidemiol 2024 的資料重複框架執行並引用</li>
+        <li>主分析每個重疊叢集只保留一篇（樣本最大者）；敏感度改保留最新者或嚴謹度最高者</li>
+        <li>額外報告：若全數納入，合併估計的信賴區間會被人工壓縮多少</li>
       </ul>
-      <h4 style="margin-top:28px">一致性指標（沿用 RCT-DUPLICATE，搬到研究層次）</h4>
+      <h4 style="margin-top:28px">一致性指標</h4>
       <ul>
-        <li><b>Regulatory agreement</b>　兩者在統計顯著性與方向上是否一致</li>
-        <li><b>Estimate agreement</b>　真實世界的 95% 信賴區間是否涵蓋隨機試驗的點估計</li>
-        <li><b>Standardized difference</b>　兩估計之差除以合併標準誤，量化差距</li>
-        <li>三者皆須事前定義，並在 OSF 或 PROSPERO 註冊</li>
-      </ul>
-    </div>
-
-    <div class="note flag col">
-      <span class="lede">可行性的先決條件</span>
-      納入研究數是這篇的生死線。<b>口試前請先做一次快速檢索並數出篇數</b>：以 tirzepatide 為主，若臨床終點的真實世界研究不足 20 篇，備案是把範圍擴大為 incretin 類藥物（含 semaglutide、dulaglutide），做藥物類層次的分析，tirzepatide 作為事前指定的主要次族群。這個備案要事先寫進計畫書，不要等口委問了才想。
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ 06 ============ -->
-<section id="s7">
-  <div class="sec-head">
-    <span class="sec-num">07</span>
-    <h2>論文二方法：偏差校正後的證據再合成</h2>
-    <p class="sub">把論文一的診斷變成處方。主終點收斂到肥胖相關癌症——沒有隨機試驗、潛伏期長、而且訊號是雙向的。</p>
-  </div>
-
-  <div class="stack">
-    <div class="note col">
-      <span class="lede">核心邏輯</span>
-      論文一告訴我們：在有隨機試驗可對照的終點上，具備某些設計特徵的真實世界研究平均高估了多少。論文二的假設是——<b>同樣的設計特徵，在沒有隨機試驗可對照的終點上，會造成類似方向與量級的偏差</b>。於是我們可以用論文一估出的偏差分布，作為先驗，對肥胖相關癌症的合成估計做校正。這個假設本身要明講、要做敏感度分析，這是本篇最需要防守的地方。
-    </div>
-
-    <div class="panel">
-      <h4>分析步驟</h4>
-      <ol>
-        <li>依癌別分別做標準的隨機效果合成，得到未校正估計；不合併方向可能相反的癌別</li>
-        <li>依論文一的 meta-regression 係數，為每篇研究計算其預期偏差項與不確定性</li>
-        <li>建立階層式偏差校正模型：在合成時同時加入偏差的平移與額外變異</li>
-        <li>比較校正前後的點估計、信賴區間寬度與統計顯著性是否改變</li>
-        <li>對校正後估計計算 E-value 與翻轉點</li>
-        <li>執行雙向性檢驗：比較保護訊號癌別與安全性疑慮癌別的校正幅度是否一致</li>
-      </ol>
-      <h4 style="margin-top:28px">敏感度與防守</h4>
-      <ul>
-        <li>可轉移性假設：分別以「僅心血管終點推導的偏差」與「全終點推導的偏差」兩組參數執行</li>
-        <li>加入專家意見引出的偏差先驗作為第三組比較</li>
-        <li>額外處理<b>潛伏期</b>：僅納入有報告 lag window 的研究，或依追蹤長度加權。癌症從致病到診斷需數年，這是本篇最關鍵的敏感度分析</li>
-        <li>報告「若要讓校正後結果仍達顯著，所需的最小真實效果」</li>
-      </ul>
-    </div>
-
-    <div class="panel">
-      <h4>癌別策略：不要把方向相反的癌別合併</h4>
-      <ul>
-        <li><b>主要分析</b>　依 IARC 認定的肥胖相關癌症逐一分析：大腸、直腸、停經後乳癌、子宮內膜、腎、肝、胰、食道腺癌、卵巢、胃賁門、膽囊、甲狀腺、多發性骨髓瘤</li>
-        <li><b>合併規則</b>　僅在方向一致且異質性可接受時合併為「肥胖相關癌症整體」；否則分癌別呈現。既有研究把整體降低 7% 與大腸癌降低 16%、直腸癌降低 28% 混在一起報，其實掩蓋了癌別間的差異</li>
-        <li><b>雙向性檢驗（本篇的核心設計）</b>　甲狀腺髓質癌與胰臟癌在此類藥物有既存的安全性疑慮，理論上不該出現保護效果。若校正前連它們都呈現保護，就直接證明了健康使用者偏差的存在與方向——這組癌別因此扮演<b>陰性對照結果</b>的角色</li>
-        <li><b>競爭風險</b>　此族群心血管與代謝死亡率高，須以 cause-specific 與 Fine–Gray 並報</li>
-        <li><b>篩檢干擾</b>　大腸直腸癌與乳癌受篩檢利用率影響極大，須將篩檢次數列為研究層次的共變項或敏感度分析</li>
+        <li><b>Regulatory agreement</b>　方向與統計顯著性是否一致</li>
+        <li><b>Estimate agreement</b>　RWE 的 95% 信賴區間是否涵蓋隨機試驗的點估計</li>
+        <li><b>Standardized difference</b>　兩估計之差除以合併標準誤</li>
+        <li>三者皆須事前定義並於 PROSPERO 註冊，且<b>分別在「已對齊」與「未對齊」兩組報告</b></li>
       </ul>
     </div>
 
     <div class="note col">
-      <span class="lede">這篇的一句話賣點</span>
-      目前臨床端對「這類藥物能否預防癌症」只能二選一——全信或全不信。這篇提供第三個選項：<b>一個被明確標示了可信度、並附上翻轉條件的數字。</b>這正是流行病學該做的事。
+      <span class="lede">口試前的可行性先決條件</span>
+      跑一次檢索，數出<b>估計量可對齊的配對</b>有幾組——不是總篇數，是配對數。這個數字決定論文一是走 meta-regression 還是走偏差成分分解。帶著它進場。
     </div>
+
   </div>
 </section>
 
 <!-- ============ 07 ============ -->
+<section id="s7">
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>論文二方法：校正之後還剩多少</h2>
+    <p class="sub">主終點為肥胖相關癌症。這一節在方法學審查後做了最大幅度的修改，原本的「甲狀腺與胰臟癌內部檢驗」已刪除。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note col">
+      <span class="lede">最強的先例：metformin</span>
+      早期大量觀察性研究報告 metformin 降低癌症風險，系統性檢視顯示這些研究普遍存在<b>不朽時間偏差</b>；而<b>避開時間相關偏差的研究則得到無效果</b>。這正是本篇要預測的模式，而且是同一個「代謝藥物－癌症」的問題架構。口試講這一段，比講任何統計細節都有說服力。
+    </div>
+
+    <div class="panel">
+      <h4>核心邏輯與它的弱點</h4>
+      <p style="color:var(--ink-2);font-size:16px">論文一告訴我們：在有隨機試驗可對照的終點上，具備某些設計特徵的研究平均偏離了多少。論文二假設<b>同樣的設計特徵在癌症終點上會造成類似方向與量級的偏差</b>。這是一個強假設，處理方式是三層：明確寫出可轉移性假設並放在限制第一條；以多組偏差參數來源分別執行；主要產出改為<b>翻轉點</b>而非校正後的點估計。</p>
+    </div>
+
+    <div>
+      <h3>E-value 必須逐一計算，不能整體宣稱</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:24%">觀察到的 HR</th><th style="width:22%">E-value（點估計）</th><th style="width:54%">對照組型態</th></tr></thead>
+          <tbody>
+            <tr><td data-l="HR"><span class="n">0.87</span></td><td data-l="E-value"><span class="n">1.56</span></td><td data-l="對照">其他降糖藥（主動對照）</td></tr>
+            <tr><td data-l="HR"><span class="n">0.83</span></td><td data-l="E-value"><span class="n">1.70</span></td><td data-l="對照">未使用者</td></tr>
+            <tr><td data-l="HR"><span class="n">0.59</span></td><td data-l="E-value"><span class="n">2.78</span></td><td data-l="對照">飲食／運動諮詢</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:16px;color:var(--ink-2);margin-top:18px;max-width:660px"><b>參照基準用安慰劑臂的健康遵從者效應</b>，這是可實測的數字：WHI 荷爾蒙試驗安慰劑組中高遵從者的癌症死亡 HR 0.60、全因死亡 0.64；SOLVD 兩個試驗的全因死亡皆為 0.52；八個試驗的統合分析顯示高度遵從安慰劑者死亡率低 44%。</p>
+      <p style="font-size:16px;color:var(--ink-2);margin-top:14px;max-width:660px"><b>因此結論是有條件成立的。</b>E-value 落在 1.5–1.7 的估計確實低於健康遵從者效應的實測強度，H2 在這一段站得住；但 E-value 2.78 的那一項<b>不會被自動推翻</b>——E-value 要求混淆因子同時在暴露側與結局側達到該強度。另有兩個轉換上的漏洞要在論文中明講：安慰劑遵從度的基準值多來自死亡率而非癌症發生率，兩者的偏差機制不同；且 E-value 只給出「解釋掉關聯所需的最小強度」，不提供偏差方向，近年方法學文獻對其被誤用為穩健性認證多有批評。</p>
+    </div>
+
+    <div class="panel">
+      <h4>更強的替代做法：經驗校準</h4>
+      <p style="color:var(--ink-2);font-size:16px">與其單用 E-value，不如用<b>大批陰性對照結局校準出經驗虛無分布</b>，再把觀察到的估計放進該分布評分。這給的是資料本身測得的殘餘偏差量級，而不是一個假想混淆因子的門檻。E-value 保留為輔助，並同時報告<b>已測得</b>共變項各自的 E-value，作為可信度的標尺。</p>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">已刪除：甲狀腺與胰臟癌不是有效的內部檢驗</span>
+      原本的構想是「若連應該有害的癌別也顯示保護，就證明偏差存在」。這個推論不成立，三個理由：<br><br>
+      <b>一、陰性對照結局的定義要求「暴露不可能致病」</b>，但這兩個癌別正是被假設有真實因果效應的地方——甲狀腺髓質癌是仿單黑框警語的標的，胰臟癌與胰臟炎訊號（統合分析 RR 1.44, 1.09–1.89）連在一起。偏保護的結果無法區分「沒有偏差」與「偏差恰好抵銷了真實危害」。<br><br>
+      <b>二、這兩個癌別各自帶有方向相反的偏差。</b>甲狀腺癌是過度診斷最典型的癌症，而使用者因黑框警語接受更多降鈣素與超音波監測——偵測偏差把估計往<b>危害</b>推，與健康使用者效應相反。胰臟癌則有反因果問題：早期胰臟癌會引起新發糖尿病與體重下降，直接改變處方行為。「單一偏差向量」的假設在這兩個結局上恰好最不成立。<br><br>
+      <b>三、這個預測經驗上確實應驗了，但它證明的是別的事。</b>OneFlorida 以未使用者為對照得到甲狀腺 0.77、胰臟 0.84；斯堪地那維亞世代以 DPP-4 抑制劑為主動對照則得到甲狀腺 0.93（0.66–1.31，無效）。這顯示的是<b>對照組選擇驅動的偏差</b>，也就是論文一的調節因子——寫成論文二的獨立檢驗，等於用同一批資料把同一個主張數了兩次。
+    </div>
+
+    <div class="panel">
+      <h4>取而代之的三種內部檢驗</h4>
+      <ul>
+        <li><b>真正的陰性對照結局</b>　與健康行為、就醫程度、社經地位相關，但與 incretin 藥理無合理路徑者：交通事故傷害、白內障手術、疝氣修補、常規影像檢查利用率。</li>
+        <li><b>非肥胖相關癌別的特異性檢驗</b>　黑色素瘤、腦部原發腫瘤等。若「保護」在這些癌別上同樣出現，體重調節的機制解釋就被削弱。<b>這一項保留了原構想的精神，但不依賴站不住的假設。</b></li>
+        <li><b>陰性對照暴露</b>　以同期起始的 SGLT2 抑制劑或 DPP-4 抑制劑跑同一套分析。</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h4>癌別策略</h4>
+      <ul>
+        <li><b>主要分析</b>　依 IARC 認定的肥胖相關癌症逐一分析：大腸、直腸、停經後乳癌、子宮內膜、腎、肝、胰、食道腺癌、卵巢、胃賁門、膽囊、甲狀腺、多發性骨髓瘤</li>
+        <li><b>合併規則</b>　僅在方向一致且異質性可接受時合併；否則分癌別呈現。既有研究把整體降低 7% 與大腸癌 16%、直腸癌 28% 混報，掩蓋了癌別差異</li>
+        <li><b>競爭風險</b>　此族群心血管與代謝死亡率高，須以 cause-specific 與 Fine–Gray 並報</li>
+        <li><b>篩檢干擾</b>　大腸直腸癌與乳癌受篩檢利用率影響極大，須列為研究層次共變項或敏感度分析</li>
+      </ul>
+      <h4 style="margin-top:28px">族群必須分層</h4>
+      <p style="color:var(--ink-2);font-size:16px">糖尿病理賠族群與肥胖自費族群的偏差方向相反，合併會互相抵銷。<b>兩組必須分別合成、分別校正、分別報告 E-value。</b>這也讓台灣的自費情境成為一個有意義的次族群，而不只是限制。</p>
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">可行性上的硬限制</span>
+      潛伏期窗口需要追蹤時間才付得起。tirzepatide 的暴露史從 2022 年中才開始累積；若對癌症發生率施加兩年 lag，殘餘追蹤與事件數會少到無法支撐分層分析。<b>本篇的標的因此只能是 GLP-1RA 類</b>，tirzepatide 至多列為敏感度分析並標註 exploratory。這一點要寫在方法段，不是留到討論段當限制。
+    </div>
+
+    <div class="note col">
+      <span class="lede">這篇的一句話賣點</span>
+      目前臨床端對「這類藥物能否預防癌症」只能二選一——全信或全不信。這篇提供第三個選項：<b>一個被明確標示了可信度、附上翻轉條件、並且說清楚它在估計什麼的數字。</b>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
 <section id="s8">
   <div class="sec-head">
     <span class="sec-num">08</span>
@@ -1071,7 +1159,10 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
             <tr><td data-l="偏差"><b>發表偏差</b></td><td data-l="樣貌">顯著的保護效果較易被發表，尤其失智與癌症</td><td data-l="因應">漏斗圖與 Egger 檢定；檢索預印本、學會摘要與試驗註冊平台；比較已註冊未發表者</td></tr>
             <tr><td data-l="偏差"><b>配對不當</b></td><td data-l="樣貌">把 PICO 不同的隨機試驗與真實世界研究強行配對</td><td data-l="因應">事前寫死配對規則；兩人獨立配對並報告 kappa；做嚴格與寬鬆兩版本</td></tr>
             <tr><td data-l="偏差"><b>選擇性報告</b></td><td data-l="樣貌">同一研究報告多個終點，僅取顯著者</td><td data-l="因應">事前指定每篇研究的主要擷取終點階層，一研究一估計</td></tr>
-            <tr><td data-l="偏差"><b>可轉移性假設</b></td><td data-l="樣貌">用心血管終點推得的偏差去校正失智終點</td><td data-l="因應">論文二最核心的假設，需明講並以多組偏差參數做敏感度分析</td></tr>
+            <tr><td data-l="偏差"><b>估計量錯置</b><span class="q flagtxt">　最關鍵</span></td><td data-l="樣貌">把「對未使用者」的觀察性估計與「對主動藥物」的試驗估計相除，稱之為偏差</td><td data-l="因應">估計量對齊列為納入條件；未對齊配對另立一組，其分歧幅度本身即為研究產出</td></tr>
+            <tr><td data-l="偏差"><b>偏差方向依族群反轉</b></td><td data-l="樣貌">糖尿病理賠族群是適應症混淆（偏危害），肥胖自費族群是健康使用者選擇（偏保護）</td><td data-l="因應">兩組分別合成、分別校正。合併而不分層會使兩股偏差抵銷，係數趨近零——那不是「無偏差」</td></tr>
+            <tr><td data-l="偏差"><b>共線性</b></td><td data-l="樣貌">追蹤長度與曆年、藥物世代、資料庫、族群高度相關，無法單獨識別</td><td data-l="因應">改用單一有序的設計嚴謹度分數做單變數迴歸，或改採機率性偏差成分分解</td></tr>
+            <tr><td data-l="偏差"><b>可轉移性假設</b></td><td data-l="樣貌">用其他終點推得的偏差去校正癌症終點</td><td data-l="因應">論文二最核心的假設，需明講並以多組偏差參數做敏感度分析</td></tr>
           </tbody>
         </table>
       </div>
@@ -1331,7 +1422,34 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       <p>「以目前的證據，我傾向<b>不相信那些點估計本身</b>，但相信它們值得被嚴謹檢驗——而這正是我論文二要做的事。」</p>
       <p>理由要具體，一次講三個：<b>第一，反向因果。</b>未診斷的癌症本身就會造成體重下降，而體重正在掉的病人比較不會被開立減重藥物——這會憑空製造出保護效果。<b>第二，偵測偏差，而且是雙向的。</b>用藥者回診頻率高、篩檢做得多，理論上該偵測到更多癌症；但體重下降也可能讓醫師延後懷疑惡性腫瘤。兩股力量方向相反，淨效應無法先驗判斷。<b>第三，潛伏期。</b>從致病到臨床診斷需要數年，而多數研究追蹤不到兩年。</p>
       <p>然後給出你的處理：「所以我不會只報告一個校正後的 HR。我會報告 E-value——如果只有 1.5，那代表任何中等強度的未測量干擾，例如社經地位或篩檢利用率，就足以解釋掉整個效果。」</p>
-      <p>最後這句是你的殺手鐧：「而且我有一個內部檢驗。<b>如果偏差主要來自健康使用者效應，它應該把所有終點都往保護方向推——包括那些原本被懷疑有害的癌別。</b>甲狀腺與胰臟癌的安全性訊號因此變成我的陰性對照：如果連它們在校正前都看起來像是被保護，那就直接證明了偏差的存在與方向。」</p>
+      <p>最後這句是你的殺手鐧，而且它比任何統計細節都有力：「<b>同一個癌別，換個對照組就換個答案。</b>甲狀腺癌以未使用者為對照時 HR 0.77，以 DPP-4 抑制劑為主動對照時是 0.93、完全無效。這不是效果的異質性，這是估計量的錯置。所以我論文一的第一個納入條件不是研究品質，是估計量能不能對齊。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>你說真實世界證據會高估，但 Cochrane 的統合結果是兩者差異極小，你怎麼解釋？</summary>
+    <div class="ans">
+      <p>這題會問，而且問得對。<b>不要辯護，直接承認並升級主張。</b></p>
+      <p>「您說得對。Cochrane 的 MR000034 以觀察性研究為參考組，跨領域合併的 ratio of ratios 是 1.08、95% CI 1.01 到 1.15，作者的結論是兩類證據差異極小或根本沒有差異；RCT-DUPLICATE 的效果估計相關係數也有 0.82。<b>所以『真實世界證據系統性高估』不是一條普遍定律，我的假說不能那樣寫。</b>」</p>
+      <p>「我的主張因此是條件式的：<b>分歧不是常態，而是特定條件下的產物</b>——主要是估計量沒有對齊，其次是設計嚴謹度不足。這兩個都可以事前指定、可以測量、可以檢驗。而且這個框架跟 Cochrane 的結果是一致的，不是矛盾的：在條件滿足時 RoR 應該接近 1，這正是我的 H1a。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>你要算 ratio of hazard ratios，但 tirzepatide 根本沒有癌症的隨機試驗，分母哪裡來？</summary>
+    <div class="ans">
+      <p>這是最致命的一題，一定要能立刻答出來。</p>
+      <p>「分母確實不存在，所以<b>我的標的不是 tirzepatide，是 incretin 類藥物</b>。tirzepatide 2022 年中才開始累積暴露史，SURPASS-CVOT 的主要終點是 MACE 不是癌症；若標的限於它，RHR 在癌症終點上字面上無法計算。因此論文一與論文二以 GLP-1RA 類為主體，tirzepatide 列為事前指定的次族群並標註為 exploratory。」</p>
+      <p>「論文三才是真正以 tirzepatide 為主體的一篇，因為那裡有 SURPASS-CVOT 可以 benchmark。這個範圍的差異我寫在方法段，不是留到限制段。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>三個共變項、十幾個配對，你的 meta-regression 會不會過度配適？</summary>
+    <div class="ans">
+      <p>「會，所以我不那樣做。」</p>
+      <p>「符合估計量對齊條件的配對數量會是個位數到十幾個，三個共變項幾乎必然過度配適，而且這三個特徵彼此高度相關——追蹤長度與曆年、藥物世代、族群共線，目前文獻中追蹤最短的研究同時也是對照最鬆散的一項，兩者無法分離。」</p>
+      <p>「因此我改成兩條路徑：<b>第一</b>，把設計特徵整合成單一有序的嚴謹度分數，做單變數 meta-regression；<b>第二</b>，若配對數少到連這樣都不穩，改採<b>機率性偏差分析</b>——把每項設計缺陷轉成一個帶分布的定量偏差因子，看要施加多少才能回到隨機試驗的估計。後者對樣本數的要求低得多，產出也更直接可用。」</p>
     </div>
   </details>
 
@@ -1405,6 +1523,13 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
         <li><a href="https://www.nature.com/articles/s41467-025-59616-2">Effectiveness of tirzepatide in HFpEF using target trial emulation<span>Nat Commun 2025</span></a></li>
         <li><a href="https://www.annalsofoncology.org/article/S0923-7534(26)00157-2/fulltext">GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults<span>Ann Oncol 2026</span></a></li>
         <li><a href="https://pubmed.ncbi.nlm.nih.gov/41359966/">Risk for Cancer With GLP-1 Receptor Agonists and Dual Agonists: A Systematic Review and Meta-analysis<span>2025　論文二的主要既有合成</span></a></li>
+        <li><a href="https://academic.oup.com/jnci/article/117/10/2053/8195732">GLP-1RA 與肥胖相關癌症，對照＝其他降糖藥：HR 0.87 (0.83–0.91)<span>JNCI 2025</span></a></li>
+        <li><a href="https://jamanetwork.com/journals/jamaoncology/fullarticle/2837870">GLP-1RA 與 14 種癌症，OneFlorida+ 目標試驗模擬，對照＝未使用者：整體 0.83；甲狀腺 0.77；胰臟 0.84；腎臟 1.38<span>JAMA Oncology 2025</span></a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11004669/">GLP-1RA 與甲狀腺癌：斯堪地那維亞世代，對照＝DPP-4i，HR 0.93 (0.66–1.31)<span>BMJ 2024　估計量對齊的最佳實例</span></a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12587238/">減重介入與肥胖相關癌症，TriNetX，對照＝DPP-4i：HR 0.88 (0.82–0.95)<span>Diabetes Obes Metab 2025</span></a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S1043661824003463">GLP-1RA 與腸胃道癌症之隨機試驗統合分析：胰臟 RR 1.05；大腸直腸 1.13<span>2024　論文一的癌症側分母</span></a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12457091/">GLP-1RA 的胰臟炎與胰臟癌：62 試驗統合分析，胰臟炎 RR 1.44 (1.09–1.89)<span>胰臟癌不能當陰性對照的依據</span></a></li>
+        <li><a href="https://doi.org/10.3390/cancers17091451">GLP-1 受體促效劑與癌症預防：觀察性研究的方法學陷阱（七項偏差判準）<span>Cancers 2025　忠實度評分的依據</span></a></li>
         <li><a href="https://ascopubs.org/doi/10.1200/JCO.2026.44.2_suppl.712">GLP-1 receptor agonists and pancreatic cancer risk: a meta-analysis of real-world and trial evidence<span>JCO 2026　安全性訊號側</span></a></li>
         <li><a href="https://www.jci.org/articles/view/194743">GLP-1 receptor agonists and cancer: current clinical evidence and translational opportunities<span>JCI　機轉背景</span></a></li>
       </ul>
@@ -1413,11 +1538,17 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
     <div class="panel">
       <p class="cap">方法學　證據合成與比較</p>
       <ul class="refs">
-        <li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.MR000034.pub3/full">Healthcare outcomes assessed with observational study designs compared with randomized trials<span>Cochrane 2024　論文一的方法學母體</span></a></li>
+        <li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.MR000034.pub3/full">Toews I, et al. Healthcare outcomes assessed with observational study designs compared with randomized trials<span>Cochrane MR000034.pub3, 2024　合併 RoR 1.08 (1.01–1.15)：兩類證據「差異極小或根本沒有差異」</span></a></li>
         <li><a href="https://link.springer.com/article/10.1186/s12916-022-02369-2">Evaluating agreement between bodies of evidence from RCTs and cohort studies<span>BMC Med 2022</span></a></li>
         <li><a href="https://www.sciencedirect.com/science/article/pii/S0895435624003974">Impact of data duplication on estimates generated by meta-analyses<span>J Clin Epidemiol 2024</span></a></li>
         <li><a href="https://link.springer.com/article/10.1186/s12889-022-14213-6">Double-counting of populations in evidence synthesis<span>BMC Public Health 2022</span></a></li>
         <li><a href="https://www.riskofbias.info/welcome/robins-i-v2">ROBINS-I V2 tool<span>riskofbias.info</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/23173135/">Suissa S, Azoulay L. Metformin and the risk of cancer: time-related biases in observational studies<span>Diabetes Care 2012　論文二的最強先例</span></a></li>
+        <li><a href="https://diabetesjournals.org/care/article/46/5/904/148773/Metformin-and-Cancer-Solutions-to-a-Real-World">Metformin and Cancer: Solutions to a Real-World Evidence Failure<span>Diabetes Care 2023</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/22223710/">盛行使用者偏差：statin 統合分析的教訓。新使用者 0.77／混合 0.70／盛行 0.54，隨機試驗 0.84<span>設計嚴謹度分數的實證依據</span></a></li>
+        <li><a href="https://cran.r-project.org/web/packages/EValue/vignettes/unmeasured-confounding.html">VanderWeele &amp; Ding. E-value：未測量混淆的敏感度分析<span>方法說明與 R 套件</span></a></li>
+        <li><a href="https://link.springer.com/article/10.1007/s11606-010-1477-8">SOLVD 安慰劑遵從度與死亡率：兩試驗皆 HR 0.52<span>健康遵從者效應的實測基準</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/21422960/">WHI 安慰劑臂遵從度：癌症死亡 HR 0.60；全因死亡 0.64<span>Medical Care 2011</span></a></li>
       </ul>
     </div>
 
@@ -1447,6 +1578,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
 <div class="end">
   <p><b>版本</b>　本稿為博士班三年級上學期資格考、論文題目初稿口試用版本，中華民國一一五年九月。</p>
+  <p><b>本次修訂</b>　依方法學審查結果修正三處核心設定：(一) 刪除「真實世界證據系統性高估」的主效應主張，改為以估計量對齊與設計嚴謹度為條件的調節效應假說；(二) 標的範圍自 tirzepatide 擴大為 incretin 類藥物，tirzepatide 列為事前指定次族群；(三) 刪除以甲狀腺與胰臟癌作為內部一致性檢驗的設計，改用真正的陰性對照結局、非肥胖相關癌別特異性檢驗與陰性對照暴露。</p>
   <p><b>使用說明</b>　本頁為文獻檢索與研究方向的整理草稿，供資格考口試準備使用。所有數值、樣本數與統計量均來自公開摘要與新聞報導的整理，須回原文核對後方可寫入正式書面資料。</p>
   <p><b>下一步</b>　① 跑一次系統性檢索並數出可納入篇數，決定論文一是否需擴大到 incretin 類；② 查證台灣猛健樂給付現況與目標醫院處方量，決定論文三資料源；③ 兩者確認後即可將 05 至 07 節擴寫為正式計畫書方法章。</p>
 </div>
@@ -1482,12 +1614,12 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   <div class="note flag col" style="margin-top:34px">
     <span class="lede">這組數字的判讀 · 請認真看</span>
     最關鍵的是最後兩格。嚴格符合你論文一需求的研究——有 tirzepatide 組、有對照組、有<b>臨床終點</b>（非體重或 HbA1c）、且報告 HR 與信賴區間——在 PubMed 大約落在 <b>15 至 30 篇</b>之間。這個量能支撐<b>描述性的一致性比較</b>，但<b>撐不起 meta-regression</b>：每個共變項至少要 10 篇，三個共變項就需要 30 篇以上的有效樣本。<br><br>
-    換句話說，<b>擴大到 incretin 類藥物很可能不是備案，而是主案</b>。把範圍設為 tirzepatide、semaglutide、dulaglutide，可用研究約提升到兩倍以上，tirzepatide 設為事前指定的主要次族群。這個決定要在口試前做，並寫進計畫書。
+    這一點在方法學審查後已經定案：<b>擴大到 incretin 類藥物不是備案，而是主案。</b>更關鍵的理由是——目前沒有任何隨機試驗提供 tirzepatide 對癌症發生率的估計，若標的限於它，ratio of hazard ratios 在癌症終點上字面上無法計算。因此範圍設為 incretin 類（semaglutide、liraglutide、dulaglutide、exenatide 為主體），tirzepatide 為事前指定的次族群並標註 exploratory。
   </div>
 
   <div class="note col" style="margin-top:26px">
     <span class="lede">口試時可以這樣講</span>
-    「我已做過可行性檢索。單以 tirzepatide 為範圍，符合臨床終點條件的研究約 15 至 30 篇，足以做描述性的一致性比較，但不足以支撐三個共變項的 meta-regression。因此我事前決定把納入範圍設為 incretin 類藥物，tirzepatide 作為主要次族群——這樣既保證統計可行性，也讓方法學結論適用於整個藥物類別。」
+    「我已做過可行性檢索。單以 tirzepatide 為範圍，符合臨床終點條件的研究約 15 至 30 篇；更重要的是，癌症終點上<b>沒有 tirzepatide 的隨機試驗分母</b>，RHR 無法計算。因此我把納入範圍設為 incretin 類藥物，tirzepatide 作為事前指定的次族群。而且我真正要數的不是總篇數，是<b>估計量可對齊的配對數</b>——那才決定我走 meta-regression 還是走機率性偏差分析。」
   </div>
 </section>
 
@@ -1717,7 +1849,7 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
     <ol>
       <li><b>本週</b>　把上面的 PubMed 檢索式跑一次完整版，匯出書目檔，用種子文獻檢驗敏感度。這一步你自己做，因為要練手感。</li>
       <li><b>兩週內</b>　請圖書館協助跑 Embase 與 Web of Science，或申請帳號自己跑。順便問清楚學校有沒有 Covidence 或 Rayyan 的授權，篩選工具會省下大量時間。</li>
-      <li><b>口試前</b>　完成粗篩，畫出一張<b>草稿版 PRISMA 流程圖</b>，帶進口試。就算數字之後會變，有圖跟沒圖的說服力差很多。</li>
+      <li><b>口試前</b>　完成粗篩，畫出一張<b>草稿版 PRISMA 流程圖</b>，並另外數出<b>估計量可對齊的配對數</b>（同族群、同對照定義、同時間零點、同追蹤長度）。後者比總篇數重要，因為它決定論文一的分析路徑。</li>
       <li><b>口試後</b>　確定範圍（單藥或擴大到 incretin 類）後，才到 PROSPERO 正式註冊。<b>註冊前不要開始正式篩選</b>，順序反了會被審稿人抓。</li>
     </ol>
   </div>
