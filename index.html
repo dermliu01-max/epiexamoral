@@ -315,6 +315,9 @@ li b{color:var(--ink)}
 .f-ci.dash{background:none!important; border-top:1.5px dashed var(--s1); height:0}
 .f-ci.dash::before,.f-ci.dash::after{background:var(--muted)}
 .f-pt.hollow{background:var(--surface); border:2px solid; box-sizing:border-box}
+.f-tr.fxA::before{left:66.07%}
+.f-tr.fxB::before{left:45.48%}
+.f-tr.fxC::before{left:56.78%}
 .mrfig{width:100%; height:auto; display:block; overflow:visible}
 .mrfig .axl{font-size:11.5px; fill:var(--muted); font-family:var(--sans)}
 .mrfig .axt{font-size:12.5px; fill:var(--ink-2); font-family:var(--sans); font-weight:700}
@@ -326,6 +329,19 @@ li b{color:var(--ink)}
 .stats .big{font-family:var(--sans); font-size:26px; font-variant-numeric:tabular-nums; color:var(--s2); line-height:1.2; font-weight:700}
 .stats .cap2{font-size:13px; color:var(--ink-2); margin-top:6px; line-height:1.6}
 @media (max-width:700px){ .stats{grid-template-columns:repeat(2,1fr)} .stats > div{padding-right:14px} }
+
+/* ===== dumbbell ===== */
+.d-row{display:grid; grid-template-columns:170px 1fr 170px; gap:16px; align-items:center; padding:11px 0; border-bottom:1px solid var(--rule)}
+.d-row:last-child{border-bottom:none}
+.d-lab{font-size:14px; color:var(--ink)}
+.d-tr{position:relative; height:20px}
+.d-tr::before{content:""; position:absolute; left:77.40%; top:-11px; bottom:-11px; width:1px; background:var(--rule-2)}
+.d-seg{position:absolute; top:50%; height:2px; transform:translateY(-50%); background:var(--muted); opacity:.5}
+.d-pt{position:absolute; top:50%; width:11px; height:11px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--surface); box-sizing:content-box}
+.d-pt.itt{background:var(--s1)}
+.d-pt.at{background:var(--s2)}
+.d-val{font-size:13px; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink-2)}
+@media (max-width:700px){ .d-row{grid-template-columns:120px 1fr 120px; gap:10px} .d-lab,.d-val{font-size:12.5px} }
 
 /* ===== pager ===== */
 .pager{
@@ -1795,7 +1811,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <header class="mast">
   <p class="kicker">補充分析　·　Medscape 專文導讀與先導統合分析　·　2026.09</p>
   <h1>腎臟這條線值多少</h1>
-  <p class="dek">前半解釋 Medscape〈Are GLP-1 Drugs Now Kidney Drugs?〉這篇專文的內容與它對本論文的價值；後半以其中提到的試驗數據，實際跑一次論文一的先導分析，示範這套方法會產出什麼。</p>
+  <p class="dek">前半解釋 Medscape〈Are GLP-1 Drugs Now Kidney Drugs?〉這篇專文的內容與它對本論文的價值；後半為先導分析。<b>本版已依 NDT 2026 與 Fishkin 2025 的原始論文全面核對，修正三處錯誤，並據此修改了論文一的方法設計。</b></p>
 </header>
 
 <section id="k1">
@@ -1856,49 +1872,74 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <section id="k2">
   <div class="sec-head">
     <span class="sec-num">02</span>
-    <h2>先導統合分析</h2>
-    <p class="sub">以下四項分析全部使用已發表的公開估計值，由本研究重新計算。這不是系統性回顧——是用來示範論文一會產出什麼形狀的結果，並檢驗假說方向是否站得住。</p>
+    <h2>核對結果：三處必須修正</h2>
+    <p class="sub">依 NDT 2026 與 Fishkin 2025 的原始論文與補充資料逐一核對後，先前版本有三處錯誤，其中一處會改變論文一的方法設計。</p>
+  </div>
+
+  <div class="stack">
+    <div class="note flag col">
+      <span class="lede">修正一　FLOW 的數值錯了，而且錯得很有意義</span>
+      我先前用的是 FLOW 原始論文的主要終點 <b>HR 0.76 (0.66–0.88)</b>。但 NDT 2026 重新擷取後，FLOW 在其複合腎臟終點下是 <b>0.84 (0.71–0.99)</b>。<br><br>
+      差異來自複合終點的定義不同：FLOW 原始定義為「腎衰竭、eGFR 下降 ≥50%、腎臟或心血管死亡」；NDT 定義為「腎衰竭（eGFR 低於 15 或透析）、腎功能惡化、蛋白尿變化」。<br><br>
+      <b>同一個試驗、同一批病人，換一個複合終點定義，估計值就從 0.76 變成 0.84。</b>這是估計量錯置最乾淨的實例，而且它發生在<u>隨機試驗內部</u>——與偏差無關，純粹是定義問題。這個例子應該直接寫進論文一的引言。
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">修正二　NDT 2026 的內文與圖表互相矛盾（兩處）</span>
+      <b>腎衰竭：</b>內文寫 I²=95%，但 Figure 3A 實際顯示 I²=0%、τ²=0、p=1.00。以六個信賴區間高度重疊的試驗而言，I²=0% 才合理。<br><br>
+      <b>白蛋白尿：</b>內文寫「microalbuminuria，10 試驗、16,720 人」，Figure 3E 標題卻是「Macroalbuminuria」，8 試驗、33,559 對 32,209 人、I²=51%。點估計相同（0.76, 0.71–0.82），但試驗數、人數、異質性全部對不上。<br><br>
+      <b>擷取時必須以圖表為準並記錄此不一致。</b>這也說明為什麼你的擷取表要「每篇每終點各一列」——光看摘要會抄到錯的異質性。
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">修正三　我先前的癌症迴歸應予撤回</span>
+      那個 R²=84% 的結果把<b>不同癌別</b>與<b>不同對照組</b>綁在一起：隨機試驗端是胰臟癌與大腸直腸癌，觀察性端是「整體肥胖相關癌症」。兩個變因無法分離，斜率有多少來自對照、有多少來自癌別，無從得知。<br><br>
+      這正是我自己主張要禁止的估計量錯置。<b>已撤回，改以腎臟資料重做——腎臟同時有兩側的對照組分層資料，可以真正分離。</b>
+    </div>
+  </div>
+</section>
+
+<section id="k3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>重做後的先導分析</h2>
+    <p class="sub">全部改用核對後的原始數值。四項分析中，第二與第三項推翻了我先前的一個核心假設。</p>
   </div>
 
   <div class="stack">
 
-    <div class="note flag col">
-      <span class="lede">先說清楚這是什麼</span>
-      這是<b>先導分析（pilot analysis）</b>，不是系統性回顧。納入的研究是手工挑選的、非窮盡的，僅取本研究已逐一查證的公開估計值。它的用途有兩個：讓你在口試時能展示方法確實可行且結果有訊號；以及在正式註冊前檢驗假說方向。<b>正式分析必須走完整的 PROSPERO 註冊、兩人獨立篩選與 PRISMA 流程。</b>
-    </div>
-
-    <h3>分析一　同一批試驗，終點愈軟效果愈強</h3>
-    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">四個估計來自同一組 19 個隨機試驗、90,882 名受試者。族群、對照、追蹤全部相同，唯一改變的是終點定義。</p>
+    <h3>分析一　終點軟硬度（核對後）</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">四個估計來自同一組 19 個試驗。異質性數值已改用圖表所示，而非內文。</p>
     <div class="figbox">
       <div class="forest-in">
         <div class="f-hd"><span>終點（由硬至軟）</span><span>相對風險（對數尺度）</span><span>RR (95% CI)</span></div>
         <div class="f-row">
-          <div class="f-lab"><b>腎衰竭</b>最硬的終點・單獨看不顯著</div>
-          <div class="f-tr fx1">
+          <div class="f-lab"><b>腎衰竭</b>最硬的終點・6 試驗・I²=0%</div>
+          <div class="f-tr fxA">
             <div class="f-ci dash" style="left:21.8%; width:50.6%; background:var(--s1)"></div>
             <div class="f-pt hollow" style="left:46.6%; border-color:var(--s1)"></div>
           </div>
           <div class="f-val">0.86 (0.71–1.05)</div>
         </div>
         <div class="f-row">
-          <div class="f-lab"><b>腎功能衰退</b></div>
-          <div class="f-tr fx1">
+          <div class="f-lab"><b>腎功能衰退</b>9 試驗・I²=0%</div>
+          <div class="f-tr fxA">
             <div class="f-ci" style="left:38.8%; width:20.6%; background:var(--s1)"></div>
             <div class="f-pt" style="left:49.5%; background:var(--s1)"></div>
           </div>
           <div class="f-val">0.88 (0.81–0.95)</div>
         </div>
         <div class="f-row">
-          <div class="f-lab"><b>複合腎臟終點</b></div>
-          <div class="f-tr fx1">
+          <div class="f-lab"><b>複合腎臟終點</b>10 試驗・I²=61%</div>
+          <div class="f-tr fxA">
             <div class="f-ci" style="left:25.4%; width:25.6%; background:var(--s1)"></div>
             <div class="f-pt" style="left:38.8%; background:var(--s1)"></div>
           </div>
           <div class="f-val">0.81 (0.73–0.89)</div>
         </div>
         <div class="f-row">
-          <div class="f-lab"><b>微白蛋白尿</b>代理指標・效果最強、區間最窄</div>
-          <div class="f-tr fx1">
+          <div class="f-lab"><b>巨量白蛋白尿</b>代理指標・8 試驗・I²=51%</div>
+          <div class="f-tr fxA">
             <div class="f-ci" style="left:21.8%; width:18.6%; background:var(--s1)"></div>
             <div class="f-pt" style="left:30.6%; background:var(--s1)"></div>
           </div>
@@ -1906,127 +1947,340 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
         </div>
         <div class="f-ax"><span style="left:19.9%">0.7</span><span style="left:37.2%">0.8</span><span style="left:52.4%">0.9</span><span style="left:66.1%">1.0</span><span style="left:89.6%">1.2</span></div>
       </div>
-      <p class="figcap">空心菱形代表未達統計顯著。資料來源：NDT 2026 統合分析。</p>
+      <p class="figcap">空心菱形代表未達統計顯著。資料來源：NDT 2026 Figures 2–3。</p>
     </div>
     <div class="stats">
-      <div><div class="big">0.86</div><div class="cap2">硬終點（腎衰竭）<br><span class="q">p=0.13　不顯著</span></div></div>
-      <div><div class="big">0.76</div><div class="cap2">軟終點（微白蛋白尿）<br><span class="q">p&lt;0.0001</span></div></div>
-      <div><div class="big">0.88</div><div class="cap2">軟 ÷ 硬 之比<br><span class="q">95% CI 0.72–1.09</span></div></div>
-    </div>
-    <div class="note col" style="margin-top:24px">
-      <span class="lede">判讀</span>
-      方向一致但未達顯著。<b>但這個區間是偏保守的</b>——兩個估計來自重疊的試驗，正相關會使真實變異數小於獨立假設值。正式分析須以多變量統合分析處理相關性，屆時區間會變窄。<br><br>
-      更重要的是實務意涵：<b>硬終點單獨看根本不顯著。</b>而觀察性研究因事件數考量幾乎一律採用複合終點或代理指標——所以拿觀察性估計去比隨機試驗估計時，兩者往往連終點都不是同一個東西。
+      <div><div class="big">0.86</div><div class="cap2">硬終點・腎衰竭<br><span class="q">p=0.13　不顯著</span></div></div>
+      <div><div class="big">0.76</div><div class="cap2">軟終點・巨量白蛋白尿<br><span class="q">p&lt;0.0001</span></div></div>
+      <div><div class="big">0.88</div><div class="cap2">軟 ÷ 硬<br><span class="q">0.72–1.09，偏保守</span></div></div>
     </div>
 
-    <h3 style="margin-top:56px">分析二　對照組愈鬆散，保護愈強</h3>
-    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">癌症終點的六個估計，依對照組的鬆散程度排序，做隨機效果統合迴歸（Knapp-Hartung 調整）。圓點大小代表精確度。</p>
+    <h3 style="margin-top:56px">分析二與三　對照組梯度同時存在於兩側</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">上半為隨機試驗依對照藥物分層，下半為真實世界依對照藥物分層。<b>兩側都有梯度。</b></p>
     <div class="figbox">
-      <svg viewBox="0 0 760 380" class="mrfig" role="img" aria-label="統合迴歸散布圖：對照組鬆散程度與效果量">
-  <g><line x1="64" y1="328.0" x2="610" y2="328.0" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="332.0" text-anchor="end" class="axl">0.5</text><line x1="64" y1="278.7" x2="610" y2="278.7" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="282.7" text-anchor="end" class="axl">0.6</text><line x1="64" y1="237.0" x2="610" y2="237.0" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="241.0" text-anchor="end" class="axl">0.7</text><line x1="64" y1="200.9" x2="610" y2="200.9" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="204.9" text-anchor="end" class="axl">0.8</text><line x1="64" y1="169.0" x2="610" y2="169.0" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="173.0" text-anchor="end" class="axl">0.9</text><line x1="64" y1="140.5" x2="610" y2="140.5" stroke="var(--rule-2)" stroke-width="1"/><text x="54" y="144.5" text-anchor="end" class="axl">1.0</text><line x1="64" y1="91.2" x2="610" y2="91.2" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="95.2" text-anchor="end" class="axl">1.2</text><line x1="64" y1="30.9" x2="610" y2="30.9" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="34.9" text-anchor="end" class="axl">1.5</text></g>
-  <polygon points="64.0,48.6 73.3,52.8 82.5,57.1 91.8,61.3 101.0,65.5 110.3,69.7 119.5,73.9 128.8,78.0 138.0,82.2 147.3,86.3 156.5,90.3 165.8,94.4 175.1,98.4 184.3,102.3 193.6,106.3 202.8,110.2 212.1,114.0 221.3,117.8 230.6,121.5 239.8,125.1 249.1,128.7 258.3,132.2 267.6,135.7 276.8,139.0 286.1,142.3 295.4,145.5 304.6,148.6 313.9,151.6 323.1,154.5 332.4,157.3 341.6,160.0 350.9,162.6 360.1,165.1 369.4,167.6 378.6,169.9 387.9,172.2 397.2,174.4 406.4,176.5 415.7,178.5 424.9,180.5 434.2,182.4 443.4,184.2 452.7,186.1 461.9,187.8 471.2,189.5 480.4,191.2 489.7,192.9 498.9,194.5 508.2,196.0 517.5,197.6 526.7,199.1 536.0,200.6 545.2,202.1 554.5,203.6 563.7,205.0 573.0,206.4 582.2,207.8 591.5,209.2 600.7,210.6 610.0,212.0 610.0,331.6 600.7,327.3 591.5,323.0 582.2,318.7 573.0,314.4 563.7,310.2 554.5,306.0 545.2,301.8 536.0,297.6 526.7,293.4 517.5,289.3 508.2,285.1 498.9,281.1 489.7,277.0 480.4,273.0 471.2,269.0 461.9,265.0 452.7,261.1 443.4,257.3 434.2,253.5 424.9,249.7 415.7,246.0 406.4,242.4 397.2,238.8 387.9,235.3 378.6,231.9 369.4,228.6 360.1,225.4 350.9,222.2 341.6,219.2 332.4,216.2 323.1,213.3 313.9,210.6 304.6,207.9 295.4,205.3 286.1,202.8 276.8,200.4 267.6,198.1 258.3,195.9 249.1,193.8 239.8,191.7 230.6,189.7 221.3,187.7 212.1,185.8 202.8,184.0 193.6,182.2 184.3,180.5 175.1,178.8 165.8,177.1 156.5,175.5 147.3,173.9 138.0,172.3 128.8,170.8 119.5,169.2 110.3,167.7 101.0,166.3 91.8,164.8 82.5,163.4 73.3,162.0 64.0,160.6" fill="var(--s2)" opacity=".10"/>
-  <polyline points="64.0,104.6 73.3,107.4 82.5,110.2 91.8,113.1 101.0,115.9 110.3,118.7 119.5,121.6 128.8,124.4 138.0,127.2 147.3,130.1 156.5,132.9 165.8,135.7 175.1,138.6 184.3,141.4 193.6,144.2 202.8,147.1 212.1,149.9 221.3,152.7 230.6,155.6 239.8,158.4 249.1,161.2 258.3,164.1 267.6,166.9 276.8,169.7 286.1,172.6 295.4,175.4 304.6,178.2 313.9,181.1 323.1,183.9 332.4,186.7 341.6,189.6 350.9,192.4 360.1,195.3 369.4,198.1 378.6,200.9 387.9,203.8 397.2,206.6 406.4,209.4 415.7,212.3 424.9,215.1 434.2,217.9 443.4,220.8 452.7,223.6 461.9,226.4 471.2,229.3 480.4,232.1 489.7,234.9 498.9,237.8 508.2,240.6 517.5,243.4 526.7,246.3 536.0,249.1 545.2,251.9 554.5,254.8 563.7,257.6 573.0,260.4 582.2,263.3 591.5,266.1 600.7,268.9 610.0,271.8" fill="none" stroke="var(--s2)" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="109.5" y1="163.1" x2="109.5" y2="51.5" stroke="var(--s1)" stroke-width="2" opacity=".55"/>
-    <circle cx="109.5" cy="107.5" r="10.4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"><title>大腸直腸癌　HR 1.13 (0.92–1.39)</title></circle>    <line x1="109.5" y1="211.2" x2="109.5" y2="43.8" stroke="var(--s1)" stroke-width="2" opacity=".55"/>
-    <circle cx="109.5" cy="127.3" r="6.9" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"><title>胰臟癌　HR 1.05 (0.77–1.43)</title></circle>    <line x1="223.2" y1="194.2" x2="223.2" y2="154.4" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
-    <circle cx="223.2" cy="175.1" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>DPP-4 抑制劑　HR 0.88 (0.82–0.95)</title></circle>    <line x1="337.0" y1="190.9" x2="337.0" y2="166.0" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
-    <circle cx="337.0" cy="178.2" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>其他降糖藥　HR 0.87 (0.83–0.91)</title></circle>    <line x1="450.7" y1="214.8" x2="450.7" y2="166.0" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
-    <circle cx="450.7" cy="190.9" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>未使用者　HR 0.83 (0.76–0.91)</title></circle>    <line x1="564.5" y1="312.2" x2="564.5" y2="248.8" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
-    <circle cx="564.5" cy="283.2" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>生活型態諮詢　HR 0.59 (0.53–0.67)</title></circle>
-  <g><text x="109.5" y="348.0" text-anchor="middle" class="axl"><tspan x="109.5" dy="0">隨機試驗</tspan><tspan x="109.5" dy="14">安慰劑</tspan></text><text x="223.2" y="348.0" text-anchor="middle" class="axl"><tspan x="223.2" dy="0">同類</tspan><tspan x="223.2" dy="14">主動藥物</tspan></text><text x="337.0" y="348.0" text-anchor="middle" class="axl"><tspan x="337.0" dy="0">其他</tspan><tspan x="337.0" dy="14">降糖藥</tspan></text><text x="450.7" y="348.0" text-anchor="middle" class="axl"><tspan x="450.7" dy="0">未使用者</tspan></text><text x="564.5" y="348.0" text-anchor="middle" class="axl"><tspan x="564.5" dy="0">生活型態</tspan><tspan x="564.5" dy="14">諮詢</tspan></text></g>
-  <text x="54" y="16" text-anchor="end" class="axt">HR</text>
-  <text x="620.0" y="275.8" class="axt" fill="var(--s2)">迴歸線</text>
-  <text x="620.0" y="293.8" class="axl">每鬆一級 ×0.879</text>
-</svg>
-      <p class="figcap">藍色為隨機試驗，橘色為觀察性研究；陰影為迴歸線的 95% 信賴帶。滑鼠停留可看各點數值。</p>
-    </div>
-    <div class="stats">
-      <div><div class="big">×0.879</div><div class="cap2">每往鬆散一級，效果量乘上<br><span class="q">95% CI 0.814–0.949</span></div></div>
-      <div><div class="big">p=0.010</div><div class="cap2">斜率檢定<br><span class="q">t=−4.66, df=4</span></div></div>
-      <div><div class="big">84%</div><div class="cap2">被解釋的異質性<br><span class="q">原 I²=89.7%</span></div></div>
-    </div>
-    <div class="note col" style="margin-top:24px">
-      <span class="lede">這是整份提案最重要的一個數字</span>
-      六個估計之間的異質性原本高達 <b>I² = 89.7%</b>——傳統上會被描述為「效果高度異質」。但<b>光是「對照組是什麼」這一個變項，就解釋掉其中約 84%。</b><br><br>
-      換句話說：這些研究之間的差異，絕大部分不是效果的異質性，<b>而是它們在估計不同的東西</b>。這正是 H1a 的核心主張，而且在先導資料上已經看得到訊號。
+      <div class="forest-in">
+        <div class="f-hd"><span>證據類型與對照藥物</span><span>效果量（對數尺度）</span><span>估計 (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>隨機試驗｜對照＝insulin glargine</b>AWARD7 ＋ SURPASS-4，k=2，I²=0%</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:8.2%; width:26.2%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:21.3%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.61 (0.47–0.80)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>隨機試驗｜對照＝安慰劑</b>7 試驗，I²=46%</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:30.9%; width:8.2%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:35.0%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.81 (0.74–0.88)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>隨機試驗｜對照＝混合主動藥</b>GRADE 單一試驗</div>
+          <div class="f-tr fxB">
+            <div class="f-ci dash" style="left:38.8%; width:17.2%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:47.4%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">1.04 (0.88–1.24)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>真實世界｜對照＝DPP-4i</b>末期腎病，I²=0%</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:22.5%; width:10.6%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:27.8%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.70 (0.63–0.78)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>真實世界｜對照＝sulfonylurea</b>末期腎病</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:21.8%; width:15.1%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:29.2%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.72 (0.62–0.84)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>真實世界｜對照＝basal insulin</b>白蛋白尿進展</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:34.4%; width:10.6%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:39.7%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.89 (0.80–0.99)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>真實世界｜對照＝SGLT2i</b>急性腎損傷</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:47.9%; width:6.6%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:51.1%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.12 (1.05–1.20)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>真實世界｜對照＝SGLT2i</b>≥40% eGFR 下降</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:57.3%; width:9.2%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:62.2%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.40 (1.27–1.53)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>真實世界｜對照＝SGLT2i</b>腎臟事件住院</div>
+          <div class="f-tr fxB">
+            <div class="f-ci" style="left:46.0%; width:49.3%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:70.6%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.66 (1.01–2.73)</div>
+        </div>
+        <div class="f-ax"><span style="left:11.1%">0.5</span><span style="left:27.8%">0.7</span><span style="left:45.5%">1.0</span><span style="left:65.6%">1.5</span><span style="left:79.9%">2.0</span><span style="left:100.0%">3.0</span></div>
+      </div>
+      <p class="figcap">藍色為隨機試驗（NDT 2026 個別試驗依對照分層後重新合併），橘色為真實世界（Fishkin 2025 依對照分層之合併值）。</p>
     </div>
 
-    <h3 style="margin-top:56px">分析三　同一批病人，只換分析方法</h3>
-    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">以色列 Maccabi 資料庫，GLP-1 RA 對 basal insulin，傾向分數配對後各 3,424 人。同一批病人、同一組對照、同一段追蹤——唯一改變的是 ITT 或 as-treated。</p>
-    <div class="tbl">
-      <table>
-        <thead><tr><th style="width:30%">終點與分析方法</th><th style="width:26%">HR (95% CI)</th><th style="width:44%">as-treated ÷ ITT</th></tr></thead>
-        <tbody>
-          <tr><td data-l="終點"><b>複合腎臟終點・ITT</b></td><td data-l="HR"><span class="n">0.96 (0.82–1.11)</span>　不顯著</td><td data-l="比值" rowspan="2"><span class="n">0.740 (0.537–1.019)</span><br><span class="q">as-treated 使效果「保護」26%</span></td></tr>
-          <tr><td data-l="終點"><b>複合腎臟終點・as-treated</b></td><td data-l="HR"><span class="n">0.71 (0.54–0.95)</span>　顯著</td></tr>
-          <tr><td data-l="終點"><b>巨量白蛋白尿・ITT</b></td><td data-l="HR"><span class="n">0.87 (0.75–1.00)</span></td><td data-l="比值" rowspan="2"><span class="n">0.920 (0.707–1.196)</span><br><span class="q">方向相同，幅度較小</span></td></tr>
-          <tr><td data-l="終點"><b>巨量白蛋白尿・as-treated</b></td><td data-l="HR"><span class="n">0.80 (0.64–1.00)</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="note col" style="margin-top:24px">
-      <span class="lede">這是健康依從者偏差的指紋</span>
-      兩個終點都是 as-treated 更「保護」，而且複合終點的差距大到讓結論從<b>不顯著翻轉為顯著</b>。持續用藥的人本來就比較健康、比較有依從性——as-treated 分析把這份差異算進了藥效裡。<br><br>
-      這一組資料的價值在於<b>它把所有其他變因都固定住了</b>。你在論文一裡想證明的「分析選擇會改變結論」，這裡是最乾淨的單一案例。
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">這推翻了我先前的一個核心假設</span>
+      我原本主張「對照組愈鬆散、保護愈強」是<b>偏差</b>的表現。但看隨機試驗那一側：<br><br>
+      <span class="n">對照＝insulin glargine　0.614 (0.472–0.800)</span><br>
+      <span class="n">對照＝安慰劑　　　　　　0.809 (0.745–0.878)</span><br>
+      <span class="n">比值 0.760 (0.576–1.002)，p=0.051</span><br><br>
+      <b>隨機化已經排除了干擾，所以這個梯度是真實的</b>——GLP-1 對上 insulin 本來就比對上安慰劑更有利，因為 insulin 本身對腎臟與體重較不利。<br><br>
+      同理，真實世界端對照 SGLT2i 時呈現<b>顯著有害</b>（eGFR 下降 40% 以上為 1.40、腎臟事件住院 1.66），那不是偏差，是因為 SGLT2i 的腎臟保護本來就更強。<br><br>
+      <b>結論：對照組梯度 ＝ 真實的差異效果 ＋ 偏差。不能全部歸因於偏差。</b>
     </div>
 
-    <h3 style="margin-top:56px">分析四　腎臟的 Ratio of Hazard Ratios</h3>
-    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">把 FLOW 與 SELECT 腎臟次分析合併為隨機試驗錨點，再與真實世界估計相除。</p>
+    <h3 style="margin-top:56px">分析四　同一對照組內的 Ratio of Hazard Ratios</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">既然跨對照組的比較混入了真實差異，唯一乾淨的做法是<b>在同一對照組內</b>比較兩類證據。目前兩側都有資料的只有 basal insulin。</p>
     <div class="figbox">
       <div class="forest-in">
         <div class="f-hd"><span>估計</span><span>對數尺度</span><span>值 (95% CI)</span></div>
         <div class="f-row">
-          <div class="f-lab"><b>隨機試驗錨點</b>FLOW ＋ SELECT 腎臟次分析（I²=0%）</div>
-          <div class="f-tr fx3">
-            <div class="f-ci" style="left:11.4%; width:21.7%; background:var(--s1)"></div>
-            <div class="f-pt" style="left:22.2%; background:var(--s1)"></div>
+          <div class="f-lab"><b>隨機試驗基準</b>AWARD7 ＋ SURPASS-4，對照＝insulin</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:21.4%; width:24.9%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:33.8%; background:var(--s1)"></div>
           </div>
-          <div class="f-val">0.766 (0.680–0.863)<br><span class="q">（參考基準）</span></div>
+          <div class="f-val">0.61 (0.47–0.80)</div>
         </div>
         <div class="f-row">
-          <div class="f-lab"><b>RHR：真實世界 ITT ÷ 隨機試驗</b>對照＝basal insulin</div>
-          <div class="f-tr fx3">
-            <div class="f-ci" style="left:49.5%; width:35.1%; background:var(--s2)"></div>
-            <div class="f-pt" style="left:67.0%; background:var(--s2)"></div>
+          <div class="f-lab"><b>Schechter 2023・ITT</b>以色列 Maccabi</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:63.5%; width:28.7%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:77.8%; background:var(--s2)"></div>
           </div>
-          <div class="f-val">1.253 (1.033–1.519)<br><span class="q">真實世界低估 25%</span></div>
+          <div class="f-val">1.56 (1.15–2.12)</div>
         </div>
         <div class="f-row">
-          <div class="f-lab"><b>RHR：真實世界 as-treated ÷ 隨機試驗</b>同一批病人，只換分析方法</div>
-          <div class="f-tr fx3">
-            <div class="f-ci dash" style="left:11.7%; width:55.8%; background:var(--s2)"></div>
-            <div class="f-pt hollow" style="left:39.6%; border-color:var(--s2)"></div>
+          <div class="f-lab"><b>Schechter 2023・as-treated</b>同一批病人</div>
+          <div class="f-tr fxC">
+            <div class="f-ci dash" style="left:45.4%; width:36.5%; background:var(--s2)"></div>
+            <div class="f-pt hollow" style="left:63.6%; border-color:var(--s2)"></div>
           </div>
-          <div class="f-val">0.927 (0.682–1.259)<br><span class="q">不顯著</span></div>
+          <div class="f-val">1.16 (0.79–1.70)</div>
         </div>
-        <div class="f-ax"><span style="left:0.0%">0.6</span><span style="left:26.2%">0.8</span><span style="left:46.5%">1.0</span><span style="left:66.8%">1.25</span><span style="left:83.4%">1.5</span><span style="left:100.0%">1.8</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>Peng 2023・ITT</b>台灣</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:17.7%; width:35.3%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:35.4%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.64 (0.44–0.92)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>Peng 2023・as-treated</b>同一批病人</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:9.9%; width:43.3%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:31.6%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.59 (0.37–0.93)</div>
+        </div>
+        <div class="f-ax"><span style="left:0.0%">0.3</span><span style="left:24.1%">0.5</span><span style="left:40.0%">0.7</span><span style="left:56.8%">1.0</span><span style="left:75.9%">1.5</span><span style="left:100.0%">2.5</span></div>
       </div>
-      <p class="figcap">藍色為隨機試驗合併估計，橘色為 ratio of hazard ratios。空心菱形代表未達顯著。</p>
-    </div>
-    <div class="note flag col" style="margin-top:24px">
-      <span class="lede">這個結果與通說相反，而且它是顯著的</span>
-      <b>RHR = 1.253（1.033–1.519）</b>——在 ITT 分析下，真實世界估計比隨機試驗<u>更不保護</u>，低估了約 25%。<br><br>
-      這與「真實世界證據一律高估治療效益」的常見說法完全相反。原因不難理解：<b>這個真實世界研究的對照組是 basal insulin</b>。使用 insulin 的病人病程更長、共病更多，適應症干擾把估計推向危害端，恰好抵銷甚至蓋過了健康使用者效應。<br><br>
-      <b>這正是 H2b「偏差方向依族群與對照組反轉」的直接證據。</b>而且它同時說明了為什麼論文一不能只報一個總體 RHR——必須依對照型態分層，否則兩股方向相反的偏差會互相抵銷，讓係數趨近於零，而那不是「沒有偏差」。
+      <p class="figcap">第一列為隨機試驗基準；其餘四列為 RHR（真實世界除以隨機試驗）。RHR 大於 1 表示真實世界低估保護效益，小於 1 表示高估。</p>
     </div>
 
-    <h3 style="margin-top:56px">先導分析的四個結論</h3>
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">這是整份提案最有力的一張圖</span>
+      兩個真實世界研究、<b>同一類藥、同一個對照藥物（basal insulin）、同一族腎臟終點</b>，卻落在隨機試驗基準的<b>兩側，而且都顯著</b>：<br><br>
+      <span class="n">Schechter 2023（以色列）ITT　RHR 1.562 (1.153–2.118)</span>　低估 56%<br>
+      <span class="n">Peng 2023（台灣）ITT　　　　 RHR 0.635 (0.437–0.923)</span>　高估 37%<br><br>
+      <b>即使對齊了對照組，殘餘的變異仍然巨大，而且方向相反。</b>任何「真實世界一律高估」或「一律低估」的敘述都站不住。<br><br>
+      而且值得注意：<b>低估的那一篇來自以色列健保資料，高估的那一篇來自台灣。</b>族群、醫療體系、處方型態的差異，可能正是論文一要找的調節因子——這也讓台灣的資料在方法學上有了獨立的價值。
+    </div>
+
+    <h3 style="margin-top:56px">這次核對改變了論文一的方法</h3>
+    <div class="panel">
+      <p style="color:var(--ink-2);font-size:16px;margin-bottom:16px"><b>原本的設計：</b>把所有配對放進一個統合迴歸，以「對照組鬆散程度」為共變項，預測 RHR。</p>
+      <p style="color:var(--ink-2);font-size:16px;margin-bottom:20px"><b>修正後的設計：</b>先<b>依對照藥物分層</b>，在每一層內分別計算隨機試驗與真實世界的合併估計，兩者相除得到該層的 RHR。跨層的差異屬於真實效果，不進入偏差估計。</p>
+      <div class="formula">
+對每一個對照藥物 C：
+  Δ<sub>RCT</sub>(C)　＝　隨機試驗中對上 C 的效果　（無干擾，視為真值）
+  Δ<sub>RWE</sub>(C)　＝　真實世界中對上 C 的效果
+  偏差(C)　＝　Δ<sub>RWE</sub>(C) − Δ<sub>RCT</sub>(C)　＝　該層的 ln(RHR)
+
+<em>跨 C 的差異　＝　真實的差異效果，不是偏差</em>
+<em>層內的差異　＝　偏差，這才是論文一要估計的東西</em>
+      </div>
+      <p style="color:var(--ink-2);font-size:16px;margin-top:20px">這個修正讓「估計量對齊」從一句口號變成可執行的分析步驟，也回答了口委最可能問的一題：<b>你怎麼知道你測到的是偏差，不是真實的藥物差異？</b></p>
+    </div>
+
+    <div class="panel" style="margin-top:20px">
+      <h4>可配對層的現況</h4>
+      <ul>
+        <li><b>basal insulin</b>　兩側都有，已完成上述分析</li>
+        <li><b>安慰劑</b>　隨機試驗有 7 篇，真實世界<b>沒有</b>（觀察性研究不可能有安慰劑組）。此層永遠無法配對，須明講</li>
+        <li><b>DPP-4i</b>　真實世界有 6 篇；隨機試驗端<b>無直接頭對頭試驗</b>。需以網絡統合分析間接橋接，或列為不可配對</li>
+        <li><b>SGLT2i</b>　真實世界有 21 篇；隨機試驗端亦無直接頭對頭。同上</li>
+        <li><b>sulfonylurea</b>　真實世界 1 篇；GRADE 試驗部分可用</li>
+      </ul>
+      <p style="font-size:14.5px;color:var(--muted);margin-top:14px">可配對層目前只有一到兩個，這是論文一最大的可行性限制，<b>必須在口試主動說出來</b>，並提出因應：以網絡統合分析建立間接的對照橋接，或把可配對層的偏差估計作為先驗，外推至不可配對層並報告翻轉點。</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="k4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>補充資料的三個發現</h2>
+    <p class="sub">Fishkin 2025 的補充表 S2 與 S4 沒有出現在正文裡，但它們對論文一的設計影響比正文更大。</p>
+  </div>
+
+  <div class="stack">
+
+    <h3>發現一　整個真實世界證據庫，沒有一篇是低偏差風險</h3>
+    <div class="stats">
+      <div><div class="big">0</div><div class="cap2">評為 Low<br><span class="q">21 個結果列中</span></div></div>
+      <div><div class="big">15</div><div class="cap2">評為 Moderate<br><span class="q">71%</span></div></div>
+      <div><div class="big">6</div><div class="cap2">評為 Serious<br><span class="q">29%</span></div></div>
+      <div><div class="big">1</div><div class="cap2">造成降級的領域數<br><span class="q">全部是 confounding</span></div></div>
+    </div>
+    <div class="note flag col" style="margin-top:24px">
+      <span class="lede">這正是你自建嚴謹度分數的實證理由</span>
+      ROBINS-I 有四級（Low／Moderate／Serious／Critical）與七個領域。但在這批資料上，<b>只用到中間兩級，而且每一次降級都來自同一個領域——bias due to confounding</b>；其餘六個領域全部評為 Low 或 No information。<br><br>
+      換句話說，<b>ROBINS-I 在此完全沒有鑑別力，不能作為 meta-regression 的共變項</b>。這不是猜測，是可以直接引用補充表 S2 佐證的事實。你的 0–14 分細分量表因此不是「另起爐灶」，而是<u>既有工具失效後的必要替代</u>。這一段寫進論文一的方法段，審稿人很難反駁。
+    </div>
+
+    <h3 style="margin-top:56px">發現二　同一批病人、七個終點，換個分析方法就整組翻轉</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">Schechter 2023 的 ITT 估計在正文，as-treated 估計在補充表 S4。<b>同一批 3,424 對病人、同一個對照藥物、同一段追蹤</b>，唯一的差別是追蹤是否在停藥時截斷。</p>
+    <div class="figbox">
+      <div style="min-width:560px">
+        <div class="d-row" style="border-bottom:1px solid var(--rule-2); padding-bottom:9px">
+          <div class="d-lab" style="color:var(--muted); font-size:12.5px">終點</div>
+          <div style="font-size:12.5px; color:var(--muted)">效果量（對數尺度）</div>
+          <div class="d-val" style="color:var(--muted); font-size:12.5px">HR</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">巨量白蛋白尿新發</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:61.6%; width:13.3%"></div>
+            <div class="d-pt at" style="left:61.6%"><title></title></div>
+            <div class="d-pt itt" style="left:74.9%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 0.95　<b>AT</b> 0.72</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">UACR 分級進展</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:63.6%; width:8.2%"></div>
+            <div class="d-pt at" style="left:63.6%"><title></title></div>
+            <div class="d-pt itt" style="left:71.8%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 0.89　<b>AT</b> 0.75</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">eGFR 下降 ≥30%</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:62.9%; width:13.5%"></div>
+            <div class="d-pt at" style="left:62.9%"><title></title></div>
+            <div class="d-pt itt" style="left:76.4%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 0.98　<b>AT</b> 0.74</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">eGFR 下降 ≥40%</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:62.3%; width:13.2%"></div>
+            <div class="d-pt at" style="left:62.3%"><title></title></div>
+            <div class="d-pt itt" style="left:75.4%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 0.96　<b>AT</b> 0.73</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">eGFR 下降 ≥50%</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:62.9%; width:19.5%"></div>
+            <div class="d-pt at" style="left:62.9%"><title></title></div>
+            <div class="d-pt itt" style="left:82.4%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 1.11　<b>AT</b> 0.74</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">eGFR 下降 ≥57%</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:54.4%; width:24.9%"></div>
+            <div class="d-pt at" style="left:54.4%"><title></title></div>
+            <div class="d-pt itt" style="left:79.3%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 1.04　<b>AT</b> 0.62</div>
+        </div>
+        <div class="d-row">
+          <div class="d-lab">末期腎病</div>
+          <div class="d-tr">
+            <div class="d-seg" style="left:44.1%; width:29.3%"></div>
+            <div class="d-pt at" style="left:44.1%"><title></title></div>
+            <div class="d-pt itt" style="left:73.4%"></div>
+          </div>
+          <div class="d-val"><span class="q">ITT</span> 0.92　<b>AT</b> 0.50</div>
+        </div>
+        <div class="f-ax" style="margin-top:6px"><span style="left:0.0%">0.2</span><span style="left:33.3%">0.4</span><span style="left:52.8%">0.6</span><span style="left:66.7%">0.8</span><span style="left:77.4%">1.0</span><span style="left:93.6%">1.4</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1); border-radius:50%; transform:none"></i>ITT（正文）</span>
+        <span><i style="background:var(--s2); border-radius:50%; transform:none"></i>as-treated（補充表 S4）</span>
+      </p>
+    </div>
+    <div class="stats">
+      <div><div class="big">7 / 7</div><div class="cap2">全部往保護方向移動<br><span class="q">符號檢定 p=0.016</span></div></div>
+      <div><div class="big">×0.70</div><div class="cap2">as-treated 的平均效應<br><span class="q">範圍 0.54–0.84</span></div></div>
+      <div><div class="big">4 / 4</div><div class="cap2">eGFR 閾值由無效轉為保護<br><span class="q">0.96–1.11 → 0.62–0.74</span></div></div>
+    </div>
+    <div class="note flag col" style="margin-top:24px">
+      <span class="lede">這是健康依從者偏差最乾淨的一次測量</span>
+      在 ITT 下，四個 eGFR 閾值全部接近無效（0.96 至 1.11）；改用 as-treated 後，四個全部落在 0.62 至 0.74。<b>結論整組翻轉。</b><br><br>
+      七個終點來自同一批病人，高度相關，所以我不做合併信賴區間——<b>改用符號檢定，它不受相關性影響</b>：七個全部同方向，p=0.016。這是此處最誠實的檢定方式，也是你正式分析時該用的做法。<br><br>
+      <b>對擷取表的直接影響：必須同時登錄 ITT 與 as-treated 兩個估計。</b>Fishkin 正文只報 ITT，as-treated 藏在補充表 S4——只看正文就會漏掉整份提案最重要的一組對比。
+    </div>
+
+    <h3 style="margin-top:56px">發現三　台灣那一篇的基準效果大三倍</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:26%">研究</th><th style="width:24%">末期腎病・ITT</th><th style="width:24%">末期腎病・as-treated</th><th style="width:26%">AT ÷ ITT</th></tr></thead>
+        <tbody>
+          <tr><td data-l="研究"><b>Schechter 2023</b><br><span class="q">以色列 Maccabi</span></td><td data-l="ITT"><span class="n">0.92 (0.64–1.32)</span></td><td data-l="AT"><span class="n">0.50 (0.24–1.04)</span></td><td data-l="比值"><span class="n">0.543</span></td></tr>
+          <tr style="background:var(--acc-soft)"><td data-l="研究"><b>Peng 2023</b><br><span class="q">台灣</span></td><td data-l="ITT"><span class="n">0.29 (0.20–0.43)</span></td><td data-l="AT"><span class="n">0.20 (0.11–0.38)</span></td><td data-l="比值"><span class="n">0.690 (0.333–1.429)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note col" style="margin-top:24px">
+      <span class="lede">分析方法解釋不了這個差距</span>
+      兩篇的對照藥物相同（basal insulin）、終點相同（末期腎病）、方向也相同（as-treated 更保護）。但<b>台灣的 ITT 估計是 0.29，以色列是 0.92——差三倍以上</b>。<br><br>
+      這個差距不可能來自分析方法，只能來自族群、資料庫特性、處方型態或醫療體系。<b>這正是論文一要找的調節因子，而且它讓台灣資料在方法學上有了獨立價值</b>——不是「補一個亞洲族群」而已，而是這個異質性本身就是研究對象。
+    </div>
+
+    <h3 style="margin-top:56px">對論文一的三個直接修改</h3>
     <div class="panel">
       <ol>
-        <li><b>終點軟硬度確實會移動估計值。</b>硬終點單獨看不顯著（0.86, p=0.13），軟終點最強（0.76, p&lt;0.0001）。方向一致，正式分析須處理估計間相關性。</li>
-        <li><b>對照組選擇解釋了 84% 的異質性。</b>每往鬆散一級，效果量乘以 0.879（p=0.010）。這是本論文最強的單一訊號。</li>
-        <li><b>分析方法本身可以翻轉結論。</b>同一批病人，ITT 不顯著、as-treated 顯著。</li>
-        <li><b>偏差方向不是固定的。</b>ITT 加 insulin 對照時，真實世界反而低估 25%（顯著）。任何「RWE 一律高估」的敘述都必須刪除。</li>
+        <li><b>嚴謹度分數不採用 ROBINS-I 現成分級。</b>已有補充表 S2 作為實證理由：它在此資料上只用到兩級，且由單一領域決定，無變異可用於迴歸。自建 0–14 分細分量表。</li>
+        <li><b>「分析方法（ITT 或 as-treated）」列為事前指定的共變項。</b>其效應在 Schechter 資料上約為 ×0.70，七個終點方向一致。這是繼「對照藥物」與「終點軟硬度」之後的第三個調節因子，而且它有直接的量測值。</li>
+        <li><b>擷取表改為每篇每終點<u>每分析方法</u>各一列。</b>從「每篇一列」到「每篇每終點一列」再到現在的三層，這是核對原始資料後才看得出來的需求。</li>
       </ol>
-      <div style="height:16px"></div>
-      <p style="font-size:14.5px;color:var(--muted);max-width:660px">所有數值由本研究以已發表估計值重新計算，方法為隨機效果模型（DerSimonian-Laird）與 Knapp-Hartung 調整的統合迴歸。原始估計值務必回各原始論文核對。</p>
     </div>
 
   </div>
 </section>
 
 <div class="end">
-  <p><b>性質說明</b>　本分頁前半為 Medscape 專文之導讀，該文為臨床觀點評論而非原始研究，所引數值一律以原始論文為準。後半為先導分析，納入研究係手工挑選、非窮盡，僅供檢驗假說方向與示範方法產出，不得作為正式證據合成之結論。</p>
+  <p><b>核對狀態</b>　本分頁的腎臟數值已逐一核對 NDT 2026 正文與 Figures 2–4、Fishkin 2025 Tables 2–3 與 Figures 2–3，以及 Fishkin 補充表 S2（ROBINS-I）與 S4（as-treated）。癌症相關的迴歸分析已撤回。<b>先導分析仍非系統性回顧</b>——納入研究係取自既有兩篇系統性回顧，未做獨立更新檢索。</p>
   <p><b>正式分析</b>　須完成 PROSPERO 註冊、兩人獨立篩選與擷取、PRISMA 流程圖、以多變量統合分析處理估計間相關性，並依附錄之檢索策略執行。</p>
 </div>
 
@@ -2440,7 +2694,7 @@ medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
 
 <script>
 (function(){
-  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot"};
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function show(name, scroll){
     if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
