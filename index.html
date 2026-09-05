@@ -306,6 +306,27 @@ li b{color:var(--ink)}
 #panel-appendix .mast{padding-top:44px}
 #panel-appendix .code,#panel-appendix .panel{max-width:860px}
 
+/* ===== 先導分析：圖表 ===== */
+:root{ --s1:#0B6BB5; --s2:#A05C00; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --s1:#4693D4; --s2:#C08432; } }
+:root[data-theme="dark"]{ --s1:#4693D4; --s2:#C08432; }
+.f-tr.fx1::before{left:66.07%}
+.f-tr.fx3::before{left:46.50%}
+.f-ci.dash{background:none!important; border-top:1.5px dashed var(--s1); height:0}
+.f-ci.dash::before,.f-ci.dash::after{background:var(--muted)}
+.f-pt.hollow{background:var(--surface); border:2px solid; box-sizing:border-box}
+.mrfig{width:100%; height:auto; display:block; overflow:visible}
+.mrfig .axl{font-size:11.5px; fill:var(--muted); font-family:var(--sans)}
+.mrfig .axt{font-size:12.5px; fill:var(--ink-2); font-family:var(--sans); font-weight:700}
+.figbox{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:22px 24px; overflow-x:auto}
+.figcap{font-size:13.5px; color:var(--muted); margin-top:14px; line-height:1.7; max-width:660px}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:0; border-top:1px solid var(--rule-2); margin-top:8px}
+.stats > div{padding:18px 20px 18px 0; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.stats > div:last-child{border-right:none}
+.stats .big{font-family:var(--sans); font-size:26px; font-variant-numeric:tabular-nums; color:var(--s2); line-height:1.2; font-weight:700}
+.stats .cap2{font-size:13px; color:var(--ink-2); margin-top:6px; line-height:1.6}
+@media (max-width:700px){ .stats{grid-template-columns:repeat(2,1fr)} .stats > div{padding-right:14px} }
+
 /* ===== pager ===== */
 .pager{
   display:flex; justify-content:space-between; gap:16px; align-items:stretch;
@@ -374,6 +395,7 @@ li b{color:var(--ink)}
       <button class="tab" role="tab" data-tab="methods" aria-selected="false" aria-controls="panel-methods">三篇方法</button>
       <button class="tab" role="tab" data-tab="bias" aria-selected="false" aria-controls="panel-bias">偏差與統計</button>
       <button class="tab" role="tab" data-tab="plan" aria-selected="false" aria-controls="panel-plan">時程與口試</button>
+      <button class="tab" role="tab" data-tab="pilot" aria-selected="false" aria-controls="panel-pilot">先導分析</button>
       <button class="tab" role="tab" data-tab="appendix" aria-selected="false" aria-controls="panel-appendix">附錄</button>
     </div>
   </div>
@@ -391,11 +413,11 @@ li b{color:var(--ink)}
   <div class="tp-rule"></div>
 
   <h1 class="tp-title">真實世界證據與隨機分派試驗分歧之來源、量化與校正</h1>
-  <p class="tp-sub">以 incretin 類藥物之癌症預防效益為例</p>
+  <p class="tp-sub">以 incretin 類藥物之腎臟與癌症結局為例</p>
 
   <p class="tp-en">Sources, Quantification, and Correction of Discordance Between<br>
   Real-World Evidence and Randomized Trials:<br>
-  The Case of Incretin-Based Therapies and Cancer Prevention</p>
+  The Case of Incretin-Based Therapies, Kidney Outcomes and Cancer Prevention</p>
 
   <div class="tp-rule"></div>
 
@@ -422,6 +444,7 @@ li b{color:var(--ink)}
     <a href="#s10"><b>10</b>統計計畫</a>
     <a href="#s11"><b>11</b>時程與投稿策略</a>
     <a href="#s12"><b>12</b>口委問答</a>
+    <a href="#k1"><b>補</b>Medscape 導讀與先導分析</a>
     <a href="#q1"><b>附一</b>檢索策略</a>
     <a href="#refs"><b>附二</b>參考文獻</a>
   </div>
@@ -436,17 +459,17 @@ li b{color:var(--ink)}
 
   <div class="stack">
     <div class="note col">
-      Incretin 類藥物與癌症的證據呈現一個奇怪的形狀：隨機試驗端一致落在無效線附近甚至偏向危害——胰臟癌 RR 1.05、大腸直腸癌 1.13；觀察性研究端則一律落在保護側，而且<b>對照組愈鬆散、追蹤愈短，保護愈強</b>，從主動藥物對照的 0.87、未使用者的 0.83，一路到生活型態諮詢對照的 0.59。<br><br>常見的解釋是「真實世界證據會高估效益」。但這不是定律——Cochrane 的跨領域方法學統合得到的 ratio of ratios 是 1.08，作者結論是兩類證據差異極小或根本沒有差異。<b>所以真正的問題不是誰高估，而是：0.59 與 0.92 的差距，究竟有多少是效果的異質性，有多少只是因為它們根本在估計不同的東西。</b><br><br>我的論文要回答的就是這個。先在估計量可對齊的配對上量化殘餘分歧、找出是哪些設計特徵造成的；再用這組參數對沒有試驗可對照的癌症終點做偏差校正並報告翻轉點；最後親自做一個設計做對的目標試驗模擬，驗證修正是否真的改變結論。
+      Incretin 類藥物的證據呈現一個奇怪的形狀。以癌症為例：隨機試驗端一致落在無效線附近甚至偏向危害——胰臟癌 RR 1.05、大腸直腸癌 1.13；觀察性研究端則一律落在保護側，而且<b>對照組愈鬆散，保護愈強</b>，從同類主動藥物的 0.88、未使用者的 0.83、生活型態諮詢的 0.59，一路到以 insulin 為對照時的 0.35。同一類藥、同一族結局，點估計橫跨三倍以上。<br><br>常見的解釋是「真實世界證據會高估效益」。但這不是定律——Cochrane 的跨領域方法學統合得到的 ratio of ratios 是 1.08，作者結論是兩類證據差異極小或根本沒有差異。<b>所以真正的問題不是誰高估，而是：這個範圍究竟有多少是效果的異質性，有多少只是因為這些研究根本在估計不同的東西。</b><br><br>要回答這個問題，需要一個<b>有隨機試驗可以對照的終點</b>。癌症沒有——沒有任何試驗以癌症發生率為主要終點。<b>腎臟有，而且條件好得出奇</b>：FLOW 提供糖尿病族群的安慰劑對照錨點，SELECT 腎臟次分析提供無糖尿病族群的錨點，SURPASS-CVOT 心腎次要分析提供主動對照錨點；兩邊的統合分析也都已經發表，分子與分母現成。<br><br><b>所以我的策略是：在有錨點的地方測量偏差，在沒有錨點的地方使用它。</b>論文一以腎臟量化分歧、找出是哪些設計特徵造成的；論文二把這組參數帶到癌症，做偏差校正並報告翻轉點；論文三親自做一個設計做對的目標試驗模擬，驗證修正是否真的改變結論。
     </div>
 
     <div class="trio">
       <div>
         <h4>診斷</h4>
-        <p>先對齊估計量，再以 Ratio of Hazard Ratios 量化殘餘分歧，並以單一有序的設計嚴謹度分數找出來源。</p>
+        <p>以<b>腎臟</b>為基準終點——它同時有安慰劑與主動對照的隨機試驗錨點。對齊估計量後計算 Ratio of Hazard Ratios，找出分歧的來源。</p>
       </div>
       <div>
         <h4>處方</h4>
-        <p>把偏差參數代入校正合成模型，重估肥胖相關癌症，並以陰性對照做經驗校準與翻轉點分析。</p>
+        <p>把腎臟測得的偏差參數帶到<b>癌症</b>——沒有隨機試驗可對照的終點——做校正合成、陰性對照經驗校準與翻轉點分析。</p>
       </div>
       <div>
         <h4>示範</h4>
@@ -573,6 +596,73 @@ li b{color:var(--ink)}
     </div>
 
     <div>
+      <h3>第二張圖：同一批試驗，終點愈軟效果愈強</h3>
+      <p class="sub" style="font-size:14.5px;color:var(--muted);margin-bottom:22px;max-width:640px">以下四個估計來自<b>同一組 19 個隨機試驗、90,882 名受試者</b>。族群相同、對照相同、追蹤相同——唯一改變的是終點的定義。</p>
+      <div class="forest">
+        <div class="forest-in">
+          <div class="f-hd"><span>終點（由硬至軟）</span><span>相對風險（對數尺度）</span><span>RR (95% CI)</span></div>
+
+          <div class="f-row">
+            <div class="f-lab"><b>腎衰竭</b>最硬的終點</div>
+            <div class="f-tr">
+              <div class="f-ci" style="left:45.4%; width:20.6%; background:var(--flag)"></div>
+              <div class="f-pt" style="left:55.5%; background:var(--flag)"></div>
+            </div>
+            <div class="f-val">0.86 (0.71–1.05)</div>
+          </div>
+
+          <div class="f-row">
+            <div class="f-lab"><b>腎功能衰退</b></div>
+            <div class="f-tr">
+              <div class="f-ci" style="left:52.4%; width:8.4%; background:var(--acc)"></div>
+              <div class="f-pt" style="left:56.7%; background:var(--acc)"></div>
+            </div>
+            <div class="f-val">0.88 (0.81–0.95)</div>
+          </div>
+
+          <div class="f-row">
+            <div class="f-lab"><b>複合腎臟終點</b></div>
+            <div class="f-tr">
+              <div class="f-ci" style="left:46.9%; width:10.5%; background:var(--acc)"></div>
+              <div class="f-pt" style="left:52.4%; background:var(--acc)"></div>
+            </div>
+            <div class="f-val">0.81 (0.73–0.89)</div>
+          </div>
+
+          <div class="f-row">
+            <div class="f-lab"><b>微白蛋白尿</b>代理指標</div>
+            <div class="f-tr">
+              <div class="f-ci" style="left:45.4%; width:7.6%; background:var(--acc)"></div>
+              <div class="f-pt" style="left:49.0%; background:var(--acc)"></div>
+            </div>
+            <div class="f-val">0.76 (0.71–0.82)</div>
+          </div>
+
+          <div class="f-ax">
+            <span style="left:1%">0.3</span>
+            <span style="left:26.9%">0.5</span>
+            <span style="left:44.6%">0.7</span>
+            <span style="left:63.5%">1.0</span>
+            <span style="left:84.8%">1.5</span>
+            <span style="left:98%">2.0</span>
+          </div>
+        </div>
+        <p class="f-key">
+          <span><i style="background:var(--acc)"></i>達統計顯著</span>
+          <span><i style="background:var(--flag)"></i>未達顯著</span>
+          <span class="flagtxt">數值取自 NDT 2026 的統合分析，正式書面資料務必回原文核對。</span>
+        </p>
+      </div>
+
+      <div class="note col" style="margin-top:26px">
+        <span class="lede">這張圖是論文一的第二個支柱</span>
+        <b>最硬的終點單獨看並不顯著</b>（腎衰竭 0.86，信賴區間跨過 1），而最軟的代理指標效果最強、區間最窄（微白蛋白尿 0.76）。複合終點 0.81 之所以顯著，相當程度是被較軟的成分撐起來的。<br><br>
+        關鍵在於：<b>觀察性研究因為事件數考量，幾乎一律採用複合終點或代理指標。</b>所以當我們把觀察性估計與隨機試驗估計相比時，兩者往往連「終點」都不是同一個東西——這是<u>獨立於對照組選擇</u>的第二條估計量錯置路徑。<br><br>
+        既有的方法學文獻談對照組、談族群、談時間零點，但<b>幾乎沒有系統性討論終點軟硬度</b>。這是論文一最有機會被記住的貢獻。
+      </div>
+    </div>
+
+    <div>
       <h3>關鍵文獻與既有競品</h3>
       <p class="sub" style="font-size:14.5px;color:var(--muted);margin-bottom:22px;max-width:640px">後半是方法學母體與你必須明確區隔的既有研究。口委一定會問，先講先贏。</p>
       <div class="tbl">
@@ -626,6 +716,24 @@ li b{color:var(--ink)}
               <td data-l="設計">對照＝飲食／運動諮詢，中位追蹤 2 年</td>
               <td data-l="結果"><span class="n">HR 0.59 (0.53–0.67)</span></td>
               <td data-l="意義">梯度的最極端。對照最鬆散、追蹤最短、效果最大——三者共線，無法分離。</td>
+            </tr>
+            <tr style="background:var(--acc-soft)">
+              <td data-l="研究"><b>FLOW</b><br><span class="q">NEJM 2024　隨機試驗</span></td>
+              <td data-l="設計">semaglutide 1.0mg 對安慰劑<br>T2D＋CKD，N=3,533，中位 3.4 年</td>
+              <td data-l="結果"><span class="n">腎臟複合終點 HR 0.76</span><br>全死因死亡 ↓20%；MACE ↓18%<br>eGFR 斜率 +1.16／年<br><span class="flagtxt">因效益顯著提前中止</span></td>
+              <td data-l="意義"><b>糖尿病族群的隨機試驗錨點。</b>安慰劑對照、硬腎臟終點——這是癌症終點完全沒有的東西。</td>
+            </tr>
+            <tr style="background:var(--acc-soft)">
+              <td data-l="研究"><b>SELECT 腎臟次分析</b><br><span class="q">Nat Med 2024　隨機試驗</span></td>
+              <td data-l="設計">semaglutide 對安慰劑<br>肥胖＋CVD、<b>無糖尿病</b><br>N=17,604，中位 182 週</td>
+              <td data-l="結果"><span class="n">腎臟複合終點 HR 0.78 (0.63–0.96)</span><br>eGFR 斜率整體 +0.39／年<br>基線 eGFR&lt;60 者 +2.19</td>
+              <td data-l="意義"><b>本論文最珍貴的一個錨點。</b>它提供了<u>無糖尿病族群</u>的隨機試驗估計——正是偏差方向反轉、也是台灣自費族群所在的那一群。</td>
+            </tr>
+            <tr>
+              <td data-l="研究"><b>SURMOUNT-1／2 合併分析</b><br><span class="q">隨機試驗</span></td>
+              <td data-l="設計">tirzepatide 對安慰劑</td>
+              <td data-l="結果"><span class="n">UACR 下降 42–55%</span><br>基線 UACR ≥30 mg/g 者，不分有無糖尿病</td>
+              <td data-l="意義">tirzepatide 唯一的腎臟隨機試驗證據，但終點是<b>代理指標</b>而非硬終點，配對時須分開處理。</td>
             </tr>
             <tr>
               <td data-l="研究"><b>SURPASS-CVOT</b><br><span class="q">NEJM 2025　隨機試驗</span></td>
@@ -724,9 +832,9 @@ li b{color:var(--ink)}
 
       <h4 style="margin-top:26px">四個可檢驗的假說</h4>
       <ol>
-        <li><b>H1a（論文一・主假說）</b>　RCT 與 RWE 的分歧幅度<b>由估計量是否對齊決定</b>。在對照組定義、族群、時間零點與追蹤長度皆可對齊的配對上，ratio of ratios 將接近 1，與 Cochrane 的跨領域結果一致；分歧集中在估計量未對齊的配對。</li>
-        <li><b>H1b（論文一・調節效應）</b>　在估計量已對齊的前提下，殘餘分歧可由<b>單一有序的設計嚴謹度分數</b>預測，其中「新使用者設計」與「對照組型態」兩項貢獻最大，「追蹤長度」因與曆年、藥物世代、族群高度共線而無法單獨識別。</li>
-        <li><b>H2（論文二）</b>　對肥胖相關癌症施加潛伏期窗口與偏差校正後，保護效果將往無效線衰減。以主動藥物為對照的估計（E-value 約 1.5–1.7）低於安慰劑臂健康遵從者效應的實測強度，因此不夠穩健；以生活型態諮詢為對照的估計（E-value 2.78）不會被自動推翻，需另以陰性對照的經驗校準判斷。</li>
+        <li><b>H1a（論文一・主假說）</b>　以<b>腎臟結局</b>為基準，RCT 與 RWE 的分歧幅度<b>由估計量是否對齊決定</b>。在對照組定義、族群、終點軟硬度、時間零點與追蹤長度皆可對齊的配對上，ratio of ratios 將接近 1，與 Cochrane 的跨領域結果一致；分歧集中在估計量未對齊的配對。</li>
+        <li><b>H1b（論文一・調節效應）</b>　在估計量已對齊的前提下，殘餘分歧可由<b>單一有序的設計嚴謹度分數</b>預測，其中「新使用者設計」「對照組型態」與「終點軟硬程度」三項貢獻最大，「追蹤長度」因與曆年、藥物世代、族群高度共線而無法單獨識別。</li>
+        <li><b>H2（論文二）</b>　把論文一在腎臟終點測得的偏差參數轉移至癌症後，對肥胖相關癌症施加潛伏期窗口與偏差校正，保護效果將往無效線衰減。以主動藥物為對照的估計（E-value 約 1.5–1.7）低於安慰劑臂健康遵從者效應的實測強度，因此不夠穩健；以生活型態諮詢為對照的估計（E-value 2.78）不會被自動推翻，需另以陰性對照的經驗校準判斷。</li>
         <li><b>H3（論文三）</b>　在同一資料源上，嚴格對齊目標試驗協定所得到的估計，會比未對齊的傳統世代分析<b>更接近 SURPASS-CVOT</b>，且差距的主要來源是追蹤起點對齊與新使用者限制，而非共變項調整方法。</li>
       </ol>
 
@@ -752,9 +860,9 @@ li b{color:var(--ink)}
       <div class="paper">
         <span class="tag">Paper 1　診斷</span>
         <h3>RWE 與 RCT 差多少？</h3>
-        <p>Meta-epidemiological study。系統性收錄 tirzepatide 所有隨機與非隨機研究，配成 PICO 相符的證據對，計算 ratio of hazard ratios。</p>
-        <p>以自建的目標試驗忠實度評分與其他研究層次特徵做 meta-regression，找出預測落差的設計因子。</p>
-        <p class="out">產出：偏差方向、幅度與其預測因子。<b>不需資料庫申請。</b></p>
+        <p>Meta-epidemiological study，<b>以腎臟結局為基準終點</b>。腎臟同時具備安慰劑錨點（FLOW、SELECT 腎臟次分析）與主動對照錨點（SURPASS-CVOT 心腎次要分析），且糖尿病與無糖尿病族群各有一個。</p>
+        <p>在估計量可對齊的配對上計算 ratio of hazard ratios，並以單一有序的設計嚴謹度分數找出預測分歧的因子。分子與分母的統合分析皆已發表，可直接站在其上更新。</p>
+        <p class="out">產出：分歧幅度、方向與其預測因子。<b>不需資料庫申請。</b></p>
       </div>
       <div class="paper">
         <span class="tag">Paper 2　處方</span>
@@ -782,8 +890,8 @@ li b{color:var(--ink)}
             <tr>
               <td data-l="論文"><b>論文一</b></td>
               <td data-l="分析單位">研究</td>
-              <td data-l="終點範圍"><b>全部臨床終點</b><br><span class="q">癌症、MACE、心衰竭、腎臟、死亡</span></td>
-              <td data-l="理由">分析單位是研究不是病人，需要足夠篇數才能跑 meta-regression。而且「設計特徵預測落差」這個主張本來就該跨終點成立——只做一個終點反而證明不了普遍性。<b>終點在此是分層變項，不是研究主題。</b></td>
+              <td data-l="終點範圍"><b>腎臟為主要基準</b><br><span class="q">心血管為次要基準；癌症、心衰竭、死亡為描述性</span></td>
+              <td data-l="理由">論文一需要「有隨機試驗分母」的終點。腎臟同時具備安慰劑錨點（FLOW、SELECT 腎臟次分析）與主動對照錨點（SURPASS-CVOT 心腎次要分析），而且<b>糖尿病族群與無糖尿病族群各有一個</b>——這讓「偏差方向依族群反轉」可以在有隨機試驗的情況下被直接檢驗。癌症沒有這個條件，因此是外推目標而非基準。</td>
             </tr>
             <tr>
               <td data-l="論文"><b>論文二</b></td>
@@ -946,7 +1054,8 @@ li b{color:var(--ink)}
       <h4>納入條件</h4>
       <ul>
         <li>介入為任一 incretin 類藥物，且有明確對照組</li>
-        <li>結果為<b>臨床終點</b>：癌症發生、心血管事件、心衰竭住院、腎臟終點、全死因死亡</li>
+        <li><b>主要基準終點為腎臟結局</b>：腎衰竭、腎替代療法、eGFR 持續下降 50%、腎臟死亡、複合腎臟終點、白蛋白尿進展。每一項均登錄其<b>軟硬程度分級</b></li>
+        <li>次要基準終點為心血管事件與全死因死亡；癌症、心衰竭僅作描述性登錄，供論文二使用</li>
         <li>報告相對效果量與變異數</li>
         <li>隨機與非隨機研究皆納入，不限語言</li>
       </ul>
@@ -959,6 +1068,57 @@ li b{color:var(--ink)}
         <li><b>同一追蹤長度</b>　或至少在同一時間窗內截斷</li>
       </ul>
       <p style="color:var(--ink-2);font-size:16px;margin-top:14px">不符合對齊條件的配對<b>不是排除，而是另立一組</b>——「未對齊配對」的分歧幅度，正是 H1a 要檢驗的東西。</p>
+    </div>
+
+    <div>
+      <h3>基準終點的選擇：為什麼腎臟是最好的那一個</h3>
+      <p style="font-size:16px;color:var(--ink-2);margin:0 0 22px;max-width:660px">論文一需要的是「有隨機試驗分母」的終點。癌症沒有，心血管有但只有主動對照，<b>腎臟則兩種都有，而且橫跨兩個關鍵族群</b>。這讓腎臟成為本論文的主要基準終點。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:16%">終點</th><th style="width:26%">可用的隨機試驗錨點</th><th style="width:20%">對照型態</th><th style="width:38%">在論文一中的角色</th></tr></thead>
+          <tbody>
+            <tr style="background:var(--acc-soft)">
+              <td data-l="終點"><b>腎臟</b></td>
+              <td data-l="錨點">FLOW（T2D＋CKD）<br>SELECT 腎臟次分析（肥胖無糖尿病）<br>SURPASS-CVOT 心腎次要分析</td>
+              <td data-l="對照">安慰劑 ×2<br>主動藥物 ×1</td>
+              <td data-l="角色"><b>主要基準終點。</b>同時具備安慰劑與主動對照的錨點，且<u>兩個族群各有一個</u>——這讓「偏差方向依族群反轉」的假設可以在有隨機試驗的情況下被直接檢驗。</td>
+            </tr>
+            <tr>
+              <td data-l="終點"><b>心血管</b></td>
+              <td data-l="錨點">SURPASS-CVOT、SELECT、SUSTAIN-6、REWIND 等</td>
+              <td data-l="對照">主要為安慰劑；SURPASS-CVOT 為主動藥物</td>
+              <td data-l="角色">次要基準終點。錨點數量最多，但族群集中於高心血管風險者。</td>
+            </tr>
+            <tr>
+              <td data-l="終點"><b>癌症</b></td>
+              <td data-l="錨點"><span class="flagtxt">無主要終點為癌症發生率的試驗</span><br>僅有試驗合併的安全性分析</td>
+              <td data-l="對照">安慰劑（合併）</td>
+              <td data-l="角色"><b>不是基準終點，是外推目標。</b>論文一在腎臟與心血管上測得的偏差參數，於論文二轉移至癌症。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note col" style="margin-top:24px">
+        <span class="lede">分母已經被人算好了，這是重大的時程優勢</span>
+        腎臟終點的隨機試驗統合分析已經飽和——2024 至 2026 年間至少有六篇（Lancet Diabetes Endocrinol、AJKD、NDT、Diabetes Care、Circulation、Cardiorenal Medicine）。<b>再做一篇療效統合分析毫無意義</b>，但這代表論文一的分母可以直接引用而不必自建：<br><br>
+        <span class="n">複合腎臟終點　RR 0.81 (0.73–0.89)</span>　19 試驗、90,882 人<br>
+        <span class="n">腎功能衰退　　RR 0.88 (0.81–0.95)</span><br>
+        <span class="n">腎衰竭　　　　RR 0.86 (0.71–1.05)</span>　<b>不顯著</b><br>
+        <span class="n">微白蛋白尿　　RR 0.76 (0.71–0.82)</span><br>
+        <span class="n">MACE　　　　　RR 0.85 (0.81–0.90)</span>　<span class="n">全死因 0.86 (0.82–0.91)</span><br><br>
+        分子側也已有一篇真實世界資料的統合分析（Diabetes Metab Res Rev 2025）。<b>沒有人做的，是把兩邊放在同一條軸上、對齊估計量、計算 ratio of ratios。</b>論文一因此可以站在既有的兩篇系統性回顧上更新檢索，而不是從零建立兩個證據庫——工作量少掉一半，而且審稿人無法指控你漏收文獻。
+      </div>
+
+      <div class="note flag col" style="margin-top:20px">
+        <span class="lede">上面那組數字藏著一個新的調節因子</span>
+        注意：<b>硬終點（腎衰竭）RR 0.86 不顯著，但複合終點 RR 0.81 顯著、微白蛋白尿 RR 0.76 更強。</b>換句話說，複合終點是被較軟的成分驅動的。<br><br>
+        而觀察性研究幾乎一律使用複合終點或更軟的終點——因為事件數才夠。<b>所以「終點的軟硬程度」本身就是一個估計量錯置的來源，而且與對照組選擇無關、是獨立的。</b>這個調節因子在既有的方法學文獻裡幾乎沒被討論過，值得列為論文一的第三項事前指定共變項。
+      </div>
+
+      <div class="note col" style="margin-top:20px">
+        <span class="lede">SELECT 腎臟次分析為什麼特別重要</span>
+        本論文有一個核心的方向性假設：偏差方向在糖尿病族群與肥胖無糖尿病族群之間會反轉。<b>要檢驗它，兩個族群都必須有隨機試驗錨點。</b>FLOW 提供糖尿病族群的錨點，SELECT 腎臟次分析提供無糖尿病族群的錨點——後者正是台灣自費使用的族群。癌症終點做不到這件事，這也是為什麼論文一必須以腎臟為主要基準。
+      </div>
     </div>
 
     <div>
@@ -992,6 +1152,11 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
               <td data-l="說明">RCT-DUPLICATE 中分歧最大的配對，正是以磺醯脲類「代替安慰劑」的那幾個。本議題的梯度也吻合：主動藥物對照 0.87–0.88、未使用者 0.83–0.92、生活型態諮詢 0.59。</td>
             </tr>
             <tr>
+              <td data-l="特徵"><b>終點軟硬程度</b><br><span class="q">本論文新提出</span></td>
+              <td data-l="證據"><b>中</b></td>
+              <td data-l="說明">隨機試驗端的腎衰竭 RR 0.86（不顯著）、複合終點 0.81、微白蛋白尿 0.76——效果隨終點變軟而變強。觀察性研究因事件數考量幾乎一律採用複合或更軟的終點，因此這是<b>獨立於對照組選擇</b>的第二條錯置路徑。可操作化為三級序位：硬終點／複合終點／代理指標。</td>
+            </tr>
+            <tr>
               <td data-l="特徵"><b>追蹤時間過短</b></td>
               <td data-l="證據"><span class="flagtxt">弱且共線</span></td>
               <td data-l="說明">癌症潛伏期論證生物學上站得住腳，但追蹤長度與曆年、藥物世代、資料庫、族群高度共線。目前梯度中追蹤最短的研究同時也是對照最鬆散的一項，兩者無法分離。<b>不宜作為獨立迴歸項。</b></td>
@@ -1008,6 +1173,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
         <li>每項 0 至 2 分，總分作為<b>單一有序共變項</b></li>
         <li>兩人獨立評分，報告加權 kappa</li>
         <li>不朽時間偏差採可操作判定：<b>只要暴露定義需要用到指標日之後的資訊</b>（「持續用藥滿三個月」「至少領藥兩次」），即判定存在</li>
+        <li>另納入一個曆年共變項：收案期間<b>相對於 KDIGO 2024 指引將 GLP-1 納入 CKD 處置演算法的時點</b>。指引改變後處方型態隨之改變，這是可測量的通道效應</li>
       </ul>
       <h4 style="margin-top:28px">替代的分析路徑：偏差成分分解</h4>
       <p style="color:var(--ink-2);font-size:16px">若配對數少到連單變數 meta-regression 都不穩，改採<b>機率性偏差分析</b>：把每一項設計缺陷轉成一個帶分布的定量偏差因子，逐一施加於觀察到的估計，看要施加多少才能回到隨機試驗的估計。這條路對樣本數的要求低得多，而且產出更直接可用。</p>
@@ -1031,7 +1197,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
     <div class="note col">
       <span class="lede">口試前的可行性先決條件</span>
-      跑一次檢索，數出<b>估計量可對齊的配對</b>有幾組——不是總篇數，是配對數。這個數字決定論文一是走 meta-regression 還是走偏差成分分解。帶著它進場。
+      跑一次檢索，數出<b>估計量可對齊的配對</b>有幾組——不是總篇數，是配對數。腎臟終點的優勢在於分子與分母的統合分析都已發表（NDT 2026 與 Diabetes Metab Res Rev 2025），你可以直接從這兩篇的納入清單起跳、更新至最新，再逐一判斷可否配對。這個數字決定論文一是走 meta-regression 還是走偏差成分分解。帶著它進場。
     </div>
 
   </div>
@@ -1230,6 +1396,11 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
     </div>
 
     <div class="panel">
+      <h4>第二個基準：腎臟終點</h4>
+      <p style="color:var(--ink-2);font-size:16px">除了 MACE，同一份資料再模擬一次 <b>SURPASS-CVOT 的心腎次要分析</b>。好處是：同一批病人、同一套設計、兩個基準，如果模擬在 MACE 上成功而在腎臟上失敗（或反之），就能指出問題出在結果定義而非世代建構。<b>一個資料源、兩個基準，是這篇最省力的加值。</b>若資料源另有 eGFR 檢驗值，還可比較 eGFR 斜率——那是連續變項，統計效能遠高於事件計數。</p>
+    </div>
+
+    <div class="panel">
       <h4>外推分析（論文三的後半）</h4>
       <p style="color:var(--ink-2);font-size:16px">在完成嚴格模擬並確認可信度後，把設計外推到 SURPASS-CVOT 排除或代表性不足的族群：無 ASCVD 的初級預防者、非糖尿病肥胖者、eGFR 較低者、高齡者、東亞族群。以標準化與可轉移性方法把試驗結果轉移到台灣目標族群，並報告族群別的絕對風險下降與 NNT。</p>
     </div>
@@ -1259,6 +1430,8 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
             <tr><td data-l="偏差"><b>發表偏差</b></td><td data-l="樣貌">顯著的保護效果較易被發表，尤其失智與癌症</td><td data-l="因應">漏斗圖與 Egger 檢定；檢索預印本、學會摘要與試驗註冊平台；比較已註冊未發表者</td></tr>
             <tr><td data-l="偏差"><b>配對不當</b></td><td data-l="樣貌">把 PICO 不同的隨機試驗與真實世界研究強行配對</td><td data-l="因應">事前寫死配對規則；兩人獨立配對並報告 kappa；做嚴格與寬鬆兩版本</td></tr>
             <tr><td data-l="偏差"><b>選擇性報告</b></td><td data-l="樣貌">同一研究報告多個終點，僅取顯著者</td><td data-l="因應">事前指定每篇研究的主要擷取終點階層，一研究一估計</td></tr>
+            <tr><td data-l="偏差"><b>分母本身也有偏差</b></td><td data-l="樣貌">因效益顯著而<b>提前中止</b>的試驗會系統性高估效果——FLOW 即為一例</td><td data-l="因應">RHR 的分母不是無偏的真值。標註提前中止的試驗，並做排除該類試驗的敏感度分析；解讀 RHR 時明講此一限制</td></tr>
+            <tr><td data-l="偏差"><b>代理終點與硬終點混用</b></td><td data-l="樣貌">SURMOUNT 系列報告的是 UACR 變化，不是腎臟事件</td><td data-l="因應">代理指標與硬終點不得配對計算 RHR，另立一組描述性呈現</td></tr>
             <tr><td data-l="偏差"><b>估計量錯置</b><span class="q flagtxt">　最關鍵</span></td><td data-l="樣貌">把「對未使用者」的觀察性估計與「對主動藥物」的試驗估計相除，稱之為偏差</td><td data-l="因應">估計量對齊列為納入條件；未對齊配對另立一組，其分歧幅度本身即為研究產出</td></tr>
             <tr><td data-l="偏差"><b>偏差方向依族群反轉</b></td><td data-l="樣貌">糖尿病理賠族群是適應症混淆（偏危害），肥胖自費族群是健康使用者選擇（偏保護）</td><td data-l="因應">兩組分別合成、分別校正。合併而不分層會使兩股偏差抵銷，係數趨近零——那不是「無偏差」</td></tr>
             <tr><td data-l="偏差"><b>共線性</b></td><td data-l="樣貌">追蹤長度與曆年、藥物世代、資料庫、族群高度相關，無法單獨識別</td><td data-l="因應">改用單一有序的設計嚴謹度分數做單變數迴歸，或改採機率性偏差成分分解</td></tr>
@@ -1541,6 +1714,24 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   </details>
 
   <details class="qa">
+    <summary>GLP-1 與腎臟結局的統合分析已經有六篇了，你為什麼還要做？</summary>
+    <div class="ans">
+      <p>「我不做第七篇療效統合分析。<b>那些已經把分母算好了，我要的正是這個。</b>」</p>
+      <p>「既有的六篇——Lancet Diabetes Endocrinol、AJKD、NDT、Diabetes Care、Circulation、Cardiorenal Medicine——全部都只合併隨機試驗；另外有一篇只合併真實世界資料。<b>沒有任何一篇把兩邊放在同一條軸上、對齊估計量、計算 ratio of ratios。</b>我的問題不是『這類藥物對腎臟有沒有效』，而是『當我們只有觀察性資料時，我們的估計會偏離多少、往哪偏、為什麼』。」</p>
+      <p>加分的一句：「而且這對我是時程上的優勢，不是劣勢——分子與分母的證據庫都已經有人整理好，我從既有的兩篇系統性回顧更新起跳，不必從零建立。這也讓審稿人無法指控我漏收文獻。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
+    <summary>為什麼基準終點選腎臟，不選心血管？心血管的試驗更多。</summary>
+    <div class="ans">
+      <p>「因為我需要的不只是試驗數量，是<b>對照型態與族群的組合</b>。」</p>
+      <p>「腎臟同時具備三種錨點：FLOW 是糖尿病族群的<b>安慰劑</b>對照，SELECT 腎臟次分析是<b>無糖尿病</b>族群的安慰劑對照，SURPASS-CVOT 心腎次要分析是<b>主動藥物</b>對照。心血管的試驗雖多，但族群集中在高心血管風險者，而且我的方向性假設——偏差方向在糖尿病與無糖尿病族群之間反轉——需要兩個族群<u>各有一個隨機試驗錨點</u>才能檢驗。只有腎臟同時滿足。」</p>
+      <p>「而且腎臟終點有一個心血管沒有的特點：<b>它天然涵蓋從硬到軟的完整光譜</b>——腎衰竭、eGFR 下降、白蛋白尿。這讓我可以在同一組試驗內部檢驗終點軟硬度這個調節因子。」</p>
+    </div>
+  </details>
+
+  <details class="qa">
     <summary>你要算 ratio of hazard ratios，但 tirzepatide 根本沒有癌症的隨機試驗，分母哪裡來？</summary>
     <div class="ans">
       <p>這是最致命的一題，一定要能立刻答出來。</p>
@@ -1599,42 +1790,304 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <!-- ============ refs ============ -->
 </div>
 
+<div id="panel-pilot" role="tabpanel" hidden>
+
+<header class="mast">
+  <p class="kicker">補充分析　·　Medscape 專文導讀與先導統合分析　·　2026.09</p>
+  <h1>腎臟這條線值多少</h1>
+  <p class="dek">前半解釋 Medscape〈Are GLP-1 Drugs Now Kidney Drugs?〉這篇專文的內容與它對本論文的價值；後半以其中提到的試驗數據，實際跑一次論文一的先導分析，示範這套方法會產出什麼。</p>
+</header>
+
+<section id="k1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>這篇文章講了什麼</h2>
+    <p class="sub">它是一篇臨床觀點評論，不是原始研究。價值不在於它的結論，而在於它把四組證據放在同一個敘事裡。</p>
+  </div>
+
+  <div class="stack">
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:20%">它引用的證據</th><th style="width:30%">內容</th><th style="width:50%">為什麼對本論文重要</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="證據"><b>FLOW</b><br><span class="q">NEJM 2024</span></td>
+            <td data-l="內容">T2D＋CKD，N=3,533，semaglutide 1.0mg 對<b>安慰劑</b>，中位追蹤 3.4 年。腎臟複合終點 <span class="n">HR 0.76 (0.66–0.88)</span>；eGFR 斜率 +1.16／年；全死因死亡 ↓20%；MACE ↓18%。因效益顯著提前中止。</td>
+            <td data-l="意義"><b>糖尿病族群的安慰劑對照錨點。</b>這是癌症終點完全沒有的東西——有了它，論文一的分母才存在。</td>
+          </tr>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="證據"><b>SELECT 腎臟次分析</b><br><span class="q">Nat Med 2024</span></td>
+            <td data-l="內容">肥胖＋CVD、<b>無糖尿病</b>，N=17,604，中位 182 週。腎臟複合終點 <span class="n">HR 0.78 (0.63–0.96)</span>；eGFR 斜率整體 +0.39／年，基線 eGFR&lt;60 者 +2.19。</td>
+            <td data-l="意義"><b>全篇最珍貴的一項。</b>本論文假設偏差方向在糖尿病與無糖尿病族群之間反轉；要檢驗它，兩個族群都得有隨機試驗錨點。這一篇補上了後者——也正是台灣自費使用的族群。</td>
+          </tr>
+          <tr>
+            <td data-l="證據"><b>FLOW 的 SGLT2i 次分析</b></td>
+            <td data-l="內容">semaglutide 的效益不因是否併用 SGLT2 抑制劑而改變，顯示機轉互補而非重疊。</td>
+            <td data-l="意義">提供一個<b>陰性交互作用</b>的參考：若真實世界研究反而看到強烈交互作用，那多半是通道效應而非生物學。</td>
+          </tr>
+          <tr>
+            <td data-l="證據"><b>SURMOUNT-1／2 合併</b></td>
+            <td data-l="內容">tirzepatide 使基線 UACR ≥30 者的 UACR 下降 42–55%，不分有無糖尿病。</td>
+            <td data-l="意義">tirzepatide 唯一的腎臟隨機試驗證據，但終點是<b>代理指標</b>。配對時必須與硬終點分開——這正是「終點軟硬度」共變項的由來。</td>
+          </tr>
+          <tr>
+            <td data-l="證據"><b>KDIGO 2024 指引</b></td>
+            <td data-l="內容">將 GLP-1 納入 CKD 處置演算法。</td>
+            <td data-l="意義">製造了一個可測量的<b>曆年通道效應</b>：指引前後的處方族群不同。應列為研究層次共變項。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note col">
+      <span class="lede">這篇文章對你的真正價值</span>
+      它本身是二手評論，<b>不能引用它的數字</b>，所有數值都要回原始論文核對。但它做了一件很有用的事：把 FLOW、SELECT、SURPASS-CVOT 心腎次要分析、SURMOUNT 的 UACR 資料放在同一頁，讓人一眼看出<b>腎臟是這類藥物裡證據結構最完整的終點</b>——安慰劑對照有、主動對照有、糖尿病族群有、無糖尿病族群也有，而且終點從硬到軟一應俱全。<br><br>
+      這個結構是論文一之所以改用腎臟為基準終點的全部理由。
+    </div>
+
+    <div class="note flag col">
+      <span class="lede">它沒說、但你必須說的兩件事</span>
+      <b>一、FLOW 因效益顯著提前中止。</b>這類試驗會系統性高估效果。所以 RHR 的分母本身也不是無偏的真值，解讀時必須明講。<br><br>
+      <b>二、文中的「腎臟保護」混用了硬終點與代理指標。</b>FLOW 的複合終點與 SURMOUNT 的 UACR 不是同一個估計量，臨床評論可以並列，方法學研究不行。
+    </div>
+  </div>
+</section>
+
+<section id="k2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>先導統合分析</h2>
+    <p class="sub">以下四項分析全部使用已發表的公開估計值，由本研究重新計算。這不是系統性回顧——是用來示範論文一會產出什麼形狀的結果，並檢驗假說方向是否站得住。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note flag col">
+      <span class="lede">先說清楚這是什麼</span>
+      這是<b>先導分析（pilot analysis）</b>，不是系統性回顧。納入的研究是手工挑選的、非窮盡的，僅取本研究已逐一查證的公開估計值。它的用途有兩個：讓你在口試時能展示方法確實可行且結果有訊號；以及在正式註冊前檢驗假說方向。<b>正式分析必須走完整的 PROSPERO 註冊、兩人獨立篩選與 PRISMA 流程。</b>
+    </div>
+
+    <h3>分析一　同一批試驗，終點愈軟效果愈強</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">四個估計來自同一組 19 個隨機試驗、90,882 名受試者。族群、對照、追蹤全部相同，唯一改變的是終點定義。</p>
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>終點（由硬至軟）</span><span>相對風險（對數尺度）</span><span>RR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>腎衰竭</b>最硬的終點・單獨看不顯著</div>
+          <div class="f-tr fx1">
+            <div class="f-ci dash" style="left:21.8%; width:50.6%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:46.6%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.86 (0.71–1.05)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>腎功能衰退</b></div>
+          <div class="f-tr fx1">
+            <div class="f-ci" style="left:38.8%; width:20.6%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:49.5%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.88 (0.81–0.95)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>複合腎臟終點</b></div>
+          <div class="f-tr fx1">
+            <div class="f-ci" style="left:25.4%; width:25.6%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:38.8%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.81 (0.73–0.89)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>微白蛋白尿</b>代理指標・效果最強、區間最窄</div>
+          <div class="f-tr fx1">
+            <div class="f-ci" style="left:21.8%; width:18.6%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:30.6%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.76 (0.71–0.82)</div>
+        </div>
+        <div class="f-ax"><span style="left:19.9%">0.7</span><span style="left:37.2%">0.8</span><span style="left:52.4%">0.9</span><span style="left:66.1%">1.0</span><span style="left:89.6%">1.2</span></div>
+      </div>
+      <p class="figcap">空心菱形代表未達統計顯著。資料來源：NDT 2026 統合分析。</p>
+    </div>
+    <div class="stats">
+      <div><div class="big">0.86</div><div class="cap2">硬終點（腎衰竭）<br><span class="q">p=0.13　不顯著</span></div></div>
+      <div><div class="big">0.76</div><div class="cap2">軟終點（微白蛋白尿）<br><span class="q">p&lt;0.0001</span></div></div>
+      <div><div class="big">0.88</div><div class="cap2">軟 ÷ 硬 之比<br><span class="q">95% CI 0.72–1.09</span></div></div>
+    </div>
+    <div class="note col" style="margin-top:24px">
+      <span class="lede">判讀</span>
+      方向一致但未達顯著。<b>但這個區間是偏保守的</b>——兩個估計來自重疊的試驗，正相關會使真實變異數小於獨立假設值。正式分析須以多變量統合分析處理相關性，屆時區間會變窄。<br><br>
+      更重要的是實務意涵：<b>硬終點單獨看根本不顯著。</b>而觀察性研究因事件數考量幾乎一律採用複合終點或代理指標——所以拿觀察性估計去比隨機試驗估計時，兩者往往連終點都不是同一個東西。
+    </div>
+
+    <h3 style="margin-top:56px">分析二　對照組愈鬆散，保護愈強</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">癌症終點的六個估計，依對照組的鬆散程度排序，做隨機效果統合迴歸（Knapp-Hartung 調整）。圓點大小代表精確度。</p>
+    <div class="figbox">
+      <svg viewBox="0 0 760 380" class="mrfig" role="img" aria-label="統合迴歸散布圖：對照組鬆散程度與效果量">
+  <g><line x1="64" y1="328.0" x2="610" y2="328.0" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="332.0" text-anchor="end" class="axl">0.5</text><line x1="64" y1="278.7" x2="610" y2="278.7" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="282.7" text-anchor="end" class="axl">0.6</text><line x1="64" y1="237.0" x2="610" y2="237.0" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="241.0" text-anchor="end" class="axl">0.7</text><line x1="64" y1="200.9" x2="610" y2="200.9" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="204.9" text-anchor="end" class="axl">0.8</text><line x1="64" y1="169.0" x2="610" y2="169.0" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="173.0" text-anchor="end" class="axl">0.9</text><line x1="64" y1="140.5" x2="610" y2="140.5" stroke="var(--rule-2)" stroke-width="1"/><text x="54" y="144.5" text-anchor="end" class="axl">1.0</text><line x1="64" y1="91.2" x2="610" y2="91.2" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="95.2" text-anchor="end" class="axl">1.2</text><line x1="64" y1="30.9" x2="610" y2="30.9" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 4"/><text x="54" y="34.9" text-anchor="end" class="axl">1.5</text></g>
+  <polygon points="64.0,48.6 73.3,52.8 82.5,57.1 91.8,61.3 101.0,65.5 110.3,69.7 119.5,73.9 128.8,78.0 138.0,82.2 147.3,86.3 156.5,90.3 165.8,94.4 175.1,98.4 184.3,102.3 193.6,106.3 202.8,110.2 212.1,114.0 221.3,117.8 230.6,121.5 239.8,125.1 249.1,128.7 258.3,132.2 267.6,135.7 276.8,139.0 286.1,142.3 295.4,145.5 304.6,148.6 313.9,151.6 323.1,154.5 332.4,157.3 341.6,160.0 350.9,162.6 360.1,165.1 369.4,167.6 378.6,169.9 387.9,172.2 397.2,174.4 406.4,176.5 415.7,178.5 424.9,180.5 434.2,182.4 443.4,184.2 452.7,186.1 461.9,187.8 471.2,189.5 480.4,191.2 489.7,192.9 498.9,194.5 508.2,196.0 517.5,197.6 526.7,199.1 536.0,200.6 545.2,202.1 554.5,203.6 563.7,205.0 573.0,206.4 582.2,207.8 591.5,209.2 600.7,210.6 610.0,212.0 610.0,331.6 600.7,327.3 591.5,323.0 582.2,318.7 573.0,314.4 563.7,310.2 554.5,306.0 545.2,301.8 536.0,297.6 526.7,293.4 517.5,289.3 508.2,285.1 498.9,281.1 489.7,277.0 480.4,273.0 471.2,269.0 461.9,265.0 452.7,261.1 443.4,257.3 434.2,253.5 424.9,249.7 415.7,246.0 406.4,242.4 397.2,238.8 387.9,235.3 378.6,231.9 369.4,228.6 360.1,225.4 350.9,222.2 341.6,219.2 332.4,216.2 323.1,213.3 313.9,210.6 304.6,207.9 295.4,205.3 286.1,202.8 276.8,200.4 267.6,198.1 258.3,195.9 249.1,193.8 239.8,191.7 230.6,189.7 221.3,187.7 212.1,185.8 202.8,184.0 193.6,182.2 184.3,180.5 175.1,178.8 165.8,177.1 156.5,175.5 147.3,173.9 138.0,172.3 128.8,170.8 119.5,169.2 110.3,167.7 101.0,166.3 91.8,164.8 82.5,163.4 73.3,162.0 64.0,160.6" fill="var(--s2)" opacity=".10"/>
+  <polyline points="64.0,104.6 73.3,107.4 82.5,110.2 91.8,113.1 101.0,115.9 110.3,118.7 119.5,121.6 128.8,124.4 138.0,127.2 147.3,130.1 156.5,132.9 165.8,135.7 175.1,138.6 184.3,141.4 193.6,144.2 202.8,147.1 212.1,149.9 221.3,152.7 230.6,155.6 239.8,158.4 249.1,161.2 258.3,164.1 267.6,166.9 276.8,169.7 286.1,172.6 295.4,175.4 304.6,178.2 313.9,181.1 323.1,183.9 332.4,186.7 341.6,189.6 350.9,192.4 360.1,195.3 369.4,198.1 378.6,200.9 387.9,203.8 397.2,206.6 406.4,209.4 415.7,212.3 424.9,215.1 434.2,217.9 443.4,220.8 452.7,223.6 461.9,226.4 471.2,229.3 480.4,232.1 489.7,234.9 498.9,237.8 508.2,240.6 517.5,243.4 526.7,246.3 536.0,249.1 545.2,251.9 554.5,254.8 563.7,257.6 573.0,260.4 582.2,263.3 591.5,266.1 600.7,268.9 610.0,271.8" fill="none" stroke="var(--s2)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="109.5" y1="163.1" x2="109.5" y2="51.5" stroke="var(--s1)" stroke-width="2" opacity=".55"/>
+    <circle cx="109.5" cy="107.5" r="10.4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"><title>大腸直腸癌　HR 1.13 (0.92–1.39)</title></circle>    <line x1="109.5" y1="211.2" x2="109.5" y2="43.8" stroke="var(--s1)" stroke-width="2" opacity=".55"/>
+    <circle cx="109.5" cy="127.3" r="6.9" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"><title>胰臟癌　HR 1.05 (0.77–1.43)</title></circle>    <line x1="223.2" y1="194.2" x2="223.2" y2="154.4" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
+    <circle cx="223.2" cy="175.1" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>DPP-4 抑制劑　HR 0.88 (0.82–0.95)</title></circle>    <line x1="337.0" y1="190.9" x2="337.0" y2="166.0" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
+    <circle cx="337.0" cy="178.2" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>其他降糖藥　HR 0.87 (0.83–0.91)</title></circle>    <line x1="450.7" y1="214.8" x2="450.7" y2="166.0" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
+    <circle cx="450.7" cy="190.9" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>未使用者　HR 0.83 (0.76–0.91)</title></circle>    <line x1="564.5" y1="312.2" x2="564.5" y2="248.8" stroke="var(--s2)" stroke-width="2" opacity=".55"/>
+    <circle cx="564.5" cy="283.2" r="11.0" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"><title>生活型態諮詢　HR 0.59 (0.53–0.67)</title></circle>
+  <g><text x="109.5" y="348.0" text-anchor="middle" class="axl"><tspan x="109.5" dy="0">隨機試驗</tspan><tspan x="109.5" dy="14">安慰劑</tspan></text><text x="223.2" y="348.0" text-anchor="middle" class="axl"><tspan x="223.2" dy="0">同類</tspan><tspan x="223.2" dy="14">主動藥物</tspan></text><text x="337.0" y="348.0" text-anchor="middle" class="axl"><tspan x="337.0" dy="0">其他</tspan><tspan x="337.0" dy="14">降糖藥</tspan></text><text x="450.7" y="348.0" text-anchor="middle" class="axl"><tspan x="450.7" dy="0">未使用者</tspan></text><text x="564.5" y="348.0" text-anchor="middle" class="axl"><tspan x="564.5" dy="0">生活型態</tspan><tspan x="564.5" dy="14">諮詢</tspan></text></g>
+  <text x="54" y="16" text-anchor="end" class="axt">HR</text>
+  <text x="620.0" y="275.8" class="axt" fill="var(--s2)">迴歸線</text>
+  <text x="620.0" y="293.8" class="axl">每鬆一級 ×0.879</text>
+</svg>
+      <p class="figcap">藍色為隨機試驗，橘色為觀察性研究；陰影為迴歸線的 95% 信賴帶。滑鼠停留可看各點數值。</p>
+    </div>
+    <div class="stats">
+      <div><div class="big">×0.879</div><div class="cap2">每往鬆散一級，效果量乘上<br><span class="q">95% CI 0.814–0.949</span></div></div>
+      <div><div class="big">p=0.010</div><div class="cap2">斜率檢定<br><span class="q">t=−4.66, df=4</span></div></div>
+      <div><div class="big">84%</div><div class="cap2">被解釋的異質性<br><span class="q">原 I²=89.7%</span></div></div>
+    </div>
+    <div class="note col" style="margin-top:24px">
+      <span class="lede">這是整份提案最重要的一個數字</span>
+      六個估計之間的異質性原本高達 <b>I² = 89.7%</b>——傳統上會被描述為「效果高度異質」。但<b>光是「對照組是什麼」這一個變項，就解釋掉其中約 84%。</b><br><br>
+      換句話說：這些研究之間的差異，絕大部分不是效果的異質性，<b>而是它們在估計不同的東西</b>。這正是 H1a 的核心主張，而且在先導資料上已經看得到訊號。
+    </div>
+
+    <h3 style="margin-top:56px">分析三　同一批病人，只換分析方法</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">以色列 Maccabi 資料庫，GLP-1 RA 對 basal insulin，傾向分數配對後各 3,424 人。同一批病人、同一組對照、同一段追蹤——唯一改變的是 ITT 或 as-treated。</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:30%">終點與分析方法</th><th style="width:26%">HR (95% CI)</th><th style="width:44%">as-treated ÷ ITT</th></tr></thead>
+        <tbody>
+          <tr><td data-l="終點"><b>複合腎臟終點・ITT</b></td><td data-l="HR"><span class="n">0.96 (0.82–1.11)</span>　不顯著</td><td data-l="比值" rowspan="2"><span class="n">0.740 (0.537–1.019)</span><br><span class="q">as-treated 使效果「保護」26%</span></td></tr>
+          <tr><td data-l="終點"><b>複合腎臟終點・as-treated</b></td><td data-l="HR"><span class="n">0.71 (0.54–0.95)</span>　顯著</td></tr>
+          <tr><td data-l="終點"><b>巨量白蛋白尿・ITT</b></td><td data-l="HR"><span class="n">0.87 (0.75–1.00)</span></td><td data-l="比值" rowspan="2"><span class="n">0.920 (0.707–1.196)</span><br><span class="q">方向相同，幅度較小</span></td></tr>
+          <tr><td data-l="終點"><b>巨量白蛋白尿・as-treated</b></td><td data-l="HR"><span class="n">0.80 (0.64–1.00)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note col" style="margin-top:24px">
+      <span class="lede">這是健康依從者偏差的指紋</span>
+      兩個終點都是 as-treated 更「保護」，而且複合終點的差距大到讓結論從<b>不顯著翻轉為顯著</b>。持續用藥的人本來就比較健康、比較有依從性——as-treated 分析把這份差異算進了藥效裡。<br><br>
+      這一組資料的價值在於<b>它把所有其他變因都固定住了</b>。你在論文一裡想證明的「分析選擇會改變結論」，這裡是最乾淨的單一案例。
+    </div>
+
+    <h3 style="margin-top:56px">分析四　腎臟的 Ratio of Hazard Ratios</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">把 FLOW 與 SELECT 腎臟次分析合併為隨機試驗錨點，再與真實世界估計相除。</p>
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>估計</span><span>對數尺度</span><span>值 (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>隨機試驗錨點</b>FLOW ＋ SELECT 腎臟次分析（I²=0%）</div>
+          <div class="f-tr fx3">
+            <div class="f-ci" style="left:11.4%; width:21.7%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:22.2%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.766 (0.680–0.863)<br><span class="q">（參考基準）</span></div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>RHR：真實世界 ITT ÷ 隨機試驗</b>對照＝basal insulin</div>
+          <div class="f-tr fx3">
+            <div class="f-ci" style="left:49.5%; width:35.1%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:67.0%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.253 (1.033–1.519)<br><span class="q">真實世界低估 25%</span></div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>RHR：真實世界 as-treated ÷ 隨機試驗</b>同一批病人，只換分析方法</div>
+          <div class="f-tr fx3">
+            <div class="f-ci dash" style="left:11.7%; width:55.8%; background:var(--s2)"></div>
+            <div class="f-pt hollow" style="left:39.6%; border-color:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.927 (0.682–1.259)<br><span class="q">不顯著</span></div>
+        </div>
+        <div class="f-ax"><span style="left:0.0%">0.6</span><span style="left:26.2%">0.8</span><span style="left:46.5%">1.0</span><span style="left:66.8%">1.25</span><span style="left:83.4%">1.5</span><span style="left:100.0%">1.8</span></div>
+      </div>
+      <p class="figcap">藍色為隨機試驗合併估計，橘色為 ratio of hazard ratios。空心菱形代表未達顯著。</p>
+    </div>
+    <div class="note flag col" style="margin-top:24px">
+      <span class="lede">這個結果與通說相反，而且它是顯著的</span>
+      <b>RHR = 1.253（1.033–1.519）</b>——在 ITT 分析下，真實世界估計比隨機試驗<u>更不保護</u>，低估了約 25%。<br><br>
+      這與「真實世界證據一律高估治療效益」的常見說法完全相反。原因不難理解：<b>這個真實世界研究的對照組是 basal insulin</b>。使用 insulin 的病人病程更長、共病更多，適應症干擾把估計推向危害端，恰好抵銷甚至蓋過了健康使用者效應。<br><br>
+      <b>這正是 H2b「偏差方向依族群與對照組反轉」的直接證據。</b>而且它同時說明了為什麼論文一不能只報一個總體 RHR——必須依對照型態分層，否則兩股方向相反的偏差會互相抵銷，讓係數趨近於零，而那不是「沒有偏差」。
+    </div>
+
+    <h3 style="margin-top:56px">先導分析的四個結論</h3>
+    <div class="panel">
+      <ol>
+        <li><b>終點軟硬度確實會移動估計值。</b>硬終點單獨看不顯著（0.86, p=0.13），軟終點最強（0.76, p&lt;0.0001）。方向一致，正式分析須處理估計間相關性。</li>
+        <li><b>對照組選擇解釋了 84% 的異質性。</b>每往鬆散一級，效果量乘以 0.879（p=0.010）。這是本論文最強的單一訊號。</li>
+        <li><b>分析方法本身可以翻轉結論。</b>同一批病人，ITT 不顯著、as-treated 顯著。</li>
+        <li><b>偏差方向不是固定的。</b>ITT 加 insulin 對照時，真實世界反而低估 25%（顯著）。任何「RWE 一律高估」的敘述都必須刪除。</li>
+      </ol>
+      <div style="height:16px"></div>
+      <p style="font-size:14.5px;color:var(--muted);max-width:660px">所有數值由本研究以已發表估計值重新計算，方法為隨機效果模型（DerSimonian-Laird）與 Knapp-Hartung 調整的統合迴歸。原始估計值務必回各原始論文核對。</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="end">
+  <p><b>性質說明</b>　本分頁前半為 Medscape 專文之導讀，該文為臨床觀點評論而非原始研究，所引數值一律以原始論文為準。後半為先導分析，納入研究係手工挑選、非窮盡，僅供檢驗假說方向與示範方法產出，不得作為正式證據合成之結論。</p>
+  <p><b>正式分析</b>　須完成 PROSPERO 註冊、兩人獨立篩選與擷取、PRISMA 流程圖、以多變量統合分析處理估計間相關性，並依附錄之檢索策略執行。</p>
+</div>
+
+</div>
+
 <div id="panel-appendix" role="tabpanel" hidden>
 <header class="mast">
-  <p class="kicker">附件一　·　論文一 Meta-epidemiological study　·　檢索策略與可行性評估</p>
+  <p class="kicker">附錄　·　論文一 Meta-epidemiological study　·　腎臟結局的檢索策略與可行性</p>
   <h1>附錄　檢索策略與參考文獻</h1>
-  <p class="dek">這份文件有兩個用途：一是讓你在口試時能具體回答「你收得到幾篇」，二是等正式開跑時直接照著執行。<b>現階段做的是可行性檢索，不是系統性回顧本身</b>——目的是抓量級、決定題目形狀，不需要兩人獨立篩選，也還不用註冊。</p>
+  <p class="dek">這份附錄有兩個用途：一是讓你在口試時能具體回答「你收得到幾篇、幾組配對」，二是等正式開跑時直接照著執行。<b>腎臟這題的特殊之處在於，分子與分母的統合分析都已經發表</b>——論文一不必從零建立證據庫，而是從既有兩篇系統性回顧的納入清單起跳、做更新檢索。這是時程上的重大優勢，但必須在論文中明確申報。</p>
 </header>
 
 <section id="q1">
   <div class="sec-head">
     <span class="sec-num">01</span>
-    <h2>可行性檢索結果</h2>
-    <p class="sub">以下為 PubMed 實際查得的筆數。Embase、Web of Science 需機構帳號，尚未執行。</p>
+    <h2>可行性：分子與分母都已經有人整理好了</h2>
+    <p class="sub">腎臟這題不必從零建立證據庫。兩側的統合分析都已發表，論文一從它們的納入清單起跳、做更新檢索即可。</p>
   </div>
 
-  <div class="counts">
-    <div><div class="num">2,354</div><div class="lab">tirzepatide<br><span class="q">全部文獻</span></div></div>
-    <div><div class="num">299</div><div class="lab">＋ real-world<br><span class="q">含代理指標研究</span></div></div>
-    <div><div class="num">131</div><div class="lab">＋ 隨機試驗類型<br><span class="q">多為 SURPASS／SURMOUNT 子分析</span></div></div>
-    <div><div class="num">208</div><div class="lab">＋ 失智／認知／癌症<br><span class="q">多為綜述與評論</span></div></div>
-    <div><div class="num">18</div><div class="lab">＋ target trial<br><span class="q">最貼近你要的設計</span></div></div>
-    <div><div class="num">45</div><div class="lab">擴大到 incretin 類<br><span class="q">＋ target trial emulation</span></div></div>
-  </div>
+  <div class="stack">
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:16%">角色</th><th style="width:32%">起跳來源</th><th style="width:52%">已知內容</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="角色"><b>分母</b><br><span class="q">隨機試驗側</span></td>
+            <td data-l="來源">NDT 2026 系統性回顧<br>Lancet Diabetes Endocrinol 2024</td>
+            <td data-l="內容"><b>19 試驗、90,882 名受試者</b>，平均追蹤 25.9 個月<br>
+              <span class="n">複合腎臟終點　RR 0.81 (0.73–0.89)</span><br>
+              <span class="n">腎功能衰退　　RR 0.88 (0.81–0.95)</span><br>
+              <span class="n">腎衰竭　　　　RR 0.86 (0.71–1.05)</span>　不顯著<br>
+              <span class="n">微白蛋白尿　　RR 0.76 (0.71–0.82)</span></td>
+          </tr>
+          <tr>
+            <td data-l="角色"><b>分子</b><br><span class="q">真實世界側</span></td>
+            <td data-l="來源">Diabetes Metab Res Rev 2025<br><span class="q">GLP-1 RA 對其他降糖藥的腎臟結局</span></td>
+            <td data-l="內容">已合併之真實世界研究清單。<b>需更新至最新</b>，並逐一登錄對照型態與終點軟硬度。</td>
+          </tr>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="角色"><b>錨點</b><br><span class="q">可配對的個別試驗</span></td>
+            <td data-l="來源">FLOW／SELECT 腎臟次分析／SURPASS-CVOT 心腎次要分析</td>
+            <td data-l="內容">安慰劑對照 ×2（糖尿病、無糖尿病各一）＋主動對照 ×1。<b>這是腎臟被選為基準終點的唯一理由。</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="note flag col" style="margin-top:34px">
-    <span class="lede">這組數字的判讀 · 請認真看</span>
-    最關鍵的是最後兩格。嚴格符合你論文一需求的研究——有 tirzepatide 組、有對照組、有<b>臨床終點</b>（非體重或 HbA1c）、且報告 HR 與信賴區間——在 PubMed 大約落在 <b>15 至 30 篇</b>之間。這個量能支撐<b>描述性的一致性比較</b>，但<b>撐不起 meta-regression</b>：每個共變項至少要 10 篇，三個共變項就需要 30 篇以上的有效樣本。<br><br>
-    這一點在方法學審查後已經定案：<b>擴大到 incretin 類藥物不是備案，而是主案。</b>更關鍵的理由是——目前沒有任何隨機試驗提供 tirzepatide 對癌症發生率的估計，若標的限於它，ratio of hazard ratios 在癌症終點上字面上無法計算。因此範圍設為 incretin 類（semaglutide、liraglutide、dulaglutide、exenatide 為主體），tirzepatide 為事前指定的次族群並標註 exploratory。
-  </div>
+    <div class="note flag col">
+      <span class="lede">你要親手數出來的三個數字</span>
+      不是總篇數。是這三個：<br><br>
+      <b>一、真實世界側可納入的研究數。</b>從 Diabetes Metab Res Rev 2025 的清單起跳，以下方檢索式更新至今。<br>
+      <b>二、估計量可對齊的配對數。</b>同族群、同對照型態、<b>同終點軟硬度</b>、同時間零點、同追蹤長度。這個數字決定論文一走 meta-regression 還是走機率性偏差分解。<br>
+      <b>三、各配對的終點軟硬度分佈。</b>若真實世界側幾乎全是複合終點與白蛋白尿、而試驗側有硬終點，那本身就是論文一的第一個結果。
+    </div>
 
-  <div class="note col" style="margin-top:26px">
-    <span class="lede">口試時可以這樣講</span>
-    「我已做過可行性檢索。單以 tirzepatide 為範圍，符合臨床終點條件的研究約 15 至 30 篇；更重要的是，癌症終點上<b>沒有 tirzepatide 的隨機試驗分母</b>，RHR 無法計算。因此我把納入範圍設為 incretin 類藥物，tirzepatide 作為事前指定的次族群。而且我真正要數的不是總篇數，是<b>估計量可對齊的配對數</b>——那才決定我走 meta-regression 還是走機率性偏差分析。」
+    <div class="note col">
+      <span class="lede">更新檢索必須申報</span>
+      站在既有系統性回顧上做「更新檢索（updating search）」是合法且常見的做法，但必須在論文中明確申報：起跳的兩篇 SR 是哪些、它們的檢索截止日、你的更新期間、以及你是否重新驗證了它們的納入判斷。<b>建議至少對起跳清單抽樣 20% 重新獨立判讀</b>，並報告一致性。這樣審稿人不會質疑你只是搬運。
+    </div>
   </div>
 </section>
-
-<!-- 02 -->
 
 <section id="q2">
   <div class="sec-head">
@@ -1646,7 +2099,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   <div class="stack">
     <div class="note col">
       <span class="lede">為什麼你的題目不能只用兩個</span>
-      一般系統性回顧用 MEDLINE 加 Embase 就算合格。但你的論文一<b>要處理的偏差之一就是發表偏差</b>——顯著的保護效果比較容易被發表，這正是你要量化的東西。如果你的檢索本身漏掉未發表與灰色文獻，你就是用一個有發表偏差的樣本去估計發表偏差。<b>對這篇論文而言，灰色文獻不是加分項，是必要項。</b>這一點在口試講出來會很加分。
+      一般系統性回顧用 MEDLINE 加 Embase 就算合格。但你的論文一<b>要處理的偏差之一就是發表偏差</b>——顯著的保護效果比較容易被發表，這正是你要量化的東西。如果檢索本身漏掉未發表與灰色文獻，你就是用一個有發表偏差的樣本去估計發表偏差。<b>對這篇論文而言，灰色文獻不是加分項，是必要項。</b>
     </div>
 
     <div class="tbl">
@@ -1655,124 +2108,132 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
         <tbody>
           <tr><td data-l="資料庫"><b>MEDLINE（PubMed）</b></td><td data-l="必要性">必備</td><td data-l="理由">核心生醫文獻。免費、可重現、檢索式易於在論文中呈現。</td></tr>
           <tr><td data-l="資料庫"><b>Embase</b></td><td data-l="必要性">必備</td><td data-l="理由">歐洲期刊與<b>學會摘要</b>涵蓋遠優於 MEDLINE，藥物研究尤其明顯。需機構訂閱。</td></tr>
-          <tr><td data-l="資料庫"><b>Cochrane CENTRAL</b></td><td data-l="必要性">建議</td><td data-l="理由">確保隨機試驗那一側收得完整。你的主要指標是兩類證據的比值，<b>RCT 側漏掉一篇的代價比 RWE 側大得多</b>。</td></tr>
-          <tr><td data-l="資料庫"><b>Web of Science 或 Scopus</b></td><td data-l="必要性">建議</td><td data-l="理由">用於<b>引用追蹤</b>：以已知的關鍵文獻做前向與後向追引，補足關鍵詞檢索抓不到的研究。二選一即可。</td></tr>
-          <tr><td data-l="資料庫"><b>ClinicalTrials.gov</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">找出<b>已註冊但未發表</b>的試驗——這是量化發表偏差的直接證據。</td></tr>
-          <tr><td data-l="資料庫"><b>EU PAS Register</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">歐洲藥物流行病學研究的註冊平台。真實世界研究的「未發表」名單就在這裡，一般系統性回顧很少查，是你的差異化之處。</td></tr>
+          <tr><td data-l="資料庫"><b>Cochrane CENTRAL</b></td><td data-l="必要性">建議</td><td data-l="理由">確保隨機試驗那一側收得完整。你的主要指標是兩類證據的比值，<b>分母漏掉一篇的代價比分子大得多</b>。</td></tr>
+          <tr><td data-l="資料庫"><b>Web of Science 或 Scopus</b></td><td data-l="必要性">建議</td><td data-l="理由">用於<b>引用追蹤</b>：以下一節的種子文獻做前向與後向追引，補足關鍵詞抓不到的研究。二選一即可。</td></tr>
+          <tr><td data-l="資料庫"><b>ClinicalTrials.gov</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">找出<b>已註冊但未發表</b>的試驗。腎臟終點常是心血管試驗的次要或探索性終點，未必單獨發表。</td></tr>
+          <tr><td data-l="資料庫"><b>EU PAS Register</b></td><td data-l="必要性"><span class="flagtxt">本題必要</span></td><td data-l="理由">歐洲藥物流行病學研究的註冊平台。真實世界研究的「未發表」名單就在這裡，一般系統性回顧很少查。</td></tr>
+          <tr><td data-l="資料庫"><b>學會摘要</b><br><span class="q">ASN Kidney Week、ERA、ADA、EASD、ISPE</span></td><td data-l="必要性">建議</td><td data-l="理由">2022 年起逐年翻閱。<b>ASN Kidney Week 與 ERA 對腎臟題目特別重要</b>；ISPE 則是藥物流病方法學研究的主場。</td></tr>
           <tr><td data-l="資料庫"><b>medRxiv 預印本</b></td><td data-l="必要性">建議</td><td data-l="理由">此領域發展極快，重要結果常先以預印本出現。</td></tr>
-          <tr><td data-l="資料庫"><b>學會摘要</b><br><span class="q">ADA、EASD、AHA、ACC、ISPE</span></td><td data-l="必要性">建議</td><td data-l="理由">2023 年起逐年翻閱。ISPE 尤其重要——藥物流病方法學研究常只發表在該會。</td></tr>
-          <tr><td data-l="資料庫"><b>中文資料庫</b></td><td data-l="必要性">不需要</td><td data-l="理由">此題無中文文獻價值，寫進方法章反而顯得不專業。</td></tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="note col">
-      <span class="lede">回答「為什麼是這幾個」</span>
-      Cochrane 的方法學研究顯示，MEDLINE 加 Embase 加 CENTRAL 已能捕捉絕大多數合格研究，再加更多書目資料庫的邊際報酬遞減；<b>但引用追蹤與試驗註冊平台的報酬仍然很高</b>。所以我的配置是「三個書目資料庫＋一個引用追蹤工具＋兩個註冊平台」，而不是盲目堆疊資料庫數量。
     </div>
   </div>
 </section>
 
-<!-- 03 -->
-
 <section id="q3">
   <div class="sec-head">
     <span class="sec-num">03</span>
-    <h2>檢索式</h2>
-    <p class="sub">可直接複製貼上。日期上限請在正式執行時統一設定並記錄。</p>
+    <h2>檢索式（腎臟版）</h2>
+    <p class="sub">終點區塊刻意拆成硬、中、軟三層——因為終點軟硬度是論文一的共變項，檢索階段就要能分開登錄。</p>
   </div>
 
   <div class="stack">
 
     <div>
-      <p class="code-lab">PUBMED　完整版（四個概念區塊）</p>
-      <pre class="code"><b>#1　藥物</b>
-"tirzepatide"[Supplementary Concept] OR tirzepatide[tiab] OR Mounjaro[tiab]
-OR Zepbound[tiab] OR LY3298176[tiab] OR "LY 3298176"[tiab]
-OR "dual GIP"[tiab] OR "GIP/GLP-1"[tiab] OR twincretin[tiab]
+      <p class="code-lab">PUBMED　完整版</p>
+      <pre class="code"><b>#1　藥物（incretin 類）</b>
+"Glucagon-Like Peptide-1 Receptor Agonists"[Mesh]
+OR semaglutide[tiab] OR liraglutide[tiab] OR dulaglutide[tiab]
+OR exenatide[tiab] OR lixisenatide[tiab] OR albiglutide[tiab] OR tirzepatide[tiab]
+OR Ozempic[tiab] OR Wegovy[tiab] OR Rybelsus[tiab] OR Victoza[tiab] OR Saxenda[tiab]
+OR Trulicity[tiab] OR Byetta[tiab] OR Bydureon[tiab] OR Mounjaro[tiab] OR Zepbound[tiab]
+OR "GLP-1"[tiab] OR GLP1[tiab] OR incretin[tiab]
 
-<b>#1b　擴大版　若採 incretin 類範圍則改用此區塊</b>
-#1 OR semaglutide[tiab] OR Ozempic[tiab] OR Wegovy[tiab] OR Rybelsus[tiab]
-OR dulaglutide[tiab] OR Trulicity[tiab]
-OR "Glucagon-Like Peptide-1 Receptor Agonists"[Mesh]
+<b>#2a　腎臟終點：硬</b>
+"Kidney Failure, Chronic"[Mesh] OR "Renal Replacement Therapy"[Mesh]
+OR "Renal Dialysis"[Mesh] OR "Kidney Transplantation"[Mesh]
+OR "kidney failure"[tiab] OR "renal failure"[tiab] OR "end-stage"[tiab]
+OR ESKD[tiab] OR ESRD[tiab] OR dialysis[tiab]
+OR "kidney replacement therapy"[tiab] OR "renal death"[tiab]
 
-<b>#2　臨床終點</b>
-"Cardiovascular Diseases"[Mesh] OR "Myocardial Infarction"[Mesh]
-OR "Stroke"[Mesh] OR "Heart Failure"[Mesh]
-OR "Renal Insufficiency, Chronic"[Mesh] OR "Dementia"[Mesh]
-OR "Cognitive Dysfunction"[Mesh] OR "Neoplasms"[Mesh] OR "Mortality"[Mesh]
-OR MACE[tiab] OR "major adverse cardiovascular"[tiab]
-OR "cardiovascular death"[tiab] OR "all-cause mortality"[tiab]
-OR "kidney outcome*"[tiab] OR "eGFR slope"[tiab]
-OR dementia[tiab] OR "cognitive impairment"[tiab]
-OR cancer[tiab] OR neoplasm*[tiab]
+<b>#2b　腎臟終點：中（功能與複合）</b>
+"Renal Insufficiency, Chronic"[Mesh] OR "Glomerular Filtration Rate"[Mesh]
+OR eGFR[tiab] OR "glomerular filtration"[tiab]
+OR "kidney function decline"[tiab] OR "renal function decline"[tiab]
+OR "composite kidney"[tiab] OR "kidney outcome*"[tiab] OR "renal outcome*"[tiab]
+OR "doubling of serum creatinine"[tiab] OR "kidney disease progression"[tiab]
+
+<b>#2c　腎臟終點：軟（代理指標）</b>
+"Albuminuria"[Mesh] OR "Proteinuria"[Mesh]
+OR albuminuria[tiab] OR proteinuria[tiab]
+OR microalbuminuria[tiab] OR macroalbuminuria[tiab]
+OR UACR[tiab] OR "albumin-to-creatinine"[tiab] OR "albumin to creatinine"[tiab]
 
 <b>#3　觀察性設計</b>
 "Cohort Studies"[Mesh] OR "Propensity Score"[Mesh] OR "Databases, Factual"[Mesh]
 OR cohort[tiab] OR "real-world"[tiab] OR "real world"[tiab]
 OR observational[tiab] OR "target trial"[tiab] OR emulat*[tiab]
 OR claims[tiab] OR "propensity score"[tiab] OR TriNetX[tiab]
-OR registry[tiab] OR "electronic health record*"[tiab]
-OR retrospective[tiab] OR "new user"[tiab] OR "active comparator"[tiab]
+OR registry[tiab] OR "electronic health record*"[tiab] OR retrospective[tiab]
+OR "new user"[tiab] OR "active comparator"[tiab]
 
 <b>#4　隨機試驗</b>
 randomized controlled trial[pt] OR controlled clinical trial[pt]
 OR randomi*[tiab] OR placebo[tiab] OR "double-blind"[tiab]
-OR SURPASS[tiab] OR SURMOUNT[tiab] OR SUMMIT[tiab]
+OR FLOW[tiab] OR SELECT[tiab] OR SUSTAIN[tiab] OR REWIND[tiab] OR LEADER[tiab]
+OR AMPLITUDE[tiab] OR PIONEER[tiab] OR ELIXA[tiab] OR EXSCEL[tiab]
+OR HARMONY[tiab] OR SURPASS[tiab] OR SURMOUNT[tiab]
 
 <b>最終檢索式</b>
-(#1) AND (#2) AND (#3 OR #4)</pre>
+#1 AND (#2a OR #2b OR #2c) AND (#3 OR #4)
+
+<b>登錄規則</b>
+每一筆納入研究都要記錄它命中的是 #2a、#2b 還是 #2c——
+這就是「終點軟硬程度」共變項的原始資料。
+一篇研究報告多個終點時，逐終點各登錄一列。</pre>
     </div>
 
     <div>
       <p class="code-lab">EMBASE　Emtree 語法（需機構帳號）</p>
-      <pre class="code">('tirzepatide'/exp OR tirzepatide:ti,ab,kw OR mounjaro:ti,ab,kw
- OR zepbound:ti,ab,kw OR 'ly 3298176':ti,ab,kw)
+      <pre class="code">('glucagon like peptide 1 receptor agonist'/exp
+ OR semaglutide:ti,ab,kw OR liraglutide:ti,ab,kw OR dulaglutide:ti,ab,kw
+ OR exenatide:ti,ab,kw OR tirzepatide:ti,ab,kw OR 'glp 1':ti,ab,kw)
 AND
-('cardiovascular disease'/exp OR 'heart infarction'/exp
- OR 'cerebrovascular accident'/exp OR 'heart failure'/exp
- OR 'chronic kidney failure'/exp OR 'dementia'/exp
- OR 'mild cognitive impairment'/exp OR 'neoplasm'/exp OR 'mortality'/exp
- OR mace:ti,ab,kw OR 'major adverse cardiovascular':ti,ab,kw)
+('chronic kidney failure'/exp OR 'end stage renal disease'/exp
+ OR 'renal replacement therapy'/exp OR 'hemodialysis'/exp
+ OR 'glomerulus filtration rate'/exp OR 'kidney function'/exp
+ OR 'albuminuria'/exp OR 'proteinuria'/exp
+ OR 'kidney outcome':ti,ab,kw OR 'renal outcome':ti,ab,kw OR egfr:ti,ab,kw)
 AND
 ('cohort analysis'/exp OR 'observational study'/exp OR 'retrospective study'/exp
  OR 'propensity score'/exp OR 'health care database'/exp
  OR 'target trial':ti,ab,kw OR emulat*:ti,ab,kw
  OR 'randomized controlled trial'/exp OR 'double blind procedure'/exp)
 AND [embase]/lim NOT [medline]/lim</pre>
-      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">最後一行很重要：<b>排除已被 MEDLINE 索引的紀錄</b>，避免與 PubMed 大量重複，可省下數千筆的篩選工作。這一行也讓你在 PRISMA 流程圖裡的去重數字更乾淨。</p>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">最後一行排除已被 MEDLINE 索引的紀錄，避免與 PubMed 大量重複，可省下數千筆篩選工作，也讓 PRISMA 流程圖的去重數字更乾淨。</p>
     </div>
 
     <div>
       <p class="code-lab">WEB OF SCIENCE　核心合輯</p>
-      <pre class="code">TS=(tirzepatide OR Mounjaro OR Zepbound OR "LY3298176")
+      <pre class="code">TS=(semaglutide OR liraglutide OR dulaglutide OR exenatide OR tirzepatide
+    OR "GLP-1 receptor agonist" OR incretin)
 AND
-TS=(cardiovascular OR "myocardial infarction" OR stroke OR "heart failure"
-    OR kidney OR renal OR dementia OR cognitive OR cancer OR mortality)
+TS=(kidney OR renal OR eGFR OR albuminuria OR proteinuria OR dialysis
+    OR "end-stage" OR nephropathy)
 AND
 TS=(cohort OR "real world" OR observational OR "target trial"
-    OR randomized OR randomised OR trial)</pre>
-      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">Web of Science 的真正用途是<b>引用追蹤</b>：對下一節的種子文獻逐篇做前向引用（誰引用了它）與後向引用（它引用了誰）。這一步常能補到關鍵詞檢索完全抓不到的研究。</p>
+    OR randomized OR randomised OR placebo)</pre>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:660px">主要用途是<b>引用追蹤</b>：對下一節的種子文獻逐篇做前向引用（誰引用了它）與後向引用（它引用了誰）。腎臟這題的關鍵研究常互相引用，這一步報酬很高。</p>
     </div>
 
     <div>
       <p class="code-lab">註冊平台與灰色文獻</p>
-      <pre class="code">ClinicalTrials.gov     Intervention: tirzepatide
-                       Study type: Interventional + Observational
-                       特別注意：狀態為 Completed 但無結果者
+      <pre class="code">ClinicalTrials.gov     Intervention: 各 GLP-1 藥名
+                       Outcome: kidney, renal, eGFR, albuminuria
+                       特別注意：狀態 Completed 但無結果者
+                       以及腎臟為次要／探索性終點、未單獨發表者
 
-EU PAS Register        關鍵字：tirzepatide, GLP-1, GIP
-                       這裡是真實世界研究的「未發表名單」
+EU PAS Register        關鍵字：GLP-1, semaglutide, kidney, renal
+                       真實世界研究的「未發表名單」
 
-medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
+medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
 
-學會摘要               ADA、EASD、AHA、ACC、ISPE，2023 年起逐年翻閱</pre>
+學會摘要               ASN Kidney Week、ERA、ADA、EASD、ISPE
+                       2022 年起逐年翻閱</pre>
     </div>
 
   </div>
 </section>
-
-<!-- 04 -->
 
 <section id="q4">
   <div class="sec-head">
@@ -1782,33 +2243,25 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
   </div>
 
   <div class="panel">
-    <p class="cap">已確認存在的關鍵文獻　你的檢索式必須 100% 撈到這些</p>
+    <p class="cap">腎臟版種子清單　你的檢索式必須 100% 撈到這些</p>
     <ol class="seed">
-      <li><b>SURPASS-CVOT：Cardiovascular Outcomes with Tirzepatide versus Dulaglutide</b><span>NEJM 2025　隨機試驗　主要錨點</span></li>
-      <li><b>SURPASS-CVOT 心腎次要分析</b><span>2026　隨機試驗</span></li>
-      <li><b>SUMMIT：Tirzepatide for HFpEF and Obesity</b><span>NEJM 2024　隨機試驗</span></li>
-      <li><b>Tirzepatide cardiovascular event risk assessment: pre-specified meta-analysis</b><span>Nat Med 2022　統合分析</span></li>
-      <li><b>Cardiovascular outcomes of semaglutide and tirzepatide in clinical practice</b><span>Nat Med 2025　真實世界　三個美國保險資料庫</span></li>
-      <li><b>STEER：Semaglutide and tirzepatide effects on cardiovascular outcomes in the real world</b><span>Diabetes Obes Metab 2026　真實世界</span></li>
-      <li><b>Comparative Effectiveness of Tirzepatide Versus Dulaglutide or Semaglutide on Major Cardiovascular Events</b><span>2026　真實世界　新查到，之前的清單沒有</span></li>
-      <li><b>Cardiovascular and Cerebrovascular Outcomes: Semaglutide vs Tirzepatide, A Target Trial Emulation</b><span>2026　真實世界　新查到</span></li>
-      <li><b>Target trial emulations for tirzepatide, semaglutide and SGLT2i for dementia</b><span>Diabetes Res Clin Pract 2026　真實世界</span></li>
-      <li><b>Effectiveness of tirzepatide in HFpEF using target trial emulation</b><span>Nat Commun 2025　真實世界</span></li>
-      <li><b>Target Trial Emulations of GLP-1 and Dual GLP-1/GIP Agonists to Reduce Major Adverse Liver Outcomes</b><span>2025　真實世界　新查到</span></li>
-      <li><b>GLP-1 receptor agonist use and cancer risk in obese nondiabetic adults</b><span>Ann Oncol 2026　真實世界</span></li>
-      <li><b>Cardiovascular Outcomes in T2D Treated With Tirzepatide: Systematic Review and Meta-Analysis of Real-World Studies</b><span>Endocr Pract 2025　既有競品</span></li>
-      <li><b>Real-World vs. Randomized Trial Evidence for Incretin-Based Therapies</b><span>J Diabetes 2026　既有競品</span></li>
+      <li><b>FLOW：Effects of Semaglutide on Chronic Kidney Disease in Type 2 Diabetes</b><span>NEJM 2024　隨機試驗　糖尿病族群安慰劑錨點</span></li>
+      <li><b>SELECT 腎臟次分析：Long-term kidney outcomes of semaglutide in obesity and CVD</b><span>Nat Med 2024　隨機試驗　<b>無糖尿病族群安慰劑錨點</b></span></li>
+      <li><b>Semaglutide in overweight or obesity and CKD without diabetes</b><span>Nat Med 2024　隨機試驗</span></li>
+      <li><b>SURPASS-CVOT 心腎次要分析</b><span>2026　隨機試驗　主動對照錨點</span></li>
+      <li><b>NDT 2026：The effect of GLP-1 RA on renal outcomes（19 試驗、90,882 人）</b><span>系統性回顧　<b>分母起跳點</b></span></li>
+      <li><b>Lancet Diabetes Endocrinol 2024：Effects of GLP-1 RA on kidney and CV outcomes</b><span>系統性回顧</span></li>
+      <li><b>AJKD 2025：Kidney and CV Outcomes Among Patients With CKD Receiving GLP-1 RA</b><span>系統性回顧　CKD 族群</span></li>
+      <li><b>Diabetes Care 2025：長效注射型與口服 GLP-1 RA 的心腎結局</b><span>系統性回顧</span></li>
+      <li><b>Circulation 2024：GLP-1 RA 單用與併用 SGLT2i 的心腎與安全性結局</b><span>系統性回顧</span></li>
+      <li><b>Diabetes Metab Res Rev 2025：Kidney Outcomes With GLP-1 RA Versus Other Glucose-Lowering Agents（真實世界資料）</b><span>系統性回顧　<b>分子起跳點</b></span></li>
+      <li><b>Kidney function loss and albuminuria progression: GLP-1 RA versus basal insulin</b><span>Cardiovasc Diabetol 2023　真實世界　<b>對照＝insulin 的極端案例</b></span></li>
+      <li><b>Comparative effectiveness of tirzepatide versus GLP-1 RA on CKM stage progression</b><span>Diabetes Res Clin Pract 2026　真實世界</span></li>
+      <li><b>LEADER／SUSTAIN-6／REWIND／AMPLITUDE-O 的腎臟次要終點分析</b><span>隨機試驗次要分析　容易漏收，務必個別確認</span></li>
     </ol>
-    <p style="font-size:14px;color:var(--muted);margin-top:18px">若檢索式漏掉其中任何一篇，就回頭補該篇的標題詞與關鍵詞，直到全數命中為止。這個過程本身要記錄下來，寫進論文的檢索式開發段落。</p>
-  </div>
-
-  <div class="note col" style="margin-top:26px">
-    <span class="lede">第 7、8、11 篇是這次跑檢索的意外收穫</span>
-    尤其第 7 篇「Tirzepatide 對 dulaglutide 或 semaglutide 的主要心血管事件比較效果」，族群與 SURPASS-CVOT 高度重疊，<b>很可能是你 Aim 1 最重要的一組配對證據</b>。口試前請務必找出全文讀完，並確認它與 Nature Medicine 那篇是否共用資料庫——若是，這就是你「資料重複」論點的第一個實例。
+    <p style="font-size:14px;color:var(--muted);margin-top:18px">若檢索式漏掉其中任何一篇，就回頭補該篇的標題詞與關鍵詞，直到全數命中為止。這個過程要記錄下來，寫進論文的檢索式開發段落。<b>第 13 項最容易漏</b>——大型心血管試驗的腎臟次要分析常以獨立論文發表，標題未必出現藥名。</p>
   </div>
 </section>
-
-<!-- 05 -->
 
 <section id="q5">
   <div class="sec-head">
@@ -1821,38 +2274,40 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
     <div class="panel">
       <p class="cap">納入</p>
       <ul class="tight">
-        <li>介入組含 tirzepatide（或擴大版：任一 incretin 類藥物），且有明確對照組</li>
-        <li>結果為<b>臨床終點</b>：心血管事件、心衰竭住院、腎臟終點、失智或輕度認知障礙、癌症、全死因死亡</li>
-        <li>報告相對效果量（HR、RR、OR）並附變異數或信賴區間</li>
+        <li>介入組為任一 incretin 類藥物，且有明確對照組</li>
+        <li>結果為腎臟終點：硬終點、功能與複合終點、或白蛋白尿代理指標</li>
+        <li>報告相對效果量（HR、RR、OR）並附變異數或信賴區間；eGFR 斜率另立為連續變項組</li>
         <li>隨機與非隨機研究皆納入，不限語言、不限國家</li>
       </ul>
     </div>
     <div class="panel">
       <p class="cap">排除</p>
       <ul class="tight">
-        <li>僅報告代理指標（體重、HbA1c、血脂）者——但另存一份清單做敏感度分析</li>
         <li>無對照組的單臂研究、個案報告、綜述、評論、社論</li>
+        <li>僅報告血糖或體重、未報告任何腎臟終點者</li>
         <li>動物或體外研究</li>
         <li>同一資料與族群的重複發表——保留樣本最大或報告最完整者，其餘記錄於重疊矩陣</li>
       </ul>
     </div>
     <div class="panel">
-      <p class="cap">擷取欄位　建議做成試算表，每篇一列</p>
+      <p class="cap">擷取欄位　建議做成試算表，<b>每篇每終點各一列</b></p>
       <ul class="tight">
         <li><b>識別</b>　第一作者、年份、期刊、DOI、國家</li>
-        <li><b>設計</b>　研究類型、是否自稱目標試驗模擬、資料來源名稱、收案期間</li>
-        <li><b>族群</b>　有無 T2D、有無 ASCVD、平均年齡、女性比例、平均 BMI、樣本數</li>
-        <li><b>暴露與對照</b>　藥物、劑量、是否新使用者設計、對照類型</li>
-        <li><b>終點</b>　定義、是否經裁定、代碼清單是否提供、事件數</li>
+        <li><b>設計</b>　研究類型、是否自稱目標試驗模擬、資料來源名稱、收案期間、是否因效益提前中止</li>
+        <li><b>族群</b>　<b>有無糖尿病</b>（分層關鍵）、有無 CKD、基線 eGFR 與 UACR、平均年齡、女性比例、平均 BMI、樣本數</li>
+        <li><b>暴露與對照</b>　藥物、劑量、是否新使用者設計、<b>對照類型</b>（安慰劑／同類主動藥物／其他降糖藥／insulin／未使用者／生活型態）</li>
+        <li><b>終點</b>　定義、<b>軟硬程度分級（硬／複合／代理）</b>、是否經委員會裁定、代碼清單是否提供、事件數</li>
         <li><b>結果</b>　效果量、95% 信賴區間、追蹤中位數、ITT 或 per-protocol</li>
-        <li><b>忠實度評分</b>　七個要素各 0 至 2 分，總分 0 至 14</li>
-        <li><b>其他</b>　是否事前註冊、資金來源、是否做陰性對照或量化偏差分析</li>
+        <li><b>嚴謹度評分</b>　七個要素各 0 至 2 分，總分 0 至 14</li>
+        <li><b>其他</b>　是否事前註冊、資金來源、是否做陰性對照或量化偏差分析、收案期間相對於 KDIGO 2024 的時點</li>
       </ul>
+    </div>
+    <div class="note flag col">
+      <span class="lede">與舊版擷取表的差異</span>
+      腎臟版有兩個新欄位必須加：<b>終點軟硬程度分級</b>，以及<b>對照類型的六級分類</b>（原本只有三級）。而且登錄單位從「每篇一列」改為<b>「每篇每終點各一列」</b>——因為同一篇研究常同時報告硬終點與白蛋白尿，那是兩個不同的估計量。
     </div>
   </div>
 </section>
-
-<!-- 06 -->
 
 <section id="q6">
   <div class="sec-head">
@@ -1863,17 +2318,17 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
 
   <div class="panel">
     <ol>
-      <li><b>本週</b>　把上面的 PubMed 檢索式跑一次完整版，匯出書目檔，用種子文獻檢驗敏感度。這一步你自己做，因為要練手感。</li>
-      <li><b>兩週內</b>　請圖書館協助跑 Embase 與 Web of Science，或申請帳號自己跑。順便問清楚學校有沒有 Covidence 或 Rayyan 的授權，篩選工具會省下大量時間。</li>
-      <li><b>口試前</b>　完成粗篩，畫出一張<b>草稿版 PRISMA 流程圖</b>，並另外數出<b>估計量可對齊的配對數</b>（同族群、同對照定義、同時間零點、同追蹤長度）。後者比總篇數重要，因為它決定論文一的分析路徑。</li>
-      <li><b>口試後</b>　確定範圍（單藥或擴大到 incretin 類）後，才到 PROSPERO 正式註冊。<b>註冊前不要開始正式篩選</b>，順序反了會被審稿人抓。</li>
+      <li><b>本週</b>　取得 NDT 2026 與 Diabetes Metab Res Rev 2025 兩篇的<b>納入研究清單與補充資料</b>，這是你的起跳點。同時把上面的 PubMed 檢索式跑一次完整版，用種子文獻檢驗敏感度。</li>
+      <li><b>兩週內</b>　請圖書館協助跑 Embase 與 Web of Science，或申請帳號自己跑。順便問清楚學校有沒有 Covidence 或 Rayyan 的授權。</li>
+      <li><b>口試前</b>　完成粗篩，畫出草稿版 PRISMA 流程圖，並數出<b>估計量可對齊的配對數</b>與<b>終點軟硬度的分佈</b>。後兩者比總篇數重要得多。</li>
+      <li><b>口試後</b>　確定範圍後才到 PROSPERO 正式註冊，並在註冊書中明確申報這是站在既有兩篇 SR 上的更新檢索。<b>註冊前不要開始正式篩選。</b></li>
     </ol>
   </div>
 </section>
 
 <div class="end">
-  <p><b>執行紀錄</b>　本頁的 PubMed 筆數為 2026 年 9 月以 PubMed 網頁介面查得，屬粗略的可行性估計，未經去重與篩選。正式檢索時請重跑並記錄執行日期、資料庫版本與完整檢索式，這些都是 PRISMA 要求申報的項目。</p>
-  <p><b>未執行</b>　Embase、Web of Science、Scopus、Cochrane CENTRAL 需機構訂閱帳號，本次無法連線，檢索式已備妥待你或圖書館執行。</p>
+  <p><b>執行紀錄</b>　本附錄為腎臟版檢索策略。分母側的統合分析數值取自 NDT 2026 與 Lancet Diabetes Endocrinol 2024，正式書面資料務必回原文核對。PubMed 的即時筆數尚未重跑，請依上方順序自行執行並記錄執行日期、資料庫版本與完整檢索式——這些都是 PRISMA 要求申報的項目。</p>
+  <p><b>未執行</b>　Embase、Web of Science、Scopus、Cochrane CENTRAL 需機構訂閱帳號，檢索式已備妥待你或圖書館執行。</p>
 </div>
 
 <section id="refs">
@@ -1890,6 +2345,14 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
         <li><a href="https://pubmed.ncbi.nlm.nih.gov/41406444/">Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes（SURPASS-CVOT）<span>NEJM 2025</span></a></li>
         <li><a href="https://www.tctmd.com/news/surpass-cvot-published-large-trial-confirms-cvd-efficacy-tirzepatide">SURPASS-CVOT Published: Large Trial Confirms CVD Efficacy of Tirzepatide<span>TCTMD</span></a></li>
         <li><a href="https://pubmed.ncbi.nlm.nih.gov/41903177/">Cardiorenal Outcomes With Tirzepatide Compared With Dulaglutide: Post Hoc Analysis of SURPASS-CVOT<span>2026</span></a></li>
+        <li><a href="https://www.nejm.org/doi/abs/10.1056/NEJMoa2403347">FLOW：Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes<span>NEJM 2024　N=3,533，腎臟複合終點 HR 0.76，因效益提前中止</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41591-024-03015-5">SELECT 腎臟次分析：Long-term kidney outcomes of semaglutide in obesity and cardiovascular disease<span>Nat Med 2024　N=17,604，無糖尿病，HR 0.78 (0.63–0.96)</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/39608381/">Effects of GLP-1 receptor agonists on kidney and cardiovascular disease outcomes: a meta-analysis of randomised controlled trials<span>Lancet Diabetes Endocrinol 2024　論文一可直接引用的分母</span></a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/40982219/">The effect of GLP-1 receptor agonists on renal outcomes: SR and meta-analysis<span>NDT 2026　19 試驗、90,882 人；複合 RR 0.81、腎衰竭 0.86 不顯著</span></a></li>
+        <li><a href="https://www.ajkd.org/article/S0272-6386(25)00042-3/fulltext">Kidney and CV Outcomes Among Patients With CKD Receiving GLP-1 RA<span>AJKD 2025</span></a></li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/dmrr.70066">Kidney Outcomes With GLP-1 RA Versus Other Glucose-Lowering Agents: SR and Meta-Analysis of <b>Real-World Data</b><span>Diabetes Metab Res Rev 2025　論文一可直接引用的分子</span></a></li>
+        <li><a href="https://www.nature.com/articles/s41591-024-03327-6">Semaglutide in overweight or obesity and CKD without diabetes：隨機雙盲安慰劑對照試驗<span>Nat Med 2024</span></a></li>
+        <li><a href="https://academic.oup.com/ndt/article/40/4/617/7762977">SELECT：體重下降 10% 與腎臟結局改善<span>NDT 2025</span></a></li>
         <li><a href="https://pubmed.ncbi.nlm.nih.gov/39555826/">Tirzepatide for HFpEF and Obesity（SUMMIT）<span>NEJM 2024</span></a></li>
         <li><a href="https://www.nature.com/articles/s41591-022-01707-4">Tirzepatide cardiovascular event risk assessment: a pre-specified meta-analysis<span>Nat Med 2022</span></a></li>
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/oby.24332">Rationale and design of the SURMOUNT-MMO trial<span>Obesity 2025</span></a></li>
@@ -1966,7 +2429,8 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
 
 <div class="end">
   <p><b>版本</b>　本稿為博士班三年級上學期資格考、論文題目初稿口試用版本，中華民國一一五年九月。</p>
-  <p><b>本次修訂</b>　依方法學審查結果修正三處核心設定：(一) 刪除「真實世界證據系統性高估」的主效應主張，改為以估計量對齊與設計嚴謹度為條件的調節效應假說；(二) 標的範圍自 tirzepatide 擴大為 incretin 類藥物，tirzepatide 列為事前指定次族群；(三) 刪除以甲狀腺與胰臟癌作為內部一致性檢驗的設計，改用真正的陰性對照結局、非肥胖相關癌別特異性檢驗與陰性對照暴露。</p>
+  <p><b>最新增補</b>　納入腎臟終點作為論文一的主要基準：FLOW 提供糖尿病族群的安慰劑對照錨點，SELECT 腎臟次分析提供<b>無糖尿病族群</b>的錨點，SURPASS-CVOT 心腎次要分析提供主動對照錨點。此一組合讓「偏差方向依族群反轉」的假設得以在有隨機試驗的條件下被直接檢驗，是癌症終點無法提供的。</p>
+  <p><b>前次修訂</b>　依方法學審查結果修正三處核心設定：(一) 刪除「真實世界證據系統性高估」的主效應主張，改為以估計量對齊與設計嚴謹度為條件的調節效應假說；(二) 標的範圍自 tirzepatide 擴大為 incretin 類藥物，tirzepatide 列為事前指定次族群；(三) 刪除以甲狀腺與胰臟癌作為內部一致性檢驗的設計，改用真正的陰性對照結局、非肥胖相關癌別特異性檢驗與陰性對照暴露。</p>
   <p><b>使用說明</b>　本頁為文獻檢索與研究方向的整理草稿，供資格考口試準備使用。所有數值、樣本數與統計量均來自公開摘要與新聞報導的整理，須回原文核對後方可寫入正式書面資料。</p>
   <p><b>下一步</b>　① 跑一次系統性檢索並數出可納入篇數，決定論文一是否需擴大到 incretin 類；② 查證台灣猛健樂給付現況與目標醫院處方量，決定論文三資料源；③ 兩者確認後即可將 05 至 07 節擴寫為正式計畫書方法章。</p>
 </div>
@@ -1976,7 +2440,7 @@ medRxiv                tirzepatide AND (cardiovascular OR dementia OR cancer)
 
 <script>
 (function(){
-  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix"};
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function show(name, scroll){
     if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
