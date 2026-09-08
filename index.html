@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>博士學位論文研究計畫書｜劉子瑜</title>
 <title>猛健樂證據校準計畫</title>
 <style>
 
@@ -318,6 +319,10 @@ li b{color:var(--ink)}
 .f-tr.fxA::before{left:66.07%}
 .f-tr.fxB::before{left:45.48%}
 .f-tr.fxC::before{left:56.78%}
+.f-tr.fxS::before{left:59.20%}
+.f-tr.fxF::before{left:72.68%}
+.f-tr.fxI::before{left:46.57%}
+.f-tr.fxU::before{left:88.24%}
 .mrfig{width:100%; height:auto; display:block; overflow:visible}
 .mrfig .axl{font-size:11.5px; fill:var(--muted); font-family:var(--sans)}
 .mrfig .axt{font-size:12.5px; fill:var(--ink-2); font-family:var(--sans); font-weight:700}
@@ -671,8 +676,8 @@ li b{color:var(--ink)}
             </tr>
             <tr>
               <td data-l="研究"><b>SELECT 腎臟次分析</b><br><span class="q">Nat Med 2024</span></td>
-              <td data-l="內容">肥胖＋CVD、<b>無糖尿病</b>，N=17,604，HR 0.78 (0.63–0.96)</td>
-              <td data-l="意義">提供無糖尿病族群的錨點，讓「偏差方向依族群反轉」得以檢驗。</td>
+              <td data-l="內容">肥胖＋CVD、<b>無糖尿病</b>，N=17,604。原論文 5 成分複合 <b>0.82 (0.69–0.97)</b>；NDT 重新擷取為 0.78 (0.64–0.96)；<b>八種終點定義橫跨 0.57 至 0.87</b></td>
+              <td data-l="意義">提供無糖尿病族群的錨點。<b>更重要的是：八種終點定義中，唯一達顯著的是唯一包含心血管死亡的那一個</b>——這是終點軟硬度最有力的實證。</td>
             </tr>
             <tr>
               <td data-l="研究"><b>Schechter 2023</b><br><span class="q">以色列 Maccabi</span></td>
@@ -1672,7 +1677,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <header class="mast">
   <p class="kicker">補充分析　·　Medscape 專文導讀與先導統合分析　·　2026.09</p>
   <h1>腎臟這條線值多少</h1>
-  <p class="dek">前半解釋 Medscape〈Are GLP-1 Drugs Now Kidney Drugs?〉這篇專文的內容與它對本論文的價值；後半為先導分析。<b>本版已依 NDT 2026 與 Fishkin 2025 的原始論文全面核對，修正三處錯誤，並據此修改了論文一的方法設計。</b></p>
+  <p class="dek">前半解釋 Medscape〈Are GLP-1 Drugs Now Kidney Drugs?〉這篇專文的內容與它對本論文的價值；後半為先導分析。<b>本版已依 NDT 2026、Fishkin 2025、SELECT、FLOW（含 NEJM 補充附錄）、SURMOUNT-1／2 與 SUSTAIN-5 的原始論文逐一核對，累計修正五處錯誤，並據此三度修改論文一的方法設計。</b></p>
 </header>
 
 <section id="k1">
@@ -1700,7 +1705,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
           <tr>
             <td data-l="證據"><b>FLOW 的 SGLT2i 次分析</b></td>
             <td data-l="內容">semaglutide 的效益不因是否併用 SGLT2 抑制劑而改變，顯示機轉互補而非重疊。</td>
-            <td data-l="意義">提供一個<b>陰性交互作用</b>的參考：若真實世界研究反而看到強烈交互作用，那多半是通道效應而非生物學。</td>
+            <td data-l="意義"><span class="flagtxt">此說法只在主要終點上成立。</span>主要終點交互作用 p=0.109，FLOW 正文也確實寫「no clear heterogeneity」；但 ≥50% eGFR 下降這一成分的交互作用 p=0.023（已用 SGLT2i 者 1.30，未用者 0.66）。<b>同一個試驗，換一個終點就換一個結論</b>——這本身就是終點定義問題的又一個例子。詳見 <a href="#k5">第 05 節</a>與 <a href="#k7">第 07 節</a>。</td>
           </tr>
           <tr>
             <td data-l="證據"><b>SURMOUNT-1／2 合併</b></td>
@@ -2140,8 +2145,561 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   </div>
 </section>
 
+<section id="k5">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>SELECT 與 FLOW 原文：終點定義本身就是研究對象</h2>
+    <p class="sub">核對兩篇試驗的原文與補充資料後，出現了整份提案最有力的一組證據——而且是兩個獨立試驗互相複製的。</p>
+  </div>
+
+  <div class="stack">
+
+    <h3>SELECT：同一個隨機試驗，八種腎臟終點定義</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">以下全部來自 SELECT 的同一批 17,604 名受試者、同一次隨機分派、同一段追蹤。<b>唯一改變的是複合終點怎麼組成。</b></p>
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>終點定義</span><span>風險比（對數尺度）</span><span>HR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>5 成分複合</b>含心血管死亡・239 對 289 事件</div>
+          <div class="f-tr fxS">
+            <div class="f-ci" style="left:43.4%; width:14.5%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:50.7%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.82 (0.69–0.97)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥30% eGFR 下降</b>126 對 154</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:40.1%; width:20.3%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:50.2%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.81 (0.64–1.03)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>4 成分複合</b>含 ≥30% eGFR，無心血管死亡・128 對 158</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:40.1%; width:19.5%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:49.7%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.80 (0.64–1.01)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥40% eGFR 下降</b>40 對 56</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:27.0%; width:34.7%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:44.6%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.71 (0.47–1.06)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>4 成分複合</b>含 ≥50% eGFR，無心血管死亡・17 對 27</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:11.9%; width:52.9%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:38.8%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.62 (0.33–1.14)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥50% eGFR 下降</b>12 對 21</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:3.3%; width:61.5%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:35.2%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.57 (0.27–1.14)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥57% eGFR 下降</b>7 對 8</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:7.8%; width:89.2%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:53.3%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.87 (0.30–2.42)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>NDT 2026 重新擷取</b>155 對 198・與原論文任一定義皆不符</div>
+          <div class="f-tr fxS">
+            <div class="f-ci" style="left:40.1%; width:17.3%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:48.6%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.78 (0.64–0.96)</div>
+        </div>
+        <div class="f-ax"><span style="left:7.8%">0.3</span><span style="left:29.6%">0.5</span><span style="left:44.0%">0.7</span><span style="left:59.2%">1.0</span><span style="left:76.5%">1.5</span><span style="left:98.3%">2.5</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>原論文補充表 3</span>
+        <span><i style="background:var(--s2)"></i>第三方重新擷取</span>
+        <span>空心菱形代表未達顯著</span>
+      </p>
+    </div>
+    <div class="stats">
+      <div><div class="big">0.57–0.87</div><div class="cap2">同一試驗的估計範圍<br><span class="q">八種定義</span></div></div>
+      <div><div class="big">1 / 7</div><div class="cap2">原論文中達顯著者<br><span class="q">唯一含心血管死亡的那個</span></div></div>
+      <div><div class="big">0 / 6</div><div class="cap2">純腎臟定義達顯著者<br><span class="q">全部不顯著</span></div></div>
+    </div>
+
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">這張圖有兩件事必須講出來</span>
+      <b>第一，唯一達到統計顯著的定義，是唯一包含心血管死亡的那一個。</b>5 成分複合是 0.82（p=0.02）；把心血管死亡拿掉，同樣的病人、同樣的追蹤，就變成 0.80（p=0.07）、0.62（p=0.13）——全部不顯著。換句話說，SELECT 的「腎臟保護」標題，<u>相當程度是被心血管死亡撐起來的</u>。<br><br>
+      <b>第二，NDT 2026 擷取到的 0.78（155 對 198 事件），與原論文任何一個定義都對不上。</b>那是第三方在做統合分析時又建構了另一個複合終點。<b>這代表就連「同一個試驗在不同統合分析中的數值」都不是同一個估計量。</b><br><br>
+      這比我先前用的 FLOW 例子更強——FLOW 是兩個定義差 0.76 對 0.84，SELECT 是八個定義橫跨 0.57 到 0.87，而且顯著性會翻轉。
+    </div>
+
+    <h3 style="margin-top:56px">FLOW：獨立複製了同一個結構</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">FLOW 的主要複合終點與其各成分，同一批 3,533 名受試者。</p>
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>終點</span><span>風險比（對數尺度）</span><span>HR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>主要複合</b>含心血管死亡・331 對 410</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:34.9%; width:26.2%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:47.7%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.76 (0.66–0.88)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>腎臟專一複合</b>不含心血管死亡・218 對 260</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:34.88%; width:32.19%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:51.25%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.79 (0.66–0.94)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>心血管死亡</b>123 對 169</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:19.9%; width:42.2%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:41.5%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.71 (0.56–0.89)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥50% eGFR 下降</b>165 對 213</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:24.7%; width:37.4%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:44.0%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.73 (0.59–0.89)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>eGFR 低於 15</b>92 對 110</div>
+          <div class="f-tr fxF">
+            <div class="f-ci dash" style="left:27.7%; width:50.3%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:52.4%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.80 (0.61–1.06)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>長期腎替代療法</b>最硬的終點・87 對 100</div>
+          <div class="f-tr fxF">
+            <div class="f-ci dash" style="left:30.6%; width:52.4%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:56.8%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.84 (0.63–1.12)</div>
+        </div>
+        <div class="f-ax"><span style="left:9.6%">0.5</span><span style="left:26.2%">0.6</span><span style="left:40.2%">0.7</span><span style="left:52.4%">0.8</span><span style="left:72.7%">1.0</span><span style="left:96.6%">1.3</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>腎臟終點</span>
+        <span><i style="background:var(--s2)"></i>心血管死亡</span>
+        <span>空心菱形代表未達顯著</span>
+        <span>另有腎因死亡 0.97 (0.27–3.49)，5 對 5 事件，區間過寬未繪出</span>
+      </p>
+    </div>
+
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">兩個獨立試驗，同一個結構性發現</span>
+      FLOW 裡<b>兩個最硬的腎臟終點都不顯著</b>：長期腎替代療法 0.84（0.63–1.12）、eGFR 低於 15 為 0.80（0.61–1.06）。達到顯著的是 ≥50% eGFR 下降（0.73）與<b>心血管死亡</b>（0.71）。<br><br>
+      SELECT 也是同樣的模式。<b>兩個獨立的、設計完全不同的隨機試驗，指向同一件事：這類藥物的「腎臟保護」主要由較軟的成分與心血管死亡撐起，最硬的腎臟終點單獨看都達不到顯著。</b><br><br>
+      這讓「終點軟硬程度」從一個統計上的調節因子，升級為<b>一個有臨床意涵的實質發現</b>。而且它是在隨機試驗內部觀察到的，與偏差完全無關——這是論文一最乾淨的一塊立論。
+    </div>
+
+    <h3 style="margin-top:56px">FLOW 的 SGLT2i 交互作用：論文二意外拿到一個隨機化把手</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">FLOW 事前指定了依基線是否使用 SGLT2i 的分層分析（使用 550 人、未使用 2,983 人）。</p>
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>終點與 SGLT2i 使用狀態</span><span>風險比（對數尺度）</span><span>HR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>主要複合｜未使用 SGLT2i</b>290 對 372</div>
+          <div class="f-tr fxI">
+            <div class="f-ci" style="left:19.6%; width:17.5%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:28.2%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.73 (0.63–0.85)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>主要複合｜已使用 SGLT2i</b>41 對 38</div>
+          <div class="f-tr fxI">
+            <div class="f-ci dash" style="left:24.9%; width:51.5%; background:var(--s2)"></div>
+            <div class="f-pt hollow" style="left:50.5%; border-color:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.07 (0.69–1.67)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>腎臟專一複合｜未使用</b>186 對 233</div>
+          <div class="f-tr fxI">
+            <div class="f-ci" style="left:17.7%; width:22.7%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:29.8%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.75 (0.61–0.90)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>腎臟專一複合｜已使用</b>32 對 27</div>
+          <div class="f-tr fxI">
+            <div class="f-ci dash" style="left:26.6%; width:59.8%; background:var(--s2)"></div>
+            <div class="f-pt hollow" style="left:56.2%; border-color:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.18 (0.71–1.98)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥50% eGFR｜未使用</b>135 對 190</div>
+          <div class="f-tr fxI">
+            <div class="f-ci" style="left:9.5%; width:26.2%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:22.3%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.66 (0.53–0.83)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥50% eGFR｜已使用</b>30 對 23・交互作用 p=0.023</div>
+          <div class="f-tr fxI">
+            <div class="f-ci dash" style="left:30.6%; width:63.6%; background:var(--s2)"></div>
+            <div class="f-pt hollow" style="left:61.9%; border-color:var(--s2)"></div>
+          </div>
+          <div class="f-val">1.30 (0.76–2.26)</div>
+        </div>
+        <div class="f-ax"><span style="left:6.1%">0.5</span><span style="left:25.8%">0.7</span><span style="left:46.6%">1.0</span><span style="left:70.2%">1.5</span><span style="left:100.0%">2.5</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>未使用 SGLT2i</span>
+        <span><i style="background:var(--s2)"></i>已使用 SGLT2i</span>
+        <span>交互作用 p：0.109 / 0.100 / <b>0.023</b></span>
+      </p>
+    </div>
+
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">這對論文二有直接而且重大的意義</span>
+      在<b>已經使用 SGLT2i</b> 的病人身上，再加 semaglutide 的腎臟效益消失：主要複合 1.07、腎臟專一複合 1.18、≥50% eGFR 下降 1.30（交互作用 p=0.023，達顯著）。而未使用 SGLT2i 者是 0.73、0.75、0.66。<br><br>
+      <b>這是隨機試驗內部的證據，不受干擾影響。</b>它意味著：觀察性研究看到的「GLP-1 對 SGLT2i 較差」（eGFR 下降 40% 以上為 1.40），<u>其中有一部分很可能是真實的</u>——因為 SGLT2i 已經佔掉了大部分可得的腎臟保護。<br><br>
+      <b>論文二因此拿到了一個原本不存在的把手。</b>SGLT2i 層雖然沒有頭對頭試驗，但 FLOW 的交互作用提供了一個隨機化的上界估計，可以用來分離「真實的差異效果」與「偏差」。這讓論文二從純外推變成<b>半錨定外推</b>，可防守性大幅提高。<br><br>
+      要誠實講的限制：SGLT2i 使用組只有 550 人、41 對 38 個事件，統計效能很低，三個交互作用檢定中只有一個達顯著且未做多重比較校正。<b>更重要的是，FLOW 的 NEJM 正文自己寫「we found no clear heterogeneity…although the statistical power of this analysis was limited」——試驗作者的結論與本節的解讀相反。</b>核對原文後，此處已<b>下修為敏感度分析的上界</b>，不作為論文二的主要錨點。詳見 <a href="#k7">第 07 節</a>。
+    </div>
+
+    <div class="panel" style="margin-top:40px">
+      <h3>這批原文核對帶來的四個修改</h3>
+      <ol>
+        <li><b>SELECT 的數值要標明是哪一個定義。</b>證據表中原本寫 0.78 (0.63–0.96)，那是二手來源；原論文的 5 成分複合是 <b>0.82 (0.69–0.97)</b>，NDT 擷取的是 0.78 (0.64–0.96)。兩者都要列，並註明定義不同。</li>
+        <li><b>「終點軟硬度」升級為實質發現。</b>它不只是統計上的調節因子——兩個獨立試驗都顯示最硬的腎臟終點不顯著，而顯著性由較軟成分與心血管死亡驅動。這應該寫進論文一的主要結果，而非方法段。</li>
+        <li><b>論文二改為半錨定外推。</b>SGLT2i 層加入 FLOW 交互作用作為弱隨機化錨點，用以估計該層「真實差異效果」的上界，殘差才歸為偏差。</li>
+        <li><b>擷取表必須登錄複合終點的完整成分清單。</b>不是只記「複合腎臟終點」，而是逐一記錄它由哪幾個成分組成、是否含心血管死亡。SELECT 的例子證明只記名稱會抄到完全不同的估計量。</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<section id="k6">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>SURMOUNT-1／2：猛健樂自己的腎臟證據，落在軟硬光譜的最軟端</h2>
+    <p class="sub">Heerspink 等人，<i>JASN</i> 2025;36:2190–2200。這是 tirzepatide 目前<b>唯一</b>的隨機化腎臟資料——而它是一個事後分析、一個純代理指標、一個幾乎沒有腎病的族群。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note col">
+      <span class="lede">先把這篇是什麼講清楚</span>
+      這是把 SURMOUNT-1（N=2,539，肥胖／過重<b>無</b>第二型糖尿病，tirzepatide 5／10／15 mg 合併 n=1,896 對安慰劑 n=643）與 SURMOUNT-2（N=938，<b>有</b>第二型糖尿病，10／15 mg 合併 n=623 對安慰劑 n=315）兩個減重試驗的 72 週資料，拿來做事後的腎臟分析。<br><br>
+      <b>兩個試驗都不是為腎臟設計的，也都沒有任何硬腎臟事件。</b>主要看的是尿液白蛋白／肌酸酐比值（UACR）的百分比變化，加上 eGFR 的安全性描述。基線 UACR 中位數分別是 6.0（4.0–11.0）與 13.0（6.0–35.1）mg/g——換句話說，<b>91% 與 71% 的受試者一開始就是正常白蛋白尿</b>。
+    </div>
+
+    <h3 style="margin-top:44px">72 週 UACR 的治療組間差異</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:660px;margin-bottom:20px">數值為 tirzepatide 相對安慰劑的百分比差異，負值代表白蛋白尿下降較多。</p>
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>試驗與基線 UACR 分層</span><span>UACR 百分比差異（線性尺度）</span><span>差異 (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>SURMOUNT-1 全體</b>無糖尿病・n=2,539</div>
+          <div class="f-tr fxU">
+            <div class="f-ci" style="left:70.94%; width:15.41%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:78.35%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">−8.4 (−14.7, −1.6)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">　└ 基線 UACR &lt;30 mg/g<span class="q">佔 91%・未達顯著</span></div>
+          <div class="f-tr fxU">
+            <div class="f-ci dash" style="left:76.12%; width:15.64%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:83.65%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">−3.9 (−10.3, 3.0)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">　└ 基線 UACR ≥30 mg/g<span class="q">佔 9%・p&lt;0.01</span></div>
+          <div class="f-tr fxU">
+            <div class="f-ci" style="left:16.71%; width:53.88%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:38.47%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">−42.3 (−60.8, −15.0)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>SURMOUNT-2 全體</b>有糖尿病・n=938</div>
+          <div class="f-tr fxU">
+            <div class="f-ci" style="left:40.12%; width:24.94%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:51.65%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">−31.1 (−40.9, −19.7)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">　└ 基線 UACR &lt;30 mg/g<span class="q">佔 71%</span></div>
+          <div class="f-tr fxU">
+            <div class="f-ci" style="left:50.82%; width:29.65%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:64.47%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">−20.2 (−31.8, −6.6)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">　└ 基線 UACR ≥30 mg/g<span class="q">佔 29%・p&lt;0.001</span></div>
+          <div class="f-tr fxU">
+            <div class="f-ci" style="left:7.65%; width:37.76%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:23.29%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">−55.2 (−68.5, −36.4)</div>
+        </div>
+        <div class="f-ax"><span style="left:17.65%">−60%</span><span style="left:41.18%">−40%</span><span style="left:64.71%">−20%</span><span style="left:88.24%">0</span><span style="left:100%">+10%</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>SURMOUNT-1（無糖尿病）</span>
+        <span><i style="background:var(--s2)"></i>SURMOUNT-2（有糖尿病）</span>
+        <span>空心菱形代表未達顯著</span>
+      </p>
+    </div>
+
+    <div class="stats">
+      <div><div class="big">0</div><div class="cap2">硬腎臟事件數<br><span class="q">兩試驗合計</span></div></div>
+      <div><div class="big">91% / 71%</div><div class="cap2">基線正常白蛋白尿比例<br><span class="q">SURMOUNT-1 / -2</span></div></div>
+      <div><div class="big">5 倍</div><div class="cap2">全體與 ≥30 分層的效果差距<br><span class="q">−8.4% 對 −42.3%</span></div></div>
+    </div>
+
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">這篇對本提案的三個用途</span>
+      <b>第一，它把軟硬光譜補到最軟端，而且是用本題的主角藥物。</b>整條光譜現在是：長期腎替代療法 0.84（不顯著）→ eGFR 低於 15 為 0.80（不顯著）→ ≥50% eGFR 下降 0.73（顯著）→ 含心血管死亡的複合 0.76–0.82（顯著）→ UACR −8.4% 到 −55.2%（大幅顯著）。<b>效果強度與終點軟度單調同向。</b>這正是論文一要量化的那個梯度，而它在隨機化證據內部就已經完整出現一次。<br><br>
+      <b>第二，它示範了「族群組成」如何獨立於偏差改變估計值。</b>SURMOUNT-1 全體是 −8.4%，但那是 91% 正常白蛋白尿的人稀釋出來的；真正有白蛋白尿的那 9% 是 −42.3%。<u>同一個試驗、同一次隨機分派、同一個終點，只因為分母裡誰比較多，效果就差了五倍。</u>真實世界研究的使用者幾乎必然比試驗族群病得更重——這個差距<b>不是偏差，是真實的效果修飾</b>，卻極容易被誤讀成偏差。論文一必須把基線腎功能與白蛋白尿分布登錄為配對條件之一。<br><br>
+      <b>第三，它替 tirzepatide 的證據缺口定了性。</b>猛健樂目前沒有任何以腎臟為主要終點的隨機試驗（SURPASS-CVOT 的腎臟結果是次要／探索性）。這代表<b>tirzepatide 這一格在論文一裡幾乎必然是空的</b>，論文二的偏差校正外推因此不是加分項而是必要條件——這正是整份提案的立足點，而且現在有原文可以支撐。
+    </div>
+
+    <div class="panel" style="margin-top:40px">
+      <h3>eGFR：安全性訊號乾淨，但也說明了為何不能與硬終點配對</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:34%">指標</th><th style="width:22%">SURMOUNT-1</th><th style="width:22%">SURMOUNT-2</th><th style="width:22%">解讀</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="指標"><b>肌酸酐推估 eGFR</b>組間差異</td>
+              <td data-l="SURMOUNT-1">−0.1 (−1.1, 1.0)</td>
+              <td data-l="SURMOUNT-2">無不利變化</td>
+              <td data-l="解讀">無害，但也無效益訊號</td>
+            </tr>
+            <tr>
+              <td data-l="指標"><b>胱抑素 C 推估 eGFR</b>組間差異</td>
+              <td data-l="SURMOUNT-1"><b>+3.2 (2.1, 4.3)</b></td>
+              <td data-l="SURMOUNT-2"><b>+1.9 (0.9, 2.9)</b></td>
+              <td data-l="解讀">與肌酸酐版本方向不一致</td>
+            </tr>
+            <tr style="background:var(--flag-soft)">
+              <td data-l="指標"><b>硬腎臟事件</b>腎替代療法、eGFR&lt;15、腎因死亡</td>
+              <td data-l="SURMOUNT-1"><span class="flagtxt">未發生</span></td>
+              <td data-l="SURMOUNT-2"><span class="flagtxt">未發生</span></td>
+              <td data-l="解讀">無法產生風險比，<b>不可進入 RHR 計算</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:15px;color:var(--ink-2);margin-top:16px">肌酸酐與胱抑素 C 兩種公式給出方向不同的答案（−0.1 對 +3.2），本身就是一個估計量對齊問題：<b>減重會改變肌肉量，因而改變肌酸酐，因而改變 eGFR，而這與腎絲球濾過率的真實變化無關。</b>觀察性研究幾乎一律只有肌酸酐版本的 eGFR。這是論文一擷取表必須新增「eGFR 計算公式」欄位的直接理由。</p>
+    </div>
+
+    <div class="panel" style="margin-top:32px">
+      <h3>由這篇產生的三個提案修改</h3>
+      <ol>
+        <li><b>擷取表新增兩個欄位。</b>「基線 UACR 分層／正常白蛋白尿比例」與「eGFR 計算公式（肌酸酐／胱抑素 C／兩者）」。前者用來區分效果修飾與偏差，後者用來避免把兩種不同的測量當成同一個終點。</li>
+        <li><b>代理指標另立一組，明文寫入計畫書。</b>UACR 的百分比變化與硬終點的風險比在數學上不可互換，<b>不得配對計算 RHR</b>。它們以獨立的敘述性圖表呈現，用途是描述軟硬梯度，不是估計偏差。</li>
+        <li><b>tirzepatide 格空缺改為明講的設計前提。</b>在論文一的證據地圖中，tirzepatide 的腎臟格預期為空或僅有探索性資料；這不是資料收集失敗，而是論文二存在的理由。口試時應主動先講，不要等口委問。</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<section id="k7">
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>FLOW 原文與 SUSTAIN-5：三個調節因子第一次被排出大小順序</h2>
+    <p class="sub">FLOW 的 NEJM 正文與補充附錄提供了一組先前拿不到的數字，讓「終點定義、對照層、分析方法」三者的影響力可以放在同一把尺上比較。SUSTAIN-5 則示範了一個必須被排除的研究長什麼樣子。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="note flag col">
+      <span class="lede">先更正一個數字</span>
+      第 05 節 FLOW 圖中「≥50% eGFR 下降」的事件數，我先前寫 165 對 <b>231</b>，正確是 165 對 <b>213</b>（NEJM Table 2）。風險比 0.73（0.59–0.89）無誤，已更正。同時補上兩列先前遺漏的成分：<b>腎臟專一複合 0.79（0.66–0.94）</b>與<b>腎因死亡 0.97（0.27–3.49，5 對 5 事件）</b>。
+    </div>
+
+    <h3 style="margin-top:44px">三個調節因子的影響力，用同一把尺量</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:680px;margin-bottom:20px">下圖的每一條，都是<b>在隨機化證據內部</b>觀察到的估計值變異幅度——最大風險比除以最小風險比再減一。全部與偏差無關，純粹是「同一份資料換一種問法」造成的差距。</p>
+    <div class="figbox">
+      <div class="g-in">
+        <div class="g-row">
+          <div class="g-lab"><b>終點定義</b><br><span class="q">SELECT 八種定義中事件數 ≥20 者</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:0%; width:53.3%; background:var(--s1)">+32%　0.62 → 0.82</div></div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>對照層</b><br><span class="q">NDT 統合分析的隨機試驗側</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:0%; width:53.3%; background:var(--s1)">+32%　0.61 → 0.81</div></div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>終點軟硬</b><br><span class="q">FLOW 主要終點的四個可估成分</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:0%; width:30.0%; background:var(--s2)">+18%　0.71 → 0.84</div></div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>分析與缺失值處理</b><br><span class="q">FLOW 補充表 S3 的六種分析</span></div>
+          <div class="g-tr">
+            <div class="g-bar" style="left:0%; width:4.5%; background:var(--muted)"></div>
+            <div style="position:absolute; left:7%; top:0; line-height:22px; font-size:11.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap"><b>+3%</b>　0.75 → 0.77</div>
+          </div>
+        </div>
+        <div class="g-ax"><div></div><div class="g-tk"><span>0%</span><span>+12%</span><span>+24%</span><span>+36%</span><span>+48%</span></div></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>本論文的兩個主要調節因子</span>
+        <span><i style="background:var(--s2)"></i>第三個調節因子</span>
+        <span><i style="background:var(--muted)"></i>先前假設重要、實測甚小</span>
+      </p>
+    </div>
+
+    <div class="note flag col" style="margin-top:26px">
+      <span class="lede">這張圖改變了論文一的資源配置</span>
+      <b>終點定義與對照層各造成約 32% 的估計值差距；分析與缺失值處理只造成 3%。</b>差距接近十倍。<br><br>
+      這代表：把力氣花在「兩邊的分析方法是否都用 ITT」，遠不如把力氣花在「兩邊算的是不是同一個終點、比的是不是同一個對照」。<b>忠實度評分（0–14 分）的權重必須重新配置</b>——終點成分與對照層應各佔最高權重，分析方法降為次要。這是先前憑直覺配的權重，現在有實測依據。<br><br>
+      要誠實講的一個限制：<b>FLOW 補充表 S3 的六種分析全部屬於 ITT 家族</b>（多重插補、回收失訪者、不同的持續性判定），<u>它不是真正的 as-treated 分析</u>。真正的 ITT 對 as-treated 差距要看 Fishkin 補充表 S4，那裡的差距明顯較大。所以正確的說法是：<b>「ITT 家族內部的分析選擇幾乎不影響估計值」</b>，而不是「分析方法不重要」。這兩句話在口試時不能講混。
+    </div>
+
+    <h3 style="margin-top:56px">FLOW 的 25% 停藥率：ITT 估計值是被稀釋過的</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:40%">項目</th><th style="width:20%">Semaglutide</th><th style="width:20%">安慰劑</th><th style="width:20%">來源</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="項目">完成試驗</td>
+            <td data-l="Sema">1,724（97.6%）</td>
+            <td data-l="安慰劑">1,708（96.7%）</td>
+            <td data-l="來源">圖 S1</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="項目"><b>永久停用試驗藥物</b></td>
+            <td data-l="Sema"><b>439（24.8%）</b></td>
+            <td data-l="安慰劑"><b>480（27.2%）</b></td>
+            <td data-l="來源">圖 S1</td>
+          </tr>
+          <tr>
+            <td data-l="項目">　因不良事件停藥</td>
+            <td data-l="Sema">222（12.6%）</td>
+            <td data-l="安慰劑">199（11.3%）</td>
+            <td data-l="來源">圖 S1</td>
+          </tr>
+          <tr>
+            <td data-l="項目">試驗期間平均用藥時間比例</td>
+            <td data-l="Sema" colspan="2" style="text-align:center">約 89%</td>
+            <td data-l="來源">正文</td>
+          </tr>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="項目"><b>主要終點 ITT 估計</b></td>
+            <td data-l="Sema" colspan="2" style="text-align:center"><b>HR 0.76（0.66–0.88）</b></td>
+            <td data-l="來源">表 2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note col" style="margin-top:22px">
+      <span class="lede">為什麼這個數字對 RHR 的方向很重要</span>
+      FLOW 的 0.76 是在<b>四分之一的人已經停藥</b>的情況下算出來的。ITT 保留了這些人，所以 0.76 是一個<u>被暴露錯分稀釋過、偏向虛無的</u>估計。真實的持續用藥效果會比 0.76 更強。<br><br>
+      觀察性研究則多半採 as-treated 或在停藥時設限，結構上會避開這種稀釋——同時也把健康遵從者偏差引進來。<b>兩股力量方向相反。</b>把 RWE 的 as-treated 估計拿去除以 RCT 的 ITT 估計，得到的 RHR 同時混雜了「偏差讓 RWE 變強」與「稀釋讓 RCT 變弱」兩件事，會系統性高估偏差。<br><br>
+      <b>論文一的處理方式：</b>可得時優先取兩側的同一分析取向配對；不可得時，以 FLOW 這類試驗的停藥率作為稀釋量的上界，納入定量偏差分析的參數。<b>這是先前只有定性描述、現在有數字可放進模型的一塊。</b>
+    </div>
+
+    <h3 style="margin-top:56px">兩個順帶的核對結果</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:26%">核對項目</th><th style="width:37%">原文怎麼寫</th><th style="width:37%">對本提案的意義</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="項目"><b>心血管死亡佔複合終點的比重</b></td>
+            <td data-l="原文">補充表 S2 由試驗作者自己寫明：「心血管死亡約佔主要終點成分的 <b>35%</b>」。</td>
+            <td data-l="意義">第 05 節「複合終點被心血管死亡撐起」的說法，<b>不再只是我的推論，而是試驗作者的自述</b>，可直接引用。口試時這是最強的一句。</td>
+          </tr>
+          <tr>
+            <td data-l="項目"><b>肌酸酐與胱抑素 C 的分歧</b></td>
+            <td data-l="原文">FLOW 兩種公式幾乎一致：胱抑素 C 差異 3.39（2.63–4.15）、肌酸酐事後分析 3.30（2.43–4.17）。體重差異僅 −4.10 kg。</td>
+            <td data-l="意義">SURMOUNT 兩種公式明顯分歧（−0.1 對 +3.2），而那裡的減重幅度大得多。<b>推得一個可檢驗的預測：兩公式的分歧幅度與減重幅度成正比。</b>擷取表因此必須同時登錄 eGFR 公式與減重幅度。</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="項目"><b>SGLT2i 交互作用</b><span class="q">下修先前的說法</span></td>
+            <td data-l="原文">NEJM 正文明講：「we found <b>no clear heterogeneity</b> of effect among patients receiving SGLT2 inhibitors at baseline…although the statistical power of this analysis was limited」。主要終點交互作用 p=0.109。</td>
+            <td data-l="意義">第 05 節把 p=0.023（≥50% eGFR）稱為論文二的「半錨定」把手，<b>講得太強了</b>。那是三個交互作用檢定中唯一顯著的一個、未做多重比較校正、且與試驗本身的結論相反。<b>應下修為假說產生用的敏感度上界</b>，不可當作主要錨點。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:56px">SUSTAIN-5：一個看起來該收、實際必須排除的研究</h3>
+    <p style="font-size:16px;color:var(--ink-2);max-width:680px;margin-bottom:20px">SUSTAIN-5（<i>J Clin Endocrinol Metab</i> 2018;103:2291–2301）常被列在「semaglutide 與基礎胰島素」的文獻堆裡。逐條核對後，它四項都不合格。</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:22%">收案條件</th><th style="width:44%">SUSTAIN-5 實際是什麼</th><th style="width:34%">判定</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="條件"><b>對照必須是基礎胰島素</b></td>
+            <td data-l="實際">兩組<b>都</b>在用基礎胰島素。真正的比較是「胰島素＋semaglutide」對「胰島素＋安慰劑」。</td>
+            <td data-l="判定"><span class="flagtxt">不合格。</span>這是<b>加藥策略</b>，觀察性研究問的是<b>換藥／起始策略</b>，兩者是不同的估計量。</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="條件"><b>須有腎臟結局</b></td>
+            <td data-l="實際">正文與補充資料<b>完全沒有</b>任何腎臟終點——無 UACR、無 eGFR 變化、無腎臟事件。</td>
+            <td data-l="判定"><span class="flagtxt">不合格。</span>無可擷取之估計值。</td>
+          </tr>
+          <tr>
+            <td data-l="條件">追蹤須足以產生腎臟事件</td>
+            <td data-l="實際">30 週。</td>
+            <td data-l="判定"><span class="flagtxt">不合格。</span>硬腎臟終點的最短可信追蹤約 2 年。</td>
+          </tr>
+          <tr>
+            <td data-l="條件">族群須涵蓋腎功能下降者</td>
+            <td data-l="實際">排除 eGFR &lt;30（MDRD 四變數版）。</td>
+            <td data-l="判定">與 FLOW（收 eGFR 25–75）族群不重疊。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note flag col" style="margin-top:22px">
+      <span class="lede">這個排除案例本身就是論文一的方法貢獻</span>
+      如果只照「藥物 × 對照藥名 × 隨機試驗」三個關鍵字篩選，SUSTAIN-5 會被收進基礎胰島素層——然後貢獻一個根本不存在的腎臟估計值，或被迫用血糖終點頂替。<br><br>
+      <b>它示範了「對照層」不能只看藥名，必須看治療策略。</b>「加在胰島素上」與「取代胰島素」是兩個不同的目標試驗，時間零點不同、可比較族群也不同。論文一的篩選表因此新增一欄：<b>對照組的治療策略（取代／加藥／安慰劑加藥）</b>，並明訂只有「取代」與觀察性研究的新使用者設計可以配對。<br><br>
+      SUSTAIN-5 也順帶說明了為什麼 MDRD 與 CKD-EPI 之別要登錄——SUSTAIN-5 用 MDRD，FLOW 與 SURMOUNT 用 CKD-EPI 2009，兩者在同一個病人身上會給出不同的分層。
+    </div>
+
+    <div class="panel" style="margin-top:40px">
+      <h3>由這批原文產生的四個提案修改</h3>
+      <ol>
+        <li><b>忠實度評分重新配權。</b>終點成分與對照層策略各佔最高權重（實測各約 32% 的估計值影響），分析取向降為次要（ITT 家族內部僅 3%）。這一段從「憑判斷」升級為「有實測依據」。</li>
+        <li><b>擷取表再增三欄。</b>對照組治療策略（取代／加藥／安慰劑加藥）、eGFR 計算公式版本（MDRD／CKD-EPI 2009／CKD-EPI 2021／胱抑素 C）、試驗期間永久停藥比例。</li>
+        <li><b>停藥率進入定量偏差分析。</b>以隨機試驗申報的永久停藥率（FLOW 約 25%）估計 ITT 稀釋幅度，作為 RHR 的方向性修正項，避免把稀釋誤算成偏差。</li>
+        <li><b>SGLT2i 錨點下修。</b>從「半錨定外推」改為「以 FLOW 交互作用作為敏感度分析的上界」，並在論文二的限制中引用 FLOW 作者「no clear heterogeneity」的原句。<b>主動下修比被口委抓到好。</b></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
 <div class="end">
-  <p><b>核對狀態</b>　本分頁的腎臟數值已逐一核對 NDT 2026 正文與 Figures 2–4、Fishkin 2025 Tables 2–3 與 Figures 2–3，以及 Fishkin 補充表 S2（ROBINS-I）與 S4（as-treated）。癌症相關的迴歸分析已撤回。<b>先導分析仍非系統性回顧</b>——納入研究係取自既有兩篇系統性回顧，未做獨立更新檢索。</p>
+  <p><b>核對狀態</b>　本分頁的腎臟數值已逐一核對 NDT 2026 正文與 Figures 2–4、Fishkin 2025 Tables 2–3 與 Figures 2–3，、Fishkin 補充表 S2（ROBINS-I）與 S4（as-treated），以及 SELECT 原論文補充表 3（八種腎臟終點定義）與 FLOW 的 SGLT2i 分層分析原文，以及 SURMOUNT-1／2 事後腎臟分析（JASN 2025）、FLOW 的 NEJM 正文與補充附錄（表 S3、圖 S1、表 S2）與 SUSTAIN-5 正文與補充資料。癌症相關的迴歸分析已撤回。<b>先導分析仍非系統性回顧</b>——納入研究係取自既有兩篇系統性回顧，未做獨立更新檢索。</p>
   <p><b>正式分析</b>　須完成 PROSPERO 註冊、兩人獨立篩選與擷取、PRISMA 流程圖、以多變量統合分析處理估計間相關性，並依附錄之檢索策略執行。</p>
 </div>
 
@@ -2471,6 +3029,8 @@ medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
         <li><a href="https://pubmed.ncbi.nlm.nih.gov/39555826/">Tirzepatide for HFpEF and Obesity（SUMMIT）<span>NEJM 2024</span></a></li>
         <li><a href="https://www.nature.com/articles/s41591-022-01707-4">Tirzepatide cardiovascular event risk assessment: a pre-specified meta-analysis<span>Nat Med 2022</span></a></li>
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/oby.24332">Rationale and design of the SURMOUNT-MMO trial<span>Obesity 2025</span></a></li>
+        <li><a href="https://journals.lww.com/jasn/abstract/2025/12000/effects_of_tirzepatide_on_kidney_outcomes_in.11.aspx">SURMOUNT-1／2 合併事後腎臟分析：Effects of Tirzepatide on Kidney Outcomes<span>JASN 2025;36:2190–2200　UACR −8.4%／−31.1%；無硬腎臟事件</span></a></li>
+        <li><a href="https://academic.oup.com/jcem/article/103/6/2291/4981435">SUSTAIN-5：Semaglutide Added to Basal Insulin in Type 2 Diabetes<span>JCEM 2018;103:2291–2301　<b>本論文明確排除</b>：加藥策略、30 週、無腎臟終點</span></a></li>
       </ul>
     </div>
 
@@ -2556,7 +3116,7 @@ medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
 
 <script>
 (function(){
-  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot"};
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot", "k5": "pilot", "k6": "pilot", "k7": "pilot"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function show(name, scroll){
     if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
