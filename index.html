@@ -323,6 +323,16 @@ li b{color:var(--ink)}
 .f-tr.fxF::before{left:72.68%}
 .f-tr.fxI::before{left:46.57%}
 .f-tr.fxU::before{left:88.24%}
+.f-tr.fxC::before{left:91.63%}
+/* ============ manuscript ============ */
+.ms{max-width:840px}
+.ms>p{font-size:16px; line-height:1.78; color:var(--ink); margin:0 0 16px}
+.ms>h3{margin-top:40px; margin-bottom:14px}
+.ms .abs{background:var(--inset); border-left:3px solid var(--acc); padding:22px 26px; border-radius:0 5px 5px 0}
+.ms .abs p{font-size:15.5px; line-height:1.72; color:var(--ink); margin:0 0 14px}
+.ms .figbox{margin:8px 0 0}
+.figcap{font-size:13.5px; color:var(--ink-2); line-height:1.68; margin:14px 0 0; max-width:840px}
+.figcap b{color:var(--ink)}
 .mrfig{width:100%; height:auto; display:block; overflow:visible}
 .mrfig .axl{font-size:11.5px; fill:var(--muted); font-family:var(--sans)}
 .mrfig .axt{font-size:12.5px; fill:var(--ink-2); font-family:var(--sans); font-weight:700}
@@ -417,6 +427,7 @@ li b{color:var(--ink)}
       <button class="tab" role="tab" data-tab="bias" aria-selected="false" aria-controls="panel-bias">偏差與統計</button>
       <button class="tab" role="tab" data-tab="plan" aria-selected="false" aria-controls="panel-plan">時程與口試</button>
       <button class="tab" role="tab" data-tab="pilot" aria-selected="false" aria-controls="panel-pilot">先導分析</button>
+      <button class="tab" role="tab" data-tab="ms" aria-selected="false" aria-controls="panel-ms">論文草稿（英）</button>
       <button class="tab" role="tab" data-tab="appendix" aria-selected="false" aria-controls="panel-appendix">附錄</button>
     </div>
   </div>
@@ -2308,10 +2319,11 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
     </div>
 
     <div class="note flag col" style="margin-top:26px">
-      <span class="lede">兩個獨立試驗，同一個結構性發現</span>
+      <span class="lede">兩個獨立試驗，一致的是成分、不一致的是梯度</span>
       FLOW 裡<b>兩個最硬的腎臟終點都不顯著</b>：長期腎替代療法 0.84（0.63–1.12）、eGFR 低於 15 為 0.80（0.61–1.06）。達到顯著的是 ≥50% eGFR 下降（0.73）與<b>心血管死亡</b>（0.71）。<br><br>
-      SELECT 也是同樣的模式。<b>兩個獨立的、設計完全不同的隨機試驗，指向同一件事：這類藥物的「腎臟保護」主要由較軟的成分與心血管死亡撐起，最硬的腎臟終點單獨看都達不到顯著。</b><br><br>
-      這讓「終點軟硬程度」從一個統計上的調節因子，升級為<b>一個有臨床意涵的實質發現</b>。而且它是在隨機試驗內部觀察到的，與偏差完全無關——這是論文一最乾淨的一塊立論。
+      <b>但 SELECT 的梯度方向與 FLOW 相反</b>，這一點我先前寫錯了，現在更正：SELECT 的 eGFR 門檻愈硬，效果反而愈強（≥30% 為 0.81、≥40% 為 0.71、≥50% 為 0.57），只是精確度隨之崩壞。FLOW 則是愈硬愈弱（0.73 → 0.80 → 0.84）。<br><br>
+      兩個試驗<b>唯一一致的地方</b>是：顯著與否由「複合終點包含哪些成分」決定，而不是由一條穩定的軟硬梯度決定。<br><br>
+      這個更正讓論證變得<u>更強而不是更弱</u>：既然梯度方向不穩定，<b>終點軟硬度就不能當成一個線性調節因子放進統合迴歸</b>，它必須是一個<b>對齊條件</b>——只有定義相同的估計值才可以配對。這是論文一最乾淨的一塊立論，也是〈論文草稿〉分頁那篇短報告的核心結果之一。詳見 <a href="#m3">Manuscript §03</a>。
     </div>
 
     <h3 style="margin-top:56px">FLOW 的 SGLT2i 交互作用：論文二意外拿到一個隨機化把手</h3>
@@ -2701,6 +2713,561 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <div class="end">
   <p><b>核對狀態</b>　本分頁的腎臟數值已逐一核對 NDT 2026 正文與 Figures 2–4、Fishkin 2025 Tables 2–3 與 Figures 2–3，、Fishkin 補充表 S2（ROBINS-I）與 S4（as-treated），以及 SELECT 原論文補充表 3（八種腎臟終點定義）與 FLOW 的 SGLT2i 分層分析原文，以及 SURMOUNT-1／2 事後腎臟分析（JASN 2025）、FLOW 的 NEJM 正文與補充附錄（表 S3、圖 S1、表 S2）與 SUSTAIN-5 正文與補充資料。癌症相關的迴歸分析已撤回。<b>先導分析仍非系統性回顧</b>——納入研究係取自既有兩篇系統性回顧，未做獨立更新檢索。</p>
   <p><b>正式分析</b>　須完成 PROSPERO 註冊、兩人獨立篩選與擷取、PRISMA 流程圖、以多變量統合分析處理估計間相關性，並依附錄之檢索策略執行。</p>
+</div>
+
+</div>
+
+<div id="panel-ms" role="tabpanel" hidden>
+
+<header class="mast">
+  <p class="kicker">Manuscript draft　·　Meta-research short report　·　Target: J Clin Epidemiol / BMJ Evidence-Based Medicine / CJASN</p>
+  <h1>論文草稿（英文）</h1>
+  <p class="dek">先導分析<b>不能</b>當成 systematic review 投稿——研究是從既有兩篇 SR 的納入清單取來的，沒有獨立檢索、沒有 PROSPERO、沒有雙人擷取。但同一批核對過的資料裡，有一個<b>更原創、而且現在就能投出去</b>的題目：把「估計量的選擇本身能讓效果值移動多少」量出來，並證明它<u>大於</u>文獻上報告的真實世界與試驗之間的分歧。只用已發表資料、完全可重現、不需 IRB、不需資料申請。這是論文一的先導發表。</p>
+</header>
+
+<section id="m0">
+  <div class="sec-head">
+    <span class="sec-num">00</span>
+    <h2>中文導讀：這篇為什麼站得住</h2>
+    <p class="sub">口試時你會被問「先導分析不是系統性回顧，那你憑什麼發表」。以下是答案。</p>
+  </div>
+  <div class="stack">
+    <div class="note col">
+      <span class="lede">核心論證一句話</span>
+      現有的方法學文獻（Cochrane MR000034、RCT-DUPLICATE）把真實世界與隨機試驗之間的差距歸因於<b>偏差</b>，並報告合併的 ratio of ratios 為 <b>1.08（1.01–1.15）</b>。<br><br>
+      本研究指出：<b>在同一個隨機試驗、同一批病人、同一次隨機分派之內</b>，只是換一個終點定義，風險比就能從 0.57 移動到 0.87（幅度 <b>53%</b>）；即使只留下事件數充足的定義，幅度仍有 <b>16%</b>。換對照層是 <b>32%</b>。<u>這些幅度全部大於文獻報告的「偏差」訊號。</u><br><br>
+      <b>結論：目前被歸因為偏差的差距，有相當比例可能只是估計量沒對齊。</b>這是一個乾淨、可防守、而且沒有人做過的主張。
+    </div>
+    <div class="note flag col" style="margin-top:22px">
+      <span class="lede">同時，這篇更正了我先前一個錯誤</span>
+      我在第 05 節寫「SELECT 與 FLOW 指向同一件事：效果隨終點變硬而減弱」。<b>核對後這句話對 SELECT 不成立。</b>SELECT 的 eGFR 門檻愈硬，效果反而<u>愈強</u>（≥30% 為 0.81、≥40% 為 0.71、≥50% 為 0.57）；FLOW 則相反（≥50% eGFR 0.73 → eGFR&lt;15 為 0.80 → 腎替代療法 0.84）。<br><br>
+      <b>兩個試驗的軟硬梯度方向相反。</b>這反而是更強的發現：終點軟硬度<b>不能</b>當成一個線性調節因子放進統合迴歸，它必須是一個<b>對齊條件</b>——只有定義相同的估計值才能配對。第 05 節已同步更正。
+    </div>
+    <div class="panel" style="margin-top:22px">
+      <h3>可行性</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:26%">項目</th><th style="width:74%">狀態</th></tr></thead>
+          <tbody>
+            <tr><td data-l="項目">資料來源</td><td data-l="狀態">四篇已發表論文的正文與補充資料，全部已下載並逐格核對完成。</td></tr>
+            <tr><td data-l="項目">IRB</td><td data-l="狀態"><b>不需要。</b>無個人資料，屬公開文獻之次級分析。</td></tr>
+            <tr><td data-l="項目">資料申請</td><td data-l="狀態"><b>不需要。</b>與健保資料庫申請流程完全脫鉤，不受論文三的時程綁架。</td></tr>
+            <tr><td data-l="項目">分析</td><td data-l="狀態">已完成。所有數字在本頁圖表中，可完全重現。</td></tr>
+            <tr><td data-l="項目">還缺什麼</td><td data-l="狀態">敏感度分析（改用 ln 尺度全距、改用不同事件數門檻）、共同作者與指導教授確認、期刊格式調整。<b>估計 4–6 週可投出。</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="m1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>Title page &amp; Abstract</h2>
+    <p class="sub">Draft for submission as a short report / original research article.</p>
+  </div>
+
+  <div class="stack ms">
+
+    <div class="panel">
+      <p class="cap">Title</p>
+      <p style="font-size:20px; line-height:1.45; color:var(--ink); font-weight:700; margin:6px 0 18px">Estimand choice moves kidney effect estimates further than the reported discordance between real-world evidence and randomised trials: a within-randomised-evidence decomposition</p>
+      <p class="cap">Running head</p>
+      <p style="margin-bottom:18px">Estimand choice versus bias in kidney outcome estimates</p>
+      <p class="cap">Authors</p>
+      <p style="margin-bottom:18px">Tzu-Yu Liu<sup>1</sup>, Chi-Tai Fang<sup>1</sup><br>
+      <span class="q">1　Institute of Epidemiology and Preventive Medicine, College of Public Health, National Taiwan University, Taipei, Taiwan</span></p>
+      <p class="cap">Word count</p>
+      <p style="margin-bottom:0">Abstract 248 · Main text ~2,400 · 3 figures · 2 tables · 0 supplementary files required for review</p>
+    </div>
+
+    <div class="abs">
+      <p class="cap" style="margin-bottom:12px">Abstract</p>
+      <p><b>Background.</b> Meta-epidemiological studies routinely quantify the discordance between real-world evidence (RWE) and randomised controlled trials (RCTs) as a ratio of hazard ratios and attribute the residual to confounding and design bias. The pooled discordance reported by the largest such synthesis is modest (ratio of ratios 1.08, 95% CI 1.01–1.15). What is not known is how much of an estimate can move for reasons that have nothing to do with bias — because the estimand itself was defined differently.</p>
+      <p><b>Objective.</b> To quantify how far kidney effect estimates for incretin-based therapies move when the endpoint definition, the endpoint component, the analytic handling of missing data and discontinuation, or the comparator is changed, while confounding is held at zero by randomisation.</p>
+      <p><b>Methods.</b> Meta-research study of published randomised evidence. We extracted every kidney effect estimate reported for the same randomised population in two large trials — SELECT (n=17,604) and FLOW (n=3,533) — from their primary reports and supplementary appendices, together with comparator-stratified randomised estimates from a 2026 systematic review. Estimates were grouped into four strata of variation. For each stratum we computed the estimate range ratio (ERR), the largest hazard ratio divided by the smallest. Confidence intervals for within-stratum contrasts are not estimable from published data because the estimates share participants and events and the covariance is not reported.</p>
+      <p><b>Results.</b> Within SELECT, eight reported definitions of “kidney outcome” in the same participants yielded hazard ratios from 0.57 to 0.87 (ERR 1.53; 1.16 when restricted to definitions with ≥40 events per arm), and only one definition — the only one including cardiovascular death — reached statistical significance. Within FLOW, the five components of the primary composite yielded 0.71 to 0.97 (ERR 1.37; 1.18 excluding a component with 5 events per arm). Across comparator strata in randomised evidence, estimates ranged from 0.61 against insulin glargine to 0.81 against placebo (ERR 1.32). By contrast, six analytic variants of the same FLOW endpoint yielded 0.75 to 0.77 (ERR 1.03). The direction of the endpoint-hardness gradient was opposite in the two trials.</p>
+      <p style="margin-bottom:0"><b>Conclusions.</b> Choices about what is being estimated move kidney effect estimates by 16–53%, exceeding the RWE-versus-RCT discordance that the meta-epidemiological literature attributes to bias; choices about how the same estimand is analysed move them by 3%. Discordance analyses that pair estimates without documenting the full component list of each composite risk misclassifying estimand misalignment as bias.</p>
+      <p style="margin-top:16px; margin-bottom:0"><span class="q"><b>Keywords</b> estimand · meta-epidemiology · real-world evidence · GLP-1 receptor agonists · chronic kidney disease · composite endpoints</span></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="m2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>Introduction &amp; Methods</h2>
+  </div>
+
+  <div class="stack ms">
+
+    <h3>Introduction</h3>
+    <p>Whether observational studies of drug effects reproduce the answers given by randomised trials is now an empirical question with a substantial literature. Programmes such as RCT-DUPLICATE emulate completed trials in claims databases and grade agreement against the trial result; the Cochrane methodology review MR000034 pools 39 such comparisons and reports a ratio of ratios of 1.08 (95% CI 1.01 to 1.15), concluding that the two evidence types “may differ very little to not at all.” The framing shared by these efforts is that the trial estimate is the reference and the difference between the two is a measure of bias.</p>
+    <p>That framing presupposes that the two estimates are estimates of the same thing. In practice, an observational study and a trial that are said to address “the kidney effect of GLP-1 receptor agonists” may differ in which events count towards the outcome, whether cardiovascular death is inside or outside the composite, what the comparator drug is and whether it is added to or substituted for existing therapy, when follow-up starts, and whether patients who stop treatment continue to contribute person-time. Each of these is a component of the estimand, not a source of bias. If they move the estimate appreciably, then a ratio of hazard ratios computed across an unaligned pair does not measure bias at all.</p>
+    <p>The size of that effect has not been quantified, because it is difficult to separate from bias in the usual between-study comparison. Randomised trials provide a natural solution: when several estimates are reported for the same randomised population, confounding is held at exactly zero by design, and any variation between them is attributable to the definitional or analytic choice alone. Two recent kidney outcome trials of semaglutide report unusually complete sets of such estimates, making this decomposition possible.</p>
+    <p>We asked how far a kidney effect estimate for incretin-based therapy can move for reasons that are not bias, and whether that movement is large or small relative to the RWE-versus-RCT discordance reported in the literature.</p>
+
+    <h3>Methods</h3>
+    <p><b>Design.</b> Meta-research study of published randomised evidence. No individual participant data were used and no ethics approval was required.</p>
+    <p><b>Data sources and extraction.</b> We used four published sources (Table 1). From the SELECT kidney sub-analysis we extracted all eight kidney outcome definitions reported for the same 17,604 randomised participants, from the primary report and its supplementary Table 3, together with a third-party re-extraction of SELECT published in a 2026 systematic review. From FLOW we extracted the primary composite, its five individual components and the kidney-specific composite from Table 2 of the primary report; six analytic variants of the same primary endpoint from supplementary Table S3; and treatment discontinuation counts from supplementary Figure S1. From the 2026 systematic review of GLP-1 receptor agonists and kidney outcomes we extracted the comparator-stratified pooled estimates restricted to the randomised arm of that review. All values were extracted independently from the source PDFs by one investigator and re-checked against the figures rather than the narrative text, because two internal inconsistencies between text and figures were identified in one source during checking.</p>
+    <p><b>Strata of variation.</b> Estimates were grouped into four strata. Strata A to C are <i>within-trial</i>: every estimate in the stratum comes from the same participants, the same randomisation and the same follow-up period, so confounding, selection and time-zero are held constant by construction. Stratum A varies the <i>definition</i> of the kidney outcome; stratum B varies which <i>component</i> of a fixed composite is analysed; stratum C varies the <i>analytic handling</i> of missing data and treatment discontinuation while holding the endpoint fixed. Stratum D is <i>between-trial but within-randomised</i>: it varies the comparator drug across randomised trials, so confounding remains zero but populations and follow-up differ; it is therefore not purely definitional and is reported separately.</p>
+    <p><b>Metric.</b> For each stratum we report the estimate range ratio (ERR), defined as the largest hazard ratio in the stratum divided by the smallest, and expressed as a percentage excess (ERR − 1). Because estimates within a stratum are computed on overlapping participants and overlapping events, they are strongly positively correlated; the covariance required to construct a confidence interval for a within-stratum contrast is not reported by any of the sources. We therefore report ERR descriptively and treat the absence of published covariance as a finding in its own right. To avoid the ERR being driven by sparse definitions, each within-trial stratum is reported twice: once across all reported estimates and once restricted to estimates with at least 40 events in each arm (stratum A) or excluding a component with 5 events per arm (stratum B).</p>
+    <p><b>Benchmark.</b> Each ERR is compared with the pooled ratio of ratios of 1.08 (1.01–1.15) reported by Cochrane MR000034 for randomised versus non-randomised comparisons of the same clinical question, which is the quantity that the meta-epidemiological literature interprets as the magnitude of bias.</p>
+    <p><b>Analysis.</b> All computations are arithmetic on published summary estimates and are fully reproducible from Tables 1 and 2. No statistical software beyond a spreadsheet is required. No pooling was performed, and no heterogeneity statistic is reported, because estimates within a stratum are not independent.</p>
+
+    <p class="cap" style="margin-top:34px">Table 1. Data sources</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:16%">Source</th><th style="width:20%">Population</th><th style="width:32%">Estimates extracted</th><th style="width:32%">Location in source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="Source"><b>SELECT kidney sub-analysis</b><span class="q">Nat Med 2024</span></td>
+            <td data-l="Population">n=17,604; overweight or obesity with cardiovascular disease, <b>without</b> diabetes; median 182 weeks</td>
+            <td data-l="Estimates">8 definitions of the kidney outcome (2 composites, 4 eGFR-decline thresholds, 1 further composite, 1 additional threshold)</td>
+            <td data-l="Location">Primary report; supplementary Table 3</td>
+          </tr>
+          <tr>
+            <td data-l="Source"><b>FLOW</b><span class="q">N Engl J Med 2024</span></td>
+            <td data-l="Population">n=3,533; type 2 diabetes with CKD (eGFR 25–75); median follow-up 3.4 years</td>
+            <td data-l="Estimates">Primary composite, kidney-specific composite, 5 individual components; 6 analytic variants of the primary endpoint; discontinuation counts</td>
+            <td data-l="Location">Table 2; supplementary Table S3; supplementary Figure S1</td>
+          </tr>
+          <tr>
+            <td data-l="Source"><b>Systematic review of GLP-1 RA kidney outcomes</b><span class="q">Nephrol Dial Transplant 2026</span></td>
+            <td data-l="Population">19 randomised trials; 90,882 participants</td>
+            <td data-l="Estimates">Comparator-stratified pooled estimates, randomised arm only; third-party re-extraction of SELECT</td>
+            <td data-l="Location">Figures 2–4</td>
+          </tr>
+          <tr>
+            <td data-l="Source"><b>Cochrane MR000034</b><span class="q">benchmark</span></td>
+            <td data-l="Population">39 randomised-versus-non-randomised comparisons</td>
+            <td data-l="Estimates">Pooled ratio of ratios 1.08 (1.01–1.15)</td>
+            <td data-l="Location">Primary report</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<section id="m3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>Results</h2>
+  </div>
+
+  <div class="stack ms">
+
+    <h3>How far each choice moves the estimate</h3>
+    <p>Across the four strata, the two choices that define <i>what</i> is being estimated — the endpoint definition and the comparator — moved the hazard ratio by 32 to 53%. The choice of how a fixed estimand is <i>analysed</i> moved it by 3%. Every within-trial estimand stratum exceeded the 8% benchmark even under the conservative restriction to well-populated estimates (Figure 1).</p>
+
+    <div class="figbox">
+      <div class="g-in">
+        <div class="g-row">
+          <div class="g-lab"><b>A · Endpoint definition</b><br><span class="q">SELECT, 8 definitions, same 17,604 participants</span></div>
+          <div class="g-tr">
+            <div class="g-bar" style="left:0%; width:87.7%; background:var(--s1); opacity:.32"></div>
+            <div class="g-bar" style="left:0%; width:25.8%; background:var(--s1)">+16%</div>
+            <div style="position:absolute; left:89.5%; top:0; line-height:22px; font-size:11.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap"><b>+53%</b></div>
+            <div style="position:absolute; left:13.3%; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed var(--flag)"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>B · Endpoint component</b><br><span class="q">FLOW, 5 components, same 3,533 participants</span></div>
+          <div class="g-tr">
+            <div class="g-bar" style="left:0%; width:61.0%; background:var(--s1); opacity:.32"></div>
+            <div class="g-bar" style="left:0%; width:30.5%; background:var(--s1)">+18%</div>
+            <div style="position:absolute; left:62.8%; top:0; line-height:22px; font-size:11.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap"><b>+37%</b></div>
+            <div style="position:absolute; left:13.3%; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed var(--flag)"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>D · Comparator</b><br><span class="q">Randomised evidence, between-trial</span></div>
+          <div class="g-tr">
+            <div class="g-bar" style="left:0%; width:53.0%; background:var(--s2)">+32%</div>
+            <div style="position:absolute; left:13.3%; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed var(--flag)"></div>
+          </div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>C · Analytic handling</b><br><span class="q">FLOW, 6 ITT-family analyses, same endpoint</span></div>
+          <div class="g-tr">
+            <div class="g-bar" style="left:0%; width:4.5%; background:var(--muted)"></div>
+            <div style="position:absolute; left:6.3%; top:0; line-height:22px; font-size:11.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap"><b>+3%</b></div>
+            <div style="position:absolute; left:13.3%; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed var(--flag)"></div>
+          </div>
+        </div>
+        <div class="g-ax"><div></div><div class="g-tk"><span>0%</span><span>+12%</span><span>+24%</span><span>+36%</span><span>+48%</span></div></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>Within-trial (confounding held at zero)</span>
+        <span><i style="background:var(--s2)"></i>Between-trial, within-randomised</span>
+        <span><i style="background:var(--muted)"></i>Analytic variation</span>
+        <span><i style="background:var(--flag)"></i>Cochrane MR000034 benchmark, +8%</span>
+      </p>
+    </div>
+    <p class="figcap"><b>Figure 1. Estimate range ratio by stratum of variation.</b> Bars show the largest hazard ratio in each stratum divided by the smallest, expressed as percentage excess. Solid bars are restricted to well-populated estimates (stratum A: ≥40 events per arm; stratum B: excluding kidney-related death, 5 events per arm); translucent bars extend to the full reported range. The dashed line is the pooled ratio of ratios of 1.08 reported by Cochrane MR000034, which the meta-epidemiological literature interprets as the magnitude of bias. Strata A to C hold confounding at exactly zero because every estimate comes from the same randomised population.</p>
+
+    <h3 style="margin-top:52px">Stratum A — one trial, eight answers</h3>
+    <p>SELECT reported eight definitions of the kidney outcome in the same participants. Hazard ratios ranged from 0.57 to 0.87 (Figure 2). Only one definition reached statistical significance: the five-component composite, which is also the only definition that includes death from cardiovascular causes. Removing cardiovascular death from that composite while holding everything else constant moved the estimate from 0.82 (0.69–0.97) to 0.80 (0.64–1.01) and removed significance. A third-party re-extraction of SELECT for a 2026 systematic review reported 0.78 (0.64–0.96) on 155 versus 198 events — a count that matches none of the eight definitions in the trial's own supplement, indicating that the systematic reviewers constructed a ninth composite.</p>
+
+    <div class="figbox">
+      <div class="forest-in">
+        <div class="f-hd"><span>Kidney outcome definition</span><span>Hazard ratio (log scale)</span><span>HR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>5-component composite</b>includes CV death · 239 vs 289 events</div>
+          <div class="f-tr fxS">
+            <div class="f-ci" style="left:43.4%; width:14.5%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:50.7%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.82 (0.69–0.97)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥30% eGFR decline</b>126 vs 154</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:40.1%; width:20.3%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:50.2%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.81 (0.64–1.03)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>4-component composite</b>≥30% eGFR, no CV death · 128 vs 158</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:40.1%; width:19.5%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:49.7%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.80 (0.64–1.01)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥40% eGFR decline</b>40 vs 56</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:27.0%; width:34.7%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:44.6%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.71 (0.47–1.06)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>4-component composite</b>≥50% eGFR, no CV death · 17 vs 27</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:11.9%; width:52.9%; background:var(--s1); opacity:.5"></div>
+            <div class="f-pt hollow" style="left:38.8%; border-color:var(--s1); opacity:.5"></div>
+          </div>
+          <div class="f-val">0.62 (0.33–1.14)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥50% eGFR decline</b>12 vs 21</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:3.3%; width:61.5%; background:var(--s1); opacity:.5"></div>
+            <div class="f-pt hollow" style="left:35.2%; border-color:var(--s1); opacity:.5"></div>
+          </div>
+          <div class="f-val">0.57 (0.27–1.14)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥57% eGFR decline</b>7 vs 8</div>
+          <div class="f-tr fxS">
+            <div class="f-ci dash" style="left:7.8%; width:89.2%; background:var(--s1); opacity:.5"></div>
+            <div class="f-pt hollow" style="left:53.3%; border-color:var(--s1); opacity:.5"></div>
+          </div>
+          <div class="f-val">0.87 (0.30–2.42)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>Third-party re-extraction</b>2026 systematic review · 155 vs 198 · matches no definition above</div>
+          <div class="f-tr fxS">
+            <div class="f-ci" style="left:40.1%; width:17.3%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:48.6%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.78 (0.64–0.96)</div>
+        </div>
+        <div class="f-ax"><span style="left:7.8%">0.3</span><span style="left:29.6%">0.5</span><span style="left:44.0%">0.7</span><span style="left:59.2%">1.0</span><span style="left:76.5%">1.5</span><span style="left:98.3%">2.5</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>Trial's own supplementary Table 3</span>
+        <span><i style="background:var(--s2)"></i>Third-party re-extraction</span>
+        <span>Open markers, not statistically significant · faded, &lt;20 events per arm</span>
+      </p>
+    </div>
+    <p class="figcap"><b>Figure 2. Eight kidney outcome definitions from one randomised population (SELECT, n=17,604).</b> All estimates share the same participants, the same randomisation and the same follow-up; the only thing that changes is how the outcome is defined. The single significant definition is the only one that includes death from cardiovascular causes.</p>
+
+    <h3 style="margin-top:52px">Strata B and C — components move the estimate, analytic handling does not</h3>
+    <p>Within FLOW, the five components of the primary composite ranged from 0.71 for cardiovascular death to 0.97 for kidney-related death, which was estimated on five events per arm; excluding it, the range was 0.71 to 0.84 (Figure 3A). The two hardest kidney endpoints, kidney replacement therapy (0.84, 0.63–1.12) and persistent eGFR below 15 (0.80, 0.61–1.06), were not individually significant. The trial's own supplementary Table S2 states that cardiovascular death accounts for approximately 35% of the components of the primary endpoint.</p>
+    <p>By contrast, six analytic variants of that same primary endpoint — multiple imputation of missing eGFR, two definitions of eGFR persistence, and two retrieved-dropout analyses — yielded 0.75 to 0.77, an ERR of 1.03 (Figure 3B). This near-invariance held despite a substantial adherence problem: 24.8% of the semaglutide group and 27.2% of the placebo group permanently discontinued trial product.</p>
+
+    <div class="figbox">
+      <p class="cap" style="margin-bottom:14px">A · Components of the primary composite</p>
+      <div class="forest-in">
+        <div class="f-hd"><span>Endpoint</span><span>Hazard ratio (log scale)</span><span>HR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>Primary composite</b>includes CV death · 331 vs 410</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:34.88%; width:26.19%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:47.72%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.76 (0.66–0.88)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>Kidney-specific composite</b>excludes CV death · 218 vs 260</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:34.88%; width:32.20%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:51.25%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.79 (0.66–0.94)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>Death from cardiovascular causes</b>123 vs 169</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:19.92%; width:42.18%; background:var(--s2)"></div>
+            <div class="f-pt" style="left:41.53%; background:var(--s2)"></div>
+          </div>
+          <div class="f-val">0.71 (0.56–0.89)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>≥50% reduction in eGFR</b>165 vs 213</div>
+          <div class="f-tr fxF">
+            <div class="f-ci" style="left:24.67%; width:37.43%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:44.05%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.73 (0.59–0.89)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>Persistent eGFR &lt;15</b>92 vs 110</div>
+          <div class="f-tr fxF">
+            <div class="f-ci dash" style="left:27.70%; width:50.32%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:52.39%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.80 (0.61–1.06)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab"><b>Kidney replacement therapy</b>hardest endpoint · 87 vs 100</div>
+          <div class="f-tr fxF">
+            <div class="f-ci dash" style="left:30.64%; width:52.39%; background:var(--s1)"></div>
+            <div class="f-pt hollow" style="left:56.84%; border-color:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.84 (0.63–1.12)</div>
+        </div>
+        <div class="f-ax"><span style="left:9.6%">0.5</span><span style="left:26.2%">0.6</span><span style="left:40.2%">0.7</span><span style="left:52.4%">0.8</span><span style="left:72.7%">1.0</span><span style="left:96.6%">1.3</span></div>
+      </div>
+
+      <p class="cap" style="margin:34px 0 14px">B · Six analytic handlings of the same primary endpoint</p>
+      <div class="forest-in">
+        <div class="f-hd"><span>Analysis</span><span>Hazard ratio (log scale)</span><span>HR (95% CI)</span></div>
+        <div class="f-row">
+          <div class="f-lab"><b>Primary analysis</b>full analysis set, in-trial period</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:21.16%; width:48.79%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:45.08%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.76 (0.66–0.88)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">Multiple imputation of missing eGFR</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:18.57%; width:49.44%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:42.84%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.75 (0.65–0.87)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">eGFR persistence at scheduled visits only</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:18.57%; width:51.38%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:45.08%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.76 (0.65–0.88)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">eGFR persistence including local laboratory results</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:21.16%; width:48.79%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:45.08%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.76 (0.66–0.88)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">Retrieved dropouts — permanent discontinuation</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:23.71%; width:48.16%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:47.30%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.77 (0.67–0.89)</div>
+        </div>
+        <div class="f-row">
+          <div class="f-lab">Retrieved dropouts — first discontinuation</div>
+          <div class="f-tr fxC">
+            <div class="f-ci" style="left:21.16%; width:50.71%; background:var(--s1)"></div>
+            <div class="f-pt" style="left:47.30%; background:var(--s1)"></div>
+          </div>
+          <div class="f-val">0.77 (0.66–0.89)</div>
+        </div>
+        <div class="f-ax"><span style="left:5.0%">0.6</span><span style="left:31.2%">0.7</span><span style="left:53.8%">0.8</span><span style="left:73.8%">0.9</span><span style="left:91.6%">1.0</span></div>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>Kidney endpoint or kidney analysis</span>
+        <span><i style="background:var(--s2)"></i>Cardiovascular death</span>
+        <span>Open markers, not statistically significant</span>
+        <span>Panels A and B use different horizontal scales</span>
+      </p>
+    </div>
+    <p class="figcap"><b>Figure 3. Components versus analytic handling within one trial (FLOW, n=3,533).</b> Panel A: the five components of the primary composite plus the kidney-specific composite. Kidney-related death (0.97, 0.27–3.49, five events per arm) is outside the plotted range and is omitted. Panel B: six analyses of the same primary endpoint differing only in how missing data and treatment discontinuation are handled; all six belong to the intention-to-treat family. The contrast between the panels is the central result of this study.</p>
+
+    <h3 style="margin-top:52px">The direction of the endpoint gradient is not consistent</h3>
+    <p>An intuitive expectation is that effect estimates weaken as endpoints become harder, because softer endpoints capture more events and are more susceptible to ascertainment. FLOW is consistent with that expectation: 0.73 for a ≥50% eGFR reduction, 0.80 for persistent eGFR below 15, 0.84 for kidney replacement therapy. SELECT runs in the opposite direction: 0.81 at a ≥30% eGFR threshold, 0.71 at ≥40%, and 0.57 at ≥50%, with precision collapsing as the threshold rises.</p>
+    <p>The two trials therefore give opposite gradients over their respective hardness axes. This has a direct methodological consequence: endpoint hardness cannot be entered as a single linear moderator in a meta-regression of discordance, because its sign is not stable across trials. It must instead be treated as an alignment criterion, restricting comparisons to pairs of estimates that use the same definition.</p>
+
+    <p class="cap" style="margin-top:34px">Table 2. Estimate range ratio by stratum</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:20%">Stratum</th><th style="width:11%">k</th><th style="width:18%">Range of HR</th><th style="width:13%">ERR</th><th style="width:38%">Restricted analysis</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="Stratum"><b>A · Endpoint definition</b><span class="q">SELECT, within-trial</span></td>
+            <td data-l="k">7</td>
+            <td data-l="Range">0.57 – 0.87</td>
+            <td data-l="ERR"><b>1.53</b></td>
+            <td data-l="Restricted">1.16 restricted to 4 definitions with ≥40 events per arm (0.71 – 0.82)</td>
+          </tr>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="Stratum"><b>B · Endpoint component</b><span class="q">FLOW, within-trial</span></td>
+            <td data-l="k">5</td>
+            <td data-l="Range">0.71 – 0.97</td>
+            <td data-l="ERR"><b>1.37</b></td>
+            <td data-l="Restricted">1.18 excluding kidney-related death, 5 events per arm (0.71 – 0.84)</td>
+          </tr>
+          <tr>
+            <td data-l="Stratum"><b>C · Analytic handling</b><span class="q">FLOW, within-trial</span></td>
+            <td data-l="k">6</td>
+            <td data-l="Range">0.75 – 0.77</td>
+            <td data-l="ERR"><b>1.03</b></td>
+            <td data-l="Restricted">Not applicable; all six analyses use the full analysis set</td>
+          </tr>
+          <tr>
+            <td data-l="Stratum"><b>D · Comparator</b><span class="q">between-trial, within-randomised</span></td>
+            <td data-l="k">2</td>
+            <td data-l="Range">0.61 – 0.81</td>
+            <td data-l="ERR"><b>1.32</b></td>
+            <td data-l="Restricted">Insulin glargine 0.614 (0.472–0.800) versus placebo 0.809 (0.745–0.878); ratio 0.760, p=0.051</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="Stratum"><b>Benchmark</b><span class="q">Cochrane MR000034</span></td>
+            <td data-l="k">39</td>
+            <td data-l="Range">—</td>
+            <td data-l="ERR"><b>1.08</b></td>
+            <td data-l="Restricted">Pooled ratio of ratios, randomised versus non-randomised, 95% CI 1.01–1.15</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="figcap">ERR, estimate range ratio (largest hazard ratio ÷ smallest). k, number of estimates in the stratum. Confidence intervals for within-stratum contrasts are not estimable from published data because the estimates share participants and the covariance is not reported.</p>
+
+  </div>
+</section>
+
+<section id="m4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>Discussion</h2>
+  </div>
+
+  <div class="stack ms">
+
+    <p>In two large randomised trials of semaglutide, the choice of what to estimate moved the kidney effect estimate by 16 to 53%, while the choice of how to analyse a fixed estimand moved it by 3%. Both figures come from within randomised populations, where confounding is zero by construction, so neither is attributable to bias. The larger of the two exceeds by several fold the pooled discordance between randomised and non-randomised evidence that the meta-epidemiological literature reports and interprets as bias.</p>
+    <p>The practical implication is uncomfortable. A meta-epidemiological analysis that pairs an observational estimate with a trial estimate on the basis that both address “kidney outcomes in patients treated with GLP-1 receptor agonists” may be pairing a five-component composite that includes cardiovascular death with a claims-based definition of dialysis initiation. Our data suggest that such a pair can differ by 30 to 50% before any bias is present. A ratio of hazard ratios computed across it is not a measure of bias; it is a measure of how differently the two teams defined the question, contaminated by an unknown amount of bias.</p>
+    <p>Three specific findings sharpen this. First, in SELECT the only definition reaching statistical significance was the only one containing cardiovascular death; removing that component from an otherwise identical composite removed significance. Whether a composite includes cardiovascular death is therefore not a detail — in this dataset it determines the headline conclusion. Second, a published systematic review re-extracted SELECT as 0.78 on 155 versus 198 events, a combination that appears nowhere in the trial's own supplement; the same trial thus enters different syntheses as different estimands. Third, the direction of the endpoint-hardness gradient differed between the two trials, which rules out treating hardness as an adjustable linear covariate and forces it to be an eligibility criterion instead.</p>
+    <p>The near-invariance of stratum C deserves careful statement. It would be wrong to conclude that analytic choices do not matter. All six FLOW analyses belong to the intention-to-treat family; they differ in how missing data and dropouts are handled, not in whether person-time after discontinuation is counted. The contrast between intention-to-treat and as-treated analysis — the contrast that carries healthy-adherer bias in observational studies — is not represented among them. What our result establishes is narrower and still useful: within the intention-to-treat family, sensitivity analyses of missing data move the estimate by an order of magnitude less than definitional choices, so effort spent harmonising them is poorly allocated relative to effort spent harmonising endpoint definitions.</p>
+    <p>A related observation concerns exposure. FLOW's 0.76 was obtained while roughly a quarter of participants in each arm had permanently discontinued trial product. Intention-to-treat retains those participants, so 0.76 is diluted towards the null by exposure misclassification. Observational studies that censor at discontinuation avoid this dilution while introducing healthy-adherer bias. These two forces act in opposite directions on a ratio of hazard ratios, and neither is currently reported in a way that permits adjustment.</p>
+    <p>We identified a reporting gap that limits any analysis of this kind. None of the sources reported the covariance between estimates computed on overlapping participants, which is what would be required to place a confidence interval on any within-trial contrast. Trials that report multiple definitions of the same outcome — an increasingly common and welcome practice — should also report the event overlap or the covariance, so that readers can judge whether two definitions give meaningfully different answers or merely differently precise ones.</p>
+
+    <h3>Limitations</h3>
+    <p>This study covers one drug class and one outcome domain in two trials; the magnitudes should not be assumed to generalise, although the mechanism plainly does. The estimate range ratio is a range statistic and is therefore sensitive to sparse extremes, which is why every within-trial stratum is also reported under a restriction to well-populated estimates; the restricted values remain above the benchmark. Stratum D is between-trial and therefore not purely definitional, since populations and follow-up differ across comparator strata; it is reported separately for that reason and its interpretation is correspondingly weaker. Extraction was performed by a single investigator, mitigated by re-checking every value against source figures rather than narrative text. Finally, the benchmark from Cochrane MR000034 is a pooled estimate across clinical questions and is not specific to kidney outcomes; it is used as an order-of-magnitude reference, not as a matched comparator.</p>
+
+    <h3>Conclusions</h3>
+    <p>Within randomised populations, where bias is absent by design, defining the estimand differently moves kidney effect estimates for incretin-based therapies by considerably more than the real-world-versus-trial discordance that the literature attributes to bias. Studies that compare the two evidence types should document the full component list of every composite, the comparator and its treatment strategy, and the analytic set, and should restrict pairing to aligned estimands. Absent that, an appreciable share of what is currently reported as bias may be estimand misalignment.</p>
+
+    <div class="panel" style="margin-top:36px">
+      <h3>Box 1. Proposed minimum reporting set for discordance analyses</h3>
+      <ol>
+        <li><b>Full component list of every composite endpoint</b>, stated explicitly, including whether cardiovascular death is inside or outside.</li>
+        <li><b>Comparator drug and treatment strategy</b> — substitution, add-on, or placebo add-on. These are different target trials and should not be pooled.</li>
+        <li><b>Analytic set</b> — intention-to-treat, as-treated, or per-protocol — and, for trials, the proportion who permanently discontinued study drug.</li>
+        <li><b>eGFR equation and creatinine or cystatin C basis</b>, since equations disagree in populations with substantial weight change.</li>
+        <li><b>Covariance or event overlap</b> between multiple estimates reported on the same participants.</li>
+      </ol>
+    </div>
+
+    <div class="note col" style="margin-top:32px">
+      <span class="lede">Data availability</span>
+      All data are extracted from published articles and their supplementary appendices; no new data were generated. Tables 1 and 2 contain every value used, so the analysis is reproducible without access to any restricted resource.
+      <br><br>
+      <span class="lede">Ethics</span>
+      Not required. No individual participant data were accessed.
+    </div>
+
+  </div>
+</section>
+
+<section id="m5">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>下一步與投稿判斷</h2>
+    <p class="sub">中文，給你自己看的。</p>
+  </div>
+  <div class="stack">
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:22%">期刊</th><th style="width:24%">為什麼合適</th><th style="width:26%">風險</th><th style="width:28%">建議</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="期刊"><b>Journal of Clinical Epidemiology</b></td>
+            <td data-l="合適">Meta-research 的正統家；估計量對齊正是它近年的核心議題。</td>
+            <td data-l="風險">審查者會要求更多試驗、更系統的取樣。</td>
+            <td data-l="建議"><b>首選。</b>先寫信問 editor 是否接受 two-trial 的 proof-of-concept。</td>
+          </tr>
+          <tr>
+            <td data-l="期刊"><b>BMJ Evidence-Based Medicine</b></td>
+            <td data-l="合適">篇幅短、樂於刊登挑戰既有共識的方法學觀察。</td>
+            <td data-l="風險">影響力較 JCE 低。</td>
+            <td data-l="建議">第二選擇，或作為 JCE 退稿後的落點。</td>
+          </tr>
+          <tr>
+            <td data-l="期刊"><b>CJASN / Kidney Int Rep</b></td>
+            <td data-l="合適">腎臟科讀者會直接關心「SELECT 的顯著性是被心血管死亡撐起來的」。</td>
+            <td data-l="風險">方法學貢獻可能被當成臨床評論看待。</td>
+            <td data-l="建議">若想讓臨床端看見，這是最佳落點。</td>
+          </tr>
+          <tr>
+            <td data-l="期刊"><b>Research Synthesis Methods</b></td>
+            <td data-l="合適">統合分析方法學專門刊。</td>
+            <td data-l="風險">會要求統計上更嚴謹的 ERR 性質探討（分佈、偏誤）。</td>
+            <td data-l="建議">若願意再補模擬研究，這裡最能發揮。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel" style="margin-top:28px">
+      <h3>投出去之前還要做的五件事</h3>
+      <ol>
+        <li><b>敏感度分析。</b>把 ERR 改成 ln 尺度全距、改成四分位距、改成不同事件數門檻（20／40／60），確認結論不隨定義改變。這是審查者一定會問的。</li>
+        <li><b>再加一個試驗。</b>只要再找到一篇有「同一族群多重終點定義」補充表的腎臟試驗（FLOW-CKD、SOUL、SURPASS-CVOT 都可能有），k 從 2 變 3，可防守性大幅提升。</li>
+        <li><b>把 Cochrane MR000034 的比較講精準。</b>它是跨臨床問題的合併值，不是腎臟專屬。討論段已寫明，但摘要裡不要講得太滿。</li>
+        <li><b>雙人擷取。</b>找一位同儕獨立重抄一次四個來源的數字。這是唯一能把「single investigator extraction」這條限制拿掉的方法，成本很低。</li>
+        <li><b>與方老師確認作者序與投稿策略。</b>特別是：這篇要不要明講它是論文一的先導？講了有助於審查者理解定位，但也可能被要求等正式 SR 一起投。</li>
+      </ol>
+    </div>
+
+    <div class="note flag col" style="margin-top:28px">
+      <span class="lede">一個要提前想好的答案</span>
+      口委很可能問：「你只有兩個試驗，這樣的 n 能下結論嗎？」<br><br>
+      正確的回答不是辯護 n，而是把設計講清楚：<b>「這不是一個抽樣推論的研究。我不是在估計『所有試驗的平均估計量變異』，我是在示範『估計量變異可以大到超過文獻報告的偏差訊號』。要證明這件事，一個反例就夠了，而我有兩個獨立的反例。」</b><br><br>
+      這是存在性主張（existence claim），不是母體參數估計。講清楚這一點，n=2 就從弱點變成不相干。
+    </div>
+  </div>
+</section>
+
+<div class="end">
+  <p><b>狀態</b>　本草稿的所有數值均取自 SELECT 補充表 3、FLOW 表 2 與補充表 S3／圖 S1／表 S2、NDT 2026 圖 2–4，並已逐格核對。<b>尚未做敏感度分析、尚未雙人擷取、尚未與指導教授確認作者序。</b></p>
+  <p><b>與計畫書的關係</b>　本篇是論文一的先導發表，不取代論文一。論文一仍須完成 PROSPERO 註冊、獨立更新檢索、雙人篩選與擷取、PRISMA 流程圖，並在同一對照層內計算 RHR。</p>
 </div>
 
 </div>
@@ -3116,7 +3683,7 @@ medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
 
 <script>
 (function(){
-  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot", "k5": "pilot", "k6": "pilot", "k7": "pilot"};
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot", "k5": "pilot", "k6": "pilot", "k7": "pilot", "m0": "ms", "m1": "ms", "m2": "ms", "m3": "ms", "m4": "ms", "m5": "ms"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function show(name, scroll){
     if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
