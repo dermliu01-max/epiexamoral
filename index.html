@@ -333,6 +333,16 @@ li b{color:var(--ink)}
 .ms .figbox{margin:8px 0 0}
 .figcap{font-size:13.5px; color:var(--ink-2); line-height:1.68; margin:14px 0 0; max-width:840px}
 .figcap b{color:var(--ink)}
+.sc{position:relative; height:300px; border-left:1px solid var(--rule-2); border-bottom:1px solid var(--rule-2); margin:0 0 0 46px}
+.sc-null{position:absolute; top:0; bottom:0; width:0; border-left:1px dashed var(--rule-2)}
+.sc-pt{position:absolute; width:9px; height:9px; border-radius:50%; transform:translate(-50%,-50%)}
+.sc-pt.hollow{background:transparent!important; border:1.6px solid}
+.sc-pt.sq{border-radius:1px; width:8px; height:8px}
+.sc-yl{position:absolute; left:-42px; width:34px; text-align:right; font-size:11px; color:var(--muted); transform:translateY(-50%); font-variant-numeric:tabular-nums}
+.sc-xl{position:absolute; top:100%; margin-top:8px; transform:translateX(-50%); font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums}
+.sc-note{position:absolute; font-size:11px; color:var(--ink-2); font-variant-numeric:tabular-nums; padding-left:13px; margin-top:-9px; line-height:1.35; white-space:nowrap}
+.sc-note.r{padding-left:0; padding-right:13px; transform:translateX(-100%); text-align:right}
+.sc-note span{color:var(--muted)}
 .mrfig{width:100%; height:auto; display:block; overflow:visible}
 .mrfig .axl{font-size:11.5px; fill:var(--muted); font-family:var(--sans)}
 .mrfig .axt{font-size:12.5px; fill:var(--ink-2); font-family:var(--sans); font-weight:700}
@@ -427,7 +437,7 @@ li b{color:var(--ink)}
       <button class="tab" role="tab" data-tab="bias" aria-selected="false" aria-controls="panel-bias">偏差與統計</button>
       <button class="tab" role="tab" data-tab="plan" aria-selected="false" aria-controls="panel-plan">時程與口試</button>
       <button class="tab" role="tab" data-tab="pilot" aria-selected="false" aria-controls="panel-pilot">先導分析</button>
-      <button class="tab" role="tab" data-tab="ms" aria-selected="false" aria-controls="panel-ms">論文草稿（英）</button>
+      <button class="tab" role="tab" data-tab="ms" aria-selected="false" aria-controls="panel-ms">meta 與延伸</button>
       <button class="tab" role="tab" data-tab="appendix" aria-selected="false" aria-controls="panel-appendix">附錄</button>
     </div>
   </div>
@@ -2250,7 +2260,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
     <div class="note flag col" style="margin-top:26px">
       <span class="lede">這張圖有兩件事必須講出來</span>
-      <b>第一，唯一達到統計顯著的定義，是唯一包含心血管死亡的那一個。</b>5 成分複合是 0.82（p=0.02）；把心血管死亡拿掉，同樣的病人、同樣的追蹤，就變成 0.80（p=0.07）、0.62（p=0.13）——全部不顯著。換句話說，SELECT 的「腎臟保護」標題，<u>相當程度是被心血管死亡撐起來的</u>。<br><br>
+      <b>第一，唯一達到統計顯著的定義，是唯一包含心血管死亡的那一個。</b>5 成分複合是 0.82（p=0.02）；把心血管死亡拿掉，同樣的病人、同樣的追蹤，就變成 0.80（p=0.07）、0.62（p=0.13）——全部不顯著。<br><br>
+      <b>但這句話必須講精準，我先前講得太快。</b>0.82 與 0.80 的<u>點估計幾乎一樣</u>（兩者比值 0.98，p=0.87）。心血管死亡拿掉後改變的不是效果大小，而是<b>事件數與精確度</b>——複合終點少了 111 個事件，信賴區間變寬，顯著性因此消失。<br><br>
+      所以正確的說法是：<b>把心血管死亡放進腎臟複合終點，買到的是統計檢定力，不是不同的效果。</b>這對本論文反而更關鍵——一個用純腎臟終點的真實世界研究會是「陰性」，一個用含心血管死亡複合的試驗會是「陽性」，<u>兩者的風險比卻幾乎相同</u>。這是結論分歧而估計值不分歧，比單純的估計值分歧更難察覺。詳見 <a href="#m35">Manuscript §03b Table 4</a>。<br><br>
       <b>第二，NDT 2026 擷取到的 0.78（155 對 198 事件），與原論文任何一個定義都對不上。</b>那是第三方在做統合分析時又建構了另一個複合終點。<b>這代表就連「同一個試驗在不同統合分析中的數值」都不是同一個估計量。</b><br><br>
       這比我先前用的 FLOW 例子更強——FLOW 是兩個定義差 0.76 對 0.84，SELECT 是八個定義橫跨 0.57 到 0.87，而且顯著性會翻轉。
     </div>
@@ -2645,7 +2657,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
           <tr style="background:var(--acc-soft)">
             <td data-l="項目"><b>心血管死亡佔複合終點的比重</b></td>
             <td data-l="原文">補充表 S2 由試驗作者自己寫明：「心血管死亡約佔主要終點成分的 <b>35%</b>」。</td>
-            <td data-l="意義">第 05 節「複合終點被心血管死亡撐起」的說法，<b>不再只是我的推論，而是試驗作者的自述</b>，可直接引用。口試時這是最強的一句。</td>
+            <td data-l="意義">心血管死亡在複合終點中佔比之大，<b>不再只是我的推論，而是試驗作者的自述</b>，可直接引用。但要注意它買到的是<b>檢定力</b>而非不同的效果值（見第 05 節更正）。</td>
           </tr>
           <tr>
             <td data-l="項目"><b>肌酸酐與胱抑素 C 的分歧</b></td>
@@ -2720,46 +2732,93 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <div id="panel-ms" role="tabpanel" hidden>
 
 <header class="mast">
-  <p class="kicker">Manuscript draft　·　Meta-research short report　·　Target: J Clin Epidemiol / BMJ Evidence-Based Medicine / CJASN</p>
-  <h1>論文草稿（英文）</h1>
-  <p class="dek">先導分析<b>不能</b>當成 systematic review 投稿——研究是從既有兩篇 SR 的納入清單取來的，沒有獨立檢索、沒有 PROSPERO、沒有雙人擷取。但同一批核對過的資料裡，有一個<b>更原創、而且現在就能投出去</b>的題目：把「估計量的選擇本身能讓效果值移動多少」量出來，並證明它<u>大於</u>文獻上報告的真實世界與試驗之間的分歧。只用已發表資料、完全可重現、不需 IRB、不需資料申請。這是論文一的先導發表。</p>
+  <p class="kicker">給方老師的報告　·　meta 的結果與它能延伸出的博士論文主題　·　2026.09</p>
+  <h1>這份 meta 做出了什麼，能長出什麼</h1>
+  <p class="dek">方老師交代的是「這個主題的 meta」。做出來的東西分兩層：<b>臨床層</b>是 GLP-1 腎臟結局的證據現況（效益集中在軟終點，腎衰竭本身不顯著）；<b>方法學層</b>是核對原文時掉出來的意外收穫——在同一個隨機試驗內部、偏差為零的情況下，光是換終點定義就能讓效果值移動 16–53%，超過文獻上被歸因為「偏差」的 8%。<br><br>第 01–04 節把方法學那層寫成完整英文格式（4 圖 4 表），<b>目的不是投稿而是把東西講清楚</b>。<b>第 05 節才是重點：這份 meta 能延伸成哪些博士論文主題，以及要跟方老師確認的五個問題。</b></p>
 </header>
 
 <section id="m0">
   <div class="sec-head">
     <span class="sec-num">00</span>
-    <h2>中文導讀：這篇為什麼站得住</h2>
-    <p class="sub">口試時你會被問「先導分析不是系統性回顧，那你憑什麼發表」。以下是答案。</p>
+    <h2>一頁摘要：這份 meta 做出了什麼</h2>
+    <p class="sub">方老師交代的是「這個主題的 meta」。做出來的東西分成兩層，第二層是原本沒預期的收穫。</p>
   </div>
+
   <div class="stack">
-    <div class="note col">
-      <span class="lede">核心論證一句話</span>
-      現有的方法學文獻（Cochrane MR000034、RCT-DUPLICATE）把真實世界與隨機試驗之間的差距歸因於<b>偏差</b>，並報告合併的 ratio of ratios 為 <b>1.08（1.01–1.15）</b>。<br><br>
-      本研究指出：<b>在同一個隨機試驗、同一批病人、同一次隨機分派之內</b>，只是換一個終點定義，風險比就能從 0.57 移動到 0.87（幅度 <b>53%</b>）；即使只留下事件數充足的定義，幅度仍有 <b>16%</b>。換對照層是 <b>32%</b>。<u>這些幅度全部大於文獻報告的「偏差」訊號。</u><br><br>
-      <b>結論：目前被歸因為偏差的差距，有相當比例可能只是估計量沒對齊。</b>這是一個乾淨、可防守、而且沒有人做過的主張。
-    </div>
-    <div class="note flag col" style="margin-top:22px">
-      <span class="lede">同時，這篇更正了我先前一個錯誤</span>
-      我在第 05 節寫「SELECT 與 FLOW 指向同一件事：效果隨終點變硬而減弱」。<b>核對後這句話對 SELECT 不成立。</b>SELECT 的 eGFR 門檻愈硬，效果反而<u>愈強</u>（≥30% 為 0.81、≥40% 為 0.71、≥50% 為 0.57）；FLOW 則相反（≥50% eGFR 0.73 → eGFR&lt;15 為 0.80 → 腎替代療法 0.84）。<br><br>
-      <b>兩個試驗的軟硬梯度方向相反。</b>這反而是更強的發現：終點軟硬度<b>不能</b>當成一個線性調節因子放進統合迴歸，它必須是一個<b>對齊條件</b>——只有定義相同的估計值才能配對。第 05 節已同步更正。
-    </div>
-    <div class="panel" style="margin-top:22px">
-      <h3>可行性</h3>
+
+    <div class="panel">
+      <h3>第一層　臨床：GLP-1 類藥物腎臟結局的證據現況</h3>
       <div class="tbl">
         <table>
-          <thead><tr><th style="width:26%">項目</th><th style="width:74%">狀態</th></tr></thead>
+          <thead><tr><th style="width:26%">問題</th><th style="width:34%">先導分析的答案</th><th style="width:40%">在哪裡看</th></tr></thead>
           <tbody>
-            <tr><td data-l="項目">資料來源</td><td data-l="狀態">四篇已發表論文的正文與補充資料，全部已下載並逐格核對完成。</td></tr>
-            <tr><td data-l="項目">IRB</td><td data-l="狀態"><b>不需要。</b>無個人資料，屬公開文獻之次級分析。</td></tr>
-            <tr><td data-l="項目">資料申請</td><td data-l="狀態"><b>不需要。</b>與健保資料庫申請流程完全脫鉤，不受論文三的時程綁架。</td></tr>
-            <tr><td data-l="項目">分析</td><td data-l="狀態">已完成。所有數字在本頁圖表中，可完全重現。</td></tr>
-            <tr><td data-l="項目">還缺什麼</td><td data-l="狀態">敏感度分析（改用 ln 尺度全距、改用不同事件數門檻）、共同作者與指導教授確認、期刊格式調整。<b>估計 4–6 週可投出。</b></td></tr>
+            <tr>
+              <td data-l="問題">GLP-1 對腎臟有沒有效？</td>
+              <td data-l="答案">有，但<b>效果集中在較軟的終點</b>。複合終點 RR 約 0.81；<b>腎衰竭本身不顯著</b>（0.86）。</td>
+              <td data-l="位置">先導分析 · 第 03 節</td>
+            </tr>
+            <tr>
+              <td data-l="問題">真實世界研究與試驗一致嗎？</td>
+              <td data-l="答案"><b>不能一句話回答。</b>對照層不同，方向就不同：對照 SGLT2i 是 1.40（看似有害），對照 DPP-4i 是 0.70。</td>
+              <td data-l="位置">概論 · 第 02 節</td>
+            </tr>
+            <tr>
+              <td data-l="問題">猛健樂（tirzepatide）呢？</td>
+              <td data-l="答案"><b>幾乎沒有腎臟隨機證據。</b>唯一的是 SURMOUNT-1／2 的事後分析，終點是 UACR（純代理指標），族群 71–91% 是正常白蛋白尿。</td>
+              <td data-l="位置">先導分析 · 第 06 節</td>
+            </tr>
+            <tr style="background:var(--flag-soft)">
+              <td data-l="問題">那能不能做一篇正規的 meta？</td>
+              <td data-l="答案"><span class="flagtxt">目前不行。</span>研究是從既有兩篇系統性回顧的納入清單取來的，<b>沒有獨立檢索、沒有 PROSPERO、單人擷取</b>。這是先導分析，不是系統性回顧。</td>
+              <td data-l="位置">本分頁 · 第 05 節有補救路徑</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
+
+    <div class="panel" style="margin-top:26px">
+      <h3>第二層　方法學：做的過程中撞到的東西</h3>
+      <p style="font-size:16px;color:var(--ink-2);max-width:700px;margin-bottom:18px">為了核對數值，我把 SELECT、FLOW、SURMOUNT、SUSTAIN-5 的原文與補充資料逐格抄了一次。抄的過程中發現一件事：</p>
+      <div class="stats">
+        <div><div class="big">0.57–0.87</div><div class="cap2">同一個試驗、同一批病人<br><span class="q">八種腎臟終點定義</span></div></div>
+        <div><div class="big">+32%</div><div class="cap2">換對照層的估計值差距<br><span class="q">隨機試驗內部</span></div></div>
+        <div><div class="big">+3%</div><div class="cap2">換分析方法的差距<br><span class="q">ITT 家族內部</span></div></div>
+        <div><div class="big">+8%</div><div class="cap2">文獻報告的「偏差」訊號<br><span class="q">Cochrane MR000034</span></div></div>
+      </div>
+      <div class="note flag col" style="margin-top:24px">
+        <span class="lede">一句話</span>
+        <b>在同一個隨機試驗內部（偏差為零），光是換終點定義就能讓效果值移動 16–53%，超過文獻上被歸因為「偏差」的 8%。</b><br><br>
+        這代表目前 real-world 與 RCT 的分歧研究，有相當比例可能只是<u>估計量沒對齊</u>，不是偏差。這個發現不在原本的計畫裡，是做 meta 時掉出來的。
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:26px">
+      <h3>做的過程中改正的五個錯誤</h3>
+      <p style="font-size:15px;color:var(--ink-2);margin-bottom:16px">這一段建議在報告時主動講。它證明的是核對過原文，而不是抄二手來源。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:26%">原本寫的</th><th style="width:38%">核對原文後</th><th style="width:36%">來源</th></tr></thead>
+          <tbody>
+            <tr><td data-l="原本">FLOW 腎臟複合 0.76</td><td data-l="更正">視定義而定；NDT 重新擷取為 0.84，因複合成分不同</td><td data-l="來源">NDT 2026 vs NEJM 2024</td></tr>
+            <tr><td data-l="原本">SELECT 腎臟結局 0.78</td><td data-l="更正">原論文 5 成分複合是 <b>0.82</b>；0.78 是第三方重新建構的第九種定義</td><td data-l="來源">SELECT 補充表 3</td></tr>
+            <tr><td data-l="原本">FLOW ≥50% eGFR 為 165 對 231 事件</td><td data-l="更正">165 對 <b>213</b></td><td data-l="來源">FLOW 表 2</td></tr>
+            <tr><td data-l="原本">兩個試驗都顯示「終點愈硬效果愈弱」</td><td data-l="更正"><b>方向相反。</b>FLOW 愈硬愈弱，SELECT 愈硬愈強</td><td data-l="來源">兩篇原文</td></tr>
+            <tr><td data-l="原本">SELECT 的顯著性被心血管死亡撐起</td><td data-l="更正">點估計幾乎不變（0.82 對 0.80，p=0.87）。<b>買到的是檢定力，不是效果</b></td><td data-l="來源">本分頁表 4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note col" style="margin-top:26px">
+      <span class="lede">本分頁的用途</span>
+      以下第 01–04 節是把上面第二層的發現寫成英文的完整格式（Abstract／Methods／Results／Discussion＋4 圖 4 表）。<b>目的不是投稿，是把東西講清楚、讓方老師一眼看到它值不值得延伸。</b>如果後來要投，格式已經在了。<br><br>
+      <b>第 05 節才是你真正要跟方老師談的：這份 meta 能長出哪些博士論文主題。</b>
+    </div>
+
   </div>
 </section>
+
 
 <section id="m1">
   <div class="sec-head">
@@ -2786,9 +2845,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       <p class="cap" style="margin-bottom:12px">Abstract</p>
       <p><b>Background.</b> Meta-epidemiological studies routinely quantify the discordance between real-world evidence (RWE) and randomised controlled trials (RCTs) as a ratio of hazard ratios and attribute the residual to confounding and design bias. The pooled discordance reported by the largest such synthesis is modest (ratio of ratios 1.08, 95% CI 1.01–1.15). What is not known is how much of an estimate can move for reasons that have nothing to do with bias — because the estimand itself was defined differently.</p>
       <p><b>Objective.</b> To quantify how far kidney effect estimates for incretin-based therapies move when the endpoint definition, the endpoint component, the analytic handling of missing data and discontinuation, or the comparator is changed, while confounding is held at zero by randomisation.</p>
-      <p><b>Methods.</b> Meta-research study of published randomised evidence. We extracted every kidney effect estimate reported for the same randomised population in two large trials — SELECT (n=17,604) and FLOW (n=3,533) — from their primary reports and supplementary appendices, together with comparator-stratified randomised estimates from a 2026 systematic review. Estimates were grouped into four strata of variation. For each stratum we computed the estimate range ratio (ERR), the largest hazard ratio divided by the smallest. Confidence intervals for within-stratum contrasts are not estimable from published data because the estimates share participants and events and the covariance is not reported.</p>
-      <p><b>Results.</b> Within SELECT, eight reported definitions of “kidney outcome” in the same participants yielded hazard ratios from 0.57 to 0.87 (ERR 1.53; 1.16 when restricted to definitions with ≥40 events per arm), and only one definition — the only one including cardiovascular death — reached statistical significance. Within FLOW, the five components of the primary composite yielded 0.71 to 0.97 (ERR 1.37; 1.18 excluding a component with 5 events per arm). Across comparator strata in randomised evidence, estimates ranged from 0.61 against insulin glargine to 0.81 against placebo (ERR 1.32). By contrast, six analytic variants of the same FLOW endpoint yielded 0.75 to 0.77 (ERR 1.03). The direction of the endpoint-hardness gradient was opposite in the two trials.</p>
-      <p style="margin-bottom:0"><b>Conclusions.</b> Choices about what is being estimated move kidney effect estimates by 16–53%, exceeding the RWE-versus-RCT discordance that the meta-epidemiological literature attributes to bias; choices about how the same estimand is analysed move them by 3%. Discordance analyses that pair estimates without documenting the full component list of each composite risk misclassifying estimand misalignment as bias.</p>
+      <p><b>Methods.</b> Meta-research study of published randomised evidence. We extracted every kidney effect estimate reported for the same randomised population in two large trials — SELECT (n=17,604) and FLOW (n=3,533) — from their primary reports and supplementary appendices, together with comparator-stratified randomised estimates from a 2026 systematic review. Estimates were grouped into four strata of variation. For each stratum we computed the estimate range ratio (ERR), the largest hazard ratio divided by the smallest. Because estimates within a stratum share participants and the covariance is not published, pairwise contrasts were bounded by summing variances as if independent, which is conservative when the estimates are positively correlated. Funnel plots and heterogeneity statistics are invalid under this design and are not reported; a precision–estimate plot is given instead.</p>
+      <p><b>Results.</b> Within SELECT, eight reported definitions of “kidney outcome” in the same participants yielded hazard ratios from 0.57 to 0.87 (ERR 1.53; 1.16 when restricted to definitions with ≥40 events per arm), and only one definition — the only one including cardiovascular death — reached statistical significance. Within FLOW, the five components of the primary composite yielded 0.71 to 0.97 (ERR 1.37; 1.18 excluding a component with 5 events per arm). Across comparator strata in randomised evidence, estimates ranged from 0.61 against insulin glargine to 0.81 against placebo (ERR 1.32). By contrast, six analytic variants of the same FLOW endpoint yielded 0.75 to 0.77 (ERR 1.03). The direction of the endpoint-hardness gradient was opposite in the two trials. Under the conservative bound no within-trial contrast reached significance, and the extremes of each range were the least precise estimates.</p>
+      <p style="margin-bottom:0"><b>Conclusions.</b> Choices about what is being estimated move kidney effect estimates by 16–53%, exceeding the RWE-versus-RCT discordance that the meta-epidemiological literature attributes to bias; choices about how the same estimand is analysed move them by 3%. The trials cannot resolve which definition is right, so the choice cannot be made on statistical grounds and must be made by pre-specified alignment. Discordance analyses that pair estimates without documenting the full component list of each composite risk misclassifying estimand misalignment as bias.</p>
       <p style="margin-top:16px; margin-bottom:0"><span class="q"><b>Keywords</b> estimand · meta-epidemiology · real-world evidence · GLP-1 receptor agonists · chronic kidney disease · composite endpoints</span></p>
     </div>
 
@@ -2815,7 +2874,9 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
     <p><b>Strata of variation.</b> Estimates were grouped into four strata. Strata A to C are <i>within-trial</i>: every estimate in the stratum comes from the same participants, the same randomisation and the same follow-up period, so confounding, selection and time-zero are held constant by construction. Stratum A varies the <i>definition</i> of the kidney outcome; stratum B varies which <i>component</i> of a fixed composite is analysed; stratum C varies the <i>analytic handling</i> of missing data and treatment discontinuation while holding the endpoint fixed. Stratum D is <i>between-trial but within-randomised</i>: it varies the comparator drug across randomised trials, so confounding remains zero but populations and follow-up differ; it is therefore not purely definitional and is reported separately.</p>
     <p><b>Metric.</b> For each stratum we report the estimate range ratio (ERR), defined as the largest hazard ratio in the stratum divided by the smallest, and expressed as a percentage excess (ERR − 1). Because estimates within a stratum are computed on overlapping participants and overlapping events, they are strongly positively correlated; the covariance required to construct a confidence interval for a within-stratum contrast is not reported by any of the sources. We therefore report ERR descriptively and treat the absence of published covariance as a finding in its own right. To avoid the ERR being driven by sparse definitions, each within-trial stratum is reported twice: once across all reported estimates and once restricted to estimates with at least 40 events in each arm (stratum A) or excluding a component with 5 events per arm (stratum B).</p>
     <p><b>Benchmark.</b> Each ERR is compared with the pooled ratio of ratios of 1.08 (1.01–1.15) reported by Cochrane MR000034 for randomised versus non-randomised comparisons of the same clinical question, which is the quantity that the meta-epidemiological literature interprets as the magnitude of bias.</p>
-    <p><b>Analysis.</b> All computations are arithmetic on published summary estimates and are fully reproducible from Tables 1 and 2. No statistical software beyond a spreadsheet is required. No pooling was performed, and no heterogeneity statistic is reported, because estimates within a stratum are not independent.</p>
+    <p><b>Pairwise contrasts.</b> For each pair of estimates from the same randomised population we computed the ratio of hazard ratios and bounded its variance as Var<sub>1</sub> + Var<sub>2</sub>, that is, as if the two estimates were independent. Because estimates on shared participants are positively correlated and Var(θ<sub>1</sub> − θ<sub>2</sub>) = Var<sub>1</sub> + Var<sub>2</sub> − 2Cov(θ<sub>1</sub>, θ<sub>2</sub>), this bound is conservative: it overstates the uncertainty of every within-trial contrast. Standard errors were recovered from published confidence intervals as (ln upper − ln lower) / (2 × 1.96).</p>
+    <p><b>Displays not used.</b> No pooled estimate, funnel plot, Egger or Begg test, I², τ², Cochran Q, cumulative analysis or leave-one-out analysis is reported. All of these presuppose independent studies, which strata A to C are not by construction; their applicability is set out in Table 3. In place of a funnel plot we report a precision–estimate plot, which displays the same axes but carries no inference about publication bias.</p>
+    <p><b>Analysis.</b> All computations are arithmetic on published summary estimates and are fully reproducible from Tables 1, 2 and 4. No statistical software beyond a spreadsheet is required.</p>
 
     <p class="cap" style="margin-top:34px">Table 1. Data sources</p>
     <div class="tbl">
@@ -3163,6 +3224,196 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   </div>
 </section>
 
+
+<section id="m35">
+  <div class="sec-head">
+    <span class="sec-num">03b</span>
+    <h2>Precision, and why no funnel plot</h2>
+    <p class="sub">The first question any reviewer will ask: is the range just noise? This section answers it — and explains which standard meta-analysis displays apply here and which are invalid by construction.</p>
+  </div>
+
+  <div class="stack ms">
+
+    <h3>Which conventional displays apply</h3>
+    <p>The estimates in strata A to C are computed on overlapping participants and overlapping events within a single randomised population. They are not a sample of independent studies. Several standard meta-analysis displays and statistics are therefore not merely uninformative here but invalid, and we state this explicitly because their absence is otherwise read as an omission (Table 3).</p>
+
+    <p class="cap" style="margin-top:30px">Table 3. Applicability of conventional meta-analytic displays</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:24%">Display or statistic</th><th style="width:14%">Used here</th><th style="width:62%">Reason</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="Display"><b>Forest plot</b></td>
+            <td data-l="Used"><b>Yes</b><span class="q">Figures 2, 3A, 3B</span></td>
+            <td data-l="Reason">Appropriate. Displays each estimate with its confidence interval without implying independence or pooling. No summary diamond is shown, because no pooling is performed.</td>
+          </tr>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="Display"><b>Precision–estimate plot</b></td>
+            <td data-l="Used"><b>Yes</b><span class="q">Figure 4</span></td>
+            <td data-l="Reason">Appropriate, and reported in place of a funnel plot. Shows whether the observed range is generated by the imprecise estimates. It is <b>not</b> a test of publication bias and must not be read as one.</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="Display"><b>Funnel plot; Egger and Begg tests</b></td>
+            <td data-l="Used"><span class="flagtxt">No</span></td>
+            <td data-l="Reason">Invalid. These assess small-study effects across <i>independent</i> studies. Here every estimate comes from the same participants, so the assumption of independence fails completely. Cochrane guidance also advises against funnel plots with fewer than 10 studies; each stratum has 5 to 7 estimates.</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="Display"><b>I², τ², Cochran Q</b></td>
+            <td data-l="Used"><span class="flagtxt">No</span></td>
+            <td data-l="Reason">Invalid. Heterogeneity statistics partition observed variance into within-study and between-study components assuming independent sampling error. With shared participants the sampling errors are strongly positively correlated and the partition is undefined.</td>
+          </tr>
+          <tr style="background:var(--flag-soft)">
+            <td data-l="Display"><b>Pooled summary estimate</b></td>
+            <td data-l="Used"><span class="flagtxt">No</span></td>
+            <td data-l="Reason">Meaningless. Averaging seven definitions of the same outcome in the same people produces a number that estimates nothing. The variation <i>is</i> the object of study, not a nuisance to be summarised away.</td>
+          </tr>
+          <tr>
+            <td data-l="Display"><b>Cumulative and leave-one-out analyses</b></td>
+            <td data-l="Used"><span class="flagtxt">No</span></td>
+            <td data-l="Reason">Not applicable; both are sensitivity analyses of a pooled estimate, and none is computed.</td>
+          </tr>
+          <tr>
+            <td data-l="Display"><b>L'Abbé plot</b></td>
+            <td data-l="Used"><span class="flagtxt">No</span></td>
+            <td data-l="Reason">Arm-level event risks are available for most estimates, but the plot addresses baseline-risk-dependent treatment effects across trials, which is not the question here.</td>
+          </tr>
+          <tr>
+            <td data-l="Display"><b>ROBINS-I, RoB 2 assessment</b></td>
+            <td data-l="Used"><span class="flagtxt">No</span></td>
+            <td data-l="Reason">All included estimates come from two low-risk-of-bias randomised trials and one published systematic review; risk-of-bias variation is not the exposure under study.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:48px">Figure 4 — the range is generated by the imprecise estimates</h3>
+    <p>Plotting each estimate against its precision (the reciprocal of its standard error on the log scale) shows the structure directly. The two estimand strata fan outwards as precision falls: the extremes of stratum A, 0.57 and 0.87, are the two least precise estimates in the study, computed on 12 and 7 events respectively. The six analytic variants of stratum C form a tight vertical cluster at high precision, because they are six analyses of the same 331 versus 410 events.</p>
+
+    <div class="figbox">
+      <div style="min-width:560px; padding:2px 12px 26px 0">
+        <p class="cap" style="margin:0 0 4px 46px">Precision　(1 / SE of ln HR)</p>
+        <div class="sc">
+          <span class="sc-yl" style="top:100%">0</span>
+          <span class="sc-yl" style="top:66.7%">5</span>
+          <span class="sc-yl" style="top:33.3%">10</span>
+          <span class="sc-yl" style="top:0%">15</span>
+          <div class="sc-null" style="left:87.91%"></div>
+
+          <span class="sc-xl" style="left:0%">0.5</span>
+          <span class="sc-xl" style="left:23.12%">0.6</span>
+          <span class="sc-xl" style="left:42.67%">0.7</span>
+          <span class="sc-xl" style="left:59.61%">0.8</span>
+          <span class="sc-xl" style="left:74.55%">0.9</span>
+          <span class="sc-xl" style="left:87.91%">1.0</span>
+
+          <div class="sc-pt" style="left:62.74%; top:23.3%; background:var(--s1)"></div>
+          <div class="sc-pt" style="left:61.19%; top:45.1%; background:var(--s1)"></div>
+          <div class="sc-pt" style="left:59.61%; top:42.7%; background:var(--s1)"></div>
+          <div class="sc-pt" style="left:44.47%; top:67.9%; background:var(--s1)"></div>
+          <div class="sc-pt" style="left:27.28%; top:78.9%; background:var(--s1)"></div>
+          <div class="sc-pt" style="left:16.62%; top:81.9%; background:var(--s1)"></div>
+          <div class="sc-pt" style="left:70.25%; top:87.5%; background:var(--s1)"></div>
+
+          <div class="sc-pt hollow" style="left:53.11%; top:9.1%; border-color:var(--s2)"></div>
+          <div class="sc-pt hollow" style="left:58.02%; top:26.1%; border-color:var(--s2)"></div>
+          <div class="sc-pt hollow" style="left:44.47%; top:43.6%; border-color:var(--s2)"></div>
+          <div class="sc-pt hollow" style="left:48.00%; top:36.4%; border-color:var(--s2)"></div>
+          <div class="sc-pt hollow" style="left:59.61%; top:52.7%; border-color:var(--s2)"></div>
+          <div class="sc-pt hollow" style="left:65.80%; top:54.6%; border-color:var(--s2)"></div>
+          <div class="sc-pt hollow" style="left:84.05%; top:89.8%; border-color:var(--s2)"></div>
+
+          <div class="sc-pt sq" style="left:53.11%; top:9.1%; background:var(--ink-2)"></div>
+          <div class="sc-pt sq" style="left:51.43%; top:10.3%; background:var(--ink-2)"></div>
+          <div class="sc-pt sq" style="left:53.11%; top:13.7%; background:var(--ink-2)"></div>
+          <div class="sc-pt sq" style="left:54.76%; top:7.9%; background:var(--ink-2)"></div>
+          <div class="sc-pt sq" style="left:54.76%; top:12.6%; background:var(--ink-2)"></div>
+
+          <span class="sc-note" style="left:16.62%; top:81.9%">0.57<br><span>12 vs 21 events</span></span>
+          <span class="sc-note r" style="left:70.25%; top:87.5%">0.87<br><span>7 vs 8 events</span></span>
+          <span class="sc-note r" style="left:84.05%; top:89.8%">0.97<br><span>5 vs 5 events</span></span>
+          <span class="sc-note r" style="left:56.5%; top:4%"><span>stratum C: six analyses<br>of the same 331 vs 410 events</span></span>
+        </div>
+        <p style="margin:32px 0 0 46px; font-size:11.5px; color:var(--muted); text-align:center">Hazard ratio　(log scale)</p>
+      </div>
+      <p class="f-key">
+        <span><i style="background:var(--s1)"></i>Stratum A — endpoint definition (SELECT)</span>
+        <span><i style="border:1.5px solid var(--s2); background:transparent"></i>Stratum B — endpoint component (FLOW)</span>
+        <span><i style="background:var(--ink-2); border-radius:1px"></i>Stratum C — analytic handling (FLOW)</span>
+      </p>
+    </div>
+    <p class="figcap"><b>Figure 4. Precision–estimate plot.</b> Each marker is one published estimate, positioned by its hazard ratio and by the reciprocal of the standard error of its log hazard ratio. <b>This is not a funnel plot and carries no inference about publication bias</b>; it is shown to display where the range in Figure 1 comes from. The estimand strata (A, B) spread as precision falls; the analytic stratum (C) does not spread at all, because its six estimates analyse the same events. Two stratum C markers coincide at 0.76.</p>
+
+    <h3 style="margin-top:52px">Conservative pairwise contrasts</h3>
+    <p>Because the covariance between estimates on shared participants is not published, we bounded each within-trial contrast by treating the two estimates as independent, so that Var(ln HR<sub>1</sub> − ln HR<sub>2</sub>) = Var<sub>1</sub> + Var<sub>2</sub>. Positive correlation between the estimates would make the true variance of the difference <i>smaller</i>, so this bound is conservative: any contrast significant under it is certainly significant.</p>
+    <p>Under that bound, no within-trial contrast reached conventional significance (Table 4). The comparator contrast, which is between independent trials and therefore correctly specified, gave a ratio of 1.32 (1.00 to 1.74, p=0.05).</p>
+
+    <p class="cap" style="margin-top:30px">Table 4. Conservative contrasts between estimates from the same randomised population</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th style="width:34%">Contrast</th><th style="width:20%">Ratio of HRs</th><th style="width:14%">p</th><th style="width:32%">Interpretation</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-l="Contrast"><b>SELECT</b> 5-component composite vs 4-component without CV death</td>
+            <td data-l="Ratio">0.98 (0.73–1.30)</td>
+            <td data-l="p">0.87</td>
+            <td data-l="Interpretation">Point estimates nearly identical. Removing CV death changed <b>significance, not effect size</b> — the composite loses 111 events and the interval widens.</td>
+          </tr>
+          <tr>
+            <td data-l="Contrast"><b>SELECT</b> 5-component composite vs ≥50% eGFR decline</td>
+            <td data-l="Ratio">0.70 (0.33–1.46)</td>
+            <td data-l="p">0.34</td>
+            <td data-l="Interpretation">A 30% difference in point estimate that the data cannot resolve.</td>
+          </tr>
+          <tr>
+            <td data-l="Contrast"><b>SELECT</b> ≥30% vs ≥50% eGFR decline</td>
+            <td data-l="Ratio">0.70 (0.33–1.50)</td>
+            <td data-l="p">0.36</td>
+            <td data-l="Interpretation">Same.</td>
+          </tr>
+          <tr>
+            <td data-l="Contrast"><b>FLOW</b> CV death vs kidney replacement therapy</td>
+            <td data-l="Ratio">1.18 (0.82–1.71)</td>
+            <td data-l="p">0.37</td>
+            <td data-l="Interpretation">The softest and hardest components of one composite differ by 18% with no resolution.</td>
+          </tr>
+          <tr>
+            <td data-l="Contrast"><b>FLOW</b> ≥50% eGFR decline vs kidney replacement therapy</td>
+            <td data-l="Ratio">1.15 (0.81–1.64)</td>
+            <td data-l="p">0.44</td>
+            <td data-l="Interpretation">Same.</td>
+          </tr>
+          <tr>
+            <td data-l="Contrast"><b>FLOW</b> primary composite vs kidney-specific composite</td>
+            <td data-l="Ratio">1.04 (0.83–1.31)</td>
+            <td data-l="p">0.74</td>
+            <td data-l="Interpretation">As in SELECT, removing CV death barely moves the estimate.</td>
+          </tr>
+          <tr>
+            <td data-l="Contrast"><b>FLOW</b> multiple imputation vs retrieved dropouts</td>
+            <td data-l="Ratio">1.03 (0.84–1.26)</td>
+            <td data-l="p">0.80</td>
+            <td data-l="Interpretation">Analytic variants are indistinguishable, as expected.</td>
+          </tr>
+          <tr style="background:var(--acc-soft)">
+            <td data-l="Contrast"><b>Comparator</b> insulin glargine vs placebo<span class="q">independent trials — bound not needed</span></td>
+            <td data-l="Ratio"><b>1.32 (1.00–1.74)</b></td>
+            <td data-l="p"><b>0.05</b></td>
+            <td data-l="Interpretation">The only contrast approaching significance, and the only one between independent randomised comparisons.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="figcap">Ratios are the second hazard ratio divided by the first, on the log scale. Variances are summed as if the estimates were independent, which is an upper bound when the estimates share participants.</p>
+
+    <div class="note flag col" style="margin-top:32px">
+      <span class="lede">Why this strengthens rather than weakens the argument</span>
+      <p style="margin:0 0 14px">A reader may take Table 4 to mean that the definitions do not really differ. That reading misses what the paper is about. The claim is not that these seven definitions estimate seven different underlying quantities; it is that <b>a meta-analyst pairing a real-world estimate with a trial estimate has to pick one of them, the choice moves the numerator of the resulting ratio of hazard ratios by up to 53%, and the trial data provide no basis for making the choice empirically.</b></p>
+      <p style="margin:0">In fact the non-significance is the sharper finding. If the trials could distinguish the definitions, a reviewer could ask a synthesis to justify its extraction on statistical grounds. They cannot. The choice must therefore be made by pre-specification and alignment, and any discordance analysis that leaves it undocumented has an unquantified 16 to 53% of slack in its input before bias is considered.</p>
+    </div>
+
+  </div>
+</section>
+
 <section id="m4">
   <div class="sec-head">
     <span class="sec-num">04</span>
@@ -3209,61 +3460,136 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <section id="m5">
   <div class="sec-head">
     <span class="sec-num">05</span>
-    <h2>下一步與投稿判斷</h2>
-    <p class="sub">中文，給你自己看的。</p>
+    <h2>能長出哪些博士論文主題</h2>
+    <p class="sub">這是要跟方老師談的部分。四個方向，依「一個人能不能做完」排序，不是依理想性排序。</p>
   </div>
+
   <div class="stack">
-    <div class="tbl">
-      <table>
-        <thead><tr><th style="width:22%">期刊</th><th style="width:24%">為什麼合適</th><th style="width:26%">風險</th><th style="width:28%">建議</th></tr></thead>
-        <tbody>
-          <tr style="background:var(--acc-soft)">
-            <td data-l="期刊"><b>Journal of Clinical Epidemiology</b></td>
-            <td data-l="合適">Meta-research 的正統家；估計量對齊正是它近年的核心議題。</td>
-            <td data-l="風險">審查者會要求更多試驗、更系統的取樣。</td>
-            <td data-l="建議"><b>首選。</b>先寫信問 editor 是否接受 two-trial 的 proof-of-concept。</td>
-          </tr>
-          <tr>
-            <td data-l="期刊"><b>BMJ Evidence-Based Medicine</b></td>
-            <td data-l="合適">篇幅短、樂於刊登挑戰既有共識的方法學觀察。</td>
-            <td data-l="風險">影響力較 JCE 低。</td>
-            <td data-l="建議">第二選擇，或作為 JCE 退稿後的落點。</td>
-          </tr>
-          <tr>
-            <td data-l="期刊"><b>CJASN / Kidney Int Rep</b></td>
-            <td data-l="合適">腎臟科讀者會直接關心「SELECT 的顯著性是被心血管死亡撐起來的」。</td>
-            <td data-l="風險">方法學貢獻可能被當成臨床評論看待。</td>
-            <td data-l="建議">若想讓臨床端看見，這是最佳落點。</td>
-          </tr>
-          <tr>
-            <td data-l="期刊"><b>Research Synthesis Methods</b></td>
-            <td data-l="合適">統合分析方法學專門刊。</td>
-            <td data-l="風險">會要求統計上更嚴謹的 ERR 性質探討（分佈、偏誤）。</td>
-            <td data-l="建議">若願意再補模擬研究，這裡最能發揮。</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div class="note col">
+      <span class="lede">先說一個結構性判斷</span>
+      現行計畫書把<b>正式系統性回顧</b>放在論文一，這是最傳統的排法，但它有一個時程風險：正式 SR 需要 PROSPERO 註冊、獨立更新檢索、雙人篩選擷取、PRISMA 流程圖，<b>6 到 11 個月，而且產出的是「又一篇 GLP-1 腎臟 meta」——這個題目已經有兩篇了。</b><br><br>
+      先導分析掉出來的方法學發現，反而是<u>沒有人做過、資料全公開、一個人就能做完</u>的。所以下面把方向 B 排在前面，不是因為它比較炫，是因為它<b>一定做得出來</b>。
     </div>
 
-    <div class="panel" style="margin-top:28px">
-      <h3>投出去之前還要做的五件事</h3>
+    <h3 style="margin-top:44px">方向 B — 估計量變異的大規模盤點</h3>
+    <div class="panel">
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td data-l="項目" style="width:22%"><b>研究問題</b></td><td data-l="內容">在心血管與腎臟結局試驗中，有多少比例的試驗，其「同一族群、多重結局定義」的估計值全距，超過文獻報告的真實世界與試驗分歧幅度？</td></tr>
+            <tr><td data-l="項目"><b>抽樣框</b></td><td data-l="內容">近 10–15 年 NEJM／Lancet／JAMA／Circulation／JASN 發表的 CVOT 與腎臟結局試驗，凡補充資料報告 ≥3 種同一結局的定義者。<b>預估 k = 30–60。</b></td></tr>
+            <tr><td data-l="項目"><b>從先導到正式</b></td><td data-l="內容">先導只有 2 個試驗，只能做<b>存在性主張</b>；k=30–60 就能做<b>母體推論</b>：估計量變異的分佈、哪類終點最不穩、哪些期刊報告最完整。</td></tr>
+            <tr style="background:var(--acc-soft)"><td data-l="項目"><b>可行性</b></td><td data-l="內容"><b>最高。</b>資料全部公開；不需 IRB、不需資料申請、不需與任何單位協調。主要成本是人工擷取補充資料。</td></tr>
+            <tr><td data-l="項目"><b>時程</b></td><td data-l="內容">8–12 個月，含雙人擷取。<b>不卡任何外部流程。</b></td></tr>
+            <tr><td data-l="項目"><b>風險</b></td><td data-l="內容">純方法學，臨床科可能覺得離自己遠。補充資料格式不一，擷取工時可能被低估。</td></tr>
+            <tr><td data-l="項目"><b>與現有架構</b></td><td data-l="內容">取代或前置於論文一。它替論文二的「對齊條件」提供實證基礎。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="margin-top:44px">方向 C — 複合終點的成分貢獻分析</h3>
+    <div class="panel">
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td data-l="項目" style="width:22%"><b>研究問題</b></td><td data-l="內容">在腎臟結局試驗中，複合終點的「陽性」有多少是由心血管死亡或最軟的成分驅動？把成分拆開後，還剩幾篇是陽性？</td></tr>
+            <tr><td data-l="項目"><b>直接延續</b></td><td data-l="內容">表 4 的發現：把心血管死亡放進腎臟複合終點，<b>買到的是檢定力不是效果</b>。這句話如果在 GLP-1、SGLT2i、MRA、finerenone 全都成立，就是一個臨床指引層級的問題。</td></tr>
+            <tr><td data-l="項目"><b>臨床影響</b></td><td data-l="內容"><b>最高。</b>KDIGO 指引就是用這些複合終點寫的。腎臟科讀者會直接關心。</td></tr>
+            <tr><td data-l="項目"><b>可行性</b></td><td data-l="內容">高。公開試驗＋補充資料。</td></tr>
+            <tr><td data-l="項目"><b>方法困難</b></td><td data-l="內容">成分之間的共變異數同樣不公開。需用模擬或以事件重疊近似，這一段要先想清楚再開工。</td></tr>
+            <tr><td data-l="項目"><b>時程</b></td><td data-l="內容">6–10 個月。可與方向 B 共用同一批擷取資料，<b>邊際成本很低</b>。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="margin-top:44px">方向 D — 台灣健保資料庫的目標試驗模擬</h3>
+    <div class="panel">
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td data-l="項目" style="width:22%"><b>研究問題</b></td><td data-l="內容">在台灣族群中，起始 GLP-1 相對於起始 SGLT2i 或 DPP-4i 的腎臟結局為何？並以 FLOW／SELECT 作為 benchmark 檢核模擬的忠實度。</td></tr>
+            <tr style="background:var(--flag-soft)"><td data-l="項目"><b>最大障礙</b></td><td data-l="內容"><span class="flagtxt">猛健樂大量自費。</span>健保資料庫抓不到自費暴露，會造成系統性的暴露錯分。<b>這一點必須先跟方老師確認怎麼處理。</b></td></tr>
+            <tr><td data-l="項目"><b>可行的替代</b></td><td data-l="內容">改做有健保給付的 semaglutide／dulaglutide／liraglutide；tirzepatide 只作為外部效度討論。或改用有自費資料的醫院電子病歷（如台大院內資料）。</td></tr>
+            <tr><td data-l="項目"><b>優勢</b></td><td data-l="內容">本土證據；方老師熟悉健保資料流程；博士訓練上是必要的一段。</td></tr>
+            <tr><td data-l="項目"><b>時程</b></td><td data-l="內容">12–18 個月，含 IRB 與資料申請。<b>要現在就啟動</b>，否則會卡住畢業。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="margin-top:44px">方向 A — 維持現行計畫書的三篇架構</h3>
+    <div class="panel">
+      <p style="font-size:16px;color:var(--ink-2);margin-bottom:16px">正式 SR（論文一）→ 偏差校正外推（論文二）→ 健保 TTE（論文三）。已完整寫成計畫書，見「研究架構」與「三篇方法」分頁。</p>
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td data-l="項目" style="width:22%"><b>優點</b></td><td data-l="內容">架構完整、邏輯連貫、口試好講。已經寫好了。</td></tr>
+            <tr><td data-l="項目"><b>風險</b></td><td data-l="內容">論文一是「又一篇 GLP-1 腎臟 meta」，新意主要在方法而非題目；而且目前<b>只有 basal insulin 一個對照層有兩側資料可配對</b>，其他層都缺錨點。這是最大的可行性限制。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="margin-top:52px">建議的組合</h3>
+    <div class="figbox">
+      <div class="g-in">
+        <div class="g-row">
+          <div class="g-lab"><b>第一篇 · 方向 B</b><br><span class="q">估計量變異盤點</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:0%; width:34%; background:var(--acc)">8–12 個月・不卡外部流程</div></div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>第二篇 · 方向 C</b><br><span class="q">複合終點成分貢獻</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:28%; width:28%; background:var(--acc)">共用擷取資料</div></div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab"><b>第三篇 · 方向 D</b><br><span class="q">健保 TTE</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:16%; width:56%; background:var(--s1)">IRB 與資料申請要現在啟動</div></div>
+        </div>
+        <div class="g-row">
+          <div class="g-lab" style="color:var(--flag)"><b>IRB 與資料申請</b><br><span class="q">資格考後立刻送出</span></div>
+          <div class="g-tr"><div class="g-bar" style="left:0%; width:18%; background:var(--flag)"></div></div>
+        </div>
+        <div class="g-ax"><div></div><div class="g-tk"><span>博三下</span><span>博四上</span><span>博四下</span><span>博五上</span><span>博五下</span></div></div>
+      </div>
+      <p class="f-key"><span><i style="background:var(--acc)"></i>公開資料，可獨立完成</span><span><i style="background:var(--s1)"></i>需外部資料</span><span><i style="background:var(--flag)"></i>行政流程</span></p>
+    </div>
+    <div class="note col" style="margin-top:22px">
+      <span class="lede">為什麼這樣排</span>
+      把<b>一定做得出來</b>的放第一篇，把<b>會卡外部流程</b>的最早啟動、最晚交件。這樣即使健保資料申請延誤，前兩篇已經在手上，畢業時程不會被綁架。<br><br>
+      現行架構把正式 SR 放第一篇，等於把「6–11 個月、產出是第三篇同題 meta」的工作放在最前面，而真正原創的方法學發現排在後面。<b>順序調換，內容不必丟。</b>
+    </div>
+
+    <h3 style="margin-top:52px">跟方老師討論時要問的五個問題</h3>
+    <div class="panel">
       <ol>
-        <li><b>敏感度分析。</b>把 ERR 改成 ln 尺度全距、改成四分位距、改成不同事件數門檻（20／40／60），確認結論不隨定義改變。這是審查者一定會問的。</li>
-        <li><b>再加一個試驗。</b>只要再找到一篇有「同一族群多重終點定義」補充表的腎臟試驗（FLOW-CKD、SOUL、SURPASS-CVOT 都可能有），k 從 2 變 3，可防守性大幅提升。</li>
-        <li><b>把 Cochrane MR000034 的比較講精準。</b>它是跨臨床問題的合併值，不是腎臟專屬。討論段已寫明，但摘要裡不要講得太滿。</li>
-        <li><b>雙人擷取。</b>找一位同儕獨立重抄一次四個來源的數字。這是唯一能把「single investigator extraction」這條限制拿掉的方法，成本很低。</li>
-        <li><b>與方老師確認作者序與投稿策略。</b>特別是：這篇要不要明講它是論文一的先導？講了有助於審查者理解定位，但也可能被要求等正式 SR 一起投。</li>
+        <li><b>這份 meta 您期待的產出是臨床結論還是方法學結論？</b>如果是臨床，重點放在「GLP-1 的腎臟效益集中在軟終點、腎衰竭本身不顯著」；如果是方法學，重點放在估計量變異。兩者的後續路徑完全不同。</li>
+        <li><b>論文一要不要真的做正式系統性回顧？</b>還是改成方向 B 的大樣本 meta-research？前者穩妥但重複，後者原創但純方法學。</li>
+        <li><b>猛健樂自費的問題怎麼處理？</b>健保資料庫抓不到自費暴露。是改做有給付的 GLP-1，還是改用院內電子病歷，還是換一個暴露？<b>這題會決定論文三能不能做。</b></li>
+        <li><b>健保資料申請要現在啟動嗎？</b>實驗室有沒有既有的資料授權可以接？如果有，時程可以縮短半年以上。</li>
+        <li><b>三篇的順序可否調成 B → C → D？</b>把最穩的放第一篇，把卡流程的最早啟動。</li>
       </ol>
     </div>
 
-    <div class="note flag col" style="margin-top:28px">
-      <span class="lede">一個要提前想好的答案</span>
-      口委很可能問：「你只有兩個試驗，這樣的 n 能下結論嗎？」<br><br>
-      正確的回答不是辯護 n，而是把設計講清楚：<b>「這不是一個抽樣推論的研究。我不是在估計『所有試驗的平均估計量變異』，我是在示範『估計量變異可以大到超過文獻報告的偏差訊號』。要證明這件事，一個反例就夠了，而我有兩個獨立的反例。」</b><br><br>
-      這是存在性主張（existence claim），不是母體參數估計。講清楚這一點，n=2 就從弱點變成不相干。
+    <div class="note flag col" style="margin-top:32px">
+      <span class="lede">如果方老師問「那這篇 meta 到底能不能發表」</span>
+      <b>先導分析本身不能</b>——不是系統性回顧。但第 01–04 節那篇方法學短報告可以，而且不需要再收任何資料。若要投，還缺三件事：敏感度分析、雙人擷取、再加 1–2 個試驗把 k 撐到 3–4。<b>約 4–6 週。</b><br><br>
+      可投 <i>J Clin Epidemiol</i>、<i>BMJ Evidence-Based Medicine</i>、<i>Research Synthesis Methods</i>；若想讓腎臟科看見則投 <i>CJASN</i> 或 <i>Kidney Int Rep</i>。<br><br>
+      但這是次要的。<b>主要目的是讓方老師看到這個方向值不值得變成博士論文。</b>
     </div>
+
+    <div class="note col" style="margin-top:24px">
+      <span class="lede">一個要提前想好的答案</span>
+      如果被問「你只有兩個試驗，這樣的 n 能下結論嗎？」——正確的回答不是辯護 n，而是把設計講清楚：<br><br>
+      <b>「這不是抽樣推論。我不是在估計『所有試驗的平均估計量變異』，我是在示範『估計量變異可以大到超過文獻報告的偏差訊號』。要證明這件事，一個反例就夠了，而我有兩個獨立的反例。要做母體推論就是方向 B，那才需要 k=30 以上。」</b><br><br>
+      這是存在性主張，不是母體參數估計。講清楚，n=2 就從弱點變成不相干——而且順勢帶出方向 B。
+    </div>
+
   </div>
 </section>
+
 
 <div class="end">
   <p><b>狀態</b>　本草稿的所有數值均取自 SELECT 補充表 3、FLOW 表 2 與補充表 S3／圖 S1／表 S2、NDT 2026 圖 2–4，並已逐格核對。<b>尚未做敏感度分析、尚未雙人擷取、尚未與指導教授確認作者序。</b></p>
@@ -3683,7 +4009,7 @@ medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
 
 <script>
 (function(){
-  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot", "k5": "pilot", "k6": "pilot", "k7": "pilot", "m0": "ms", "m1": "ms", "m2": "ms", "m3": "ms", "m4": "ms", "m5": "ms"};
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot", "k5": "pilot", "k6": "pilot", "k7": "pilot", "m0": "ms", "m1": "ms", "m2": "ms", "m3": "ms", "m35": "ms", "m4": "ms", "m5": "ms"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function show(name, scroll){
     if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
