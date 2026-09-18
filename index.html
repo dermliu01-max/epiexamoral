@@ -436,8 +436,7 @@ li b{color:var(--ink)}
       <button class="tab" role="tab" data-tab="methods" aria-selected="false" aria-controls="panel-methods">三篇方法</button>
       <button class="tab" role="tab" data-tab="bias" aria-selected="false" aria-controls="panel-bias">偏差與統計</button>
       <button class="tab" role="tab" data-tab="plan" aria-selected="false" aria-controls="panel-plan">時程與口試</button>
-      <button class="tab" role="tab" data-tab="pilot" aria-selected="false" aria-controls="panel-pilot">先導分析</button>
-      <button class="tab" role="tab" data-tab="ms" aria-selected="false" aria-controls="panel-ms">meta 與延伸</button>
+      <button class="tab" role="tab" data-tab="meta" aria-selected="false" aria-controls="panel-meta">先導 meta</button>
       <button class="tab" role="tab" data-tab="appendix" aria-selected="false" aria-controls="panel-appendix">附錄</button>
     </div>
   </div>
@@ -1693,13 +1692,97 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 <!-- ============ refs ============ -->
 </div>
 
-<div id="panel-pilot" role="tabpanel" hidden>
+<div id="panel-meta" role="tabpanel" hidden>
 
 <header class="mast">
-  <p class="kicker">補充分析　·　Medscape 專文導讀與先導統合分析　·　2026.09</p>
+  <p class="kicker">先導統合分析全文　·　從方老師給的專文到博士論文延伸方向　·　2026.09</p>
   <h1>腎臟這條線值多少</h1>
-  <p class="dek">前半解釋 Medscape〈Are GLP-1 Drugs Now Kidney Drugs?〉這篇專文的內容與它對本論文的價值；後半為先導分析。<b>本版已依 NDT 2026、Fishkin 2025、SELECT、FLOW（含 NEJM 補充附錄）、SURMOUNT-1／2 與 SUSTAIN-5 的原始論文逐一核對，累計修正五處錯誤，並據此三度修改論文一的方法設計。</b></p>
+  <p class="dek">這一頁是完整的先導工作，從頭到尾一份文件。<b>前半</b>（01–07 節）是方老師給的 Medscape 專文導讀、原始論文逐格核對，以及據此重做的先導分析；<b>後半</b>（08–13 節）是核對過程中掉出來的方法學發現，寫成完整英文格式（4 圖 4 表，可用 R 重現），最後是三個博士論文延伸方向與要跟老師確認的五個問題。<br><br><b>第 00 節是一頁摘要，時間不夠只看那一節即可。</b></p>
 </header>
+
+<section id="m0">
+  <div class="sec-head">
+    <span class="sec-num">00</span>
+    <h2>一頁摘要：這份 meta 做出了什麼</h2>
+    <p class="sub">方老師交代的是「這個主題的 meta」。做出來的東西分成兩層，第二層是原本沒預期的收穫。</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="panel">
+      <h3>第一層　臨床：GLP-1 類藥物腎臟結局的證據現況</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:26%">問題</th><th style="width:34%">先導分析的答案</th><th style="width:40%">在哪裡看</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-l="問題">GLP-1 對腎臟有沒有效？</td>
+              <td data-l="答案">有，但<b>效果集中在較軟的終點</b>。複合終點 RR 約 0.81；<b>腎衰竭本身不顯著</b>（0.86）。</td>
+              <td data-l="位置">本頁 · 第 03 節</td>
+            </tr>
+            <tr>
+              <td data-l="問題">真實世界研究與試驗一致嗎？</td>
+              <td data-l="答案"><b>不能一句話回答。</b>對照層不同，方向就不同：對照 SGLT2i 是 1.40（看似有害），對照 DPP-4i 是 0.70。</td>
+              <td data-l="位置">「概論」分頁 · 第 02 節</td>
+            </tr>
+            <tr>
+              <td data-l="問題">猛健樂（tirzepatide）呢？</td>
+              <td data-l="答案"><b>幾乎沒有腎臟隨機證據。</b>唯一的是 SURMOUNT-1／2 的事後分析，終點是 UACR（純代理指標），族群 71–91% 是正常白蛋白尿。</td>
+              <td data-l="位置">本頁 · 第 06 節</td>
+            </tr>
+            <tr style="background:var(--flag-soft)">
+              <td data-l="問題">那能不能做一篇正規的 meta？</td>
+              <td data-l="答案"><span class="flagtxt">目前不行。</span>研究是從既有兩篇系統性回顧的納入清單取來的，<b>沒有獨立檢索、沒有 PROSPERO、單人擷取</b>。這是先導分析，不是系統性回顧。</td>
+              <td data-l="位置">本分頁 · 第 13 節有補救路徑</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:26px">
+      <h3>第二層　方法學：做的過程中撞到的東西</h3>
+      <p style="font-size:16px;color:var(--ink-2);max-width:700px;margin-bottom:18px">為了核對數值，我把 SELECT、FLOW、SURMOUNT、SUSTAIN-5 的原文與補充資料逐格抄了一次。抄的過程中發現一件事：</p>
+      <div class="stats">
+        <div><div class="big">0.57–0.87</div><div class="cap2">同一個試驗、同一批病人<br><span class="q">八種腎臟終點定義</span></div></div>
+        <div><div class="big">+32%</div><div class="cap2">換對照層的估計值差距<br><span class="q">隨機試驗內部</span></div></div>
+        <div><div class="big">+3%</div><div class="cap2">換分析方法的差距<br><span class="q">ITT 家族內部</span></div></div>
+        <div><div class="big">+8%</div><div class="cap2">文獻報告的「偏差」訊號<br><span class="q">Cochrane MR000034</span></div></div>
+      </div>
+      <div class="note flag col" style="margin-top:24px">
+        <span class="lede">一句話</span>
+        <b>在同一個隨機試驗內部（偏差為零），光是換終點定義就能讓效果值移動 15–53%，超過文獻上被歸因為「偏差」的 8%。</b><br><br>
+        這代表目前 real-world 與 RCT 的分歧研究，有相當比例可能只是<u>估計量沒對齊</u>，不是偏差。這個發現不在原本的計畫裡，是做 meta 時掉出來的。
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:26px">
+      <h3>做的過程中改正的五個錯誤</h3>
+      <p style="font-size:15px;color:var(--ink-2);margin-bottom:16px">這一段建議在報告時主動講。它證明的是核對過原文，而不是抄二手來源。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:26%">原本寫的</th><th style="width:38%">核對原文後</th><th style="width:36%">來源</th></tr></thead>
+          <tbody>
+            <tr><td data-l="原本">FLOW 腎臟複合 0.76</td><td data-l="更正">視定義而定；NDT 重新擷取為 0.84，因複合成分不同</td><td data-l="來源">NDT 2026 vs NEJM 2024</td></tr>
+            <tr><td data-l="原本">SELECT 腎臟結局 0.78</td><td data-l="更正">原論文 5 成分複合是 <b>0.82</b>；0.78 是第三方重新建構的第九種定義</td><td data-l="來源">SELECT 補充表 3</td></tr>
+            <tr><td data-l="原本">FLOW ≥50% eGFR 為 165 對 231 事件</td><td data-l="更正">165 對 <b>213</b></td><td data-l="來源">FLOW 表 2</td></tr>
+            <tr><td data-l="原本">兩個試驗都顯示「終點愈硬效果愈弱」</td><td data-l="更正"><b>方向相反。</b>FLOW 愈硬愈弱，SELECT 愈硬愈強</td><td data-l="來源">兩篇原文</td></tr>
+            <tr><td data-l="原本">SELECT 的顯著性被心血管死亡撐起</td><td data-l="更正">點估計幾乎不變（0.82 對 0.80，p=0.87）。<b>買到的是檢定力，不是效果</b></td><td data-l="來源">本分頁表 4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note col" style="margin-top:26px">
+      <span class="lede">本分頁的用途</span>
+      以下第 08–12 節是把上面第二層的發現寫成英文的完整格式（Abstract／Methods／Results／Discussion＋4 圖 4 表）。<b>目的不是投稿，是把東西講清楚、讓方老師一眼看到它值不值得延伸。</b>如果後來要投，格式已經在了。<br><br>
+      <b>第 13 節才是你真正要跟方老師談的：這份 meta 能長出哪些博士論文主題。</b>
+    </div>
+
+  </div>
+</section>
+
+
 
 <section id="k1">
   <div class="sec-head">
@@ -2262,7 +2345,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       <span class="lede">這張圖有兩件事必須講出來</span>
       <b>第一，唯一達到統計顯著的定義，是唯一包含心血管死亡的那一個。</b>5 成分複合是 0.82（p=0.02）；把心血管死亡拿掉，同樣的病人、同樣的追蹤，就變成 0.80（p=0.07）、0.62（p=0.13）——全部不顯著。<br><br>
       <b>但這句話必須講精準，我先前講得太快。</b>0.82 與 0.80 的<u>點估計幾乎一樣</u>（兩者比值 0.98，p=0.87）。心血管死亡拿掉後改變的不是效果大小，而是<b>事件數與精確度</b>——複合終點少了 111 個事件，信賴區間變寬，顯著性因此消失。<br><br>
-      所以正確的說法是：<b>把心血管死亡放進腎臟複合終點，買到的是統計檢定力，不是不同的效果。</b>這對本論文反而更關鍵——一個用純腎臟終點的真實世界研究會是「陰性」，一個用含心血管死亡複合的試驗會是「陽性」，<u>兩者的風險比卻幾乎相同</u>。這是結論分歧而估計值不分歧，比單純的估計值分歧更難察覺。詳見 <a href="#m35">Manuscript §03b Table 4</a>。<br><br>
+      所以正確的說法是：<b>把心血管死亡放進腎臟複合終點，買到的是統計檢定力，不是不同的效果。</b>這對本論文反而更關鍵——一個用純腎臟終點的真實世界研究會是「陰性」，一個用含心血管死亡複合的試驗會是「陽性」，<u>兩者的風險比卻幾乎相同</u>。這是結論分歧而估計值不分歧，比單純的估計值分歧更難察覺。詳見 <a href="#m35">第 11 節 Table 4</a>。<br><br>
       <b>第二，NDT 2026 擷取到的 0.78（155 對 198 事件），與原論文任何一個定義都對不上。</b>那是第三方在做統合分析時又建構了另一個複合終點。<b>這代表就連「同一個試驗在不同統合分析中的數值」都不是同一個估計量。</b><br><br>
       這比我先前用的 FLOW 例子更強——FLOW 是兩個定義差 0.76 對 0.84，SELECT 是八個定義橫跨 0.57 到 0.87，而且顯著性會翻轉。
     </div>
@@ -2335,7 +2418,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       FLOW 裡<b>兩個最硬的腎臟終點都不顯著</b>：長期腎替代療法 0.84（0.63–1.12）、eGFR 低於 15 為 0.80（0.61–1.06）。達到顯著的是 ≥50% eGFR 下降（0.73）與<b>心血管死亡</b>（0.71）。<br><br>
       <b>但 SELECT 的梯度方向與 FLOW 相反</b>，這一點我先前寫錯了，現在更正：SELECT 的 eGFR 門檻愈硬，效果反而愈強（≥30% 為 0.81、≥40% 為 0.71、≥50% 為 0.57），只是精確度隨之崩壞。FLOW 則是愈硬愈弱（0.73 → 0.80 → 0.84）。<br><br>
       兩個試驗<b>唯一一致的地方</b>是：顯著與否由「複合終點包含哪些成分」決定，而不是由一條穩定的軟硬梯度決定。<br><br>
-      這個更正讓論證變得<u>更強而不是更弱</u>：既然梯度方向不穩定，<b>終點軟硬度就不能當成一個線性調節因子放進統合迴歸</b>，它必須是一個<b>對齊條件</b>——只有定義相同的估計值才可以配對。這是論文一最乾淨的一塊立論，也是〈論文草稿〉分頁那篇短報告的核心結果之一。詳見 <a href="#m3">Manuscript §03</a>。
+      這個更正讓論證變得<u>更強而不是更弱</u>：既然梯度方向不穩定，<b>終點軟硬度就不能當成一個線性調節因子放進統合迴歸</b>，它必須是一個<b>對齊條件</b>——只有定義相同的估計值才可以配對。這是論文一最乾淨的一塊立論，也是本頁後半那篇短報告的核心結果之一。詳見 <a href="#m3">第 10 節</a>。
     </div>
 
     <h3 style="margin-top:56px">FLOW 的 SGLT2i 交互作用：論文二意外拿到一個隨機化把手</h3>
@@ -2722,107 +2805,10 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
   </div>
 </section>
 
-<div class="end">
-  <p><b>核對狀態</b>　本分頁的腎臟數值已逐一核對 NDT 2026 正文與 Figures 2–4、Fishkin 2025 Tables 2–3 與 Figures 2–3，、Fishkin 補充表 S2（ROBINS-I）與 S4（as-treated），以及 SELECT 原論文補充表 3（八種腎臟終點定義）與 FLOW 的 SGLT2i 分層分析原文，以及 SURMOUNT-1／2 事後腎臟分析（JASN 2025）、FLOW 的 NEJM 正文與補充附錄（表 S3、圖 S1、表 S2）與 SUSTAIN-5 正文與補充資料。癌症相關的迴歸分析已撤回。<b>先導分析仍非系統性回顧</b>——納入研究係取自既有兩篇系統性回顧，未做獨立更新檢索。</p>
-  <p><b>正式分析</b>　須完成 PROSPERO 註冊、兩人獨立篩選與擷取、PRISMA 流程圖、以多變量統合分析處理估計間相關性，並依附錄之檢索策略執行。</p>
-</div>
-
-</div>
-
-<div id="panel-ms" role="tabpanel" hidden>
-
-<header class="mast">
-  <p class="kicker">給方老師的報告　·　meta 的結果與它能延伸出的博士論文主題　·　2026.09</p>
-  <h1>這份 meta 做出了什麼，能長出什麼</h1>
-  <p class="dek">方老師交代的是「這個主題的 meta」。做出來的東西分兩層：<b>臨床層</b>是 GLP-1 腎臟結局的證據現況（效益集中在軟終點，腎衰竭本身不顯著）；<b>方法學層</b>是核對原文時掉出來的意外收穫——在同一個隨機試驗內部、偏差為零的情況下，光是換終點定義就能讓效果值移動 16–53%，超過文獻上被歸因為「偏差」的 8%。<br><br>第 01–04 節把方法學那層寫成完整英文格式（4 圖 4 表），<b>目的不是投稿而是把東西講清楚</b>。<b>第 05 節才是重點：這份 meta 能延伸成哪些博士論文主題，以及要跟方老師確認的五個問題。</b></p>
-</header>
-
-<section id="m0">
-  <div class="sec-head">
-    <span class="sec-num">00</span>
-    <h2>一頁摘要：這份 meta 做出了什麼</h2>
-    <p class="sub">方老師交代的是「這個主題的 meta」。做出來的東西分成兩層，第二層是原本沒預期的收穫。</p>
-  </div>
-
-  <div class="stack">
-
-    <div class="panel">
-      <h3>第一層　臨床：GLP-1 類藥物腎臟結局的證據現況</h3>
-      <div class="tbl">
-        <table>
-          <thead><tr><th style="width:26%">問題</th><th style="width:34%">先導分析的答案</th><th style="width:40%">在哪裡看</th></tr></thead>
-          <tbody>
-            <tr>
-              <td data-l="問題">GLP-1 對腎臟有沒有效？</td>
-              <td data-l="答案">有，但<b>效果集中在較軟的終點</b>。複合終點 RR 約 0.81；<b>腎衰竭本身不顯著</b>（0.86）。</td>
-              <td data-l="位置">先導分析 · 第 03 節</td>
-            </tr>
-            <tr>
-              <td data-l="問題">真實世界研究與試驗一致嗎？</td>
-              <td data-l="答案"><b>不能一句話回答。</b>對照層不同，方向就不同：對照 SGLT2i 是 1.40（看似有害），對照 DPP-4i 是 0.70。</td>
-              <td data-l="位置">概論 · 第 02 節</td>
-            </tr>
-            <tr>
-              <td data-l="問題">猛健樂（tirzepatide）呢？</td>
-              <td data-l="答案"><b>幾乎沒有腎臟隨機證據。</b>唯一的是 SURMOUNT-1／2 的事後分析，終點是 UACR（純代理指標），族群 71–91% 是正常白蛋白尿。</td>
-              <td data-l="位置">先導分析 · 第 06 節</td>
-            </tr>
-            <tr style="background:var(--flag-soft)">
-              <td data-l="問題">那能不能做一篇正規的 meta？</td>
-              <td data-l="答案"><span class="flagtxt">目前不行。</span>研究是從既有兩篇系統性回顧的納入清單取來的，<b>沒有獨立檢索、沒有 PROSPERO、單人擷取</b>。這是先導分析，不是系統性回顧。</td>
-              <td data-l="位置">本分頁 · 第 05 節有補救路徑</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="panel" style="margin-top:26px">
-      <h3>第二層　方法學：做的過程中撞到的東西</h3>
-      <p style="font-size:16px;color:var(--ink-2);max-width:700px;margin-bottom:18px">為了核對數值，我把 SELECT、FLOW、SURMOUNT、SUSTAIN-5 的原文與補充資料逐格抄了一次。抄的過程中發現一件事：</p>
-      <div class="stats">
-        <div><div class="big">0.57–0.87</div><div class="cap2">同一個試驗、同一批病人<br><span class="q">八種腎臟終點定義</span></div></div>
-        <div><div class="big">+32%</div><div class="cap2">換對照層的估計值差距<br><span class="q">隨機試驗內部</span></div></div>
-        <div><div class="big">+3%</div><div class="cap2">換分析方法的差距<br><span class="q">ITT 家族內部</span></div></div>
-        <div><div class="big">+8%</div><div class="cap2">文獻報告的「偏差」訊號<br><span class="q">Cochrane MR000034</span></div></div>
-      </div>
-      <div class="note flag col" style="margin-top:24px">
-        <span class="lede">一句話</span>
-        <b>在同一個隨機試驗內部（偏差為零），光是換終點定義就能讓效果值移動 16–53%，超過文獻上被歸因為「偏差」的 8%。</b><br><br>
-        這代表目前 real-world 與 RCT 的分歧研究，有相當比例可能只是<u>估計量沒對齊</u>，不是偏差。這個發現不在原本的計畫裡，是做 meta 時掉出來的。
-      </div>
-    </div>
-
-    <div class="panel" style="margin-top:26px">
-      <h3>做的過程中改正的五個錯誤</h3>
-      <p style="font-size:15px;color:var(--ink-2);margin-bottom:16px">這一段建議在報告時主動講。它證明的是核對過原文，而不是抄二手來源。</p>
-      <div class="tbl">
-        <table>
-          <thead><tr><th style="width:26%">原本寫的</th><th style="width:38%">核對原文後</th><th style="width:36%">來源</th></tr></thead>
-          <tbody>
-            <tr><td data-l="原本">FLOW 腎臟複合 0.76</td><td data-l="更正">視定義而定；NDT 重新擷取為 0.84，因複合成分不同</td><td data-l="來源">NDT 2026 vs NEJM 2024</td></tr>
-            <tr><td data-l="原本">SELECT 腎臟結局 0.78</td><td data-l="更正">原論文 5 成分複合是 <b>0.82</b>；0.78 是第三方重新建構的第九種定義</td><td data-l="來源">SELECT 補充表 3</td></tr>
-            <tr><td data-l="原本">FLOW ≥50% eGFR 為 165 對 231 事件</td><td data-l="更正">165 對 <b>213</b></td><td data-l="來源">FLOW 表 2</td></tr>
-            <tr><td data-l="原本">兩個試驗都顯示「終點愈硬效果愈弱」</td><td data-l="更正"><b>方向相反。</b>FLOW 愈硬愈弱，SELECT 愈硬愈強</td><td data-l="來源">兩篇原文</td></tr>
-            <tr><td data-l="原本">SELECT 的顯著性被心血管死亡撐起</td><td data-l="更正">點估計幾乎不變（0.82 對 0.80，p=0.87）。<b>買到的是檢定力，不是效果</b></td><td data-l="來源">本分頁表 4</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="note col" style="margin-top:26px">
-      <span class="lede">本分頁的用途</span>
-      以下第 01–04 節是把上面第二層的發現寫成英文的完整格式（Abstract／Methods／Results／Discussion＋4 圖 4 表）。<b>目的不是投稿，是把東西講清楚、讓方老師一眼看到它值不值得延伸。</b>如果後來要投，格式已經在了。<br><br>
-      <b>第 05 節才是你真正要跟方老師談的：這份 meta 能長出哪些博士論文主題。</b>
-    </div>
-
-  </div>
-</section>
-
 
 <section id="m1">
   <div class="sec-head">
-    <span class="sec-num">01</span>
+    <span class="sec-num">08</span>
     <h2>Title page &amp; Abstract</h2>
     <p class="sub">Draft for submission as a short report / original research article.</p>
   </div>
@@ -2846,8 +2832,8 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
       <p><b>Background.</b> Meta-epidemiological studies routinely quantify the discordance between real-world evidence (RWE) and randomised controlled trials (RCTs) as a ratio of hazard ratios and attribute the residual to confounding and design bias. The pooled discordance reported by the largest such synthesis is modest (ratio of ratios 1.08, 95% CI 1.01–1.15). What is not known is how much of an estimate can move for reasons that have nothing to do with bias — because the estimand itself was defined differently.</p>
       <p><b>Objective.</b> To quantify how far kidney effect estimates for incretin-based therapies move when the endpoint definition, the endpoint component, the analytic handling of missing data and discontinuation, or the comparator is changed, while confounding is held at zero by randomisation.</p>
       <p><b>Methods.</b> Meta-research study of published randomised evidence. We extracted every kidney effect estimate reported for the same randomised population in two large trials — SELECT (n=17,604) and FLOW (n=3,533) — from their primary reports and supplementary appendices, together with comparator-stratified randomised estimates from a 2026 systematic review. Estimates were grouped into four strata of variation. For each stratum we computed the estimate range ratio (ERR), the largest hazard ratio divided by the smallest. Because estimates within a stratum share participants and the covariance is not published, pairwise contrasts were bounded by summing variances as if independent, which is conservative when the estimates are positively correlated. Funnel plots and heterogeneity statistics are invalid under this design and are not reported; a precision–estimate plot is given instead.</p>
-      <p><b>Results.</b> Within SELECT, eight reported definitions of “kidney outcome” in the same participants yielded hazard ratios from 0.57 to 0.87 (ERR 1.53; 1.16 when restricted to definitions with ≥40 events per arm), and only one definition — the only one including cardiovascular death — reached statistical significance. Within FLOW, the five components of the primary composite yielded 0.71 to 0.97 (ERR 1.37; 1.18 excluding a component with 5 events per arm). Across comparator strata in randomised evidence, estimates ranged from 0.61 against insulin glargine to 0.81 against placebo (ERR 1.32). By contrast, six analytic variants of the same FLOW endpoint yielded 0.75 to 0.77 (ERR 1.03). The direction of the endpoint-hardness gradient was opposite in the two trials. Under the conservative bound no within-trial contrast reached significance, and the extremes of each range were the least precise estimates.</p>
-      <p style="margin-bottom:0"><b>Conclusions.</b> Choices about what is being estimated move kidney effect estimates by 16–53%, exceeding the RWE-versus-RCT discordance that the meta-epidemiological literature attributes to bias; choices about how the same estimand is analysed move them by 3%. The trials cannot resolve which definition is right, so the choice cannot be made on statistical grounds and must be made by pre-specified alignment. Discordance analyses that pair estimates without documenting the full component list of each composite risk misclassifying estimand misalignment as bias.</p>
+      <p><b>Results.</b> Within SELECT, eight reported definitions of “kidney outcome” in the same participants yielded hazard ratios from 0.57 to 0.87 (ERR 1.53; 1.15 when restricted to definitions with ≥40 events per arm), and only one definition — the only one including cardiovascular death — reached statistical significance. Within FLOW, the five components of the primary composite yielded 0.71 to 0.97 (ERR 1.37; 1.18 excluding a component with 5 events per arm). Across comparator strata in randomised evidence, estimates ranged from 0.61 against insulin glargine to 0.81 against placebo (ERR 1.32). By contrast, six analytic variants of the same FLOW endpoint yielded 0.75 to 0.77 (ERR 1.03). The direction of the endpoint-hardness gradient was opposite in the two trials. Under the conservative bound no within-trial contrast reached significance, and the extremes of each range were the least precise estimates.</p>
+      <p style="margin-bottom:0"><b>Conclusions.</b> Choices about what is being estimated move kidney effect estimates by 15–53%, exceeding the RWE-versus-RCT discordance that the meta-epidemiological literature attributes to bias; choices about how the same estimand is analysed move them by 3%. The trials cannot resolve which definition is right, so the choice cannot be made on statistical grounds and must be made by pre-specified alignment. Discordance analyses that pair estimates without documenting the full component list of each composite risk misclassifying estimand misalignment as bias.</p>
       <p style="margin-top:16px; margin-bottom:0"><span class="q"><b>Keywords</b> estimand · meta-epidemiology · real-world evidence · GLP-1 receptor agonists · chronic kidney disease · composite endpoints</span></p>
     </div>
 
@@ -2856,7 +2842,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
 <section id="m2">
   <div class="sec-head">
-    <span class="sec-num">02</span>
+    <span class="sec-num">09</span>
     <h2>Introduction &amp; Methods</h2>
   </div>
 
@@ -2916,7 +2902,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
 <section id="m3">
   <div class="sec-head">
-    <span class="sec-num">03</span>
+    <span class="sec-num">10</span>
     <h2>Results</h2>
   </div>
 
@@ -2931,7 +2917,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
           <div class="g-lab"><b>A · Endpoint definition</b><br><span class="q">SELECT, 8 definitions, same 17,604 participants</span></div>
           <div class="g-tr">
             <div class="g-bar" style="left:0%; width:87.7%; background:var(--s1); opacity:.32"></div>
-            <div class="g-bar" style="left:0%; width:25.8%; background:var(--s1)">+16%</div>
+            <div class="g-bar" style="left:0%; width:25.8%; background:var(--s1)">+15%</div>
             <div style="position:absolute; left:89.5%; top:0; line-height:22px; font-size:11.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap"><b>+53%</b></div>
             <div style="position:absolute; left:13.3%; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed var(--flag)"></div>
           </div>
@@ -3186,7 +3172,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
             <td data-l="k">7</td>
             <td data-l="Range">0.57 – 0.87</td>
             <td data-l="ERR"><b>1.53</b></td>
-            <td data-l="Restricted">1.16 restricted to 4 definitions with ≥40 events per arm (0.71 – 0.82)</td>
+            <td data-l="Restricted">1.15 restricted to 4 definitions with ≥40 events per arm (0.71 – 0.82)</td>
           </tr>
           <tr style="background:var(--acc-soft)">
             <td data-l="Stratum"><b>B · Endpoint component</b><span class="q">FLOW, within-trial</span></td>
@@ -3227,7 +3213,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
 <section id="m35">
   <div class="sec-head">
-    <span class="sec-num">03b</span>
+    <span class="sec-num">11</span>
     <h2>Precision, and why no funnel plot</h2>
     <p class="sub">The first question any reviewer will ask: is the range just noise? This section answers it — and explains which standard meta-analysis displays apply here and which are invalid by construction.</p>
   </div>
@@ -3405,10 +3391,26 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
     </div>
     <p class="figcap">Ratios are the second hazard ratio divided by the first, on the log scale. Variances are summed as if the estimates were independent, which is an upper bound when the estimates share participants.</p>
 
+    <div class="panel" style="margin-top:32px">
+      <h3>Reproducibility　全部可用 R 重跑</h3>
+      <p style="font-size:15.5px; line-height:1.7; color:var(--ink); margin:0 0 14px">整份分析已寫成一支 <b>metafor</b> 腳本，執行 <code>Rscript meta_analysis.R</code> 約 5 秒跑完，產生本節的四張圖與三個結果表。輸入是一個 24 列的 CSV，每一格都對應原文的表號。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th style="width:30%">檔案</th><th style="width:70%">內容</th></tr></thead>
+          <tbody>
+            <tr><td data-l="檔案"><code>data/estimates.csv</code></td><td data-l="內容">24 筆已發表估計值，含事件數與來源表號。HR 與 CI 照抄原文未重算。</td></tr>
+            <tr><td data-l="檔案"><code>meta_analysis.R</code></td><td data-l="內容">中文註解。含 ERR 計算、保守配對比較、四張圖，以及第 6 節<b>刻意示範無效分析</b>（合併 SELECT 七種定義得 I²=0.0%、HR 0.79）。</td></tr>
+            <tr><td data-l="檔案"><code>output/</code></td><td data-l="內容">fig1–fig4 的 PNG（200 dpi）、三個結果 CSV、完整文字輸出 results.txt。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:15px; color:var(--ink-2); margin-top:14px">只需要 <b>metafor</b> 一個套件。森林圖直接畫原文的信賴區間（<code>ci.lb</code>／<code>ci.ub</code>），不用標準誤重建，避免四捨五入造成與原文不符。</p>
+    </div>
+
     <div class="note flag col" style="margin-top:32px">
       <span class="lede">Why this strengthens rather than weakens the argument</span>
       <p style="margin:0 0 14px">A reader may take Table 4 to mean that the definitions do not really differ. That reading misses what the paper is about. The claim is not that these seven definitions estimate seven different underlying quantities; it is that <b>a meta-analyst pairing a real-world estimate with a trial estimate has to pick one of them, the choice moves the numerator of the resulting ratio of hazard ratios by up to 53%, and the trial data provide no basis for making the choice empirically.</b></p>
-      <p style="margin:0">In fact the non-significance is the sharper finding. If the trials could distinguish the definitions, a reviewer could ask a synthesis to justify its extraction on statistical grounds. They cannot. The choice must therefore be made by pre-specification and alignment, and any discordance analysis that leaves it undocumented has an unquantified 16 to 53% of slack in its input before bias is considered.</p>
+      <p style="margin:0">In fact the non-significance is the sharper finding. If the trials could distinguish the definitions, a reviewer could ask a synthesis to justify its extraction on statistical grounds. They cannot. The choice must therefore be made by pre-specification and alignment, and any discordance analysis that leaves it undocumented has an unquantified 15 to 53% of slack in its input before bias is considered.</p>
     </div>
 
   </div>
@@ -3416,13 +3418,13 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
 <section id="m4">
   <div class="sec-head">
-    <span class="sec-num">04</span>
+    <span class="sec-num">12</span>
     <h2>Discussion</h2>
   </div>
 
   <div class="stack ms">
 
-    <p>In two large randomised trials of semaglutide, the choice of what to estimate moved the kidney effect estimate by 16 to 53%, while the choice of how to analyse a fixed estimand moved it by 3%. Both figures come from within randomised populations, where confounding is zero by construction, so neither is attributable to bias. The larger of the two exceeds by several fold the pooled discordance between randomised and non-randomised evidence that the meta-epidemiological literature reports and interprets as bias.</p>
+    <p>In two large randomised trials of semaglutide, the choice of what to estimate moved the kidney effect estimate by 15 to 53%, while the choice of how to analyse a fixed estimand moved it by 3%. Both figures come from within randomised populations, where confounding is zero by construction, so neither is attributable to bias. The larger of the two exceeds by several fold the pooled discordance between randomised and non-randomised evidence that the meta-epidemiological literature reports and interprets as bias.</p>
     <p>The practical implication is uncomfortable. A meta-epidemiological analysis that pairs an observational estimate with a trial estimate on the basis that both address “kidney outcomes in patients treated with GLP-1 receptor agonists” may be pairing a five-component composite that includes cardiovascular death with a claims-based definition of dialysis initiation. Our data suggest that such a pair can differ by 30 to 50% before any bias is present. A ratio of hazard ratios computed across it is not a measure of bias; it is a measure of how differently the two teams defined the question, contaminated by an unknown amount of bias.</p>
     <p>Three specific findings sharpen this. First, in SELECT the only definition reaching statistical significance was the only one containing cardiovascular death; removing that component from an otherwise identical composite removed significance. Whether a composite includes cardiovascular death is therefore not a detail — in this dataset it determines the headline conclusion. Second, a published systematic review re-extracted SELECT as 0.78 on 155 versus 198 events, a combination that appears nowhere in the trial's own supplement; the same trial thus enters different syntheses as different estimands. Third, the direction of the endpoint-hardness gradient differed between the two trials, which rules out treating hardness as an adjustable linear covariate and forces it to be an eligibility criterion instead.</p>
     <p>The near-invariance of stratum C deserves careful statement. It would be wrong to conclude that analytic choices do not matter. All six FLOW analyses belong to the intention-to-treat family; they differ in how missing data and dropouts are handled, not in whether person-time after discontinuation is counted. The contrast between intention-to-treat and as-treated analysis — the contrast that carries healthy-adherer bias in observational studies — is not represented among them. What our result establishes is narrower and still useful: within the intention-to-treat family, sensitivity analyses of missing data move the estimate by an order of magnitude less than definitional choices, so effort spent harmonising them is poorly allocated relative to effort spent harmonising endpoint definitions.</p>
@@ -3459,7 +3461,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
 <section id="m5">
   <div class="sec-head">
-    <span class="sec-num">05</span>
+    <span class="sec-num">13</span>
     <h2>能長出哪些博士論文主題</h2>
     <p class="sub">這是要跟方老師談的部分。四個方向，依「一個人能不能做完」排序，不是依理想性排序。</p>
   </div>
@@ -3575,7 +3577,7 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 
     <div class="note flag col" style="margin-top:32px">
       <span class="lede">如果方老師問「那這篇 meta 到底能不能發表」</span>
-      <b>先導分析本身不能</b>——不是系統性回顧。但第 01–04 節那篇方法學短報告可以，而且不需要再收任何資料。若要投，還缺三件事：敏感度分析、雙人擷取、再加 1–2 個試驗把 k 撐到 3–4。<b>約 4–6 週。</b><br><br>
+      <b>先導分析本身不能</b>——不是系統性回顧。但第 08–12 節那篇方法學短報告可以，而且不需要再收任何資料。若要投，還缺三件事：敏感度分析、雙人擷取、再加 1–2 個試驗把 k 撐到 3–4。<b>約 4–6 週。</b><br><br>
       可投 <i>J Clin Epidemiol</i>、<i>BMJ Evidence-Based Medicine</i>、<i>Research Synthesis Methods</i>；若想讓腎臟科看見則投 <i>CJASN</i> 或 <i>Kidney Int Rep</i>。<br><br>
       但這是次要的。<b>主要目的是讓方老師看到這個方向值不值得變成博士論文。</b>
     </div>
@@ -3591,9 +3593,15 @@ Var[ln(RHR)] = Var[ln(HR<sub>RWE</sub>)] + Var[ln(HR<sub>RCT</sub>)]<br><br>
 </section>
 
 
+
 <div class="end">
   <p><b>狀態</b>　本草稿的所有數值均取自 SELECT 補充表 3、FLOW 表 2 與補充表 S3／圖 S1／表 S2、NDT 2026 圖 2–4，並已逐格核對。<b>尚未做敏感度分析、尚未雙人擷取、尚未與指導教授確認作者序。</b></p>
   <p><b>與計畫書的關係</b>　本篇是論文一的先導發表，不取代論文一。論文一仍須完成 PROSPERO 註冊、獨立更新檢索、雙人篩選與擷取、PRISMA 流程圖，並在同一對照層內計算 RHR。</p>
+</div>
+
+<div class="end">
+  <p><b>核對狀態</b>　本分頁的腎臟數值已逐一核對 NDT 2026 正文與 Figures 2–4、Fishkin 2025 Tables 2–3 與 Figures 2–3，、Fishkin 補充表 S2（ROBINS-I）與 S4（as-treated），以及 SELECT 原論文補充表 3（八種腎臟終點定義）與 FLOW 的 SGLT2i 分層分析原文，以及 SURMOUNT-1／2 事後腎臟分析（JASN 2025）、FLOW 的 NEJM 正文與補充附錄（表 S3、圖 S1、表 S2）與 SUSTAIN-5 正文與補充資料。癌症相關的迴歸分析已撤回。<b>先導分析仍非系統性回顧</b>——納入研究係取自既有兩篇系統性回顧，未做獨立更新檢索。</p>
+  <p><b>正式分析</b>　須完成 PROSPERO 註冊、兩人獨立篩選與擷取、PRISMA 流程圖、以多變量統合分析處理估計間相關性，並依附錄之檢索策略執行。</p>
 </div>
 
 </div>
@@ -4009,7 +4017,7 @@ medRxiv                GLP-1 AND (kidney OR renal OR albuminuria)
 
 <script>
 (function(){
-  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "pilot", "k2": "pilot", "k3": "pilot", "k4": "pilot", "k5": "pilot", "k6": "pilot", "k7": "pilot", "m0": "ms", "m1": "ms", "m2": "ms", "m3": "ms", "m35": "ms", "m4": "ms", "m5": "ms"};
+  var MAP = {"s1": "intro", "s2": "intro", "s3": "intro", "s4": "design", "s5": "design", "s6": "methods", "s7": "methods", "s8": "methods", "s9": "bias", "s10": "bias", "s11": "plan", "s12": "plan", "q1": "appendix", "q2": "appendix", "q3": "appendix", "q4": "appendix", "q5": "appendix", "q6": "appendix", "refs": "appendix", "k1": "meta", "k2": "meta", "k3": "meta", "k4": "meta", "k5": "meta", "k6": "meta", "k7": "meta", "m0": "meta", "m1": "meta", "m2": "meta", "m3": "meta", "m35": "meta", "m4": "meta", "m5": "meta"};
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function show(name, scroll){
     if(!document.getElementById('panel-'+name)) name = tabs[0].dataset.tab;
